@@ -1,10 +1,8 @@
 import React from "react";
 import { Box } from "@mui/material";
-import Sidebar, { drawerWidth } from "../Layout/Sidebar";
-import CardItem from "../CardItem";
+import Sidebar from "../Layout/Sidebar";
 import Header from "../Layout/Header";
 import { Route, Routes } from "react-router-dom";
-import Statistics from "./Statistics";
 import Orders from "./Orders";
 import Charts from "../Charts";
 
