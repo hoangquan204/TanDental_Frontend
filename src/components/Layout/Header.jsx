@@ -13,8 +13,14 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import AddIcon from "@mui/icons-material/Add";
+import LoginModal from "../Login/LoginModal";
+import HeaderUser from "./HeaderUser";
+import { useSelector } from "react-redux";
+import { getAuthSelector } from "../../redux/selector";
 
 const Header = () => {
+  const { isAuthenticated } = useSelector(getAuthSelector);
+
   return (
     <AppBar position="fixed" sx={{ zIndex: 1201, background: "#1DA1F2" }}>
       <Toolbar className="flex justify-between">
@@ -31,16 +37,22 @@ const Header = () => {
         </Box>
 
         <Box className="flex items-center gap-3">
-          <Button variant="contained" startIcon={<SearchIcon />}>
-            Tìm đơn hàng
-          </Button>
-          <IconButton color="inherit">
-            <AddIcon />
-          </IconButton>
-          <IconButton color="inherit">
-            <NotificationsIcon />
-          </IconButton>
-          <Avatar>C</Avatar>
+          {isAuthenticated ? (
+            <>
+              <Button variant="contained" startIcon={<SearchIcon />}>
+                Tìm đơn hàng
+              </Button>
+              <IconButton color="inherit">
+                <AddIcon />
+              </IconButton>
+              <IconButton color="inherit">
+                <NotificationsIcon />
+              </IconButton>
+              <HeaderUser />
+            </>
+          ) : (
+            <LoginModal />
+          )}
         </Box>
       </Toolbar>
     </AppBar>

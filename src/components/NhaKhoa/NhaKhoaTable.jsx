@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Table,
   TableBody,
@@ -9,10 +9,22 @@ import {
   Paper,
   Chip,
 } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchNhaKhoa } from "../../redux/slices/nhaKhoaSlice";
+import FullScreenLoader from "../Loader/FullScreenLoader";
 
-export default function NhaKhoaTable({ data }) {
+export default function NhaKhoaTable() {
+  const dispatch = useDispatch();
+
+  const { data, loading } = useSelector((state) => state.nhaKhoa);
+
+  useEffect(() => {
+    dispatch(fetchNhaKhoa());
+  }, []);
   return (
     <div className="p-4">
+      <FullScreenLoader open={loading} />
+
       <TableContainer component={Paper} className="rounded-2xl shadow-lg">
         <Table>
           {/* HEADER */}

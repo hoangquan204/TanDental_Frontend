@@ -1,7 +1,25 @@
-import React, { useState } from "react";
-import { Button, Modal, Box, TextField, MenuItem } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import {
+  Button,
+  Modal,
+  Box,
+  TextField,
+  Typography,
+  MenuItem,
+  CircularProgress,
+} from "@mui/material";
 
-export default function NguoiLienHeModal({ onAdd, nhaKhoas }) {
+// 🔥 REDUX
+import { useDispatch, useSelector } from "react-redux";
+import { createNguoiLienHe } from "../../redux/slices/nguoiLienHeSlice";
+import { fetchNhaKhoa } from "../../redux/slices/nhaKhoaSlice";
+
+export default function NguoiLienHeModal() {
+  const dispatch = useDispatch();
+
+  const { loading } = useSelector((state) => state.nguoiLienHe);
+  const { data: nhaKhoas } = useSelector((state) => state.nhaKhoa);
+
   const [open, setOpen] = useState(false);
 
   const [form, setForm] = useState({
@@ -13,56 +31,88 @@ export default function NguoiLienHeModal({ onAdd, nhaKhoas }) {
     nhaKhoa: "",
   });
 
+  /* ================= LOAD NHA KHOA ================= */
+  useEffect(() => {
+    dispatch(fetchNhaKhoa());
+  }, [dispatch]);
+
+  /* ================= HANDLE ================= */
+
   const handleChange = (key, value) => {
     setForm((prev) => ({ ...prev, [key]: value }));
   };
 
-  const handleSubmit = () => {
-    const nk = nhaKhoas.find((x) => x._id === form.nhaKhoa);
+  const handleSubmit = async () => {
+    try {
+      await dispatch(createNguoiLienHe(form)).unwrap();
 
-    onAdd({
-      _id: Date.now().toString(),
-      ...form,
-      nhaKhoa: nk,
-    });
+      setOpen(false);
 
-    setOpen(false);
+      // reset form
+      setForm({
+        hoVaTen: "",
+        email: "",
+        soDienThoai: "",
+        tieuDe: "",
+        moTa: "",
+        nhaKhoa: "",
+      });
+    } catch (err) {
+      console.log("Lỗi:", err);
+    }
   };
+
+  /* ================= UI ================= */
 
   return (
     <>
+      {/* BUTTON */}
       <Button variant="contained" onClick={() => setOpen(true)}>
-        Thêm liên hệ
+        Thêm người liên hệ
       </Button>
 
+      {/* MODAL */}
       <Modal open={open} onClose={() => setOpen(false)}>
-        <Box className="bg-white w-[600px] p-6 mx-auto mt-20 rounded-2xl shadow-xl">
+        <Box className="bg-white w-[700px] max-h-[90vh] overflow-y-auto mx-auto mt-10 p-6 rounded-2xl shadow-xl">
+          <Typography variant="h6" className="font-bold mb-4">
+            Tạo Người Liên Hệ
+          </Typography>
+
           <div className="grid grid-cols-2 gap-4">
             <TextField
-              label="Họ tên"
+              label="Họ và tên"
               fullWidth
+              value={form.hoVaTen}
               onChange={(e) => handleChange("hoVaTen", e.target.value)}
             />
+
             <TextField
               label="Email"
               fullWidth
+              value={form.email}
               onChange={(e) => handleChange("email", e.target.value)}
             />
+
             <TextField
-              label="SĐT"
+              label="Số điện thoại"
               fullWidth
+              value={form.soDienThoai}
               onChange={(e) => handleChange("soDienThoai", e.target.value)}
             />
+
             <TextField
               label="Tiêu đề"
               fullWidth
+              value={form.tieuDe}
               onChange={(e) => handleChange("tieuDe", e.target.value)}
             />
 
+            {/* 🔥 SELECT NHA KHOA */}
             <TextField
               select
               label="Nha khoa"
               fullWidth
+              value={form.nhaKhoa}
               onChange={(e) => handleChange("nhaKhoa", e.target.value)}
             >
               {nhaKhoas.map((nk) => (
@@ -73,20 +123,28 @@ export default function NguoiLienHeModal({ onAdd, nhaKhoas }) {
             </TextField>
           </div>
 
+          {/* MÔ TẢ */}
           <div className="mt-4">
             <TextField
               label="Mô tả"
               fullWidth
               multiline
               rows={3}
+              value={form.moTa}
               onChange={(e) => handleChange("moTa", e.target.value)}
             />
           </div>
 
-          <div className="flex justify-end mt-4 gap-2">
+          {/* ACTION */}
+          <div className="flex justify-end gap-3 mt-6">
             <Button onClick={() => setOpen(false)}>Hủy</Button>
-            <Button variant="contained" onClick={handleSubmit}>
-              Lưu
+
+            <Button
+              variant="contained"
+              onClick={handleSubmit}
+              disabled={loading}
+            >
+              {loading ? <CircularProgress size={20} /> : "Lưu"}
             </Button>
           </div>
         </Box>

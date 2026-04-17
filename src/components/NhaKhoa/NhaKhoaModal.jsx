@@ -6,11 +6,19 @@ import {
   TextField,
   Typography,
   MenuItem,
+  CircularProgress,
 } from "@mui/material";
 
 import vietnamAddress from "../../data/vietNameAddress";
 
-export default function NhaKhoaModal({ onAdd }) {
+// 🔥 REDUX
+import { useDispatch, useSelector } from "react-redux";
+import { createNhaKhoa } from "../../redux/slices/nhaKhoaSlice";
+
+export default function NhaKhoaModal() {
+  const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.nhaKhoa);
+
   const [open, setOpen] = useState(false);
 
   const [form, setForm] = useState({
@@ -55,50 +63,46 @@ export default function NhaKhoaModal({ onAdd }) {
     }));
   };
 
-  const handleSubmit = () => {
-    onAdd({
-      _id: Date.now().toString(),
-      ...form,
-      createdAt: new Date(),
-    });
+  const handleSubmit = async () => {
+    try {
+      await dispatch(createNhaKhoa(form)).unwrap();
 
-    setOpen(false);
+      setOpen(false);
 
-    // reset form
-    setForm({
-      hoVaTen: "",
-      tenGiaoDich: "",
-      soDienThoai: "",
-      email: "",
-      website: "",
-      quocGia: "Việt Nam",
-      tinh: "",
-      quanHuyen: "",
-      diaChiCuThe: "",
-      moTa: "",
-    });
+      // reset form
+      setForm({
+        hoVaTen: "",
+        tenGiaoDich: "",
+        soDienThoai: "",
+        email: "",
+        website: "",
+        quocGia: "Việt Nam",
+        tinh: "",
+        quanHuyen: "",
+        diaChiCuThe: "",
+        moTa: "",
+      });
 
-    setDistricts([]);
+      setDistricts([]);
+    } catch (err) {
+      console.log("Lỗi:", err);
+    }
   };
 
   /* ================= UI ================= */
 
   return (
     <>
-      {/* BUTTON */}
       <Button variant="contained" onClick={() => setOpen(true)}>
         Thêm nha khoa
       </Button>
 
-      {/* MODAL */}
       <Modal open={open} onClose={() => setOpen(false)}>
         <Box className="bg-white w-[800px] max-h-[90vh] overflow-y-auto mx-auto mt-10 p-6 rounded-2xl shadow-xl">
-          {/* HEADER */}
           <Typography variant="h6" className="font-bold mb-4">
             Tạo Nha Khoa
           </Typography>
 
-          {/* FORM */}
           <div className="grid grid-cols-2 gap-4">
             <TextField
               label="Họ và tên"
@@ -135,7 +139,6 @@ export default function NhaKhoaModal({ onAdd }) {
               onChange={(e) => handleChange("website", e.target.value)}
             />
 
-            {/* QUỐC GIA */}
             <TextField
               select
               label="Quốc gia"
@@ -146,7 +149,6 @@ export default function NhaKhoaModal({ onAdd }) {
               <MenuItem value="Việt Nam">Việt Nam</MenuItem>
             </TextField>
 
-            {/* TỈNH */}
             <TextField
               select
               label="Tỉnh/Thành"
@@ -161,7 +163,6 @@ export default function NhaKhoaModal({ onAdd }) {
               ))}
             </TextField>
 
-            {/* QUẬN */}
             <TextField
               select
               label="Quận/Huyện"
@@ -169,9 +170,6 @@ export default function NhaKhoaModal({ onAdd }) {
               value={form.quanHuyen}
               disabled={!districts.length}
               onChange={handleDistrictChange}
-              helperText={
-                !districts.length ? "Chọn tỉnh trước" : "Chọn quận/huyện"
-              }
             >
               {districts.map((d) => (
                 <MenuItem key={d} value={d}>
@@ -181,7 +179,6 @@ export default function NhaKhoaModal({ onAdd }) {
             </TextField>
           </div>
 
-          {/* ĐỊA CHỈ */}
           <div className="mt-4">
             <TextField
               label="Địa chỉ cụ thể"
@@ -191,7 +188,6 @@ export default function NhaKhoaModal({ onAdd }) {
             />
           </div>
 
-          {/* MÔ TẢ */}
           <div className="mt-4">
             <TextField
               label="Mô tả"
@@ -203,11 +199,15 @@ export default function NhaKhoaModal({ onAdd }) {
             />
           </div>
 
-          {/* ACTION */}
           <div className="flex justify-end gap-3 mt-6">
             <Button onClick={() => setOpen(false)}>Hủy</Button>
-            <Button variant="contained" onClick={handleSubmit}>
-              Lưu
+
+            <Button
+              variant="contained"
+              onClick={handleSubmit}
+              disabled={loading}
+            >
+              {loading ? <CircularProgress size={20} /> : "Lưu"}
             </Button>
           </div>
         </Box>
