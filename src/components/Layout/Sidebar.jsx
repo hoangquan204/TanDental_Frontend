@@ -6,9 +6,11 @@ const drawerWidth = 240;
 
 const Sidebar = () => {
   const menu = [
-    { name: "Dashboard", router: "/" },
+    { name: "Thống kê", router: "/" },
     { name: "Đơn Hàng", router: "/orders" },
-    { name: "Hàng Đã Nhận", router: "/received" },
+    { name: "Nha Khoa", router: "/nha-khoa" },
+    { name: "Người liên hệ", router: "/nguoi-lien-he" },
+    { name: "Bệnh nhân", router: "/benh-nhan" },
     { name: "Kế Hoạch Giao Hàng", router: "/delivery-plan" },
     { name: "Hóa Đơn", router: "/invoice" },
     { name: "Khách Hàng", router: "/customers" },

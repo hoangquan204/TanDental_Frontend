@@ -5,6 +5,9 @@ import Header from "../Layout/Header";
 import { Route, Routes } from "react-router-dom";
 import Orders from "./Orders";
 import Charts from "../Charts";
+import NhaKhoaPage from "../NhaKhoa/NhaKhoaPage";
+import NguoiLienHePage from "../NguoiLienHe/NguoiLienHePage";
+import BenhNhanPage from "../BenhNhan/BenhNhanPage";
 
 const Dashboard = () => {
   return (
@@ -20,6 +23,9 @@ const Dashboard = () => {
         <Routes>
           <Route path="/" element={<Charts />} />
           <Route path="/orders" element={<Orders />} />
+          <Route path="/nha-khoa" element={<NhaKhoaPage />} />
+          <Route path="/nguoi-lien-he" element={<NguoiLienHePage />} />
+          <Route path="/benh-nhan" element={<BenhNhanPage />} />
         </Routes>
       </Box>
     </Box>
