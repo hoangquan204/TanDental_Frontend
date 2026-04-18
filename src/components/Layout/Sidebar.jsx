@@ -7,6 +7,7 @@ import {
   ListItemText,
   ListItemIcon,
   Collapse,
+  Tooltip,
 } from "@mui/material";
 
 import {
@@ -25,11 +26,11 @@ import {
 
 import { useNavigate, useLocation } from "react-router-dom";
 
-const drawerWidth = 240;
-
-const Sidebar = () => {
+const Sidebar = ({ collapsed }) => {
   const navigate = useNavigate();
   const location = useLocation();
+
+  const drawerWidth = collapsed ? 64 : 240;
 
   /* ===== MENU ===== */
   const menu = [
@@ -63,15 +64,16 @@ const Sidebar = () => {
 
   const [openCustomer, setOpenCustomer] = useState(isCustomerActive);
 
-  /* ===== UI ===== */
   return (
     <Drawer
       variant="permanent"
       sx={{
         width: drawerWidth,
         flexShrink: 0,
-        [`& .MuiDrawer-paper`]: {
+        "& .MuiDrawer-paper": {
           width: drawerWidth,
+          transition: "width 0.3s ease",
+          overflowX: "hidden",
           boxSizing: "border-box",
         },
       }}
@@ -81,81 +83,143 @@ const Sidebar = () => {
       <List>
         {/* ===== MENU CHÍNH ===== */}
         {menu.map((item, index) => (
-          <ListItemButton
+          <Tooltip
             key={index}
-            onClick={() => navigate(item.router)}
+            title={collapsed ? item.name : ""}
+            placement="right"
+          >
+            <ListItemButton
+              onClick={() => navigate(item.router)}
+              sx={{
+                justifyContent: collapsed ? "center" : "flex-start",
+                px: collapsed ? 1 : 2,
+              }}
+              className={`transition ${
+                isActive(item.router)
+                  ? "bg-blue-100 text-blue-600"
+                  : "hover:bg-gray-100"
+              }`}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: collapsed ? 0 : 2,
+                  justifyContent: "center",
+                }}
+                className={isActive(item.router) ? "text-blue-600" : ""}
+              >
+                {item.icon}
+              </ListItemIcon>
+
+              {!collapsed && <ListItemText primary={item.name} />}
+            </ListItemButton>
+          </Tooltip>
+        ))}
+
+        {/* ===== DROPDOWN ===== */}
+        <Tooltip
+          title={collapsed ? "Quản lý khách hàng" : ""}
+          placement="right"
+        >
+          <ListItemButton
+            onClick={() => setOpenCustomer(!openCustomer)}
+            sx={{
+              justifyContent: collapsed ? "center" : "flex-start",
+              px: collapsed ? 1 : 2,
+            }}
             className={`transition ${
-              isActive(item.router)
-                ? "bg-blue-100 text-blue-600"
+              isCustomerActive
+                ? "bg-blue-50 text-blue-600"
                 : "hover:bg-gray-100"
             }`}
           >
             <ListItemIcon
-              className={isActive(item.router) ? "text-blue-600" : ""}
+              sx={{
+                minWidth: 0,
+                mr: collapsed ? 0 : 2,
+                justifyContent: "center",
+              }}
             >
-              {item.icon}
+              <People />
             </ListItemIcon>
-            <ListItemText primary={item.name} />
+
+            {!collapsed && <ListItemText primary="Quản lý khách hàng" />}
+
+            {!collapsed && (openCustomer ? <ExpandLess /> : <ExpandMore />)}
           </ListItemButton>
-        ))}
+        </Tooltip>
 
-        {/* ===== DROPDOWN ===== */}
-        <ListItemButton
-          onClick={() => setOpenCustomer(!openCustomer)}
-          className={`transition ${
-            isCustomerActive ? "bg-blue-50 text-blue-600" : "hover:bg-gray-100"
-          }`}
-        >
-          <ListItemIcon>
-            <People />
-          </ListItemIcon>
-
-          <ListItemText primary="Quản lý khách hàng" />
-          {openCustomer ? <ExpandLess /> : <ExpandMore />}
-        </ListItemButton>
-
-        <Collapse in={openCustomer} timeout="auto" unmountOnExit>
+        <Collapse in={openCustomer && !collapsed} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
             {customerMenu.map((item, index) => (
-              <ListItemButton
+              <Tooltip
                 key={index}
-                sx={{ pl: 4 }}
-                onClick={() => navigate(item.router)}
-                className={`transition ${
-                  isActive(item.router)
-                    ? "bg-blue-100 text-blue-600"
-                    : "hover:bg-gray-100"
-                }`}
+                title={collapsed ? item.name : ""}
+                placement="right"
               >
-                <ListItemIcon
-                  className={isActive(item.router) ? "text-blue-600" : ""}
+                <ListItemButton
+                  sx={{
+                    pl: collapsed ? 1 : 4,
+                    justifyContent: collapsed ? "center" : "flex-start",
+                  }}
+                  onClick={() => navigate(item.router)}
+                  className={`transition ${
+                    isActive(item.router)
+                      ? "bg-blue-100 text-blue-600"
+                      : "hover:bg-gray-100"
+                  }`}
                 >
-                  {item.icon}
-                </ListItemIcon>
-                <ListItemText primary={item.name} />
-              </ListItemButton>
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: collapsed ? 0 : 2,
+                      justifyContent: "center",
+                    }}
+                    className={isActive(item.router) ? "text-blue-600" : ""}
+                  >
+                    {item.icon}
+                  </ListItemIcon>
+
+                  {!collapsed && <ListItemText primary={item.name} />}
+                </ListItemButton>
+              </Tooltip>
             ))}
           </List>
         </Collapse>
 
         {/* ===== MENU KHÁC ===== */}
         {otherMenu.map((item, index) => (
-          <ListItemButton
+          <Tooltip
             key={index}
-            onClick={() => navigate(item.router)}
-            className={`transition ${
-              isActive(item.router)
-                ? "bg-blue-100 text-blue-600"
-                : "hover:bg-gray-100"
-            }`}
+            title={collapsed ? item.name : ""}
+            placement="right"
           >
-            <ListItemIcon
-              className={isActive(item.router) ? "text-blue-600" : ""}
+            <ListItemButton
+              onClick={() => navigate(item.router)}
+              sx={{
+                justifyContent: collapsed ? "center" : "flex-start",
+                px: collapsed ? 1 : 2,
+              }}
+              className={`transition ${
+                isActive(item.router)
+                  ? "bg-blue-100 text-blue-600"
+                  : "hover:bg-gray-100"
+              }`}
             >
-              {item.icon}
-            </ListItemIcon>
-            <ListItemText primary={item.name} />
-          </ListItemButton>
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: collapsed ? 0 : 2,
+                  justifyContent: "center",
+                }}
+                className={isActive(item.router) ? "text-blue-600" : ""}
+              >
+                {item.icon}
+              </ListItemIcon>
+
+              {!collapsed && <ListItemText primary={item.name} />}
+            </ListItemButton>
+          </Tooltip>
         ))}
       </List>
     </Drawer>
@@ -163,4 +227,3 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
-export { drawerWidth };

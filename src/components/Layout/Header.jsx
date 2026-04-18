@@ -18,14 +18,14 @@ import HeaderUser from "./HeaderUser";
 import { useSelector } from "react-redux";
 import { getAuthSelector } from "../../redux/selector";
 
-const Header = () => {
+const Header = ({ onToggleSidebar }) => {
   const { isAuthenticated } = useSelector(getAuthSelector);
 
   return (
     <AppBar position="fixed" sx={{ zIndex: 1201, background: "#1DA1F2" }}>
       <Toolbar className="flex justify-between">
         <Box className="flex items-center gap-3">
-          <IconButton color="inherit">
+          <IconButton color="inherit" onClick={onToggleSidebar}>
             <MenuIcon />
           </IconButton>
           <Typography variant="h6">CÔNG TY TNHH TÂN DENTAL</Typography>
