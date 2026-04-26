@@ -49,19 +49,11 @@ export default function NhaKhoaPage() {
   };
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
-      {/* HEADER */}
-      <div className="flex justify-between items-center mb-6">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-800">Quản lý Nha Khoa</h1>
-          <p className="text-gray-500 text-sm">Danh sách phòng khám nha khoa</p>
-        </div>
-
-        {/* MODAL BUTTON */}
-        <NhaKhoaModal onAdd={handleAdd} />
+    <div className="p-6">
+      <div className="flex justify-between mb-4">
+        <h2 className="text-xl font-bold">Nha khoa</h2>
       </div>
 
-      {/* TABLE */}
       <NhaKhoaTable data={data} />
     </div>
   );

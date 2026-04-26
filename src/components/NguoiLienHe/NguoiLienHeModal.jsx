@@ -7,12 +7,15 @@ import {
   Typography,
   MenuItem,
   CircularProgress,
+  Tooltip,
+  IconButton,
 } from "@mui/material";
 
 // 🔥 REDUX
 import { useDispatch, useSelector } from "react-redux";
 import { createNguoiLienHe } from "../../redux/slices/nguoiLienHeSlice";
 import { fetchNhaKhoa } from "../../redux/slices/nhaKhoaSlice";
+import AddIcon from "@mui/icons-material/Add";
 
 export default function NguoiLienHeModal() {
   const dispatch = useDispatch();
@@ -67,9 +70,14 @@ export default function NguoiLienHeModal() {
   return (
     <>
       {/* BUTTON */}
-      <Button variant="contained" onClick={() => setOpen(true)}>
-        Thêm người liên hệ
-      </Button>
+      <Tooltip title="Thêm người liên hệ">
+        <IconButton
+          onClick={() => setOpen(true)}
+          className="bg-green-500 text-white hover:bg-green-600"
+        >
+          <AddIcon />
+        </IconButton>
+      </Tooltip>
 
       {/* MODAL */}
       <Modal open={open} onClose={() => setOpen(false)}>

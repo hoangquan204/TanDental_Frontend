@@ -7,7 +7,10 @@ import {
   Typography,
   MenuItem,
   CircularProgress,
+  Tooltip,
+  IconButton,
 } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
 
 import vietnamAddress from "../../data/vietNameAddress";
 
@@ -93,9 +96,14 @@ export default function NhaKhoaModal() {
 
   return (
     <>
-      <Button variant="contained" onClick={() => setOpen(true)}>
-        Thêm nha khoa
-      </Button>
+      <Tooltip title="Thêm nha khoa">
+        <IconButton
+          onClick={() => setOpen(true)}
+          className="bg-green-500 text-white hover:bg-green-600"
+        >
+          <AddIcon />
+        </IconButton>
+      </Tooltip>
 
       <Modal open={open} onClose={() => setOpen(false)}>
         <Box className="bg-white w-[800px] max-h-[90vh] overflow-y-auto mx-auto mt-10 p-6 rounded-2xl shadow-xl">

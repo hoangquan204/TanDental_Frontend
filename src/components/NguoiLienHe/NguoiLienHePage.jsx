@@ -132,7 +132,6 @@ export default function NguoiLienHePage() {
     <div className="p-6">
       <div className="flex justify-between mb-4">
         <h2 className="text-xl font-bold">Người liên hệ</h2>
-        <NguoiLienHeModal onAdd={handleAdd} nhaKhoas={nhaKhoas} />
       </div>
 
       <NguoiLienHeTable data={data} />

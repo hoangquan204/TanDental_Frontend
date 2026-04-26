@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   Table,
   TableBody,
@@ -8,28 +8,147 @@ import {
   TableRow,
   Paper,
   Chip,
+  TextField,
+  InputAdornment,
+  IconButton,
+  MenuItem,
+  Box,
+  Tooltip,
 } from "@mui/material";
+
+import {
+  Search as SearchIcon,
+  Star,
+  StarBorder,
+  Edit,
+  Close,
+} from "@mui/icons-material";
+
+import RefreshIcon from "@mui/icons-material/Refresh";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+
 import { useDispatch, useSelector } from "react-redux";
 import { fetchNhaKhoa } from "../../redux/slices/nhaKhoaSlice";
 import FullScreenLoader from "../Loader/FullScreenLoader";
+import NhaKhoaModal from "./NhaKhoaModal";
 
 export default function NhaKhoaTable() {
   const dispatch = useDispatch();
-
   const { data, loading } = useSelector((state) => state.nhaKhoa);
+
+  // ===== STATE =====
+  const [search, setSearch] = useState("");
+  const [selectedCountry, setSelectedCountry] = useState("");
+  const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
     dispatch(fetchNhaKhoa());
-  }, []);
+  }, [dispatch]);
+
+  // ===== DANH SÁCH QUỐC GIA =====
+  const countries = useMemo(() => {
+    return [...new Set(data?.map((i) => i.quocGia).filter(Boolean))];
+  }, [data]);
+
+  // ===== FILTER =====
+  const filteredData = useMemo(() => {
+    return data.filter((item) => {
+      const keyword = search.toLowerCase();
+
+      const matchSearch =
+        item.hoVaTen?.toLowerCase().includes(keyword) ||
+        item.email?.toLowerCase().includes(keyword) ||
+        item.soDienThoai?.includes(keyword) ||
+        item.diaChiCuThe?.toLowerCase().includes(keyword);
+
+      const matchCountry = selectedCountry
+        ? item.quocGia === selectedCountry
+        : true;
+
+      return matchSearch && matchCountry;
+    });
+  }, [data, search, selectedCountry]);
+
+  // ===== FAVORITE =====
+  const toggleFavorite = (id) => {
+    setFavorites((prev) =>
+      prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
+    );
+  };
+
   return (
-    <div className="p-4">
+    <Box>
       <FullScreenLoader open={loading} />
 
+      {/* ===== FILTER BAR (GIỐNG NGƯỜI LIÊN HỆ) ===== */}
+      <Box className="flex justify-between items-center mb-4">
+        {/* LEFT */}
+        <Box className="flex items-center gap-3">
+          {/* CHIP */}
+          {selectedCountry && (
+            <Chip
+              label={`Quốc gia: ${selectedCountry}`}
+              onDelete={() => setSelectedCountry("")}
+              className="bg-gray-200"
+            />
+          )}
+
+          {/* SELECT */}
+          <TextField
+            select
+            label="Quốc gia"
+            size="small"
+            value={selectedCountry}
+            onChange={(e) => setSelectedCountry(e.target.value)}
+            className="w-52"
+            InputLabelProps={{ shrink: true }}
+          >
+            <MenuItem value="">Tất cả</MenuItem>
+            {countries.map((c, index) => (
+              <MenuItem key={index} value={c}>
+                {c}
+              </MenuItem>
+            ))}
+          </TextField>
+        </Box>
+
+        {/* RIGHT */}
+        <Box className="flex items-center gap-2">
+          {/* SEARCH */}
+          <TextField
+            size="small"
+            placeholder="Tìm nha khoa..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon className="text-gray-400" />
+                </InputAdornment>
+              ),
+            }}
+          />
+
+          <NhaKhoaModal></NhaKhoaModal>
+
+          {/* REFRESH */}
+          <IconButton onClick={() => dispatch(fetchNhaKhoa())}>
+            <RefreshIcon />
+          </IconButton>
+
+          {/* MORE */}
+          <IconButton>
+            <MoreVertIcon />
+          </IconButton>
+        </Box>
+      </Box>
+
+      {/* ===== TABLE ===== */}
       <TableContainer component={Paper} className="rounded-2xl shadow-lg">
         <Table>
-          {/* HEADER */}
           <TableHead>
             <TableRow className="bg-gray-100">
+              <TableCell></TableCell>
               <TableCell>
                 <b>Tên</b>
               </TableCell>
@@ -48,17 +167,37 @@ export default function NhaKhoaTable() {
               <TableCell>
                 <b>Ngày tạo</b>
               </TableCell>
+              <TableCell align="center">
+                <b>Hành động</b>
+              </TableCell>
             </TableRow>
           </TableHead>
 
-          {/* BODY */}
           <TableBody>
-            {data.map((item) => (
-              <TableRow
-                key={item._id}
-                hover
-                className="transition duration-200"
-              >
+            {!loading && filteredData.length === 0 && (
+              <TableRow>
+                <TableCell colSpan={8} align="center">
+                  Không có dữ liệu
+                </TableCell>
+              </TableRow>
+            )}
+
+            {filteredData.map((item) => (
+              <TableRow key={item._id} hover>
+                {/* ⭐ FAVORITE */}
+                <TableCell>
+                  <IconButton
+                    size="small"
+                    onClick={() => toggleFavorite(item._id)}
+                  >
+                    {favorites.includes(item._id) ? (
+                      <Star className="text-yellow-400" />
+                    ) : (
+                      <StarBorder className="text-gray-400" />
+                    )}
+                  </IconButton>
+                </TableCell>
+
                 {/* TÊN */}
                 <TableCell>
                   <div className="font-semibold text-gray-800">
@@ -108,11 +247,20 @@ export default function NhaKhoaTable() {
                     size="small"
                   />
                 </TableCell>
+
+                {/* ACTION */}
+                <TableCell align="center">
+                  <Tooltip title="Chỉnh sửa">
+                    <IconButton size="small">
+                      <Edit className="text-blue-500" />
+                    </IconButton>
+                  </Tooltip>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </TableContainer>
-    </div>
+    </Box>
   );
 }

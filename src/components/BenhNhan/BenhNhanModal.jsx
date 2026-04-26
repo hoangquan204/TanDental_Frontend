@@ -6,6 +6,8 @@ import {
   TextField,
   MenuItem,
   CircularProgress,
+  IconButton,
+  Tooltip,
 } from "@mui/material";
 
 import vietnamAddress from "../../data/vietNameAddress";
@@ -14,6 +16,7 @@ import vietnamAddress from "../../data/vietNameAddress";
 import { useDispatch, useSelector } from "react-redux";
 import { createBenhNhan } from "../../redux/slices/benhNhanSlice";
 import { fetchNhaKhoa } from "../../redux/slices/nhaKhoaSlice";
+import AddIcon from "@mui/icons-material/Add";
 
 export default function BenhNhanModal() {
   const dispatch = useDispatch();
@@ -82,10 +85,14 @@ export default function BenhNhanModal() {
 
   return (
     <>
-      <Button variant="contained" onClick={() => setOpen(true)}>
-        Thêm bệnh nhân
-      </Button>
-
+      <Tooltip title="Thêm bệnh nhân">
+        <IconButton
+          onClick={() => setOpen(true)}
+          className="bg-green-500 text-white hover:bg-green-600"
+        >
+          <AddIcon />
+        </IconButton>
+      </Tooltip>
       <Modal open={open} onClose={() => setOpen(false)}>
         <Box className="bg-white w-[700px] p-6 mx-auto mt-20 rounded-2xl shadow-xl">
           <div className="grid grid-cols-2 gap-4">
