@@ -27,6 +27,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBenhNhan } from "../../redux/slices/benhNhanSlice";
 import BenhNhanModal from "./BenhNhanModal";
+import BenhNhanUpdateModal from "./BenhNhanUpdateModal";
 
 export default function BenhNhanTable() {
   const dispatch = useDispatch();
@@ -69,9 +70,11 @@ export default function BenhNhanTable() {
   };
 
   // ===== EDIT =====
+  const [openEdit, setOpenEdit] = useState(false);
+  const [selectedRow, setSelectedRow] = useState(null);
   const handleEdit = (item) => {
-    console.log("Edit:", item);
-    // 👉 sau này mở modal edit ở đây
+    setSelectedRow(item);
+    setOpenEdit(true);
   };
 
   return (
@@ -212,8 +215,13 @@ export default function BenhNhanTable() {
                       </IconButton>
                     </TableCell>
 
-                    <TableCell className="font-semibold">
-                      {item.hoVaTen}
+                    <TableCell>
+                      <div className="font-semibold text-gray-800">
+                        {item.hoVaTen}
+                      </div>
+                      <div className="text-xs text-gray-500">
+                        ID: {item._id.slice(-6)}
+                      </div>
                     </TableCell>
 
                     <TableCell>{item.soHoSo}</TableCell>
@@ -236,6 +244,11 @@ export default function BenhNhanTable() {
           </TableBody>
         </Table>
       </TableContainer>
+      <BenhNhanUpdateModal
+        open={openEdit}
+        setOpen={setOpenEdit}
+        data={selectedRow}
+      />
     </Box>
   );
 }

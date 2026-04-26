@@ -30,6 +30,7 @@ import { fetchNguoiLienHe } from "../../redux/slices/nguoiLienHeSlice";
 import NguoiLienHeModal from "./NguoiLienHeModal";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import NguoiLienHeUpdateModal from "./NguoiLienHeUpdateModal";
 
 export default function NguoiLienHeTable() {
   const dispatch = useDispatch();
@@ -86,6 +87,10 @@ export default function NguoiLienHeTable() {
   useEffect(() => {
     dispatch(fetchNguoiLienHe());
   }, [dispatch]);
+
+  //UPDATE
+  const [openEdit, setOpenEdit] = useState(false);
+  const [selectedRow, setSelectedRow] = useState(null);
 
   return (
     <Box>
@@ -220,23 +225,32 @@ export default function NguoiLienHeTable() {
                       )}
                     </IconButton>
                   </TableCell>
-
-                  <TableCell>{item.hoVaTen}</TableCell>
+                  <TableCell>
+                    <div className="font-semibold text-gray-800">
+                      {item.hoVaTen}
+                    </div>
+                    <div className="text-xs text-gray-500">
+                      ID: {item._id.slice(-6)}
+                    </div>
+                  </TableCell>{" "}
                   <TableCell>{item.email}</TableCell>
                   <TableCell>{item.soDienThoai}</TableCell>
-
                   <TableCell>
                     <div className="font-semibold text-gray-800">
                       {item.nhaKhoa?.hoVaTen || "-"}
                     </div>
                   </TableCell>
-
                   <TableCell>{item.moTa}</TableCell>
-
                   {/* ACTION */}
                   <TableCell align="center">
                     <Tooltip title="Chỉnh sửa">
-                      <IconButton size="small">
+                      <IconButton
+                        size="small"
+                        onClick={() => {
+                          setSelectedRow(item);
+                          setOpenEdit(true);
+                        }}
+                      >
                         <Edit className="text-blue-500" />
                       </IconButton>
                     </Tooltip>
@@ -246,6 +260,11 @@ export default function NguoiLienHeTable() {
           </TableBody>
         </Table>
       </TableContainer>
+      <NguoiLienHeUpdateModal
+        open={openEdit}
+        setOpen={setOpenEdit}
+        data={selectedRow}
+      />
     </Box>
   );
 }

@@ -8,6 +8,7 @@ import {
   CircularProgress,
   IconButton,
   Tooltip,
+  Typography,
 } from "@mui/material";
 
 import vietnamAddress from "../../data/vietNameAddress";
@@ -95,6 +96,9 @@ export default function BenhNhanModal() {
       </Tooltip>
       <Modal open={open} onClose={() => setOpen(false)}>
         <Box className="bg-white w-[700px] p-6 mx-auto mt-20 rounded-2xl shadow-xl">
+          <Typography variant="h6" className="font-bold mb-4">
+            Tạo Bệnh Nhân
+          </Typography>
           <div className="grid grid-cols-2 gap-4">
             <TextField
               label="Tên"
