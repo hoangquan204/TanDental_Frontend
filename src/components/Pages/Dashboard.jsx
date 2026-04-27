@@ -8,6 +8,7 @@ import Charts from "../Charts";
 import NhaKhoaPage from "../NhaKhoa/NhaKhoaPage";
 import NguoiLienHePage from "../NguoiLienHe/NguoiLienHePage";
 import BenhNhanPage from "../BenhNhan/BenhNhanPage";
+import StaffPage from "../Staff/StaffPage";
 
 const Dashboard = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -30,6 +31,7 @@ const Dashboard = () => {
           <Route path="/nha-khoa" element={<NhaKhoaPage />} />
           <Route path="/nguoi-lien-he" element={<NguoiLienHePage />} />
           <Route path="/benh-nhan" element={<BenhNhanPage />} />
+          <Route path="/tai-khoan" element={<StaffPage />} />
         </Routes>
       </Box>
     </Box>
