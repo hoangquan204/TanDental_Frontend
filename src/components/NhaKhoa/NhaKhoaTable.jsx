@@ -14,6 +14,7 @@ import {
   MenuItem,
   Box,
   Tooltip,
+  CircularProgress,
 } from "@mui/material";
 
 import {
@@ -29,7 +30,6 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 import { useDispatch, useSelector } from "react-redux";
 import { fetchNhaKhoa } from "../../redux/slices/nhaKhoaSlice";
-import FullScreenLoader from "../Loader/FullScreenLoader";
 import NhaKhoaModal from "./NhaKhoaModal";
 import NhaKhoaUpdateModal from "./NhaKhoaUpdateModal";
 
@@ -83,8 +83,6 @@ export default function NhaKhoaTable() {
 
   return (
     <Box>
-      <FullScreenLoader open={loading} />
-
       {/* ===== FILTER BAR (GIỐNG NGƯỜI LIÊN HỆ) ===== */}
       <Box className="flex justify-between items-center mb-4">
         {/* LEFT */}
@@ -179,6 +177,15 @@ export default function NhaKhoaTable() {
           </TableHead>
 
           <TableBody>
+            {/* 🔥 LOADING */}
+            {loading && (
+              <TableRow>
+                <TableCell colSpan={8} align="center">
+                  <CircularProgress />
+                </TableCell>
+              </TableRow>
+            )}
+
             {!loading && filteredData.length === 0 && (
               <TableRow>
                 <TableCell colSpan={8} align="center">
