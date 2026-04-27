@@ -10,7 +10,7 @@ import {
 
 // 🔥 REDUX
 import { useDispatch, useSelector } from "react-redux";
-import { createStaff, updateStaff } from "../../redux/slices/staffSlice";
+import { createStaff, updateStaff, fetchStaff } from "../../redux/slices/staffSlice";
 
 export default function StaffModal({ staffId = null, onClose = null }) {
   const dispatch = useDispatch();
@@ -85,6 +85,8 @@ export default function StaffModal({ staffId = null, onClose = null }) {
       } else {
         // Chế độ tạo mới
         await dispatch(createStaff(form)).unwrap();
+        // Refetch dữ liệu để đảm bảo _id đầy đủ
+        dispatch(fetchStaff());
       }
 
       // Reset form

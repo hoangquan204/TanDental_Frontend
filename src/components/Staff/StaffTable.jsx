@@ -257,7 +257,7 @@ function StaffEditModal({ staffId, onClose }) {
     Email: staff?.Email || "",
     ChucVu: staff?.ChucVu || "Thành viên",
     Permissions: staff?.Permissions || "",
-    Status: staff?.Status || 1,
+    Status: staff?.Status !== undefined ? staff.Status : 1,
   });
 
   const [errors, setErrors] = React.useState({});
@@ -356,12 +356,12 @@ function StaffEditModal({ staffId, onClose }) {
             />
 
             <select
-              value={form.Status}
+              value={String(form.Status)}
               onChange={(e) => handleChange("Status", Number(e.target.value))}
               className="border rounded px-3 py-2"
             >
-              <option value={1}>Hoạt động</option>
-              <option value={0}>Bị khoá</option>
+              <option value="1">Hoạt động</option>
+              <option value="0">Bị khoá</option>
             </select>
           </div>
         </div>
