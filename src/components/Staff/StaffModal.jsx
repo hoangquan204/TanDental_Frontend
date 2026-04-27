@@ -6,11 +6,18 @@ import {
   TextField,
   MenuItem,
   CircularProgress,
+  Tooltip,
+  IconButton,
 } from "@mui/material";
 
 // 🔥 REDUX
 import { useDispatch, useSelector } from "react-redux";
-import { createStaff, updateStaff, fetchStaff } from "../../redux/slices/staffSlice";
+import {
+  createStaff,
+  updateStaff,
+  fetchStaff,
+} from "../../redux/slices/staffSlice";
+import AddIcon from "@mui/icons-material/Add";
 
 export default function StaffModal({ staffId = null, onClose = null }) {
   const dispatch = useDispatch();
@@ -116,9 +123,14 @@ export default function StaffModal({ staffId = null, onClose = null }) {
 
   return (
     <>
-      <Button variant="contained" onClick={handleOpenModal}>
-        {staffId ? "Sửa" : "Thêm nhân viên"}
-      </Button>
+      <Tooltip title="Thêm nha khoa">
+        <IconButton
+          onClick={handleOpenModal}
+          className="bg-green-500 text-white hover:bg-green-600"
+        >
+          <AddIcon />
+        </IconButton>
+      </Tooltip>
 
       <Modal open={open} onClose={() => setOpen(false)}>
         <Box className="bg-white w-[700px] p-6 mx-auto mt-20 rounded-2xl shadow-xl">

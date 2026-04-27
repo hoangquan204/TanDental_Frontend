@@ -41,11 +41,12 @@ export default function NhaKhoaUpdateModal({ open, setOpen, data }) {
 
   const handleSubmit = async () => {
     try {
-      await dispatch().unwrap();
-      // updateNhaKhoa({
-      //   id: data._id,
-      //   data: form,
-      // })
+      await dispatch(
+        updateNhaKhoa({
+          id: data._id,
+          data: form,
+        })
+      ).unwrap();
 
       setOpen(false);
     } catch (err) {

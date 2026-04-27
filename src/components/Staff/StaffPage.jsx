@@ -5,21 +5,16 @@ import { useSelector } from "react-redux";
 
 export default function StaffPage() {
   const { user } = useSelector((state) => state.auth);
-  
+
   // Kiểm tra xem user là Admin không
   const isAdmin = user?.ChucVu === "Sở hữu";
 
   return (
-    <div className="space-y-6">
-      {/* HEADER */}
-      <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold">Quản lý tài khoản</h1>
-        
-        {/* Chỉ Admin mới thấy nút Thêm */}
+    <div className="p-6">
+      <div className="flex justify-between mb-4">
+        <h2 className="text-xl font-bold">Tài khoản</h2>
         {isAdmin && <StaffModal />}
       </div>
-
-      {/* TABLE */}
       <StaffTable />
     </div>
   );
