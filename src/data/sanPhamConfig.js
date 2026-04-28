@@ -5,7 +5,7 @@ export const LOAI_TINH_OPTIONS = [
 ];
 
 export const LOAI_SAN_PHAM_OPTIONS = [
-    "Cố định", "Miễn Phí", "Tháo Lắp"
+    "Cố định", "Miễn phí", "Tháo lắp"
 ];
 
 export const NHOM_SAN_PHAM_OPTIONS = [

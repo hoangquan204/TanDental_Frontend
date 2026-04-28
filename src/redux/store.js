@@ -4,7 +4,7 @@ import authReducer from "./slices/authSlice";
 import nguoiLienHeReducer from "./slices/nguoiLienHeSlice";
 import benhNhanReducer from "./slices/benhNhanSlice"
 import sanPhamReducer from "./slices/sanPhamSlice"; // Thêm dòng này
-import quyTrinhReducer from "./slices/quyTrinhSlice"; // Thêm dòng này
+import congDoanReducer from "./slices/congDoanSlice"; // Thêm dòng này
 
 
 export const store = configureStore({
@@ -14,6 +14,6 @@ export const store = configureStore({
     nguoiLienHe: nguoiLienHeReducer,
     benhNhan: benhNhanReducer,
     sanPham: sanPhamReducer, // Đăng ký ngăn tủ Sản Phẩm
-    quyTrinh: quyTrinhReducer, // Đăng ký ngăn tủ Quy Trình
+    congDoan: congDoanReducer, // Đăng ký ngăn tủ Công đoạn
   },
 });

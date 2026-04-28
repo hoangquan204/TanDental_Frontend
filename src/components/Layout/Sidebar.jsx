@@ -22,6 +22,8 @@ import {
   Receipt,
   BarChart,
   Warehouse,
+  Category, // 👉 Đã import thêm icon cho Sản Phẩm
+  AccountTree,
 } from "@mui/icons-material";
 
 import { useNavigate, useLocation } from "react-router-dom";
@@ -36,6 +38,9 @@ const Sidebar = ({ collapsed }) => {
   const menu = [
     { name: "Thống kê", router: "/", icon: <Dashboard /> },
     { name: "Đơn Hàng", router: "/orders", icon: <ShoppingCart /> },
+    // 👉 Đã thêm Sản Phẩm vào ngay dưới Đơn Hàng
+    { name: "Sản Phẩm", router: "/san-pham", icon: <Category /> },
+    { name: "Công Đoạn", router: "/cong-doan", icon: <AccountTree /> }, // 👉 Vừa thêm dòng này
   ];
 
   const customerMenu = [
@@ -94,11 +99,10 @@ const Sidebar = ({ collapsed }) => {
                 justifyContent: collapsed ? "center" : "flex-start",
                 px: collapsed ? 1 : 2,
               }}
-              className={`transition ${
-                isActive(item.router)
-                  ? "bg-blue-100 text-blue-600"
-                  : "hover:bg-gray-100"
-              }`}
+              className={`transition ${isActive(item.router)
+                ? "bg-blue-100 text-blue-600"
+                : "hover:bg-gray-100"
+                }`}
             >
               <ListItemIcon
                 sx={{
@@ -127,11 +131,10 @@ const Sidebar = ({ collapsed }) => {
               justifyContent: collapsed ? "center" : "flex-start",
               px: collapsed ? 1 : 2,
             }}
-            className={`transition ${
-              isCustomerActive
-                ? "bg-blue-50 text-blue-600"
-                : "hover:bg-gray-100"
-            }`}
+            className={`transition ${isCustomerActive
+              ? "bg-blue-50 text-blue-600"
+              : "hover:bg-gray-100"
+              }`}
           >
             <ListItemIcon
               sx={{
@@ -163,11 +166,10 @@ const Sidebar = ({ collapsed }) => {
                     justifyContent: collapsed ? "center" : "flex-start",
                   }}
                   onClick={() => navigate(item.router)}
-                  className={`transition ${
-                    isActive(item.router)
-                      ? "bg-blue-100 text-blue-600"
-                      : "hover:bg-gray-100"
-                  }`}
+                  className={`transition ${isActive(item.router)
+                    ? "bg-blue-100 text-blue-600"
+                    : "hover:bg-gray-100"
+                    }`}
                 >
                   <ListItemIcon
                     sx={{
@@ -200,11 +202,10 @@ const Sidebar = ({ collapsed }) => {
                 justifyContent: collapsed ? "center" : "flex-start",
                 px: collapsed ? 1 : 2,
               }}
-              className={`transition ${
-                isActive(item.router)
-                  ? "bg-blue-100 text-blue-600"
-                  : "hover:bg-gray-100"
-              }`}
+              className={`transition ${isActive(item.router)
+                ? "bg-blue-100 text-blue-600"
+                : "hover:bg-gray-100"
+                }`}
             >
               <ListItemIcon
                 sx={{

@@ -1,61 +1,63 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { api } from "../../config/api";
 
-/* ================= GET ALL ================= */
-export const fetchQuyTrinh = createAsyncThunk(
-    "quyTrinh/fetchAll",
+/* ================= GET ALL CONG DOAN ================= */
+// Lấy toàn bộ "kho" công đoạn từ /api/congdoan
+export const fetchCongDoan = createAsyncThunk(
+    "congDoan/fetchAll",
     async (_, { rejectWithValue }) => {
         try {
-            const res = await api.get("/quytrinh");
+            const res = await api.get("/congdoan");
             return res.data;
         } catch (err) {
             return rejectWithValue(
-                err.response?.data?.message || "Lỗi tải dữ liệu quy trình"
+                err.response?.data?.message || "Lỗi tải danh sách công đoạn"
             );
         }
     }
 );
 
-/* ================= CREATE ================= */
-export const createQuyTrinh = createAsyncThunk(
-    "quyTrinh/create",
+/* ================= CREATE CONG DOAN ================= */
+// Thêm một công đoạn mới vào kho dữ liệu
+export const createCongDoan = createAsyncThunk(
+    "congDoan/create",
     async (data, { rejectWithValue }) => {
         try {
-            const res = await api.post("/quytrinh", data);
+            const res = await api.post("/congdoan", data);
             return res.data;
         } catch (err) {
             return rejectWithValue(
-                err.response?.data?.message || "Tạo quy trình thất bại"
+                err.response?.data?.message || "Tạo công đoạn thất bại"
             );
         }
     }
 );
 
-/* ================= UPDATE ================= */
-export const updateQuyTrinh = createAsyncThunk(
-    "quyTrinh/update",
+/* ================= UPDATE CONG DOAN ================= */
+export const updateCongDoan = createAsyncThunk(
+    "congDoan/update",
     async ({ id, data }, { rejectWithValue }) => {
         try {
-            const res = await api.put(`/quytrinh/${id}`, data);
+            const res = await api.put(`/congdoan/${id}`, data);
             return res.data;
         } catch (err) {
             return rejectWithValue(
-                err.response?.data?.message || "Cập nhật quy trình thất bại"
+                err.response?.data?.message || "Cập nhật công đoạn thất bại"
             );
         }
     }
 );
 
-/* ================= DELETE ================= */
-export const deleteQuyTrinh = createAsyncThunk(
-    "quyTrinh/delete",
+/* ================= DELETE CONG DOAN ================= */
+export const deleteCongDoan = createAsyncThunk(
+    "congDoan/delete",
     async (id, { rejectWithValue }) => {
         try {
-            await api.delete(`/quytrinh/${id}`);
+            await api.delete(`/congdoan/${id}`);
             return id;
         } catch (err) {
             return rejectWithValue(
-                err.response?.data?.message || "Xóa quy trình thất bại"
+                err.response?.data?.message || "Xóa công đoạn thất bại"
             );
         }
     }
@@ -63,8 +65,8 @@ export const deleteQuyTrinh = createAsyncThunk(
 
 /* ================= SLICE ================= */
 
-const quyTrinhSlice = createSlice({
-    name: "quyTrinh",
+const congDoanSlice = createSlice({
+    name: "congDoan",
 
     initialState: {
         data: [],
@@ -77,34 +79,34 @@ const quyTrinhSlice = createSlice({
     extraReducers: (builder) => {
         builder
             /* ===== FETCH ===== */
-            .addCase(fetchQuyTrinh.pending, (state) => {
+            .addCase(fetchCongDoan.pending, (state) => {
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(fetchQuyTrinh.fulfilled, (state, action) => {
+            .addCase(fetchCongDoan.fulfilled, (state, action) => {
                 state.loading = false;
                 state.data = action.payload;
             })
-            .addCase(fetchQuyTrinh.rejected, (state, action) => {
+            .addCase(fetchCongDoan.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
             })
 
             /* ===== CREATE ===== */
-            .addCase(createQuyTrinh.pending, (state) => {
+            .addCase(createCongDoan.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(createQuyTrinh.fulfilled, (state, action) => {
+            .addCase(createCongDoan.fulfilled, (state, action) => {
                 state.loading = false;
-                state.data.unshift(action.payload);
+                state.data.unshift(action.payload); // Thêm công đoạn mới lên đầu danh sách
             })
-            .addCase(createQuyTrinh.rejected, (state, action) => {
+            .addCase(createCongDoan.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
             })
 
             /* ===== UPDATE ===== */
-            .addCase(updateQuyTrinh.fulfilled, (state, action) => {
+            .addCase(updateCongDoan.fulfilled, (state, action) => {
                 const index = state.data.findIndex(
                     (item) => item._id === action.payload._id
                 );
@@ -114,7 +116,7 @@ const quyTrinhSlice = createSlice({
             })
 
             /* ===== DELETE ===== */
-            .addCase(deleteQuyTrinh.fulfilled, (state, action) => {
+            .addCase(deleteCongDoan.fulfilled, (state, action) => {
                 state.data = state.data.filter(
                     (item) => item._id !== action.payload
                 );
@@ -122,4 +124,4 @@ const quyTrinhSlice = createSlice({
     },
 });
 
-export default quyTrinhSlice.reducer;
+export default congDoanSlice.reducer;
