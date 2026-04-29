@@ -32,6 +32,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchNhaKhoa } from "../../redux/slices/nhaKhoaSlice";
 import NhaKhoaModal from "./NhaKhoaModal";
 import NhaKhoaUpdateModal from "./NhaKhoaUpdateModal";
+import NhaKhoaDetailModal from "./NhaKhoaDetailModal";
 
 export default function NhaKhoaTable() {
   const dispatch = useDispatch();
@@ -262,17 +263,20 @@ export default function NhaKhoaTable() {
 
                 {/* ACTION */}
                 <TableCell align="center">
-                  <Tooltip title="Chỉnh sửa">
-                    <IconButton
-                      size="small"
-                      onClick={() => {
-                        setSelectedRow(item);
-                        setOpenEdit(true);
-                      }}
-                    >
-                      <Edit className="text-blue-500" />
-                    </IconButton>
-                  </Tooltip>
+                  <div className="flex items-center">
+                    <Tooltip title="Chỉnh sửa">
+                      <IconButton
+                        size="small"
+                        onClick={() => {
+                          setSelectedRow(item);
+                          setOpenEdit(true);
+                        }}
+                      >
+                        <Edit className="text-blue-500" />
+                      </IconButton>
+                    </Tooltip>
+                    <NhaKhoaDetailModal nhaKhoaData={item}></NhaKhoaDetailModal>
+                  </div>
                 </TableCell>
               </TableRow>
             ))}
