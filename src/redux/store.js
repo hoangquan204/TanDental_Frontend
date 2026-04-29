@@ -7,6 +7,8 @@ import staffReducer from "./slices/staffSlice";
 import sanPhamReducer from "./slices/sanPhamSlice"; // Thêm dòng này
 import congDoanReducer from "./slices/congDoanSlice"; // Thêm dòng này
 import chamSocKhachHangReducer from "./slices/chamSocKhachHangSlice"
+import bangGiaReducer from "./slices/bangGiaSlice"
+
 
 export const store = configureStore({
   reducer: {
@@ -17,6 +19,7 @@ export const store = configureStore({
     staff: staffReducer,
     sanPham: sanPhamReducer, // Đăng ký ngăn tủ Sản Phẩm
     congDoan: congDoanReducer, 
-    chamSocKhachHang: chamSocKhachHangReducer
+    chamSocKhachHang: chamSocKhachHangReducer,
+    bangGia: bangGiaReducer,
   },
 });
