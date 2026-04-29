@@ -3,7 +3,8 @@ import { Box } from "@mui/material";
 import Sidebar from "../Layout/Sidebar";
 import Header from "../Layout/Header";
 import { Route, Routes } from "react-router-dom";
-import Orders from "../Orders/Orders";
+import DonHangPage from "../DonHang/DonHangPage";
+import DonHangForm from '../DonHang/DonHangForm';
 import Charts from "../Charts";
 import NhaKhoaPage from "../NhaKhoa/NhaKhoaPage";
 import NguoiLienHePage from "../NguoiLienHe/NguoiLienHePage";
@@ -27,7 +28,9 @@ const Dashboard = () => {
       >
         <Routes>
           <Route path="/" element={<Charts />} />
-          <Route path="/orders/*" element={<Orders />} />
+          <Route path="/don-hang/*" element={<DonHangPage />} />
+          <Route path="/donhang/create" element={<DonHangForm />} />
+          <Route path="/donhang/:id/edit" element={<DonHangForm />} />
           <Route path="/nha-khoa" element={<NhaKhoaPage />} />
           <Route path="/nguoi-lien-he" element={<NguoiLienHePage />} />
           <Route path="/benh-nhan" element={<BenhNhanPage />} />

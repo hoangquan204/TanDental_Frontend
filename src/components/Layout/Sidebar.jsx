@@ -37,7 +37,7 @@ const Sidebar = ({ collapsed }) => {
   /* ===== MENU ===== */
   const menu = [
     { name: "Thống kê", router: "/", icon: <Dashboard /> },
-    { name: "Đơn Hàng", router: "/orders", icon: <ShoppingCart /> },
+    { name: "Đơn Hàng", router: "/don-hang", icon: <ShoppingCart /> },
     // 👉 Đã thêm Sản Phẩm vào ngay dưới Đơn Hàng
     { name: "Sản Phẩm", router: "/san-pham", icon: <Category /> },
     { name: "Công Đoạn", router: "/cong-doan", icon: <AccountTree /> }, // 👉 Vừa thêm dòng này

@@ -5,6 +5,7 @@ import nguoiLienHeReducer from "./slices/nguoiLienHeSlice";
 import benhNhanReducer from "./slices/benhNhanSlice"
 import sanPhamReducer from "./slices/sanPhamSlice"; // Thêm dòng này
 import congDoanReducer from "./slices/congDoanSlice"; // Thêm dòng này
+import donHangReducer from "./slices/donHangSlice"; // Thêm dòng này
 
 
 export const store = configureStore({
@@ -15,5 +16,6 @@ export const store = configureStore({
     benhNhan: benhNhanReducer,
     sanPham: sanPhamReducer, // Đăng ký ngăn tủ Sản Phẩm
     congDoan: congDoanReducer, // Đăng ký ngăn tủ Công đoạn
+    donHang: donHangReducer,
   },
 });
