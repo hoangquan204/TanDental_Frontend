@@ -1,61 +1,63 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { api } from "../../config/api";
 
-/* ================= GET ALL ================= */
-export const fetchSanPham = createAsyncThunk(
-    "sanPham/fetchAll",
+/* ================= GET ALL CONG DOAN ================= */
+// Lấy toàn bộ "kho" công đoạn từ /api/congdoan
+export const fetchCongDoan = createAsyncThunk(
+    "congDoan/fetchAll",
     async (_, { rejectWithValue }) => {
         try {
-            const res = await api.get("/sanpham");
-            return res.data; // Tùy vào API backend trả về res.data hay res.data.data
+            const res = await api.get("/congdoan");
+            return res.data;
         } catch (err) {
             return rejectWithValue(
-                err.response?.data?.message || "Lỗi tải dữ liệu sản phẩm"
+                err.response?.data?.message || "Lỗi tải danh sách công đoạn"
             );
         }
     }
 );
 
-/* ================= CREATE ================= */
-export const createSanPham = createAsyncThunk(
-    "sanPham/create",
+/* ================= CREATE CONG DOAN ================= */
+// Thêm một công đoạn mới vào kho dữ liệu
+export const createCongDoan = createAsyncThunk(
+    "congDoan/create",
     async (data, { rejectWithValue }) => {
         try {
-            const res = await api.post("/sanpham", data);
+            const res = await api.post("/congdoan", data);
             return res.data;
         } catch (err) {
             return rejectWithValue(
-                err.response?.data?.message || "Tạo sản phẩm thất bại"
+                err.response?.data?.message || "Tạo công đoạn thất bại"
             );
         }
     }
 );
 
-/* ================= UPDATE ================= */
-export const updateSanPham = createAsyncThunk(
-    "sanPham/update",
+/* ================= UPDATE CONG DOAN ================= */
+export const updateCongDoan = createAsyncThunk(
+    "congDoan/update",
     async ({ id, data }, { rejectWithValue }) => {
         try {
-            const res = await api.put(`/sanpham/${id}`, data);
+            const res = await api.put(`/congdoan/${id}`, data);
             return res.data;
         } catch (err) {
             return rejectWithValue(
-                err.response?.data?.message || "Cập nhật sản phẩm thất bại"
+                err.response?.data?.message || "Cập nhật công đoạn thất bại"
             );
         }
     }
 );
 
-/* ================= DELETE ================= */
-export const deleteSanPham = createAsyncThunk(
-    "sanPham/delete",
+/* ================= DELETE CONG DOAN ================= */
+export const deleteCongDoan = createAsyncThunk(
+    "congDoan/delete",
     async (id, { rejectWithValue }) => {
         try {
-            await api.delete(`/sanpham/${id}`);
+            await api.delete(`/congdoan/${id}`);
             return id;
         } catch (err) {
             return rejectWithValue(
-                err.response?.data?.message || "Xóa sản phẩm thất bại"
+                err.response?.data?.message || "Xóa công đoạn thất bại"
             );
         }
     }
@@ -63,8 +65,8 @@ export const deleteSanPham = createAsyncThunk(
 
 /* ================= SLICE ================= */
 
-const sanPhamSlice = createSlice({
-    name: "sanPham",
+const congDoanSlice = createSlice({
+    name: "congDoan",
 
     initialState: {
         data: [],
@@ -77,34 +79,34 @@ const sanPhamSlice = createSlice({
     extraReducers: (builder) => {
         builder
             /* ===== FETCH ===== */
-            .addCase(fetchSanPham.pending, (state) => {
+            .addCase(fetchCongDoan.pending, (state) => {
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(fetchSanPham.fulfilled, (state, action) => {
+            .addCase(fetchCongDoan.fulfilled, (state, action) => {
                 state.loading = false;
                 state.data = action.payload;
             })
-            .addCase(fetchSanPham.rejected, (state, action) => {
+            .addCase(fetchCongDoan.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
             })
 
             /* ===== CREATE ===== */
-            .addCase(createSanPham.pending, (state) => {
+            .addCase(createCongDoan.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(createSanPham.fulfilled, (state, action) => {
+            .addCase(createCongDoan.fulfilled, (state, action) => {
                 state.loading = false;
-                state.data.unshift(action.payload);
+                state.data.unshift(action.payload); // Thêm công đoạn mới lên đầu danh sách
             })
-            .addCase(createSanPham.rejected, (state, action) => {
+            .addCase(createCongDoan.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
             })
 
             /* ===== UPDATE ===== */
-            .addCase(updateSanPham.fulfilled, (state, action) => {
+            .addCase(updateCongDoan.fulfilled, (state, action) => {
                 const index = state.data.findIndex(
                     (item) => item._id === action.payload._id
                 );
@@ -114,7 +116,7 @@ const sanPhamSlice = createSlice({
             })
 
             /* ===== DELETE ===== */
-            .addCase(deleteSanPham.fulfilled, (state, action) => {
+            .addCase(deleteCongDoan.fulfilled, (state, action) => {
                 state.data = state.data.filter(
                     (item) => item._id !== action.payload
                 );
@@ -122,4 +124,4 @@ const sanPhamSlice = createSlice({
     },
 });
 
-export default sanPhamSlice.reducer;
+export default congDoanSlice.reducer;

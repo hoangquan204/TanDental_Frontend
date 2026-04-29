@@ -8,6 +8,7 @@ import {
   CircularProgress,
   Tooltip,
   IconButton,
+  Typography,
 } from "@mui/material";
 
 // 🔥 REDUX
@@ -134,9 +135,11 @@ export default function StaffModal({ staffId = null, onClose = null }) {
 
       <Modal open={open} onClose={() => setOpen(false)}>
         <Box className="bg-white w-[700px] p-6 mx-auto mt-20 rounded-2xl shadow-xl">
-          <h2 className="text-xl font-bold mb-4">
-            {staffId ? "Chỉnh sửa nhân viên" : "Thêm nhân viên mới"}
-          </h2>
+          <div className="bg-[#0091ea] px-4 py-2 my-2 flex justify-between items-center shrink-0 text-white">
+            <Typography variant="h6" className="font-medium text-[16px]">
+              {staffId ? "Chỉnh sửa nhân viên" : "Thêm nhân viên mới"}
+            </Typography>
+          </div>
 
           <div className="grid grid-cols-2 gap-4">
             {/* CODE */}

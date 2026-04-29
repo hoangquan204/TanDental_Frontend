@@ -10,7 +10,8 @@ import NguoiLienHePage from "../NguoiLienHe/NguoiLienHePage";
 import BenhNhanPage from "../BenhNhan/BenhNhanPage";
 import StaffPage from "../Staff/StaffPage";
 import StaffProfile from "../Staff/StaffProfile";
-
+import SanPhamPage from "../SanPham/SanPhamPage";
+import CongDoanPage from "../CongDoan/CongDoanPage";
 const Dashboard = () => {
   const [collapsed, setCollapsed] = useState(false);
   return (
@@ -34,6 +35,8 @@ const Dashboard = () => {
           <Route path="/benh-nhan" element={<BenhNhanPage />} />
           <Route path="/tai-khoan" element={<StaffPage />} />
           <Route path="/ho-so" element={<StaffProfile />} />
+          <Route path="/san-pham" element={<SanPhamPage />} />
+          <Route path="/cong-doan" element={<CongDoanPage />} />
         </Routes>
       </Box>
     </Box>

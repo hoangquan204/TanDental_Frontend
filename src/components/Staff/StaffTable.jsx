@@ -15,13 +15,18 @@ import {
   DialogActions,
   Button,
   Chip,
+  Typography,
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import StaffModal from "./StaffModal";
 
 import { useDispatch, useSelector } from "react-redux";
-import { fetchStaff, deleteStaff, updateStaff } from "../../redux/slices/staffSlice";
+import {
+  fetchStaff,
+  deleteStaff,
+  updateStaff,
+} from "../../redux/slices/staffSlice";
 
 export default function StaffTable() {
   const dispatch = useDispatch();
@@ -291,13 +296,11 @@ function StaffEditModal({ staffId, onClose }) {
 
     try {
       setLoading(true);
-      await dispatch(
-        updateStaff({ id: staffId, data: form })
-      ).unwrap();
-      
+      await dispatch(updateStaff({ id: staffId, data: form })).unwrap();
+
       // Refetch dữ liệu sau khi update thành công
       dispatch(fetchStaff());
-      
+
       setOpen(false);
       onClose();
     } catch (err) {
@@ -308,8 +311,20 @@ function StaffEditModal({ staffId, onClose }) {
   };
 
   return (
-    <Dialog open={open} onClose={() => { setOpen(false); onClose(); }} maxWidth="sm" fullWidth>
-      <DialogTitle>Chỉnh sửa nhân viên</DialogTitle>
+    <Dialog
+      open={open}
+      onClose={() => {
+        setOpen(false);
+        onClose();
+      }}
+      maxWidth="sm"
+      fullWidth
+    >
+      <div className="bg-[#0091ea] px-4 py-2 mb-2 flex justify-between items-center shrink-0 text-white">
+        <Typography variant="h6" className="font-medium text-[16px]">
+          Chỉnh Sửa Nhân Viên
+        </Typography>
+      </div>{" "}
       <DialogContent>
         <div className="space-y-4 mt-4">
           <div className="grid grid-cols-1 gap-4">
@@ -367,12 +382,15 @@ function StaffEditModal({ staffId, onClose }) {
         </div>
       </DialogContent>
       <DialogActions>
-        <Button onClick={() => { setOpen(false); onClose(); }}>Hủy</Button>
         <Button
-          onClick={handleSubmit}
-          variant="contained"
-          disabled={loading}
+          onClick={() => {
+            setOpen(false);
+            onClose();
+          }}
         >
+          Hủy
+        </Button>
+        <Button onClick={handleSubmit} variant="contained" disabled={loading}>
           {loading ? <CircularProgress size={20} /> : "Lưu"}
         </Button>
       </DialogActions>
