@@ -6,6 +6,7 @@ import { createDonHang, updateDonHang } from '../../redux/slices/donHangSlice';
 import DanhSachPhuKien from './DanhSachPhuKien';
 import ChonViTriRangModal from './ChonViTriRangModal';
 import SanPhamModal from '../SanPham/SanPhamModal';
+import ChonDonHangCuModal from './ChonDonHangCuModal'; // <-- THÊM MỚI
 
 const SearchInput = ({ value, onChange, options = [], placeholder, label, showAddNew = false, onAddNew }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -98,6 +99,9 @@ const DonHangForm = () => {
     const [editingSpIndex, setEditingSpIndex] = useState(null);
     const [isSanPhamModalOpen, setIsSanPhamModalOpen] = useState(false);
 
+    // <-- THÊM MỚI: State quản lý Modal Chọn Đơn Cũ
+    const [modalDonHangCuInfo, setModalDonHangCuInfo] = useState({ isOpen: false, index: null, loaiDon: '' });
+
     const [formData, setFormData] = useState({
         nhaKhoa: '', bacSi: '', benhNhan: '',
         ngayNhan: new Date().toISOString().slice(0, 16),
@@ -161,10 +165,44 @@ const DonHangForm = () => {
 
     const handleInputChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
+    // <-- THÊM MỚI: Xử lý bật Modal khi chọn Hàng sửa/Làm lại
     const handleSanPhamChange = (index, field, value) => {
         const newDsSp = [...formData.danhSachSanPham];
         newDsSp[index][field] = value;
         setFormData({ ...formData, danhSachSanPham: newDsSp });
+
+        if (field === 'loaiDon' && ['Hàng sửa', 'Hàng làm lại', 'Hàng bảo hành'].includes(value)) {
+            if (!formData.benhNhan) {
+                alert("Vui lòng chọn Bệnh nhân ở cột trái trước để hệ thống tìm đơn hàng cũ!");
+                // Reset về "Mới" nếu chưa có bệnh nhân
+                const resetDsSp = [...formData.danhSachSanPham];
+                resetDsSp[index][field] = 'Mới';
+                setFormData({ ...formData, danhSachSanPham: resetDsSp });
+                return;
+            }
+            setModalDonHangCuInfo({ isOpen: true, index: index, loaiDon: value });
+        }
+    };
+
+    // <-- THÊM MỚI: Đắp dữ liệu từ đơn cũ sang dòng hiện tại
+    const handleApplyOldOrder = (oldOrder) => {
+        const index = modalDonHangCuInfo.index;
+        const newDsSp = [...formData.danhSachSanPham];
+
+        // Lấy sản phẩm đầu tiên của đơn cũ (bạn có thể tuỳ biến thêm nếu 1 đơn có nhiều SP)
+        const oldProduct = oldOrder.danhSachSanPham?.[0] || {};
+
+        newDsSp[index] = {
+            ...newDsSp[index],
+            sanPham: oldProduct.sanPham?._id || oldProduct.sanPham || '',
+            viTri: oldProduct.viTri || [],
+            soLuong: oldProduct.soLuong || 1,
+            mau: oldProduct.mau || '',
+            ghiChu: oldProduct.ghiChu || ''
+        };
+
+        setFormData({ ...formData, danhSachSanPham: newDsSp });
+        setModalDonHangCuInfo({ isOpen: false, index: null, loaiDon: '' });
     };
 
     const handleRemoveSanPham = (index) => {
@@ -198,10 +236,8 @@ const DonHangForm = () => {
     };
 
     return (
-        // ĐÃ FIX: z-index được nâng lên 1299 để đè luôn cái thanh Header (AppBar) của project.
         <div className="fixed inset-0 z-[1299] bg-[#f0f2f5] flex flex-col w-full h-full overflow-hidden">
 
-            {/* Thanh tiêu đề có nút X (Bây giờ sẽ hiện rõ, không bị che nữa) */}
             <div className="h-10 bg-[#00a8ff] flex justify-end items-center px-4 shrink-0">
                 <button onClick={() => navigate(-1)} className="text-white text-2xl font-bold leading-none hover:text-gray-200 transition">
                     &times;
@@ -298,9 +334,10 @@ const DonHangForm = () => {
                                     <td colSpan="7" className="p-0 bg-[#f0f9ff]">
                                         <button
                                             onClick={() => setFormData({ ...formData, danhSachSanPham: [...formData.danhSachSanPham, { loaiDon: 'Mới', sanPham: '', viTri: [], soLuong: 1, mau: '', ghiChu: '' }] })}
-                                            className="w-full py-2 px-6 text-green-600 font-bold hover:bg-blue-50 transition flex items-center justify-start"
+                                            className="w-full py-4 px-6 text-green-600 font-bold hover:bg-blue-100 cursor-pointer flex items-center justify-start gap-2 transition"
                                         >
                                             <span className="text-3xl leading-none font-black">+</span>
+                                            <span className="text-sm mt-1">Thêm sản phẩm</span>
                                         </button>
                                     </td>
                                 </tr>
@@ -351,6 +388,18 @@ const DonHangForm = () => {
                     }}
                 />
             )}
+
+            {/* <-- THÊM MỚI: Gọi Modal Chọn đơn hàng cũ --> */}
+            <ChonDonHangCuModal
+                isOpen={modalDonHangCuInfo.isOpen}
+                onClose={() => setModalDonHangCuInfo({ isOpen: false, index: null, loaiDon: '' })}
+                onSelect={handleApplyOldOrder}
+                patientId={formData.benhNhan}
+                nhaKhoaName={selectedNhaKhoaInfo?.nameDisplay}
+                bacSiName={bacSiList.find(b => b._id === formData.bacSi)?.nameDisplay}
+                benhNhanName={benhNhanList.find(b => b._id === formData.benhNhan)?.nameDisplay}
+                loaiDon={modalDonHangCuInfo.loaiDon}
+            />
         </div>
     );
 };
