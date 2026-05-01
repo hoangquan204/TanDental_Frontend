@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   TextField,
   Button,
@@ -6,34 +6,65 @@ import {
   IconButton,
   InputAdornment,
   CircularProgress,
+  Alert,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { login } from "../../redux/slices/authSlice";
 
 export default function LoginPage() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { loading, error, isAuthenticated } = useSelector((state) => state.auth);
+
   const [form, setForm] = useState({
-    email: "",
-    password: "",
+    Email: "",
+    Password: "",
   });
 
   const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+
+  // Nếu đã đăng nhập → redirect tới dashboard
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/");
+    }
+  }, [isAuthenticated, navigate]);
 
   const handleChange = (key, value) => {
     setForm({ ...form, [key]: value });
+    setErrorMsg("");
   };
 
   const handleLogin = async () => {
+    // Validation
+    if (!form.Email.trim()) {
+      setErrorMsg("Vui lòng nhập Email hoặc Mã nhân viên");
+      return;
+    }
+    if (!form.Password.trim()) {
+      setErrorMsg("Vui lòng nhập Mật khẩu");
+      return;
+    }
+
     try {
-      setLoading(true);
-
-      // giả lập API
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-
-      console.log("Login:", form);
+      // Gửi login request
+      const result = await dispatch(login(form)).unwrap();
+      console.log("✅ Đăng nhập thành công:", result);
+      // Redux sẽ xử lý redirect qua useEffect
     } catch (err) {
-      console.log(err);
-    } finally {
-      setLoading(false);
+      console.log("❌ Lỗi đăng nhập:", err);
+      setErrorMsg(err || "Đăng nhập thất bại");
+    }
+  };
+
+  // Enter để đăng nhập
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleLogin();
     }
   };
 
@@ -44,41 +75,63 @@ export default function LoginPage() {
         className="w-[900px] h-[500px] flex rounded-2xl overflow-hidden"
       >
         {/* LEFT - LOGO */}
-        <div className="w-1/2 flex flex-col items-center justify-center bg-gray-50">
+        <div className="w-1/2 flex flex-col items-center justify-center bg-gradient-to-b from-blue-50 to-gray-50">
           <div className="text-center">
-            <div className="text-5xl font-bold text-blue-500 mb-2">
-              Dental<span className="text-yellow-500">SO</span>
+            <div className="text-6xl font-bold mb-4">
+              <span className="text-blue-500">Dental</span>
+              <span className="text-yellow-500">SO</span>
             </div>
-            <p className="text-gray-500 text-sm">Hệ thống quản lý nha khoa</p>
+            <p className="text-gray-600 text-sm font-medium">
+              Hệ thống quản lý nha khoa hiện đại
+            </p>
           </div>
         </div>
 
         {/* RIGHT - FORM */}
-        <div className="w-1/2 flex items-center justify-center">
-          <div className="w-[80%]">
-            <h2 className="text-3xl font-bold mb-6">Login</h2>
+        <div className="w-1/2 flex flex-col items-center justify-center px-12">
+          <div className="w-full max-w-sm">
+            <h2 className="text-3xl font-bold mb-8 text-gray-800">Đăng nhập</h2>
 
-            {/* EMAIL */}
+            {/* ERROR MESSAGE */}
+            {(errorMsg || error) && (
+              <Alert severity="error" className="mb-4">
+                {errorMsg || error}
+              </Alert>
+            )}
+
+            {/* EMAIL INPUT */}
             <TextField
               label="Email"
               fullWidth
               margin="normal"
-              value={form.email}
-              onChange={(e) => handleChange("email", e.target.value)}
+              placeholder="Nhập Email hoặc Mã nhân viên"
+              value={form.Email}
+              onChange={(e) => handleChange("Email", e.target.value)}
+              onKeyPress={handleKeyPress}
+              disabled={loading}
+              size="small"
             />
 
-            {/* PASSWORD */}
+            {/* PASSWORD INPUT */}
             <TextField
-              label="Password"
+              label="Mật khẩu"
               type={showPassword ? "text" : "password"}
               fullWidth
               margin="normal"
-              value={form.password}
-              onChange={(e) => handleChange("password", e.target.value)}
+              placeholder="Nhập mật khẩu"
+              value={form.Password}
+              onChange={(e) => handleChange("Password", e.target.value)}
+              onKeyPress={handleKeyPress}
+              disabled={loading}
+              size="small"
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton onClick={() => setShowPassword(!showPassword)}>
+                    <IconButton
+                      onClick={() => setShowPassword(!showPassword)}
+                      edge="end"
+                      size="small"
+                    >
                       {showPassword ? <VisibilityOff /> : <Visibility />}
                     </IconButton>
                   </InputAdornment>
@@ -86,25 +139,20 @@ export default function LoginPage() {
               }}
             />
 
-            {/* ACTION */}
-            <div className="flex justify-between items-center mt-4">
-              <span className="text-blue-500 text-sm cursor-pointer hover:underline">
-                Forgot password?
-              </span>
-
-              <Button
-                variant="contained"
-                className="rounded-full px-6"
-                onClick={handleLogin}
-                disabled={loading}
-              >
-                {loading ? (
-                  <CircularProgress size={24} color="inherit" />
-                ) : (
-                  "Login"
-                )}
-              </Button>
-            </div>
+            {/* LOGIN BUTTON */}
+            <Button
+              variant="contained"
+              fullWidth
+              className="mt-6 rounded-full py-3 bg-cyan-500 hover:bg-cyan-600 text-white font-semibold"
+              onClick={handleLogin}
+              disabled={loading}
+            >
+              {loading ? (
+                <CircularProgress size={24} color="inherit" />
+              ) : (
+                "Đăng nhập"
+              )}
+            </Button>
           </div>
         </div>
       </Paper>

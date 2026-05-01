@@ -6,6 +6,7 @@ import {
   TextField,
   MenuItem,
   CircularProgress,
+  Typography,
 } from "@mui/material";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -87,8 +88,11 @@ export default function BenhNhanUpdateModal({ open, setOpen, data }) {
   return (
     <Modal open={open} onClose={() => setOpen(false)}>
       <Box className="bg-white w-[700px] p-6 mx-auto mt-20 rounded-2xl shadow-xl">
-        <h2 className="text-xl font-bold mb-4">Cập nhật bệnh nhân</h2>
-
+        <div className="bg-[#0091ea] px-4 py-2 my-4 flex justify-between items-center shrink-0 text-white">
+          <Typography variant="h6" className="font-medium text-[16px]">
+            Cập Nhật Bệnh Nhân
+          </Typography>
+        </div>
         <div className="grid grid-cols-2 gap-4">
           <TextField
             label="Tên"

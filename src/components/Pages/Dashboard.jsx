@@ -9,6 +9,8 @@ import Charts from "../Charts";
 import NhaKhoaPage from "../NhaKhoa/NhaKhoaPage";
 import NguoiLienHePage from "../NguoiLienHe/NguoiLienHePage";
 import BenhNhanPage from "../BenhNhan/BenhNhanPage";
+import StaffPage from "../Staff/StaffPage";
+import StaffProfile from "../Staff/StaffProfile";
 import SanPhamPage from "../SanPham/SanPhamPage";
 import CongDoanPage from "../CongDoan/CongDoanPage";
 const Dashboard = () => {
@@ -34,9 +36,10 @@ const Dashboard = () => {
           <Route path="/nha-khoa" element={<NhaKhoaPage />} />
           <Route path="/nguoi-lien-he" element={<NguoiLienHePage />} />
           <Route path="/benh-nhan" element={<BenhNhanPage />} />
+          <Route path="/tai-khoan" element={<StaffPage />} />
+          <Route path="/ho-so" element={<StaffProfile />} />
           <Route path="/san-pham" element={<SanPhamPage />} />
           <Route path="/cong-doan" element={<CongDoanPage />} />
-
         </Routes>
       </Box>
     </Box>

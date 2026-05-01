@@ -107,10 +107,11 @@ export default function NhaKhoaModal() {
 
       <Modal open={open} onClose={() => setOpen(false)}>
         <Box className="bg-white w-[800px] max-h-[90vh] overflow-y-auto mx-auto mt-10 p-6 rounded-2xl shadow-xl">
-          <Typography variant="h6" className="font-bold mb-4">
-            Tạo Nha Khoa
-          </Typography>
-
+          <div className="bg-[#0091ea] px-4 py-2 my-2 flex justify-between items-center shrink-0 text-white">
+            <Typography variant="h6" className="font-medium text-[16px]">
+              Tạo Nha Khoa
+            </Typography>
+          </div>
           <div className="grid grid-cols-2 gap-4">
             <TextField
               label="Họ và tên"

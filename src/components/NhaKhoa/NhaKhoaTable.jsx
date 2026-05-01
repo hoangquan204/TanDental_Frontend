@@ -14,6 +14,7 @@ import {
   MenuItem,
   Box,
   Tooltip,
+  CircularProgress,
 } from "@mui/material";
 
 import {
@@ -29,9 +30,9 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 import { useDispatch, useSelector } from "react-redux";
 import { fetchNhaKhoa } from "../../redux/slices/nhaKhoaSlice";
-import FullScreenLoader from "../Loader/FullScreenLoader";
 import NhaKhoaModal from "./NhaKhoaModal";
 import NhaKhoaUpdateModal from "./NhaKhoaUpdateModal";
+import NhaKhoaDetailModal from "./NhaKhoaDetailModal";
 
 export default function NhaKhoaTable() {
   const dispatch = useDispatch();
@@ -83,8 +84,6 @@ export default function NhaKhoaTable() {
 
   return (
     <Box>
-      <FullScreenLoader open={loading} />
-
       {/* ===== FILTER BAR (GIỐNG NGƯỜI LIÊN HỆ) ===== */}
       <Box className="flex justify-between items-center mb-4">
         {/* LEFT */}
@@ -179,6 +178,15 @@ export default function NhaKhoaTable() {
           </TableHead>
 
           <TableBody>
+            {/* 🔥 LOADING */}
+            {loading && (
+              <TableRow>
+                <TableCell colSpan={8} align="center">
+                  <CircularProgress />
+                </TableCell>
+              </TableRow>
+            )}
+
             {!loading && filteredData.length === 0 && (
               <TableRow>
                 <TableCell colSpan={8} align="center">
@@ -255,17 +263,20 @@ export default function NhaKhoaTable() {
 
                 {/* ACTION */}
                 <TableCell align="center">
-                  <Tooltip title="Chỉnh sửa">
-                    <IconButton
-                      size="small"
-                      onClick={() => {
-                        setSelectedRow(item);
-                        setOpenEdit(true);
-                      }}
-                    >
-                      <Edit className="text-blue-500" />
-                    </IconButton>
-                  </Tooltip>
+                  <div className="flex items-center">
+                    <Tooltip title="Chỉnh sửa">
+                      <IconButton
+                        size="small"
+                        onClick={() => {
+                          setSelectedRow(item);
+                          setOpenEdit(true);
+                        }}
+                      >
+                        <Edit className="text-blue-500" />
+                      </IconButton>
+                    </Tooltip>
+                    <NhaKhoaDetailModal nhaKhoaData={item}></NhaKhoaDetailModal>
+                  </div>
                 </TableCell>
               </TableRow>
             ))}

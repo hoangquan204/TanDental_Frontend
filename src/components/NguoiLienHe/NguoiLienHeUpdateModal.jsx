@@ -6,6 +6,7 @@ import {
   Button,
   MenuItem,
   CircularProgress,
+  Typography,
 } from "@mui/material";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -65,8 +66,11 @@ export default function NguoiLienHeUpdateModal({ open, setOpen, data }) {
   return (
     <Modal open={open} onClose={() => setOpen(false)}>
       <Box className="bg-white w-[600px] p-6 mx-auto mt-20 rounded-2xl shadow-xl">
-        <h2 className="text-xl font-bold mb-4">Cập nhật người liên hệ</h2>
-
+        <div className="bg-[#0091ea] px-4 py-2 my-4 flex justify-between items-center shrink-0 text-white">
+          <Typography variant="h6" className="font-medium text-[16px]">
+            Cập Nhật Người Liên Hệ
+          </Typography>
+        </div>
         <div className="grid grid-cols-2 gap-4">
           <TextField
             label="Họ tên"
