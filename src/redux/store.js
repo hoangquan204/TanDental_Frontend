@@ -21,7 +21,6 @@ export const store = configureStore({
     sanPham: sanPhamReducer, // Đăng ký ngăn tủ Sản Phẩm
     congDoan: congDoanReducer, // Đăng ký ngăn tủ Công đoạn
     donHang: donHangReducer,
-    congDoan: congDoanReducer,
     chamSocKhachHang: chamSocKhachHangReducer,
     bangGia: bangGiaReducer,
   },
