@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DonHangTable = ({ data, onDoubleClickRow }) => {
+const DonHangTable = ({ data, selectedId, onRowClick }) => {
     // Hàm helper render tóm tắt vị trí răng
     const renderTomTatRang = (danhSachSanPham) => {
         if (!danhSachSanPham || danhSachSanPham.length === 0) return "Chưa có SP";
@@ -36,12 +36,13 @@ const DonHangTable = ({ data, onDoubleClickRow }) => {
                             <th className="px-4 py-3 cursor-pointer hover:bg-blue-100">Bệnh nhân</th>
                             <th className="px-4 py-3 cursor-pointer hover:bg-blue-100">Răng</th>
                             <th className="px-4 py-3 cursor-pointer hover:bg-blue-100">Hẹn giao</th>
+                            <th className="px-4 py-3 cursor-pointer hover:bg-blue-100">Trạng thái</th>
                         </tr>
                     </thead>
                     <tbody className="text-gray-700">
                         {renderData.length === 0 ? (
                             <tr>
-                                <td colSpan="7" className="text-center py-8 text-gray-500">
+                                <td colSpan="8" className="text-center py-8 text-gray-500">
                                     Không có dữ liệu đơn hàng
                                 </td>
                             </tr>
@@ -49,8 +50,8 @@ const DonHangTable = ({ data, onDoubleClickRow }) => {
                             renderData.map((dh) => (
                                 <tr
                                     key={dh._id}
-                                    className="border-b hover:bg-gray-50 cursor-pointer transition-colors"
-                                    onDoubleClick={() => onDoubleClickRow(dh)}
+                                    className={`border-b cursor-pointer transition-colors ${selectedId === dh._id ? 'bg-blue-50 border-blue-200' : 'hover:bg-gray-50'}`}
+                                    onClick={() => onRowClick(dh)}
                                 >
                                     <td className="px-4 py-3 font-medium">
                                         TAN{dh._id.substring(dh._id.length - 8).toUpperCase()}
@@ -70,6 +71,9 @@ const DonHangTable = ({ data, onDoubleClickRow }) => {
                                     <td className="px-4 py-3">
                                         {dh.henGiao ? new Date(dh.henGiao).toLocaleDateString('vi-VN') : ''}
                                     </td>
+                                    <td className="px-4 py-3">
+                                        <TrangThaiBadge value={dh.trangThai} />
+                                    </td>
                                 </tr>
                             ))
                         )}
@@ -81,6 +85,20 @@ const DonHangTable = ({ data, onDoubleClickRow }) => {
                 <span>Tổng số: {renderData.length} đơn hàng</span>
             </div>
         </div>
+    );
+};
+
+const TrangThaiBadge = ({ value }) => {
+    const map = {
+        'Chờ xử lý': 'bg-yellow-100 text-yellow-800',
+        'Đang sản xuất': 'bg-blue-100 text-blue-800',
+        'Hoàn thành': 'bg-green-100 text-green-800',
+        'Đã giao': 'bg-gray-100 text-gray-700',
+    };
+    return (
+        <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${map[value] || 'bg-gray-100 text-gray-600'}`}>
+            {value || 'Chờ xử lý'}
+        </span>
     );
 };
 

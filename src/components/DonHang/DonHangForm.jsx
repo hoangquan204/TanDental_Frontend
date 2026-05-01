@@ -238,136 +238,137 @@ const DonHangForm = () => {
     return (
         <div className="fixed inset-0 z-[1299] bg-[#f0f2f5] flex flex-col w-full h-full overflow-hidden">
 
-            <div className="h-10 bg-[#00a8ff] flex justify-end items-center px-4 shrink-0">
+            {/* Top bar */}
+            <div className="h-10 bg-[#00a8ff] flex justify-between items-center px-4 shrink-0">
+                <span className="text-white font-medium text-sm">
+                    {isEditMode ? 'Chỉnh sửa đơn hàng' : 'Tạo đơn hàng mới'}
+                </span>
                 <button onClick={() => navigate(-1)} className="text-white text-2xl font-bold leading-none hover:text-gray-200 transition">
                     &times;
                 </button>
             </div>
 
-            <div className="flex-1 overflow-y-auto w-full pb-20">
-                <div className="w-full mt-4 flex flex-col gap-4">
+            {/* Body: main form + right side panel */}
+            <div className="flex-1 flex flex-row overflow-hidden">
 
-                    <div className="flex gap-0 w-full bg-white border-b border-gray-200 shadow-sm">
-                        <div className="w-[30%] p-4 flex flex-col gap-6 border-r">
-                            <SearchInput label="Nha khoa" options={nhaKhoasList} value={formData.nhaKhoa} onChange={(val) => { setFormData({ ...formData, nhaKhoa: val, bacSi: '', benhNhan: '' }) }} />
-                            <SearchInput label="Bác sĩ" options={bacSiList} value={formData.bacSi} onChange={(val) => setFormData({ ...formData, bacSi: val })} />
-                            <SearchInput label="Bệnh nhân" options={benhNhanList} value={formData.benhNhan} onChange={(val) => setFormData({ ...formData, benhNhan: val })} />
-                        </div>
-                        <div className="w-[40%] bg-[#e8f6fc] p-4 text-sm flex flex-col gap-2 pt-6">
-                            <div className="flex"><span className="text-gray-500 w-20">Địa chỉ:</span> <span className="font-medium text-gray-800">{selectedNhaKhoaInfo?.diaChiCuThe || ''}</span></div>
-                            <div className="flex"><span className="text-gray-500 w-20">Điện thoại:</span> <span className="font-medium text-gray-800">{selectedNhaKhoaInfo?.soDienThoai || ''}</span></div>
-                            <div className="flex"><span className="text-gray-500 w-20">Mô tả:</span> <span className="font-medium text-gray-800">{selectedNhaKhoaInfo?.moTa || ''}</span></div>
-                        </div>
-                        <div className="w-[30%] p-4 flex flex-col gap-4 pt-6 border-l bg-white">
-                            <div className="flex justify-between items-center border-b pb-1">
-                                <label className="text-sm text-gray-500">Ngày nhận</label>
-                                <input type="datetime-local" name="ngayNhan" value={formData.ngayNhan} onChange={handleInputChange} className="text-sm outline-none bg-transparent text-gray-700" />
-                            </div>
-                            <div className="flex justify-between items-center border-b pb-1">
-                                <label className="text-sm text-gray-500">Y/c hoàn thành</label>
-                                <input type="datetime-local" name="yeuCauHoanThanh" value={formData.yeuCauHoanThanh} onChange={handleInputChange} className="text-sm outline-none bg-transparent text-gray-700" />
-                            </div>
-                            <div className="flex justify-between items-center border-b pb-1">
-                                <label className="text-sm text-gray-500">Hẹn giao</label>
-                                <input type="datetime-local" name="henGiao" value={formData.henGiao} onChange={handleInputChange} className="text-sm outline-none bg-transparent text-gray-700" />
-                            </div>
-                        </div>
-                    </div>
+                {/* Main form (scrollable) */}
+                <div className="flex-1 overflow-y-auto pb-16">
+                    <div className="w-full mt-4 flex flex-col gap-4">
 
-                    <div className="w-full bg-white shadow-sm border-t border-b border-gray-200">
-                        <table className="w-full text-sm text-left">
-                            <thead className="bg-[#f0f9ff] text-gray-600 border-b">
-                                <tr>
-                                    <th className="p-3 w-32 font-medium">Loại</th>
-                                    <th className="p-3 w-[30%] font-medium">Sản phẩm</th>
-                                    <th className="p-3 w-40 font-medium">Vị trí</th>
-                                    <th className="p-3 w-20 text-center font-medium">Số lượng</th>
-                                    <th className="p-3 w-28 font-medium">Màu</th>
-                                    <th className="p-3 font-medium">Ghi chú</th>
-                                    <th className="p-3 w-10 text-center"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {formData.danhSachSanPham.map((sp, index) => (
-                                    <tr key={index} className="border-b bg-[#e1f5fe]">
-                                        <td className="p-2">
-                                            <select value={sp.loaiDon} onChange={(e) => handleSanPhamChange(index, 'loaiDon', e.target.value)} className="w-full border-b border-blue-200 p-1 outline-none bg-transparent">
-                                                <option value="Mới">Mới</option>
-                                                <option value="Hàng sửa">Hàng sửa</option>
-                                                <option value="Hàng làm lại">Hàng làm lại</option>
-                                                <option value="Hàng bảo hành">Hàng bảo hành</option>
-                                            </select>
-                                        </td>
-                                        <td className="p-2 align-top pt-3">
-                                            <SearchInput
-                                                placeholder="Tìm sản phẩm..."
-                                                options={sanPhamList}
-                                                value={sp.sanPham}
-                                                onChange={(val) => handleSanPhamChange(index, 'sanPham', val)}
-                                                showAddNew={true}
-                                                onAddNew={() => setIsSanPhamModalOpen(true)}
-                                            />
-                                        </td>
-                                        <td className="p-2">
-                                            <div
-                                                onClick={() => { setEditingSpIndex(index); setIsViTriModalOpen(true); }}
-                                                className="w-full border-b border-blue-200 p-1 bg-transparent cursor-pointer text-blue-600 hover:text-blue-800 min-h-[30px] flex items-center"
+                        {/* Section 1: Customer info + clinic info + dates */}
+                        <div className="flex gap-0 w-full bg-white border-b border-gray-200 shadow-sm">
+                            <div className="w-[30%] p-4 flex flex-col gap-6 border-r">
+                                <SearchInput label="Nha khoa" options={nhaKhoasList} value={formData.nhaKhoa} onChange={(val) => { setFormData({ ...formData, nhaKhoa: val, bacSi: '', benhNhan: '' }) }} />
+                                <SearchInput label="Bác sĩ" options={bacSiList} value={formData.bacSi} onChange={(val) => setFormData({ ...formData, bacSi: val })} />
+                                <SearchInput label="Bệnh nhân" options={benhNhanList} value={formData.benhNhan} onChange={(val) => setFormData({ ...formData, benhNhan: val })} />
+                            </div>
+                            <div className="w-[40%] bg-[#e8f6fc] p-4 text-sm flex flex-col gap-2 pt-6">
+                                <div className="flex"><span className="text-gray-500 w-20">Địa chỉ:</span> <span className="font-medium text-gray-800">{selectedNhaKhoaInfo?.diaChiCuThe || ''}</span></div>
+                                <div className="flex"><span className="text-gray-500 w-20">Điện thoại:</span> <span className="font-medium text-gray-800">{selectedNhaKhoaInfo?.soDienThoai || ''}</span></div>
+                                <div className="flex"><span className="text-gray-500 w-20">Mô tả:</span> <span className="font-medium text-gray-800">{selectedNhaKhoaInfo?.moTa || ''}</span></div>
+                            </div>
+                            <div className="w-[30%] p-4 flex flex-col gap-4 pt-6 border-l bg-white">
+                                <div className="flex justify-between items-center border-b pb-1">
+                                    <label className="text-sm text-gray-500">Ngày nhận</label>
+                                    <input type="datetime-local" name="ngayNhan" value={formData.ngayNhan} onChange={handleInputChange} className="text-sm outline-none bg-transparent text-gray-700" />
+                                </div>
+                                <div className="flex justify-between items-center border-b pb-1">
+                                    <label className="text-sm text-gray-500">Y/c hoàn thành</label>
+                                    <input type="datetime-local" name="yeuCauHoanThanh" value={formData.yeuCauHoanThanh} onChange={handleInputChange} className="text-sm outline-none bg-transparent text-gray-700" />
+                                </div>
+                                <div className="flex justify-between items-center border-b pb-1">
+                                    <label className="text-sm text-gray-500">Hẹn giao</label>
+                                    <input type="datetime-local" name="henGiao" value={formData.henGiao} onChange={handleInputChange} className="text-sm outline-none bg-transparent text-gray-700" />
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Section 2: Products table */}
+                        <div className="w-full bg-white shadow-sm border-t border-b border-gray-200">
+                            <table className="w-full text-sm text-left">
+                                <thead className="bg-[#f0f9ff] text-gray-600 border-b">
+                                    <tr>
+                                        <th className="p-3 w-32 font-medium">Loại</th>
+                                        <th className="p-3 w-[30%] font-medium">Sản phẩm</th>
+                                        <th className="p-3 w-40 font-medium">Vị trí</th>
+                                        <th className="p-3 w-20 text-center font-medium">Số lượng</th>
+                                        <th className="p-3 w-28 font-medium">Màu</th>
+                                        <th className="p-3 font-medium">Ghi chú</th>
+                                        <th className="p-3 w-10 text-center"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {formData.danhSachSanPham.map((sp, index) => (
+                                        <tr key={index} className="border-b bg-[#e1f5fe]">
+                                            <td className="p-2">
+                                                <select value={sp.loaiDon} onChange={(e) => handleSanPhamChange(index, 'loaiDon', e.target.value)} className="w-full border-b border-blue-200 p-1 outline-none bg-transparent">
+                                                    <option value="Mới">Mới</option>
+                                                    <option value="Hàng sửa">Hàng sửa</option>
+                                                    <option value="Hàng làm lại">Hàng làm lại</option>
+                                                    <option value="Hàng bảo hành">Hàng bảo hành</option>
+                                                </select>
+                                            </td>
+                                            <td className="p-2 align-top pt-3">
+                                                <SearchInput
+                                                    placeholder="Tìm sản phẩm..."
+                                                    options={sanPhamList}
+                                                    value={sp.sanPham}
+                                                    onChange={(val) => handleSanPhamChange(index, 'sanPham', val)}
+                                                    showAddNew={true}
+                                                    onAddNew={() => setIsSanPhamModalOpen(true)}
+                                                />
+                                            </td>
+                                            <td className="p-2">
+                                                <div
+                                                    onClick={() => { setEditingSpIndex(index); setIsViTriModalOpen(true); }}
+                                                    className="w-full border-b border-blue-200 p-1 bg-transparent cursor-pointer text-blue-600 hover:text-blue-800 min-h-[30px] flex items-center"
+                                                >
+                                                    {renderViTriText(sp.viTri) || <span className="text-blue-400 italic font-medium">Chọn răng...</span>}
+                                                </div>
+                                            </td>
+                                            <td className="p-2">
+                                                <div className="w-full border-b border-blue-200 p-1 text-center font-bold text-gray-700 min-h-[30px] flex items-center justify-center">
+                                                    {sp.soLuong}
+                                                </div>
+                                            </td>
+                                            <td className="p-2"><input type="text" value={sp.mau} onChange={(e) => handleSanPhamChange(index, 'mau', e.target.value)} className="w-full border-b border-blue-200 p-1 outline-none bg-transparent" /></td>
+                                            <td className="p-2"><input type="text" value={sp.ghiChu} onChange={(e) => handleSanPhamChange(index, 'ghiChu', e.target.value)} className="w-full border-b border-blue-200 p-1 outline-none bg-transparent" /></td>
+                                            <td className="p-2 text-center">
+                                                <button onClick={() => handleRemoveSanPham(index)} className="text-gray-400 hover:text-red-500 transition">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 mx-auto"><path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" /></svg>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                    <tr>
+                                        <td colSpan="7" className="p-0 bg-[#f0f9ff]">
+                                            <button
+                                                onClick={() => setFormData({ ...formData, danhSachSanPham: [...formData.danhSachSanPham, { loaiDon: 'Mới', sanPham: '', viTri: [], soLuong: 1, mau: '', ghiChu: '' }] })}
+                                                className="w-full py-4 px-6 text-green-600 font-bold hover:bg-blue-100 cursor-pointer flex items-center justify-start gap-2 transition"
                                             >
-                                                {renderViTriText(sp.viTri) || <span className="text-blue-400 italic font-medium">Chọn răng...</span>}
-                                            </div>
-                                        </td>
-                                        <td className="p-2">
-                                            <div className="w-full border-b border-blue-200 p-1 text-center font-bold text-gray-700 min-h-[30px] flex items-center justify-center">
-                                                {sp.soLuong}
-                                            </div>
-                                        </td>
-                                        <td className="p-2"><input type="text" value={sp.mau} onChange={(e) => handleSanPhamChange(index, 'mau', e.target.value)} className="w-full border-b border-blue-200 p-1 outline-none bg-transparent" /></td>
-                                        <td className="p-2"><input type="text" value={sp.ghiChu} onChange={(e) => handleSanPhamChange(index, 'ghiChu', e.target.value)} className="w-full border-b border-blue-200 p-1 outline-none bg-transparent" /></td>
-                                        <td className="p-2 text-center">
-                                            <button onClick={() => handleRemoveSanPham(index)} className="text-gray-400 hover:text-red-500 transition">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 mx-auto"><path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" /></svg>
+                                                <span className="text-3xl leading-none font-black">+</span>
+                                                <span className="text-sm mt-1">Thêm sản phẩm</span>
                                             </button>
                                         </td>
                                     </tr>
-                                ))}
-                                <tr>
-                                    <td colSpan="7" className="p-0 bg-[#f0f9ff]">
-                                        <button
-                                            onClick={() => setFormData({ ...formData, danhSachSanPham: [...formData.danhSachSanPham, { loaiDon: 'Mới', sanPham: '', viTri: [], soLuong: 1, mau: '', ghiChu: '' }] })}
-                                            className="w-full py-4 px-6 text-green-600 font-bold hover:bg-blue-100 cursor-pointer flex items-center justify-start gap-2 transition"
-                                        >
-                                            <span className="text-3xl leading-none font-black">+</span>
-                                            <span className="text-sm mt-1">Thêm sản phẩm</span>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                                </tbody>
+                            </table>
+                        </div>
 
-                    <div className="flex w-full bg-white shadow-sm border-t border-b border-gray-200">
-                        <div className="w-1/4 flex flex-col p-4 gap-4 border-r">
-                            <div className="relative border-b pb-1">
-                                <label className="text-[11px] text-gray-500 absolute -top-1 left-0">Chỉ định của bác sĩ</label>
-                                <textarea name="chiDinhBacSi" value={formData.chiDinhBacSi} onChange={handleInputChange} className="w-full h-16 pt-3 text-sm outline-none resize-none bg-transparent" />
-                            </div>
-                            <div className="relative border-b pb-1">
-                                <label className="text-[11px] text-gray-500 absolute -top-1 left-0">Ghi chú về tài chính</label>
-                                <textarea name="ghiChuTaiChinh" value={formData.ghiChuTaiChinh} onChange={handleInputChange} className="w-full h-16 pt-3 text-sm outline-none resize-none bg-transparent" />
-                            </div>
-                        </div>
-                        <div className="flex-1 p-4 relative border-r">
-                            <label className="text-[11px] text-gray-500 absolute top-3 left-4">Ghi chú</label>
-                            <textarea name="ghiChuChung" value={formData.ghiChuChung} onChange={handleInputChange} className="w-full h-full pt-4 text-sm outline-none resize-none bg-transparent border-b" />
-                        </div>
-                        <div className="w-[30%] p-4 bg-gray-50">
-                            <DanhSachPhuKien phuKienDaChon={formData.danhSachPhuKien} setPhuKienDaChon={(data) => setFormData({ ...formData, danhSachPhuKien: data })} />
-                        </div>
                     </div>
                 </div>
+
+                {/* Right side panel: 2 tabs – Sản xuất / Ghi chú */}
+                <RightSidePanel
+                    formData={formData}
+                    setFormData={setFormData}
+                    handleInputChange={handleInputChange}
+                />
+
             </div>
 
-            <div className="bg-gray-100 px-6 py-3 flex justify-between items-center absolute bottom-0 left-0 w-full border-t z-10 shadow-lg">
+            {/* Footer save bar */}
+            <div className="bg-gray-100 px-6 py-3 flex justify-between items-center border-t z-10 shadow-lg shrink-0">
                 <button className="bg-gray-500 text-white px-4 py-1.5 rounded text-sm">Cập nhật phiên bản mới!</button>
                 <button onClick={handleSave} className="bg-[#4CAF50] hover:bg-green-600 text-white px-8 py-2 rounded shadow-md font-medium">Lưu (F3)</button>
             </div>
@@ -389,7 +390,6 @@ const DonHangForm = () => {
                 />
             )}
 
-            {/* <-- THÊM MỚI: Gọi Modal Chọn đơn hàng cũ --> */}
             <ChonDonHangCuModal
                 isOpen={modalDonHangCuInfo.isOpen}
                 onClose={() => setModalDonHangCuInfo({ isOpen: false, index: null, loaiDon: '' })}
@@ -400,6 +400,82 @@ const DonHangForm = () => {
                 benhNhanName={benhNhanList.find(b => b._id === formData.benhNhan)?.nameDisplay}
                 loaiDon={modalDonHangCuInfo.loaiDon}
             />
+        </div>
+    );
+};
+
+/* ===== Right side panel ===== */
+const RightSidePanel = ({ formData, setFormData, handleInputChange }) => {
+    const [activeTab, setActiveTab] = useState('ghichu');
+
+    return (
+        <div className="w-72 border-l bg-white flex flex-col shrink-0 overflow-hidden">
+            {/* Tabs */}
+            <div className="flex border-b shrink-0">
+                {[{ key: 'sanxuat', label: 'Sản xuất' }, { key: 'ghichu', label: 'Ghi chú' }].map(tab => (
+                    <button
+                        key={tab.key}
+                        onClick={() => setActiveTab(tab.key)}
+                        className={`flex-1 py-2.5 text-sm font-medium transition border-b-2 ${activeTab === tab.key
+                            ? 'border-blue-500 text-blue-700 bg-blue-50'
+                            : 'border-transparent text-gray-500 hover:text-gray-700'
+                            }`}
+                    >
+                        {tab.label}
+                    </button>
+                ))}
+            </div>
+
+            {/* Tab content */}
+            <div className="flex-1 overflow-y-auto p-3">
+                {activeTab === 'sanxuat' && (
+                    <div className="flex flex-col gap-3">
+                        <h4 className="text-sm font-semibold text-gray-700">Phụ kiện đi kèm</h4>
+                        <DanhSachPhuKien
+                            phuKienDaChon={formData.danhSachPhuKien}
+                            setPhuKienDaChon={(data) => setFormData({ ...formData, danhSachPhuKien: data })}
+                        />
+                    </div>
+                )}
+
+                {activeTab === 'ghichu' && (
+                    <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-1">
+                            <label className="text-xs text-gray-500 font-medium">Chỉ định của bác sĩ</label>
+                            <textarea
+                                name="chiDinhBacSi"
+                                value={formData.chiDinhBacSi}
+                                onChange={handleInputChange}
+                                rows={3}
+                                className="w-full border rounded p-2 text-sm outline-none resize-none focus:ring-1 focus:ring-blue-400"
+                                placeholder="Nhập chỉ định..."
+                            />
+                        </div>
+                        <div className="flex flex-col gap-1">
+                            <label className="text-xs text-gray-500 font-medium">Ghi chú chung</label>
+                            <textarea
+                                name="ghiChuChung"
+                                value={formData.ghiChuChung}
+                                onChange={handleInputChange}
+                                rows={4}
+                                className="w-full border rounded p-2 text-sm outline-none resize-none focus:ring-1 focus:ring-blue-400"
+                                placeholder="Nhập ghi chú..."
+                            />
+                        </div>
+                        <div className="flex flex-col gap-1">
+                            <label className="text-xs text-gray-500 font-medium">Ghi chú tài chính</label>
+                            <textarea
+                                name="ghiChuTaiChinh"
+                                value={formData.ghiChuTaiChinh}
+                                onChange={handleInputChange}
+                                rows={3}
+                                className="w-full border rounded p-2 text-sm outline-none resize-none focus:ring-1 focus:ring-blue-400"
+                                placeholder="Nhập ghi chú tài chính..."
+                            />
+                        </div>
+                    </div>
+                )}
+            </div>
         </div>
     );
 };

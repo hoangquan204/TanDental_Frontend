@@ -28,7 +28,7 @@ const Header = ({ onToggleSidebar }) => {
           <IconButton color="inherit" onClick={onToggleSidebar}>
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6">CÔNG TY TNHH TÂN DENTAL</Typography>
+          <Typography variant="h6">CÔNG TY TNHH TẤN DENTAL</Typography>
         </Box>
 
         <Box className="flex items-center bg-white rounded-full px-3 w-1/3">
