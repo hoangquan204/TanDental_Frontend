@@ -3,7 +3,8 @@ import { Box } from "@mui/material";
 import Sidebar from "../Layout/Sidebar";
 import Header from "../Layout/Header";
 import { Route, Routes } from "react-router-dom";
-import Orders from "../Orders/Orders";
+import DonHangPage from "../DonHang/DonHangPage";
+import DonHangForm from "../DonHang/DonHangForm";
 import Charts from "../Charts";
 import NhaKhoaPage from "../NhaKhoa/NhaKhoaPage";
 import NguoiLienHePage from "../NguoiLienHe/NguoiLienHePage";
@@ -12,6 +13,8 @@ import StaffPage from "../Staff/StaffPage";
 import StaffProfile from "../Staff/StaffProfile";
 import SanPhamPage from "../SanPham/SanPhamPage";
 import CongDoanPage from "../CongDoan/CongDoanPage";
+import HoaDonTable from "../HoaDon/HoaDonTable";
+import DonHangChuaXuatPage from "../DonHangChuaXuat/DonHangChuaXuatPage";
 const Dashboard = () => {
   const [collapsed, setCollapsed] = useState(false);
   return (
@@ -29,7 +32,9 @@ const Dashboard = () => {
       >
         <Routes>
           <Route path="/" element={<Charts />} />
-          <Route path="/orders/*" element={<Orders />} />
+          <Route path="/don-hang/*" element={<DonHangPage />} />
+          <Route path="/donhang/create" element={<DonHangForm />} />
+          <Route path="/donhang/:id/edit" element={<DonHangForm />} />
           <Route path="/nha-khoa" element={<NhaKhoaPage />} />
           <Route path="/nguoi-lien-he" element={<NguoiLienHePage />} />
           <Route path="/benh-nhan" element={<BenhNhanPage />} />
@@ -37,6 +42,8 @@ const Dashboard = () => {
           <Route path="/ho-so" element={<StaffProfile />} />
           <Route path="/san-pham" element={<SanPhamPage />} />
           <Route path="/cong-doan" element={<CongDoanPage />} />
+          <Route path="/hoa-don" element={<HoaDonTable />} />
+          <Route path="/cho-xuat-hoa-don" element={<DonHangChuaXuatPage />} />
         </Routes>
       </Box>
     </Box>

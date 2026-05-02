@@ -6,3 +6,6 @@ export const getSanPhamSelector = state => state.sanPham
 export const getQuyTrinhSelector = state => state.congDoan
 export const getChamSocKhachHangSelector = state => state.chamSocKhachHang
 export const getBangGiaSelector = state => state.bangGia
+export const getDonHangSelector = state => state.donHang
+export const getHoaDonSelector = state => state.hoaDon
+
