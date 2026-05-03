@@ -45,6 +45,18 @@ export const updateHoaDon = createAsyncThunk(
   }
 );
 
+export const deleteHoaDon = createAsyncThunk(
+  "hoaDon/delete",
+  async (id, { rejectWithValue }) => {
+    try {
+      const res = await api.delete(`/hoa-don/${id}`);
+      return { id, ...res.data };
+    } catch (err) {
+      return rejectWithValue(err.response?.data || err.message);
+    }
+  }
+);
+
 /* ================= SLICE ================= */
 
 const slice = createSlice({
@@ -106,6 +118,20 @@ const slice = createSlice({
           totalPages: action.payload.totalPages,
           currentPage: action.payload.currentPage
         };
+      })
+
+      .addCase(deleteHoaDon.fulfilled, (state, action) => {
+        const id = action.payload.id;
+
+        state.danhSachHoaDon = state.danhSachHoaDon.filter(
+          (hd) => hd._id !== id
+        );
+
+        alert("Xóa hóa đơn thành công");
+      })
+
+      .addCase(deleteHoaDon.rejected, (state, action) => {
+        alert(action.payload?.message || "Xóa thất bại");
       })
   },
 });

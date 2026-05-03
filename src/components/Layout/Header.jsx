@@ -17,6 +17,7 @@ import LoginModal from "../Login/LoginModal";
 import HeaderUser from "./HeaderUser";
 import { useSelector } from "react-redux";
 import { getAuthSelector } from "../../redux/selector";
+import QuickAddMenu from "./QuickAddMenu";
 
 const Header = ({ onToggleSidebar }) => {
   const { isAuthenticated } = useSelector(getAuthSelector);
@@ -28,7 +29,7 @@ const Header = ({ onToggleSidebar }) => {
           <IconButton color="inherit" onClick={onToggleSidebar}>
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6">CÔNG TY TNHH TÂN DENTAL</Typography>
+          <Typography variant="h6">CÔNG TY TNHH TẤN DENTAL</Typography>
         </Box>
 
         <Box className="flex items-center bg-white rounded-full px-3 w-1/3">
@@ -42,9 +43,7 @@ const Header = ({ onToggleSidebar }) => {
               <Button variant="contained" startIcon={<SearchIcon />}>
                 Tìm đơn hàng
               </Button>
-              <IconButton color="inherit">
-                <AddIcon />
-              </IconButton>
+              <QuickAddMenu></QuickAddMenu>
               <IconButton color="inherit">
                 <NotificationsIcon />
               </IconButton>

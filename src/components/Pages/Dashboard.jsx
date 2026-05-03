@@ -15,6 +15,7 @@ import SanPhamPage from "../SanPham/SanPhamPage";
 import CongDoanPage from "../CongDoan/CongDoanPage";
 import HoaDonTable from "../HoaDon/HoaDonTable";
 import DonHangChuaXuatPage from "../DonHangChuaXuat/DonHangChuaXuatPage";
+import HoaDonDetail from "../HoaDon/HoaDonDetail";
 const Dashboard = () => {
   const [collapsed, setCollapsed] = useState(false);
   return (
@@ -42,8 +43,12 @@ const Dashboard = () => {
           <Route path="/ho-so" element={<StaffProfile />} />
           <Route path="/san-pham" element={<SanPhamPage />} />
           <Route path="/cong-doan" element={<CongDoanPage />} />
-          <Route path="/hoa-don" element={<HoaDonTable />} />
           <Route path="/cho-xuat-hoa-don" element={<DonHangChuaXuatPage />} />
+          <Route path="/hoa-don" element={<HoaDonTable />} />
+          <Route
+            path="/hoa-don/:id/edit"
+            element={<HoaDonDetail></HoaDonDetail>}
+          ></Route>
         </Routes>
       </Box>
     </Box>

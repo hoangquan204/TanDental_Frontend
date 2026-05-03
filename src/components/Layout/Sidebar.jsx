@@ -52,7 +52,7 @@ const Sidebar = ({ collapsed }) => {
   const otherMenu = [
     {
       name: "Kế Hoạch Giao Hàng",
-      router: "/delivery-plan",
+      router: "/ke-hoach-giao-hang",
       icon: <Assignment />,
     },
     {
