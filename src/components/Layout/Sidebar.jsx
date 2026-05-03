@@ -22,6 +22,7 @@ import {
   Receipt,
   BarChart,
   Warehouse,
+  Settings,
 } from "@mui/icons-material";
 
 import { useNavigate, useLocation } from "react-router-dom";
@@ -57,6 +58,9 @@ const Sidebar = ({ collapsed }) => {
 
   const settingMenu = [
     { name: "Tài khoản", router: "/tai-khoan", icon: <People /> },
+    { name: "Nhập dữ liệu", router: "/nhap-du-lieu", icon: <Assignment /> },
+    { name: "Công ty", router: "/cong-ty", icon: <LocalHospital /> },
+    { name: "Vai trò", router: "/vai-tro", icon: <People /> },
   ];
 
   /* ===== ACTIVE ===== */
@@ -66,7 +70,12 @@ const Sidebar = ({ collapsed }) => {
     location.pathname.includes(item.router)
   );
 
+  const isSettingActive = settingMenu.some((item) =>
+    location.pathname.includes(item.router)
+  );
+
   const [openCustomer, setOpenCustomer] = useState(isCustomerActive);
+  const [openSetting, setOpenSetting] = useState(isSettingActive);
 
   return (
     <Drawer
@@ -227,39 +236,75 @@ const Sidebar = ({ collapsed }) => {
         ))}
 
         {/* ===== SETTING MENU ===== */}
-        {settingMenu.map((item, index) => (
-          <Tooltip
-            key={index}
-            title={collapsed ? item.name : ""}
-            placement="right"
+        <Tooltip
+          title={collapsed ? "Thiết lập" : ""}
+          placement="right"
+        >
+          <ListItemButton
+            onClick={() => setOpenSetting(!openSetting)}
+            sx={{
+              justifyContent: collapsed ? "center" : "flex-start",
+              px: collapsed ? 1 : 2,
+            }}
+            className={`transition ${
+              isSettingActive
+                ? "bg-blue-50 text-blue-600"
+                : "hover:bg-gray-100"
+            }`}
           >
-            <ListItemButton
-              onClick={() => navigate(item.router)}
+            <ListItemIcon
               sx={{
-                justifyContent: collapsed ? "center" : "flex-start",
-                px: collapsed ? 1 : 2,
+                minWidth: 0,
+                mr: collapsed ? 0 : 2,
+                justifyContent: "center",
               }}
-              className={`transition ${
-                isActive(item.router)
-                  ? "bg-blue-100 text-blue-600"
-                  : "hover:bg-gray-100"
-              }`}
             >
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  mr: collapsed ? 0 : 2,
-                  justifyContent: "center",
-                }}
-                className={isActive(item.router) ? "text-blue-600" : ""}
-              >
-                {item.icon}
-              </ListItemIcon>
+              <Settings />
+            </ListItemIcon>
 
-              {!collapsed && <ListItemText primary={item.name} />}
-            </ListItemButton>
-          </Tooltip>
-        ))}
+            {!collapsed && <ListItemText primary="Thiết lập" />}
+
+            {!collapsed && (openSetting ? <ExpandLess /> : <ExpandMore />)}
+          </ListItemButton>
+        </Tooltip>
+
+        <Collapse in={openSetting && !collapsed} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            {settingMenu.map((item, index) => (
+              <Tooltip
+                key={index}
+                title={collapsed ? item.name : ""}
+                placement="right"
+              >
+                <ListItemButton
+                  sx={{
+                    pl: collapsed ? 1 : 4,
+                    justifyContent: collapsed ? "center" : "flex-start",
+                  }}
+                  onClick={() => navigate(item.router)}
+                  className={`transition ${
+                    isActive(item.router)
+                      ? "bg-blue-100 text-blue-600"
+                      : "hover:bg-gray-100"
+                  }`}
+                >
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: collapsed ? 0 : 2,
+                      justifyContent: "center",
+                    }}
+                    className={isActive(item.router) ? "text-blue-600" : ""}
+                  >
+                    {item.icon}
+                  </ListItemIcon>
+
+                  {!collapsed && <ListItemText primary={item.name} />}
+                </ListItemButton>
+              </Tooltip>
+            ))}
+          </List>
+        </Collapse>
       </List>
     </Drawer>
   );

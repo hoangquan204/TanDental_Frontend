@@ -9,6 +9,9 @@ import NhaKhoaPage from "../NhaKhoa/NhaKhoaPage";
 import NguoiLienHePage from "../NguoiLienHe/NguoiLienHePage";
 import BenhNhanPage from "../BenhNhan/BenhNhanPage";
 import StaffPage from "../Staff/StaffPage";
+import NhapDuLieu from "../Settings/NhapDuLieu";
+import CongTy from "../Settings/CongTy";
+import VaiTro from "../Settings/VaiTro";
 
 const Dashboard = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -32,6 +35,9 @@ const Dashboard = () => {
           <Route path="/nguoi-lien-he" element={<NguoiLienHePage />} />
           <Route path="/benh-nhan" element={<BenhNhanPage />} />
           <Route path="/tai-khoan" element={<StaffPage />} />
+          <Route path="/nhap-du-lieu" element={<NhapDuLieu />} />
+          <Route path="/cong-ty" element={<CongTy />} />
+          <Route path="/vai-tro" element={<VaiTro />} />
         </Routes>
       </Box>
     </Box>
