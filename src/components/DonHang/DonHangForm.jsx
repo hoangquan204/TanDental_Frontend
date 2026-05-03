@@ -6,7 +6,8 @@ import { createDonHang, updateDonHang } from '../../redux/slices/donHangSlice';
 import DanhSachPhuKien from './DanhSachPhuKien';
 import ChonViTriRangModal from './ChonViTriRangModal';
 import SanPhamModal from '../SanPham/SanPhamModal';
-import ChonDonHangCuModal from './ChonDonHangCuModal'; // <-- THÊM MỚI
+import ChonDonHangCuModal from './ChonDonHangCuModal';
+import toast from 'react-hot-toast';
 
 const SearchInput = ({ value, onChange, options = [], placeholder, label, showAddNew = false, onAddNew }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -150,8 +151,13 @@ const DonHangForm = () => {
                     ngayNhan: dh.ngayNhan ? new Date(dh.ngayNhan).toISOString().slice(0, 16) : '',
                     yeuCauHoanThanh: dh.yeuCauHoanThanh ? new Date(dh.yeuCauHoanThanh).toISOString().slice(0, 16) : '',
                     henGiao: dh.henGiao ? new Date(dh.henGiao).toISOString().slice(0, 16) : '',
+                    danhSachSanPham: (dh.danhSachSanPham || []).map(sp => ({
+                        ...sp,
+                        sanPham: sp.sanPham?._id || sp.sanPham || '',
+                        donHangCu: sp.donHangCu?._id || sp.donHangCu || null,
+                    })),
                 });
-            });
+            }).catch(() => toast.error('Không thể tải thông tin đơn hàng'));
         }
     }, [id, isEditMode]);
 
@@ -225,9 +231,18 @@ const DonHangForm = () => {
     };
 
     const handleSave = () => {
-        if (!formData.nhaKhoa || !formData.bacSi || !formData.benhNhan) return alert("Vui lòng nhập đầy đủ Nha Khoa, Bác Sĩ, Bệnh Nhân!");
+        if (!formData.nhaKhoa || !formData.bacSi || !formData.benhNhan) {
+            toast.error('Vui lòng nhập đầy đủ Nha Khoa, Bác Sĩ, Bệnh Nhân!');
+            return;
+        }
         const action = isEditMode ? updateDonHang({ id, data: formData }) : createDonHang(formData);
-        dispatch(action).unwrap().then(() => navigate(-1));
+        const promise = dispatch(action).unwrap();
+        toast.promise(promise, {
+            loading: isEditMode ? 'Đang lưu thay đổi...' : 'Đang tạo đơn hàng...',
+            success: isEditMode ? 'Cập nhật đơn hàng thành công!' : 'Tạo đơn hàng thành công!',
+            error: (err) => err || (isEditMode ? 'Cập nhật thất bại' : 'Tạo đơn hàng thất bại'),
+        });
+        promise.then(() => navigate(-1)).catch(() => { });
     };
 
     const renderViTriText = (viTriArr) => {

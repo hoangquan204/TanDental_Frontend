@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { deleteDonHang, updateDonHang } from '../../redux/slices/donHangSlice';
+import toast from 'react-hot-toast';
 
 const DonHangDetailPanel = ({ donHang, onClose }) => {
     const dispatch = useDispatch();
@@ -25,12 +26,15 @@ const DonHangDetailPanel = ({ donHang, onClose }) => {
     };
 
     const handleDelete = () => {
-        if (window.confirm("Bạn có chắc chắn muốn xóa đơn hàng này?")) {
-            dispatch(deleteDonHang(donHang._id));
-            onClose();
+        if (window.confirm(`Bạn có chắc chắn muốn xóa đơn hàng ${maDonHang}?`)) {
+            const promise = dispatch(deleteDonHang(donHang._id)).unwrap();
+            toast.promise(promise, {
+                loading: 'Đang xóa...',
+                success: `Đã xóa đơn hàng ${maDonHang}`,
+                error: (err) => err || 'Xóa đơn hàng thất bại',
+            });
+            promise.then(() => onClose()).catch(() => { });
         }
-        deleteDonHang(donHang._id);
-        onClose();
     };
 
     const handleMarkComplete = () => {
@@ -46,7 +50,12 @@ const DonHangDetailPanel = ({ donHang, onClose }) => {
                 donHangCu: sp.donHangCu?._id || sp.donHangCu || undefined,
             })),
         };
-        dispatch(updateDonHang({ id: donHang._id, data: payload }));
+        const promise = dispatch(updateDonHang({ id: donHang._id, data: payload })).unwrap();
+        toast.promise(promise, {
+            loading: 'Đang cập nhật...',
+            success: `Đơn hàng ${maDonHang} đã hoàn thành!`,
+            error: (err) => err || 'Cập nhật trạng thái thất bại',
+        });
     };
 
     const renderViTriText = (viTriArr) => {
