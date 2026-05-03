@@ -25,6 +25,21 @@ export const createNhaKhoa = createAsyncThunk(
   }
 );
 
+/* ================= UPDATE ================= */
+export const updateNhaKhoa = createAsyncThunk(
+  "nhaKhoa/update",
+  async ({ id, data }, { rejectWithValue }) => {
+    try {
+      const res = await api.put(`/nhakhoa/${id}`, data);
+      return res.data;
+    } catch (err) {
+      return rejectWithValue(
+        err.response?.data?.message || "Cập nhật thất bại"
+      );
+    }
+  }
+);
+
 /* ================= SLICE ================= */
 
 const nhaKhoaSlice = createSlice({
@@ -66,7 +81,17 @@ const nhaKhoaSlice = createSlice({
       .addCase(createNhaKhoa.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
-      });
+      })
+
+      /* ===== UPDATE ===== */
+      .addCase(updateNhaKhoa.fulfilled, (state, action) => {
+        const index = state.data.findIndex(
+          (item) => item._id === action.payload._id
+        );
+        if (index !== -1) {
+          state.data[index] = action.payload;
+        }
+      })
   },
 });
 

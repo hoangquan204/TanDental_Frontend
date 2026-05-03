@@ -3,16 +3,26 @@ import { Box } from "@mui/material";
 import Sidebar from "../Layout/Sidebar";
 import Header from "../Layout/Header";
 import { Route, Routes } from "react-router-dom";
-import Orders from "../Orders/Orders";
+import DonHangPage from "../DonHang/DonHangPage";
+import DonHangForm from "../DonHang/DonHangForm";
 import Charts from "../Charts";
 import NhaKhoaPage from "../NhaKhoa/NhaKhoaPage";
 import NguoiLienHePage from "../NguoiLienHe/NguoiLienHePage";
 import BenhNhanPage from "../BenhNhan/BenhNhanPage";
 import StaffPage from "../Staff/StaffPage";
+<<<<<<< HEAD
 import NhapDuLieu from "../Settings/NhapDuLieu";
 import CongTy from "../Settings/CongTy";
 import VaiTro from "../Settings/VaiTro";
 
+=======
+import StaffProfile from "../Staff/StaffProfile";
+import SanPhamPage from "../SanPham/SanPhamPage";
+import CongDoanPage from "../CongDoan/CongDoanPage";
+import HoaDonTable from "../HoaDon/HoaDonTable";
+import DonHangChuaXuatPage from "../DonHangChuaXuat/DonHangChuaXuatPage";
+import HoaDonDetail from "../HoaDon/HoaDonDetail";
+>>>>>>> origin/hoangquan
 const Dashboard = () => {
   const [collapsed, setCollapsed] = useState(false);
   return (
@@ -30,14 +40,28 @@ const Dashboard = () => {
       >
         <Routes>
           <Route path="/" element={<Charts />} />
-          <Route path="/orders/*" element={<Orders />} />
+          <Route path="/don-hang/*" element={<DonHangPage />} />
+          <Route path="/donhang/create" element={<DonHangForm />} />
+          <Route path="/donhang/:id/edit" element={<DonHangForm />} />
           <Route path="/nha-khoa" element={<NhaKhoaPage />} />
           <Route path="/nguoi-lien-he" element={<NguoiLienHePage />} />
           <Route path="/benh-nhan" element={<BenhNhanPage />} />
           <Route path="/tai-khoan" element={<StaffPage />} />
+<<<<<<< HEAD
           <Route path="/nhap-du-lieu" element={<NhapDuLieu />} />
           <Route path="/cong-ty" element={<CongTy />} />
           <Route path="/vai-tro" element={<VaiTro />} />
+=======
+          <Route path="/ho-so" element={<StaffProfile />} />
+          <Route path="/san-pham" element={<SanPhamPage />} />
+          <Route path="/cong-doan" element={<CongDoanPage />} />
+          <Route path="/cho-xuat-hoa-don" element={<DonHangChuaXuatPage />} />
+          <Route path="/hoa-don" element={<HoaDonTable />} />
+          <Route
+            path="/hoa-don/:id/edit"
+            element={<HoaDonDetail></HoaDonDetail>}
+          ></Route>
+>>>>>>> origin/hoangquan
         </Routes>
       </Box>
     </Box>

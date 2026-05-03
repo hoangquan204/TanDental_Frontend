@@ -36,7 +36,10 @@ const Sidebar = ({ collapsed }) => {
   /* ===== MENU ===== */
   const menu = [
     { name: "Thống kê", router: "/", icon: <Dashboard /> },
-    { name: "Đơn Hàng", router: "/orders", icon: <ShoppingCart /> },
+    { name: "Đơn Hàng", router: "/don-hang", icon: <ShoppingCart /> },
+    // 👉 Đã thêm Sản Phẩm vào ngay dưới Đơn Hàng
+    { name: "Sản Phẩm", router: "/san-pham", icon: <Category /> },
+    { name: "Công Đoạn", router: "/cong-doan", icon: <AccountTree /> }, // 👉 Vừa thêm dòng này
   ];
 
   const customerMenu = [
@@ -48,10 +51,15 @@ const Sidebar = ({ collapsed }) => {
   const otherMenu = [
     {
       name: "Kế Hoạch Giao Hàng",
-      router: "/delivery-plan",
+      router: "/ke-hoach-giao-hang",
       icon: <Assignment />,
     },
-    { name: "Hóa Đơn", router: "/invoice", icon: <Receipt /> },
+    {
+      name: "Chờ xuất hóa đơn",
+      router: "/cho-xuat-hoa-don",
+      icon: <Receipt />,
+    },
+    { name: "Hóa Đơn", router: "/hoa-don", icon: <Receipt /> },
     { name: "Báo Cáo", router: "/reports", icon: <BarChart /> },
     { name: "Kho", router: "/warehouse", icon: <Warehouse /> },
   ];

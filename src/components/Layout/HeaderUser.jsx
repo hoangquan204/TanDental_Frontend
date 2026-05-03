@@ -11,8 +11,11 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/slices/authSlice";
 import { getAuthSelector } from "../../redux/selector";
+import { useNavigate } from "react-router-dom";
 
 export default function HeaderUser() {
+  const navigate = useNavigate();
+
   const dispatch = useDispatch();
 
   const { user, isAuthenticated } = useSelector(getAuthSelector);
@@ -59,7 +62,13 @@ export default function HeaderUser() {
 
         <Divider />
 
-        <MenuItem onClick={handleClose}>Hồ sơ</MenuItem>
+        <MenuItem
+          onClick={() => {
+            navigate("/ho-so");
+          }}
+        >
+          Hồ sơ
+        </MenuItem>
 
         <MenuItem onClick={handleLogout} className="text-red-500">
           Đăng xuất
