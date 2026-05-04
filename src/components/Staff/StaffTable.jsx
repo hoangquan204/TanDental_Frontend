@@ -372,12 +372,20 @@ function StaffEditModal({ staffId, onClose }) {
   };
 
   return (
-    <Drawer
+      <Drawer
       anchor="right"
       open={open}
       onClose={() => {
         setOpen(false);
         onClose();
+      }}
+      sx={{
+        zIndex: (theme) => theme.zIndex.drawer + 1,
+        "& .MuiDrawer-paper": {
+          width: 384,
+          top: "66px",
+          height: "calc(100% - 66px)",
+        },
       }}
     >
       <div className="w-96 flex flex-col h-full">
