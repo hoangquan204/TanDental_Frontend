@@ -10,19 +10,16 @@ import NhaKhoaPage from "../NhaKhoa/NhaKhoaPage";
 import NguoiLienHePage from "../NguoiLienHe/NguoiLienHePage";
 import BenhNhanPage from "../BenhNhan/BenhNhanPage";
 import StaffPage from "../Staff/StaffPage";
-<<<<<<< HEAD
 import NhapDuLieu from "../Settings/NhapDuLieu";
 import CongTy from "../Settings/CongTy";
 import VaiTro from "../Settings/VaiTro";
-
-=======
 import StaffProfile from "../Staff/StaffProfile";
 import SanPhamPage from "../SanPham/SanPhamPage";
 import CongDoanPage from "../CongDoan/CongDoanPage";
 import HoaDonTable from "../HoaDon/HoaDonTable";
 import DonHangChuaXuatPage from "../DonHangChuaXuat/DonHangChuaXuatPage";
 import HoaDonDetail from "../HoaDon/HoaDonDetail";
->>>>>>> origin/hoangquan
+
 const Dashboard = () => {
   const [collapsed, setCollapsed] = useState(false);
   return (
@@ -47,11 +44,9 @@ const Dashboard = () => {
           <Route path="/nguoi-lien-he" element={<NguoiLienHePage />} />
           <Route path="/benh-nhan" element={<BenhNhanPage />} />
           <Route path="/tai-khoan" element={<StaffPage />} />
-<<<<<<< HEAD
           <Route path="/nhap-du-lieu" element={<NhapDuLieu />} />
           <Route path="/cong-ty" element={<CongTy />} />
-          <Route path="/vai-tro" element={<VaiTro />} />
-=======
+          <Route path="/quyen-su-dung" element={<VaiTro />} />
           <Route path="/ho-so" element={<StaffProfile />} />
           <Route path="/san-pham" element={<SanPhamPage />} />
           <Route path="/cong-doan" element={<CongDoanPage />} />
@@ -61,7 +56,6 @@ const Dashboard = () => {
             path="/hoa-don/:id/edit"
             element={<HoaDonDetail></HoaDonDetail>}
           ></Route>
->>>>>>> origin/hoangquan
         </Routes>
       </Box>
     </Box>
