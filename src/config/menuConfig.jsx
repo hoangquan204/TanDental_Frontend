@@ -50,7 +50,7 @@ export const MAIN_MENU = [
   },
   { name: "Sản Phẩm", router: "/san-pham", icon: <Category /> },
   { name: "Công Đoạn", router: "/cong-doan", icon: <AccountTree /> },
-  { name: "Kho", router: "/kho", icon: <Inventory2Icon /> },
+  { name: "Kho Vật Liệu", router: "/kho", icon: <Inventory2Icon /> },
 ];
 
 export const CUSTOMER_MENU = [
