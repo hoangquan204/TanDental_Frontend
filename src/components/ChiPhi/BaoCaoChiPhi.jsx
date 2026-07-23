@@ -19,12 +19,10 @@ const BaoCaoChiPhi = ({ danhSachChiPhi, filter, isLoading, onDelete }) => {
     const [selectedLuong, setSelectedLuong] = useState(null);
     const [printData, setPrintData] = useState(null);
 
-    // 1. Tách State cho bộ lọc
     const [filterAnchorEl, setFilterAnchorEl] = useState(null);
-    const [appliedSelectedLoai, setAppliedSelectedLoai] = useState([]); // State quyết định render bảng
-    const [tempSelectedLoai, setTempSelectedLoai] = useState([]);       // State tạm thời trong Popover
+    const [appliedSelectedLoai, setAppliedSelectedLoai] = useState([]);
+    const [tempSelectedLoai, setTempSelectedLoai] = useState([]);
 
-    // 2. State cho Lazy Loading
     const [visibleCount, setVisibleCount] = useState(20);
 
     const filteredByDate = danhSachChiPhi.filter(item => {
@@ -35,7 +33,6 @@ const BaoCaoChiPhi = ({ danhSachChiPhi, filter, isLoading, onDelete }) => {
 
     const dsLoaiUnique = Array.from(new Set(filteredByDate.map(i => i.loaiChiPhi).filter(Boolean))).sort((a, b) => a.localeCompare(b, 'vi'));
 
-    // Dùng appliedSelectedLoai để lọc data hiển thị
     const filteredData = appliedSelectedLoai.length > 0
         ? filteredByDate.filter(item => appliedSelectedLoai.includes(item.loaiChiPhi))
         : filteredByDate;
@@ -67,7 +64,7 @@ const BaoCaoChiPhi = ({ danhSachChiPhi, filter, isLoading, onDelete }) => {
 
     const handleApplyFilter = () => {
         setAppliedSelectedLoai(tempSelectedLoai);
-        setVisibleCount(20); // Reset số dòng khi lọc mới
+        setVisibleCount(20);
         handleCloseFilter();
     };
 
@@ -116,7 +113,7 @@ const BaoCaoChiPhi = ({ danhSachChiPhi, filter, isLoading, onDelete }) => {
     };
 
     const columns = [
-        { label: 'Ngày', width: 100 },
+        { label: 'Ngày', width: 100, className: 'hide-on-mobile-card' },
         { label: 'Tên chi phí', width: 'auto' },
         {
             width: 130, sx: { whiteSpace: 'nowrap' },
@@ -125,19 +122,23 @@ const BaoCaoChiPhi = ({ danhSachChiPhi, filter, isLoading, onDelete }) => {
                     Phân loại
                     <Tooltip title="Lọc theo phân loại" arrow>
                         <IconButton size="small" sx={{ p: 0.4, color: appliedSelectedLoai.length > 0 ? '#0284c7' : '#0369a1' }}>
-                            <Badge badgeContent={appliedSelectedLoai.length} color="primary" sx={{ '& .MuiBadge-badge': { fontSize: '0.6rem', height: 15, minWidth: 15 } }}><FilterListIcon sx={{ fontSize: 16 }} /></Badge>
+                            <Badge badgeContent={appliedSelectedLoai.length} color="primary" sx={{ '& .MuiBadge-badge': { fontSize: '0.6rem', height: 15, minWidth: 15 } }}>
+                                <FilterListIcon sx={{ fontSize: 16 }} />
+                            </Badge>
                         </IconButton>
                     </Tooltip>
                 </Box>
             )
         },
-        { label: 'Số tiền', width: 140 },
+        { label: 'Số tiền', width: 140, className: 'hide-on-mobile-card' },
         { label: 'Ghi chú', width: 'auto' },
         {
-            width: 80, align: 'right',
+            width: 80, align: 'right', className: 'hide-on-mobile-card',
             label: coDuLieu && (
                 <Tooltip title="In bảng này" arrow>
-                    <IconButton size="small" onClick={handlePrintTongQuat} sx={{ color: '#0284c7', bgcolor: '#bae6fd', borderRadius: '10px', '&:hover': { bgcolor: '#7dd3fc' } }}><PrintIcon sx={{ fontSize: 20 }} /></IconButton>
+                    <IconButton size="small" onClick={handlePrintTongQuat} sx={{ color: '#0284c7', bgcolor: '#bae6fd', borderRadius: '10px', '&:hover': { bgcolor: '#7dd3fc' } }}>
+                        <PrintIcon sx={{ fontSize: 20 }} />
+                    </IconButton>
                 </Tooltip>
             )
         }
@@ -147,10 +148,16 @@ const BaoCaoChiPhi = ({ danhSachChiPhi, filter, isLoading, onDelete }) => {
         <>
             <Box sx={{ display: { xs: 'flex', md: 'none' }, justifyContent: 'space-between', alignItems: 'center', mb: 2, px: 0.5 }}>
                 <Box onClick={handleOpenFilter} sx={{ display: 'flex', alignItems: 'center', gap: 1, cursor: 'pointer', color: '#0284c7', bgcolor: '#e0f2fe', px: 2, py: 1, borderRadius: '8px', fontWeight: 600 }}>
-                    <Badge badgeContent={appliedSelectedLoai.length} color="primary" sx={{ '& .MuiBadge-badge': { fontSize: '0.6rem', height: 15, minWidth: 15 } }}><FilterListIcon sx={{ fontSize: 18 }} /></Badge>
+                    <Badge badgeContent={appliedSelectedLoai.length} color="primary" sx={{ '& .MuiBadge-badge': { fontSize: '0.6rem', height: 15, minWidth: 15 } }}>
+                        <FilterListIcon sx={{ fontSize: 18 }} />
+                    </Badge>
                     <Typography variant="body2" sx={{ fontWeight: 700, fontSize: '0.8rem' }}>PHÂN LOẠI</Typography>
                 </Box>
-                {coDuLieu && <IconButton size="small" onClick={handlePrintTongQuat} sx={{ color: '#0284c7', bgcolor: '#bae6fd', borderRadius: '8px', px: 1.5, py: 1, '&:hover': { bgcolor: '#7dd3fc' } }}><PrintIcon sx={{ fontSize: 20 }} /></IconButton>}
+                {coDuLieu && (
+                    <IconButton size="small" onClick={handlePrintTongQuat} sx={{ color: '#0284c7', bgcolor: '#bae6fd', borderRadius: '8px', px: 1.5, py: 1, '&:hover': { bgcolor: '#7dd3fc' } }}>
+                        <PrintIcon sx={{ fontSize: 20 }} />
+                    </IconButton>
+                )}
             </Box>
 
             <Popover open={Boolean(filterAnchorEl)} anchorEl={filterAnchorEl} onClose={handleCloseFilter} anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}>
@@ -183,35 +190,127 @@ const BaoCaoChiPhi = ({ danhSachChiPhi, filter, isLoading, onDelete }) => {
         <Box className="flex flex-col flex-1 overflow-hidden" sx={{ height: '100%' }}>
             <BaseTable columns={columns} tongTien={coDuLieu ? tongChiPhi : undefined} topBar={topBar} onScroll={handleScroll}>
                 {tableData.slice(0, visibleCount).map((row, idx) => {
+                    const rowBg = idx % 2 === 0 ? '#ffffff' : '#f0f7fc';
+
                     if (row.isAuto) {
                         const isLuong = row._id === "auto_luong_nhan_vien";
                         return (
-                            <TableRow key={row._id} onClick={() => isLuong && setSelectedLuong(row)} sx={{ bgcolor: idx % 2 === 0 ? '#ffffff' : '#f0f7fc', cursor: isLuong ? 'pointer' : 'default', '&:hover': isLuong ? { bgcolor: '#bae6fd' } : {}, '& td': { borderBottom: '1px solid #e0f2fe' } }}>
-                                <TableCell data-label="Ngày" sx={{ color: '#0284c7', fontSize: '0.82rem', fontWeight: 500, py: 0.75 }}>{dayjs(row.ngayTao).tz('Asia/Ho_Chi_Minh').format('DD/MM/YYYY')}</TableCell>
-                                <TableCell data-label="Tên chi phí" sx={{ py: 0.75 }}><Typography variant="body2" sx={{ fontWeight: 600, color: '#0c4a6e', fontSize: '0.88rem' }}>{row.tenChiPhi}</Typography></TableCell>
-                                <TableCell data-label="Phân loại" sx={{ py: 0.75 }}><Typography variant="body2" sx={{ fontSize: '0.84rem', fontWeight: 600, color: '#0c4a6e' }}>{row.loaiChiPhi}</Typography></TableCell>
-                                <TableCell data-label="Số tiền" sx={{ py: 0.75 }}><Typography variant="body2" sx={{ fontWeight: 800, color: '#0369a1', fontVariantNumeric: 'tabular-nums', fontSize: '0.92rem' }}>{formatVND(row.gia)}</Typography></TableCell>
+                            <TableRow
+                                key={row._id}
+                                onClick={() => isLuong && setSelectedLuong(row)}
+                                sx={{
+                                    bgcolor: rowBg,
+                                    cursor: isLuong ? 'pointer' : 'default',
+                                    '&:hover': isLuong ? { bgcolor: '#bae6fd' } : {},
+                                    '& td': { borderBottom: '1px solid #e0f2fe' }
+                                }}
+                            >
+                                {/* DÒNG 1 MOBILE (isAuto): Ngày | Số tiền | VisibilityIcon nếu là lương */}
+                                <TableCell className="mobile-card-header" sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
+                                    <Box sx={{ flex: 1, textAlign: 'left' }}>
+                                        <Typography variant="body2" sx={{ color: '#64748b', fontWeight: 500, fontSize: '0.85rem' }}>
+                                            {dayjs(row.ngayTao).tz('Asia/Ho_Chi_Minh').format('DD/MM/YYYY')}
+                                        </Typography>
+                                    </Box>
+                                    <Box sx={{ flex: 1, textAlign: 'center' }}>
+                                        <Typography variant="body2" sx={{ fontWeight: 800, color: '#0369a1', fontSize: '0.95rem' }}>
+                                            {formatVND(row.gia)}
+                                        </Typography>
+                                    </Box>
+                                    <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
+                                        {isLuong && (
+                                            <IconButton size="small" sx={{ color: '#0284c7', p: 0.5 }}>
+                                                <VisibilityIcon fontSize="small" />
+                                            </IconButton>
+                                        )}
+                                    </Box>
+                                </TableCell>
+
+                                <TableCell className="hide-on-mobile-card" data-label="Ngày" sx={{ color: '#0284c7', fontSize: '0.82rem', fontWeight: 500, py: 0.75 }}>
+                                    {dayjs(row.ngayTao).tz('Asia/Ho_Chi_Minh').format('DD/MM/YYYY')}
+                                </TableCell>
+                                <TableCell data-label="Tên chi phí" sx={{ py: 0.75 }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 600, color: '#0c4a6e', fontSize: '0.88rem' }}>{row.tenChiPhi}</Typography>
+                                </TableCell>
+                                <TableCell data-label="Phân loại" sx={{ py: 0.75 }}>
+                                    <Typography variant="body2" sx={{ fontSize: '0.84rem', fontWeight: 600, color: '#0c4a6e' }}>{row.loaiChiPhi}</Typography>
+                                </TableCell>
+                                <TableCell className="hide-on-mobile-card" data-label="Số tiền" sx={{ py: 0.75 }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 800, color: '#0369a1', fontVariantNumeric: 'tabular-nums', fontSize: '0.92rem' }}>{formatVND(row.gia)}</Typography>
+                                </TableCell>
                                 <TableCell data-label="Ghi chú" sx={{ color: '#0369a1', fontSize: '0.82rem', py: 0.75 }}>{row.ghiChu || ''}</TableCell>
-                                <TableCell data-label="Thao tác" align="right" sx={{ pr: 1.5, py: 0.75, display: isLuong ? { xs: 'flex', md: 'table-cell' } : { xs: 'none', md: 'table-cell' } }}>
-                                    {isLuong && <Tooltip><IconButton size="small" sx={{ color: '#0284c7', borderRadius: '6px', '&:hover': { bgcolor: '#e0f2fe' } }}><VisibilityIcon sx={{ fontSize: 17 }} /></IconButton></Tooltip>}
+                                <TableCell className="hide-on-mobile-card" align="right" sx={{ pr: 1.5, py: 0.75 }}>
+                                    {isLuong && (
+                                        <Tooltip title="Xem chi tiết">
+                                            <IconButton size="small" sx={{ color: '#0284c7', borderRadius: '6px', '&:hover': { bgcolor: '#e0f2fe' } }}>
+                                                <VisibilityIcon sx={{ fontSize: 17 }} />
+                                            </IconButton>
+                                        </Tooltip>
+                                    )}
                                 </TableCell>
                             </TableRow>
                         );
                     }
+
+                    // Row isGroup
                     return (
-                        <TableRow key={row.dateStr} onClick={() => setSelectedGroup(row)} sx={{ bgcolor: idx % 2 === 0 ? '#ffffff' : '#f0f7fc', cursor: 'pointer', '&:hover': { bgcolor: '#bae6fd' }, '& td': { borderBottom: '1px solid #e0f2fe' } }}>
-                            <TableCell data-label="Ngày" sx={{ color: '#0284c7', fontSize: '0.82rem', fontWeight: 500, py: 0.75 }}>{row.dateStr}</TableCell>
-                            <TableCell data-label="Tên chi phí" sx={{ py: 0.75 }}><Typography variant="body2" sx={{ fontWeight: 600, color: '#0c4a6e', fontSize: '0.88rem' }}>Chi phí ngày {row.dateStr}</Typography></TableCell>
-                            <TableCell data-label="Phân loại" sx={{ py: 0.75 }}><Typography variant="body2" sx={{ fontSize: '0.84rem', fontWeight: 600, color: '#0c4a6e' }}>Tổng hợp</Typography></TableCell>
-                            <TableCell data-label="Số tiền" sx={{ py: 0.75 }}><Typography variant="body2" sx={{ fontWeight: 700, color: '#0369a1', fontVariantNumeric: 'tabular-nums', fontSize: '0.92rem' }}>{formatVND(row.tongTien)}</Typography></TableCell>
+                        <TableRow
+                            key={row.dateStr}
+                            onClick={() => setSelectedGroup(row)}
+                            sx={{
+                                bgcolor: rowBg,
+                                cursor: 'pointer',
+                                '&:hover': { bgcolor: '#bae6fd' },
+                                '& td': { borderBottom: '1px solid #e0f2fe' }
+                            }}
+                        >
+                            {/* DÒNG 1 MOBILE (isGroup): Ngày | Số tiền | VisibilityIcon */}
+                            <TableCell className="mobile-card-header" sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
+                                <Box sx={{ flex: 1, textAlign: 'left' }}>
+                                    <Typography variant="body2" sx={{ color: '#64748b', fontWeight: 500, fontSize: '0.85rem' }}>
+                                        {row.dateStr}
+                                    </Typography>
+                                </Box>
+                                <Box sx={{ flex: 1, textAlign: 'center' }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 700, color: '#0369a1', fontSize: '0.95rem' }}>
+                                        {formatVND(row.tongTien)}
+                                    </Typography>
+                                </Box>
+                                <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
+                                    <IconButton size="small" sx={{ color: '#0284c7', p: 0.5 }}>
+                                        <VisibilityIcon fontSize="small" />
+                                    </IconButton>
+                                </Box>
+                            </TableCell>
+
+                            <TableCell className="hide-on-mobile-card" data-label="Ngày" sx={{ color: '#0284c7', fontSize: '0.82rem', fontWeight: 500, py: 0.75 }}>{row.dateStr}</TableCell>
+                            <TableCell data-label="Tên chi phí" sx={{ py: 0.75 }}>
+                                <Typography variant="body2" sx={{ fontWeight: 600, color: '#0c4a6e', fontSize: '0.88rem' }}>Chi phí ngày {row.dateStr}</Typography>
+                            </TableCell>
+                            <TableCell data-label="Phân loại" sx={{ py: 0.75 }}>
+                                <Typography variant="body2" sx={{ fontSize: '0.84rem', fontWeight: 600, color: '#0c4a6e' }}>Tổng hợp</Typography>
+                            </TableCell>
+                            <TableCell className="hide-on-mobile-card" data-label="Số tiền" sx={{ py: 0.75 }}>
+                                <Typography variant="body2" sx={{ fontWeight: 700, color: '#0369a1', fontVariantNumeric: 'tabular-nums', fontSize: '0.92rem' }}>{formatVND(row.tongTien)}</Typography>
+                            </TableCell>
                             <TableCell data-label="Ghi chú" sx={{ color: '#0369a1', fontSize: '0.82rem', py: 0.75 }}>Gồm {row.items.length} dòng</TableCell>
-                            <TableCell data-label="Thao tác" align="right" sx={{ pr: 1.5, py: 0.75 }}>
-                                <Tooltip><IconButton size="small" sx={{ color: '#0284c7', borderRadius: '6px', '&:hover': { bgcolor: '#e0f2fe' } }}><VisibilityIcon sx={{ fontSize: 17 }} /></IconButton></Tooltip>
+                            <TableCell className="hide-on-mobile-card" align="right" sx={{ pr: 1.5, py: 0.75 }}>
+                                <Tooltip title="Xem chi tiết">
+                                    <IconButton size="small" sx={{ color: '#0284c7', borderRadius: '6px', '&:hover': { bgcolor: '#e0f2fe' } }}>
+                                        <VisibilityIcon sx={{ fontSize: 17 }} />
+                                    </IconButton>
+                                </Tooltip>
                             </TableCell>
                         </TableRow>
                     );
                 })}
-                {!coDuLieu && <TableRow className="empty-row"><TableCell colSpan={6} align="center" sx={{ py: 5, color: '#7dd3fc' }}>Không có dữ liệu trong tháng này</TableCell></TableRow>}
+                {!coDuLieu && (
+                    <TableRow className="empty-row">
+                        <TableCell colSpan={6} align="center" sx={{ py: 5, color: '#7dd3fc' }}>
+                            Không có dữ liệu trong tháng này
+                        </TableCell>
+                    </TableRow>
+                )}
             </BaseTable>
 
             <Dialog open={!!selectedGroup} onClose={() => setSelectedGroup(null)} maxWidth="lg" fullWidth>
@@ -225,8 +324,6 @@ const BaoCaoChiPhi = ({ danhSachChiPhi, filter, isLoading, onDelete }) => {
                             danhSachChiPhi={selectedGroup.items}
                             isLoading={isLoading}
                             isViewOnly={true}
-
-                            /* ĐÃ CẬP NHẬT LOGIC IN TẠI ĐÂY */
                             onPrintTable={(data) => {
                                 setPrintData({
                                     items: data.map(item => ({ ...item, ngay: item.ngayTao })),
@@ -234,7 +331,6 @@ const BaoCaoChiPhi = ({ danhSachChiPhi, filter, isLoading, onDelete }) => {
                                     type: 'day'
                                 });
                             }}
-
                             onEdit={() => { }}
                             onDelete={(id) => { onDelete(id); setSelectedGroup(null); }}
                         />

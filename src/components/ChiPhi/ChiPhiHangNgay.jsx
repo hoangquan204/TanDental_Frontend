@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { Box, Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, Select, MenuItem } from '@mui/material';
 import dayjs from 'dayjs';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateChiPhi, themLoaiChiPhiLocal, fetchTonQuyNgay } from '../../redux/slices/chiPhiSlice'; // Import thêm fetchTonQuyNgay
+import { updateChiPhi, themLoaiChiPhiLocal, fetchTonQuyNgay } from '../../redux/slices/chiPhiSlice';
 import PrintPreviewModal from './PrintPreviewModal';
 import ChiPhiForm from './ChiPhiForm';
 import ChiPhiTable from './ChiPhiTable';
@@ -29,7 +29,6 @@ const ChiPhiHangNgay = ({ danhSachChiPhi, isLoading, filter, onAdd, onDelete }) 
         });
     }, [danhSachChiPhi, filter.ngay]);
 
-    // HÀM XỬ LÝ IN BỔ SUNG LẤY DỮ LIỆU TỒN QUỸ
     const handlePrintTable = async (data) => {
         const isThang = filter.ngay === 0;
         const type = isThang ? 'month' : 'day';
@@ -47,21 +46,13 @@ const ChiPhiHangNgay = ({ danhSachChiPhi, isLoading, filter, onAdd, onDelete }) 
 
         let tonQuyData = null;
 
-        // Chỉ lấy tồn quỹ khi in theo NGÀY
         if (type === 'day') {
             const formattedDate = `${filter.nam}-${pad(filter.thang)}-${pad(filter.ngay)}`;
             try {
-                // Gọi API tính tồn quỹ động
                 const res = await dispatch(fetchTonQuyNgay(formattedDate)).unwrap();
-
-                // Quỹ hiện tại trên phiếu in = Tồn đầu ngày + Nạp thêm trong ngày
                 const quyHienTai = res.tonDauNgay + res.phatSinhNapTrongNgay;
-
-                // Chỉ hiển thị số Quỹ và Số dư nếu đã từng nạp quỹ (để ẩn đi với bản in dữ liệu cũ)
                 if (quyHienTai > 0 || res.tonDauNgay !== 0) {
-                    tonQuyData = {
-                        quyHienTai: quyHienTai
-                    };
+                    tonQuyData = { quyHienTai };
                 }
             } catch (error) {
                 console.error("Lỗi lấy thông tin quỹ để in:", error);
@@ -94,10 +85,23 @@ const ChiPhiHangNgay = ({ danhSachChiPhi, isLoading, filter, onAdd, onDelete }) 
     };
 
     return (
-        <Box className="flex flex-col flex-1 overflow-hidden space-y-5 mt-4" sx={{ height: '100%' }}>
-            <ChiPhiForm isLoading={isLoading} onAdd={onAdd} />
+        <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+            {/* Form thêm chi phí: hiển thị cố định trên Desktop, nhúng vào topContent trên Mobile */}
+            <Box sx={{ display: { xs: 'none', md: 'block' }, flexShrink: 0, mb: 2 }}>
+                <ChiPhiForm isLoading={isLoading} onAdd={onAdd} />
+            </Box>
 
-            <ChiPhiTable danhSachChiPhi={dailyData} isLoading={isLoading} onPrintTable={handlePrintTable} onEdit={handleOpenEdit} onDelete={onDelete} />
+            {/* Bảng chiếm toàn bộ chiều cao còn lại, scroll do BaseTable bên trong xử lý */}
+            <Box sx={{ flex: 1, minHeight: 0, overflowY: { xs: 'auto', md: 'hidden' } }}>
+                <ChiPhiTable
+                    danhSachChiPhi={dailyData}
+                    isLoading={isLoading}
+                    onPrintTable={handlePrintTable}
+                    onEdit={handleOpenEdit}
+                    onDelete={onDelete}
+                    topContent={<ChiPhiForm isLoading={isLoading} onAdd={onAdd} />}
+                />
+            </Box>
 
             <PrintPreviewModal isOpen={!!printData} data={printData} onClose={() => setPrintData(null)} />
 

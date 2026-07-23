@@ -9,22 +9,18 @@ import { useSelector } from 'react-redux';
 import dayjs from 'dayjs';
 import BaseTable from './common/BaseTable';
 
-const ChiPhiTable = ({ danhSachChiPhi, isLoading, onPrintTable, onEdit, onDelete, isViewOnly = false }) => {
+const ChiPhiTable = ({ danhSachChiPhi, isLoading, onPrintTable, onEdit, onDelete, isViewOnly = false, topContent }) => {
     const user = useSelector((state) => state.auth?.user);
     const isDieuPhoi = user?.quyenSuDung?.ten === "Điều phối";
 
-    // 1. Tách State cho bộ lọc
     const [filterAnchorEl, setFilterAnchorEl] = useState(null);
-    const [appliedSelectedLoai, setAppliedSelectedLoai] = useState([]); // State quyết định render bảng
-    const [tempSelectedLoai, setTempSelectedLoai] = useState([]);       // State tạm thời trong Popover
-
-    // 2. State cho Lazy Loading
-    const [visibleCount, setVisibleCount] = useState(20); // Render ban đầu 20 dòng
+    const [appliedSelectedLoai, setAppliedSelectedLoai] = useState([]);
+    const [tempSelectedLoai, setTempSelectedLoai] = useState([]);
+    const [visibleCount, setVisibleCount] = useState(20);
 
     const dataTheoQuyen = isDieuPhoi ? danhSachChiPhi.filter((item) => item._id !== "auto_luong_nhan_vien") : danhSachChiPhi;
     const dsLoaiUnique = useMemo(() => Array.from(new Set(dataTheoQuyen.map((i) => i.loaiChiPhi).filter(Boolean))).sort((a, b) => a.localeCompare(b, 'vi')), [dataTheoQuyen]);
 
-    // Dùng appliedSelectedLoai để lọc data hiển thị
     const dataHienThi = appliedSelectedLoai.length > 0
         ? dataTheoQuyen.filter((item) => appliedSelectedLoai.includes(item.loaiChiPhi))
         : dataTheoQuyen;
@@ -32,44 +28,51 @@ const ChiPhiTable = ({ danhSachChiPhi, isLoading, onPrintTable, onEdit, onDelete
     const coDuLieu = dataHienThi.length > 0;
     const tongChiPhi = dataHienThi.reduce((sum, i) => sum + (i.gia ?? 0), 0);
 
-    // --- CÁC HÀM XỬ LÝ LỌC ---
-    const handleOpenFilter = (e) => {
-        setTempSelectedLoai(appliedSelectedLoai); // Mở lên thì copy trạng thái đã áp dụng vào state tạm
-        setFilterAnchorEl(e.currentTarget);
-    };
-
+    const handleOpenFilter = (e) => { setTempSelectedLoai(appliedSelectedLoai); setFilterAnchorEl(e.currentTarget); };
     const handleCloseFilter = () => setFilterAnchorEl(null);
+    const handleToggleTempLoai = (loai) => setTempSelectedLoai((prev) => prev.includes(loai) ? prev.filter((l) => l !== loai) : [...prev, loai]);
+    const handleApplyFilter = () => { setAppliedSelectedLoai(tempSelectedLoai); setVisibleCount(20); handleCloseFilter(); };
+    const handleClearFilter = () => { setTempSelectedLoai([]); setAppliedSelectedLoai([]); setVisibleCount(20); handleCloseFilter(); };
 
-    const handleToggleTempLoai = (loai) => {
-        setTempSelectedLoai((prev) => prev.includes(loai) ? prev.filter((l) => l !== loai) : [...prev, loai]);
-    };
-
-    const handleApplyFilter = () => {
-        setAppliedSelectedLoai(tempSelectedLoai); // Click OK mới đưa vào state chính
-        setVisibleCount(20); // Reset lại số dòng hiển thị khi lọc mới
-        handleCloseFilter();
-    };
-
-    const handleClearFilter = () => {
-        setTempSelectedLoai([]);
-        setAppliedSelectedLoai([]);
-        setVisibleCount(20);
-        handleCloseFilter();
-    };
-
-    // --- HÀM XỬ LÝ SCROLL (LAZY LOAD) ---
     const handleScroll = (e) => {
         const { scrollTop, clientHeight, scrollHeight } = e.target;
-        // Kiểm tra nếu cuộn cách đáy khoảng 10px thì load thêm
-        if (scrollHeight - scrollTop <= clientHeight + 10) {
-            if (visibleCount < dataHienThi.length) {
-                setVisibleCount(prev => prev + 20);
-            }
+        if (scrollHeight - scrollTop <= clientHeight + 10 && visibleCount < dataHienThi.length) {
+            setVisibleCount(prev => prev + 20);
         }
     };
 
+    // Popover lọc — dùng chung cho cả mobile toolbar và desktop header
+    const filterPopover = (
+        <Popover open={Boolean(filterAnchorEl)} anchorEl={filterAnchorEl} onClose={handleCloseFilter} anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}>
+            <Box sx={{ p: 2, minWidth: 220 }}>
+                <Box sx={{ maxHeight: 250, overflowY: 'auto' }}>
+                    {dsLoaiUnique.length > 0 ? (
+                        <FormGroup>
+                            {dsLoaiUnique.map((loai) => (
+                                <FormControlLabel
+                                    key={loai}
+                                    control={<Checkbox size="small" checked={tempSelectedLoai.includes(loai)} onChange={() => handleToggleTempLoai(loai)} />}
+                                    label={<Typography variant="body2">{loai}</Typography>}
+                                />
+                            ))}
+                        </FormGroup>
+                    ) : <Typography variant="body2">Không có phân loại nào</Typography>}
+                </Box>
+                <Divider sx={{ my: 1.5 }} />
+                <Box className="flex justify-between items-center">
+                    <Button size="small" color="inherit" onClick={handleClearFilter} sx={{ textTransform: 'none', fontSize: '0.8rem' }}>Bỏ chọn</Button>
+                    <Button size="small" variant="contained" onClick={handleApplyFilter} sx={{ textTransform: 'none', borderRadius: '8px', px: 2 }}>Áp dụng</Button>
+                </Box>
+            </Box>
+        </Popover>
+    );
+
+    // Desktop: topBar truyền vào BaseTable (nằm trong header row, không scroll)
+    const desktopTopBar = null; // BaseTable tự render header — không cần topBar riêng cho desktop
+
+    // Columns cho desktop
     const columns = [
-        { label: 'Ngày', width: 100 },
+        { label: 'Ngày', width: 100, className: 'hide-on-mobile-card' },
         { label: 'Tên chi phí', width: 'auto' },
         {
             width: 150, sx: { whiteSpace: 'nowrap' },
@@ -86,10 +89,10 @@ const ChiPhiTable = ({ danhSachChiPhi, isLoading, onPrintTable, onEdit, onDelete
                 </Box>
             )
         },
-        { label: 'Số tiền', width: 140 },
+        { label: 'Số tiền', width: 140, className: 'hide-on-mobile-card' },
         { label: 'Ghi chú', width: 'auto' },
         {
-            width: 90, align: 'right',
+            width: 90, align: 'right', className: 'hide-on-mobile-card',
             label: coDuLieu && (
                 <Tooltip title="In bảng này" arrow>
                     <IconButton size="small" onClick={() => onPrintTable(dataHienThi)} sx={{ color: '#0284c7', bgcolor: '#bae6fd', borderRadius: '10px', '&:hover': { bgcolor: '#7dd3fc' } }}>
@@ -100,133 +103,142 @@ const ChiPhiTable = ({ danhSachChiPhi, isLoading, onPrintTable, onEdit, onDelete
         }
     ];
 
-    const topBar = (
-        <>
-            <Box sx={{ display: { xs: 'flex', md: 'none' }, justifyContent: 'space-between', alignItems: 'center', mb: 2, px: 0.5 }}>
-                <Box onClick={handleOpenFilter} sx={{ display: 'flex', alignItems: 'center', gap: 1, cursor: 'pointer', color: '#0284c7', bgcolor: '#e0f2fe', px: 2, py: 1, borderRadius: '8px', fontWeight: 600 }}>
-                    <Badge badgeContent={appliedSelectedLoai.length} color="primary">
-                        <FilterListIcon sx={{ fontSize: 18 }} />
-                    </Badge>
-                    <Typography variant="body2" sx={{ fontWeight: 700, fontSize: '0.8rem' }}>PHÂN LOẠI</Typography>
+    return (
+        // Container bao ngoài: flex column, chiều cao 100% từ cha
+        <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+
+            {/* ── MOBILE ONLY: Form + Toolbar cố định, KHÔNG scroll ─────────── */}
+            <Box sx={{ display: { xs: 'flex', md: 'none' }, flexDirection: 'column', gap: 1.5, flexShrink: 0, mb: 1.5 }}>
+
+                {/* Form thêm chi phí (topContent từ cha) */}
+                {topContent && (
+                    <Box>{topContent}</Box>
+                )}
+
+                {/* Toolbar: Lọc + In */}
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', px: 0.5 }}>
+                    <Box
+                        onClick={handleOpenFilter}
+                        sx={{ display: 'flex', alignItems: 'center', gap: 1, cursor: 'pointer', color: '#0284c7', bgcolor: '#e0f2fe', px: 2, py: 1, borderRadius: '8px' }}
+                    >
+                        <Badge badgeContent={appliedSelectedLoai.length} color="primary">
+                            <FilterListIcon sx={{ fontSize: 18 }} />
+                        </Badge>
+                        <Typography variant="body2" sx={{ fontWeight: 700, fontSize: '0.8rem' }}>PHÂN LOẠI</Typography>
+                    </Box>
+
+                    {coDuLieu && (
+                        <IconButton
+                            size="small"
+                            onClick={() => onPrintTable(dataHienThi)}
+                            sx={{ color: '#0284c7', bgcolor: '#bae6fd', borderRadius: '8px', px: 1.5, py: 1, '&:hover': { bgcolor: '#7dd3fc' } }}
+                        >
+                            <PrintIcon sx={{ fontSize: 20 }} />
+                        </IconButton>
+                    )}
                 </Box>
             </Box>
+            {/* ── END MOBILE TOOLBAR ───────────────────────────────────────── */}
 
-            <Popover open={Boolean(filterAnchorEl)} anchorEl={filterAnchorEl} onClose={handleCloseFilter} anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}>
-                <Box sx={{ p: 2, minWidth: 220 }}>
-                    <Box sx={{ maxHeight: 250, overflowY: 'auto' }}>
-                        {dsLoaiUnique.length > 0 ? (
-                            <FormGroup>
-                                {dsLoaiUnique.map((loai) => (
-                                    <FormControlLabel
-                                        key={loai}
-                                        control={<Checkbox size="small" checked={tempSelectedLoai.includes(loai)} onChange={() => handleToggleTempLoai(loai)} />}
-                                        label={<Typography variant="body2">{loai}</Typography>}
-                                    />
-                                ))}
-                            </FormGroup>
-                        ) : <Typography variant="body2">Không có phân loại nào</Typography>}
-                    </Box>
+            {/* Popover lọc (dùng chung, không ảnh hưởng layout) */}
+            {filterPopover}
 
-                    <Divider sx={{ my: 1.5 }} />
-                    <Box className="flex justify-between items-center">
-                        <Button size="small" color="inherit" onClick={handleClearFilter} sx={{ textTransform: 'none', fontSize: '0.8rem' }}>Bỏ chọn</Button>
-                        <Button size="small" variant="contained" onClick={handleApplyFilter} sx={{ textTransform: 'none', borderRadius: '8px', px: 2 }}>Áp dụng</Button>
-                    </Box>
-                </Box>
-            </Popover>
-        </>
-    );
+            {/* BaseTable chiếm toàn bộ chiều cao còn lại và tự xử lý scroll */}
+            <Box sx={{ flex: 1, minHeight: 0 }}>
+                <BaseTable
+                    columns={columns}
+                    tongTien={coDuLieu ? tongChiPhi : undefined}
+                    onScroll={handleScroll}
+                >
+                    {isLoading && !coDuLieu ? (
+                        <TableRow className="empty-row">
+                            <TableCell colSpan={6} align="center" sx={{ py: 7 }}>
+                                <CircularProgress size={24} />
+                            </TableCell>
+                        </TableRow>
+                    ) : coDuLieu ? (
+                        dataHienThi.slice(0, visibleCount).map((item, idx) => (
+                            <TableRow
+                                key={item._id}
+                                sx={{
+                                    bgcolor: idx % 2 === 0 ? '#ffffff' : '#f0f7fc',
+                                    '&:hover': { bgcolor: '#dceef7' },
+                                    transition: 'background 0.12s',
+                                    '& td': { borderBottom: '1px solid #e0f2fe' }
+                                }}
+                            >
+                                {/* DÒNG 1 (MOBILE HEADER) */}
+                                <TableCell className="mobile-card-header" sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
+                                    <Box sx={{ flex: 1, textAlign: 'left' }}>
+                                        <Typography variant="body2" sx={{ color: '#64748b', fontWeight: 500, fontSize: '0.85rem' }}>
+                                            {dayjs(item.ngayTao).tz('Asia/Ho_Chi_Minh').format('DD/MM/YYYY')}
+                                        </Typography>
+                                    </Box>
+                                    <Box sx={{ flex: 1, textAlign: 'center' }}>
+                                        <Typography variant="body2" sx={{ fontWeight: item.isAuto ? 800 : 700, color: '#0369a1', fontSize: '0.95rem' }}>
+                                            {formatVND(item.gia)}
+                                        </Typography>
+                                    </Box>
+                                    {(!item.isAuto && !isViewOnly) ? (
+                                        <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end', gap: 0.5 }}>
+                                            <IconButton size="small" onClick={() => onEdit(item)} sx={{ color: '#f59e0b', p: 0.5 }}>
+                                                <EditIcon fontSize="small" />
+                                            </IconButton>
+                                            <IconButton size="small" onClick={() => onDelete(item._id)} sx={{ color: '#ef4444', p: 0.5 }}>
+                                                <DeleteIcon fontSize="small" />
+                                            </IconButton>
+                                        </Box>
+                                    ) : (
+                                        <Box sx={{ flex: 1 }} />
+                                    )}
+                                </TableCell>
 
-    return (
-        <BaseTable
-            columns={columns}
-            tongTien={coDuLieu ? tongChiPhi : undefined}
-            topBar={topBar}
-            onScroll={handleScroll}
-        >
-            {isLoading && !coDuLieu ? (
-                <TableRow className="empty-row">
-                    <TableCell colSpan={6} align="center" sx={{ py: 7 }}>
-                        <CircularProgress size={24} />
-                    </TableCell>
-                </TableRow>
-            ) : coDuLieu ? (
-                // Lấy data đã lọc cắt ra theo số lượng visibleCount để Lazy Load
-                dataHienThi.slice(0, visibleCount).map((item, idx) => (
-                    <TableRow
-                        key={item._id}
-                        sx={{
-                            bgcolor: idx % 2 === 0 ? '#ffffff' : '#f0f7fc',
-                            '&:hover': { bgcolor: '#dceef7' },
-                            transition: 'background 0.12s',
-                            '& td': { borderBottom: '1px solid #e0f2fe' }
-                        }}
-                    >
-                        <TableCell data-label="Ngày" sx={{ color: '#0284c7', fontSize: '0.82rem', fontWeight: 500, whiteSpace: 'nowrap', py: 0.75 }}>
-                            {dayjs(item.ngayTao).tz('Asia/Ho_Chi_Minh').format('DD/MM/YYYY')}
-                        </TableCell>
-
-                        <TableCell data-label="Tên chi phí" sx={{ py: 0.75 }}>
-                            <Typography variant="body2" sx={{ fontWeight: 600, color: '#0c4a6e', fontSize: '0.88rem' }}>
-                                {item.tenChiPhi}
-                            </Typography>
-                        </TableCell>
-
-                        <TableCell data-label="Phân loại" sx={{ py: 0.75 }}>
-                            <Typography variant="body2" sx={{ fontSize: '0.84rem', fontWeight: 600, color: '#0c4a6e' }}>
-                                {item.loaiChiPhi}
-                            </Typography>
-                        </TableCell>
-
-                        <TableCell data-label="Số tiền" sx={{ py: 0.75 }}>
-                            <Typography variant="body2" sx={{ fontWeight: item.isAuto ? 800 : 700, color: '#0369a1', fontVariantNumeric: 'tabular-nums', fontSize: '0.92rem' }}>
-                                {formatVND(item.gia)}
-                            </Typography>
-                        </TableCell>
-
-                        <TableCell data-label="Ghi chú" sx={{ color: '#0369a1', fontSize: '0.82rem', py: 0.75, fontStyle: item.ghiChu ? 'normal' : 'italic' }}>
-                            {item.ghiChu || ''}
-                        </TableCell>
-
-                        <TableCell
-                            data-label="Thao tác"
-                            align="right"
-                            sx={{
-                                pr: 1.5,
-                                py: 0.75,
-                                display: (!item.isAuto && !isViewOnly) ? { xs: 'flex', md: 'table-cell' } : { xs: 'none', md: 'table-cell' }
-                            }}
-                        >
-                            {!item.isAuto && !isViewOnly && (
-                                <Stack direction="row" spacing={0.5} justifyContent={{ xs: 'flex-start', md: 'flex-end' }}>
-                                    <Tooltip>
-                                        <IconButton size="small" onClick={() => onEdit(item)} sx={{ color: '#f59e0b', borderRadius: '6px', '&:hover': { bgcolor: '#fef3c7' } }}>
-                                            <EditIcon sx={{ fontSize: 17 }} />
-                                        </IconButton>
-                                    </Tooltip>
-                                    <Tooltip>
-                                        <IconButton size="small" onClick={() => onDelete(item._id)} sx={{ color: '#ef4444', borderRadius: '6px', '&:hover': { bgcolor: '#fef2f2' } }}>
-                                            <DeleteIcon sx={{ fontSize: 17 }} />
-                                        </IconButton>
-                                    </Tooltip>
-                                </Stack>
-                            )}
-                        </TableCell>
-                    </TableRow>
-                ))
-            ) : (
-                <TableRow className="empty-row">
-                    <TableCell colSpan={6} align="center" sx={{ py: 7 }}>
-                        <Box className="flex flex-col items-center gap-2">
-                            <MoneyIcon sx={{ fontSize: 36, color: '#bae6fd' }} />
-                            <Typography variant="body2" sx={{ color: '#7dd3fc' }}>
-                                Không có dữ liệu
-                            </Typography>
-                        </Box>
-                    </TableCell>
-                </TableRow>
-            )}
-        </BaseTable>
+                                <TableCell className="hide-on-mobile-card" data-label="Ngày" sx={{ color: '#0284c7', fontSize: '0.82rem', fontWeight: 500, whiteSpace: 'nowrap', py: 0.75 }}>
+                                    {dayjs(item.ngayTao).tz('Asia/Ho_Chi_Minh').format('DD/MM/YYYY')}
+                                </TableCell>
+                                <TableCell data-label="Tên chi phí" sx={{ py: 0.75 }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 600, color: '#0c4a6e', fontSize: '0.88rem' }}>{item.tenChiPhi}</Typography>
+                                </TableCell>
+                                <TableCell data-label="Phân loại" sx={{ py: 0.75 }}>
+                                    <Typography variant="body2" sx={{ fontSize: '0.84rem', fontWeight: 600, color: '#0c4a6e' }}>{item.loaiChiPhi}</Typography>
+                                </TableCell>
+                                <TableCell className="hide-on-mobile-card" data-label="Số tiền" sx={{ py: 0.75 }}>
+                                    <Typography variant="body2" sx={{ fontWeight: item.isAuto ? 800 : 700, color: '#0369a1', fontSize: '0.92rem' }}>{formatVND(item.gia)}</Typography>
+                                </TableCell>
+                                <TableCell data-label="Ghi chú" sx={{ color: '#0369a1', fontSize: '0.82rem', py: 0.75 }}>
+                                    {item.ghiChu || ''}
+                                </TableCell>
+                                <TableCell className="hide-on-mobile-card" align="right" sx={{ pr: 1.5, py: 0.75 }}>
+                                    {!item.isAuto && !isViewOnly && (
+                                        <Stack direction="row" spacing={0.5} justifyContent="flex-end">
+                                            <Tooltip title="Sửa">
+                                                <IconButton size="small" onClick={() => onEdit(item)} sx={{ color: '#f59e0b', borderRadius: '6px', '&:hover': { bgcolor: '#fef3c7' } }}>
+                                                    <EditIcon sx={{ fontSize: 17 }} />
+                                                </IconButton>
+                                            </Tooltip>
+                                            <Tooltip title="Xóa">
+                                                <IconButton size="small" onClick={() => onDelete(item._id)} sx={{ color: '#ef4444', borderRadius: '6px', '&:hover': { bgcolor: '#fef2f2' } }}>
+                                                    <DeleteIcon sx={{ fontSize: 17 }} />
+                                                </IconButton>
+                                            </Tooltip>
+                                        </Stack>
+                                    )}
+                                </TableCell>
+                            </TableRow>
+                        ))
+                    ) : (
+                        <TableRow className="empty-row">
+                            <TableCell colSpan={6} align="center" sx={{ py: 7 }}>
+                                <Box className="flex flex-col items-center gap-2">
+                                    <MoneyIcon sx={{ fontSize: 36, color: '#bae6fd' }} />
+                                    <Typography variant="body2" sx={{ color: '#7dd3fc' }}>Không có dữ liệu</Typography>
+                                </Box>
+                            </TableCell>
+                        </TableRow>
+                    )}
+                </BaseTable>
+            </Box>
+        </Box>
     );
 };
 
