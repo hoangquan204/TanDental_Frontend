@@ -349,7 +349,7 @@ function GlobalSearchInput({ value, onChange, delay = 400 }) {
                 value={localValue}
                 onChange={(e) => setLocalValue(e.target.value)}
                 placeholder="Nhập Số/NCC/Bộ phận/Nhân viên"
-                className="h-10 w-[334px] pl-8 pr-3 text-sm bg-white shadow rounded-full outline-none hover:border-gray-400 focus:border-sky-400 transition"
+                className="h-10 w-[334px] pl-8 pr-3 text-base bg-white shadow rounded-full outline-none hover:border-gray-400 focus:border-sky-400 transition"
             />
         </div>
     );
