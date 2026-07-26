@@ -404,7 +404,7 @@ export default function FilterToolbar({
     }, [setAddMenuOpen]);
 
     return (
-        <div className="mb-3 flex flex-wrap justify-start gap-3 md:flex-nowrap md:gap-0 md:justify-between md:items-center">
+        <div className="mb-3 flex flex-wrap justify-end gap-3 md:flex-nowrap md:gap-0 md:justify-between md:items-center">
             <div className="flex gap-2">
                 <div className="relative">
                     <button
