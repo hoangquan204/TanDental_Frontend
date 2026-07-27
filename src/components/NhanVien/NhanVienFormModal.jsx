@@ -125,7 +125,7 @@ const NhanVienFormModal = ({ open, onClose, initialData = null }) => {
     <Dialog
       open={open}
       onClose={onClose}
-      maxWidth="md"
+      maxWidth="lg"
       fullWidth
       PaperProps={{
         sx: {
@@ -180,96 +180,103 @@ const NhanVienFormModal = ({ open, onClose, initialData = null }) => {
 
       {/* Body */}
       <DialogContent sx={{ background: "#f8fafc", py: 4, px: 4 }}>
-        <Grid container spacing={2.5}>
-          <Grid item xs={12} md={6}>
-            <TextField
-              fullWidth
-              label="Họ và tên *"
-              size="small"
-              value={formData.hoVaTen}
-              onChange={(e) => handleChange("hoVaTen", e.target.value)}
-              sx={fieldSx}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <PersonIcon sx={{ fontSize: 18, color: "#3b82f6" }} />
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <TextField
-              fullWidth
-              label="CCCD *"
-              size="small"
-              value={formData.cccd}
-              onChange={(e) => handleChange("cccd", e.target.value)}
-              sx={fieldSx}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <BadgeIcon sx={{ fontSize: 18, color: "#3b82f6" }} />
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <TextField
-              fullWidth
-              label="Số điện thoại"
-              size="small"
-              value={formData.soDienThoai}
-              onChange={(e) => handleChange("soDienThoai", e.target.value)}
-              sx={fieldSx}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <PhoneIcon sx={{ fontSize: 18, color: "#3b82f6" }} />
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </Grid>
+        {/* ── Section: Thông tin cá nhân ── */}
+        <div className="flex items-center gap-2 mb-3">
+          <span className="w-1 h-4 rounded-full bg-blue-500 inline-block" />
+          <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+            Thông tin cá nhân
+          </span>
+        </div>
+        <div className="flex items-center justify-between gap-x-2 gap-y-2 flex-wrap">
+          <TextField
+            label="Họ và tên *"
+            size="small"
+            value={formData.hoVaTen}
+            onChange={(e) => handleChange("hoVaTen", e.target.value)}
+            sx={fieldSx}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <PersonIcon sx={{ fontSize: 18, color: "#3b82f6" }} />
+                </InputAdornment>
+              ),
+            }}
+          />
+          <TextField
+            label="CCCD *"
+            size="small"
+            value={formData.cccd}
+            onChange={(e) => handleChange("cccd", e.target.value)}
+            sx={fieldSx}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <BadgeIcon sx={{ fontSize: 18, color: "#3b82f6" }} />
+                </InputAdornment>
+              ),
+            }}
+          />
+          <TextField
+            label="Số điện thoại"
+            size="small"
+            value={formData.soDienThoai}
+            onChange={(e) => handleChange("soDienThoai", e.target.value)}
+            sx={fieldSx}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <PhoneIcon sx={{ fontSize: 18, color: "#3b82f6" }} />
+                </InputAdornment>
+              ),
+            }}
+          />
+          <TextField
+            label="Chức vụ"
+            size="small"
+            value={formData.chucVu}
+            onChange={(e) => handleChange("chucVu", e.target.value)}
+            sx={fieldSx}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <WorkIcon sx={{ fontSize: 18, color: "#3b82f6" }} />
+                </InputAdornment>
+              ),
+            }}
+          />
+          <TextField
+            label="Địa chỉ"
+            size="small"
+            value={formData.diaChi}
+            onChange={(e) => handleChange("diaChi", e.target.value)}
+            sx={fieldSx}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start" sx={{ mt: "9px" }}>
+                  <HomeIcon sx={{ fontSize: 18, color: "#3b82f6" }} />
+                </InputAdornment>
+              ),
+            }}
+          />
+        </div>
 
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              multiline
-              minRows={2}
-              label="Địa chỉ"
-              size="small"
-              value={formData.diaChi}
-              onChange={(e) => handleChange("diaChi", e.target.value)}
-              sx={fieldSx}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <HomeIcon sx={{ fontSize: 18, color: "#3b82f6" }} />
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <TextField
-              fullWidth
-              label="Chức vụ"
-              size="small"
-              value={formData.chucVu}
-              onChange={(e) => handleChange("chucVu", e.target.value)}
-              sx={fieldSx}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <WorkIcon sx={{ fontSize: 18, color: "#3b82f6" }} />
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </Grid>
-          <Grid item xs={12} md={6}>
+        {/* Địa chỉ: tách riêng khỏi Grid, luôn xuống dòng và chiếm 100% chiều rộng */}
+        <div className="w-full" style={{ marginTop: 20 }}></div>
+
+        {/* ── Divider ── */}
+        <div
+          style={{ borderTop: "1px dashed #e2e8f0", margin: "24px 0 20px" }}
+        />
+
+        {/* ── Section: Công việc & lương ── */}
+        <div className="flex items-center gap-2 mb-3">
+          <span className="w-1 h-4 rounded-full bg-emerald-500 inline-block" />
+          <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+            Công việc &amp; lương
+          </span>
+        </div>
+        <Grid container spacing={2.5}>
+          <Grid item xs={12} md={4}>
             <TextField
               select
               fullWidth
@@ -283,18 +290,23 @@ const NhanVienFormModal = ({ open, onClose, initialData = null }) => {
               <MenuItem value="Nghỉ việc">Nghỉ việc</MenuItem>
             </TextField>
           </Grid>
-
-          {/* Thay đổi layout hàng cuối từ xs={12} thành md={6} để đặt 2 cột cạnh nhau */}
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={4}>
             <TextField
               fullWidth
-              type="number"
+              type="text"
+              inputMode="numeric"
               label="Lương cơ bản"
               size="small"
-              value={formData.luongCanBan}
-              onChange={(e) =>
-                handleChange("luongCanBan", Number(e.target.value))
+              value={
+                formData.luongCanBan === "" || formData.luongCanBan === null
+                  ? ""
+                  : Number(formData.luongCanBan).toLocaleString("vi-VN")
               }
+              onChange={(e) => {
+                // Chỉ giữ lại chữ số, bỏ dấu chấm phân cách để lưu đúng giá trị số
+                const raw = e.target.value.replace(/\D/g, "");
+                handleChange("luongCanBan", raw === "" ? "" : Number(raw));
+              }}
               sx={fieldSx}
               InputProps={{
                 startAdornment: (
@@ -310,9 +322,7 @@ const NhanVienFormModal = ({ open, onClose, initialData = null }) => {
               }}
             />
           </Grid>
-
-          {/* 🔥 Hàng Input mới cho thuộc tính ngayCongThang */}
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={4}>
             <TextField
               fullWidth
               type="number"
@@ -340,27 +350,51 @@ const NhanVienFormModal = ({ open, onClose, initialData = null }) => {
               }}
             />
           </Grid>
-
-          <Grid item xs={12} md={6}>
-            <TextField
-              fullWidth
-              multiline
-              minRows={2}
-              label="Ghi chú"
-              size="small"
-              value={formData.email}
-              onChange={(e) => handleChange("email", e.target.value)}
-              sx={fieldSx}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <EventNoteIcon sx={{ fontSize: 18, color: "#3b82f6" }} />
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </Grid>
         </Grid>
+
+        {/* ── Divider ── */}
+        <div
+          style={{ borderTop: "1px dashed #e2e8f0", margin: "24px 0 20px" }}
+        />
+
+        {/* ── Section: Ghi chú ── */}
+        <div className="flex items-center gap-2 mb-3">
+          <span className="w-1 h-4 rounded-full bg-slate-400 inline-block" />
+          <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+            Ghi chú
+          </span>
+        </div>
+        {/* Ghi chú: tách riêng khỏi Grid, luôn chiếm 100% chiều rộng */}
+        <div className="w-full">
+          <TextField
+            fullWidth
+            multiline
+            minRows={4}
+            maxRows={8}
+            label="Ghi chú"
+            size="small"
+            value={formData.email}
+            onChange={(e) => handleChange("email", e.target.value)}
+            sx={{
+              ...fieldSx,
+              width: "100%",
+              "& .MuiOutlinedInput-root": {
+                ...fieldSx["& .MuiOutlinedInput-root"],
+                alignItems: "flex-start",
+              },
+              "& textarea": {
+                overflowY: "auto !important",
+              },
+            }}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start" sx={{ mt: "9px" }}>
+                  <EventNoteIcon sx={{ fontSize: 18, color: "#3b82f6" }} />
+                </InputAdornment>
+              ),
+            }}
+          />
+        </div>
       </DialogContent>
 
       {/* Footer */}
