@@ -18,8 +18,8 @@ import StorefrontIcon from "@mui/icons-material/Storefront";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import CategoryIcon from "@mui/icons-material/Category";
-import BookmarkIcon from '@mui/icons-material/Bookmark';
-import ImportExportIcon from '@mui/icons-material/ImportExport';
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import ImportExportIcon from "@mui/icons-material/ImportExport";
 
 export default function KhoPage() {
   const dispatch = useDispatch();
@@ -105,11 +105,13 @@ export default function KhoPage() {
         <Tabs
           value={tab}
           onChange={handleTabChange}
-          // variant="scrollable"
-          // scrollButtons="auto"
-          // allowScrollButtonsMobile
+          variant="scrollable"
+          scrollButtons="auto"
+          allowScrollButtonsMobile
           sx={{
             minHeight: { xs: 40, sm: 48 },
+            flex: { xs: "1 1 auto", sm: "0 1 auto" },
+            minWidth: 0, // Cho phép co lại để flexbox tính đúng không gian còn lại, kích hoạt scroll
             "& .MuiTab-root": {
               minHeight: { xs: 40, sm: 48 },
               minWidth: { xs: "auto", sm: 90 },
@@ -120,6 +122,9 @@ export default function KhoPage() {
             },
             "& .MuiTabs-scrollButtons": {
               width: { xs: 24, sm: 40 },
+              "&.Mui-disabled": {
+                opacity: 0.3, // Vẫn hiển thị mũi tên khi đã cuộn hết, chỉ làm mờ đi thay vì ẩn hẳn
+              },
             },
           }}
         >

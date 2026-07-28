@@ -206,7 +206,7 @@ export default function NhaCungCapTable() {
                   "Tên nhà cung cấp",
                   "Địa chỉ",
                   "Số điện thoại",
-                  "Email",
+                  // "Email",
                   "Ghi chú",
                   "",
                 ].map((h) => (
@@ -252,13 +252,13 @@ export default function NhaCungCapTable() {
                       {ncc.diaChi || "—"}
                     </TableCell>
                     <TableCell>{ncc.soDienThoai || "—"}</TableCell>
-                    <TableCell sx={{ color: "#1976d2", fontSize: 13 }}>
+                    {/* <TableCell sx={{ color: "#1976d2", fontSize: 13 }}>
                       {ncc.email ? (
                         <a href={`mailto:${ncc.email}`}>{ncc.email}</a>
                       ) : (
                         "—"
                       )}
-                    </TableCell>
+                    </TableCell> */}
                     <TableCell
                       sx={{ color: "#9ca3af", fontSize: 12, maxWidth: 160 }}
                     >

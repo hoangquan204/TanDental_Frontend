@@ -170,6 +170,15 @@ const NhanVienTable = () => {
           color: #94a3b8;
         }
 
+        /* Địa chỉ: cắt gọn 1 dòng + dấu ... trên desktop, xem đầy đủ qua tooltip khi hover */
+        .nv-address-cell {
+          max-width: 220px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          cursor: default;
+        }
+
         @media (max-width: 767px) {
           .nv-scroll-wrapper {
             overflow: visible;
@@ -233,6 +242,13 @@ const NhanVienTable = () => {
           }
           .nv-search-input {
             width: 130px;
+          }
+          .nv-address-cell {
+            max-width: none;
+            overflow: visible;
+            text-overflow: unset;
+            white-space: normal;
+            text-align: right;
           }
         }
       `}</style>
@@ -391,7 +407,15 @@ const NhanVienTable = () => {
                         className="px-4 py-3 text-slate-500 text-sm"
                         style={{ borderBottom: "1px solid #f1f5f9" }}
                       >
-                        {nv.diaChi || "—"}
+                        {nv.diaChi ? (
+                          <Tooltip title={nv.diaChi} arrow placement="top">
+                            <span className="nv-address-cell inline-block align-middle">
+                              {nv.diaChi}
+                            </span>
+                          </Tooltip>
+                        ) : (
+                          "—"
+                        )}
                       </td>
 
                       <td
