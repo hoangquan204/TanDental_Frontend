@@ -532,25 +532,25 @@ function NccCombobox({
                   {/* Highlight phần khớp query */}
                   {query
                     ? (() => {
-                      const idx = opt
-                        .toLowerCase()
-                        .indexOf(query.toLowerCase());
-                      if (idx === -1) return opt;
-                      return (
-                        <>
-                          {opt.slice(0, idx)}
-                          <span
-                            style={{
-                              backgroundColor: "#fff9c4",
-                              borderRadius: 2,
-                            }}
-                          >
-                            {opt.slice(idx, idx + query.length)}
-                          </span>
-                          {opt.slice(idx + query.length)}
-                        </>
-                      );
-                    })()
+                        const idx = opt
+                          .toLowerCase()
+                          .indexOf(query.toLowerCase());
+                        if (idx === -1) return opt;
+                        return (
+                          <>
+                            {opt.slice(0, idx)}
+                            <span
+                              style={{
+                                backgroundColor: "#fff9c4",
+                                borderRadius: 2,
+                              }}
+                            >
+                              {opt.slice(idx, idx + query.length)}
+                            </span>
+                            {opt.slice(idx + query.length)}
+                          </>
+                        );
+                      })()
                     : opt}
                 </Box>
               ))}
@@ -659,10 +659,11 @@ function SearchableDropdown({
                     setSearch("");
                     setOpen(false);
                   }}
-                  className={`px-3 py-1.5 text-sm cursor-pointer hover:bg-sky-50 hover:text-sky-700 ${value === opt
-                    ? "bg-sky-50 text-sky-700 font-medium"
-                    : "text-slate-700"
-                    }`}
+                  className={`px-3 py-1.5 text-sm cursor-pointer hover:bg-sky-50 hover:text-sky-700 ${
+                    value === opt
+                      ? "bg-sky-50 text-sky-700 font-medium"
+                      : "text-slate-700"
+                  }`}
                 >
                   {opt}
                 </li>
@@ -1132,7 +1133,7 @@ export default function VatLieuTable() {
           pt: 1,
           pb: 2, // Khoảng cách dưới bộ lọc
         }}
-      // className="flex flex-wrap items-center justify-between gap-3"
+        // className="flex flex-wrap items-center justify-between gap-3"
       >
         <div className="flex flex-col gap-2 py-2">
           {/* Hàng 1: search + action buttons */}
@@ -1326,7 +1327,7 @@ export default function VatLieuTable() {
                 ].map((h) => (
                   <TableCell
                     key={h}
-                    sx={{ fontWeight: 700, fontSize: 12, whiteSpace: "nowrap" }}
+                    sx={{ fontWeight: 700, fontSize: 15, whiteSpace: "nowrap" }}
                   >
                     {h}
                   </TableCell>
@@ -1363,8 +1364,8 @@ export default function VatLieuTable() {
                         backgroundColor: thieuHang
                           ? "#fff3e0"
                           : idx % 2 === 0
-                            ? "#fff"
-                            : "#fafafa",
+                          ? "#fff"
+                          : "#fafafa",
                         "&:hover": { backgroundColor: "#e3f2fd40" },
                       }}
                     >
@@ -1378,6 +1379,7 @@ export default function VatLieuTable() {
                       <TableCell
                         sx={{
                           fontWeight: 600,
+                          fontSize: 15,
                           minWidth: 180,
                           cursor: "pointer",
                         }}
@@ -1386,16 +1388,16 @@ export default function VatLieuTable() {
                         {vl.tenVatLieu}
                       </TableCell>
                       <TableCell
-                        sx={{ fontSize: 12, minWidth: 120 }}
+                        sx={{ fontSize: 14, minWidth: 120 }}
                         onClick={() => openEdit(vl)}
                       >
                         {vl.nhomVatLieu && (
-                          <div className="text-xs font-medium text-blue-700">
+                          <div className="text-sm font-medium text-blue-700">
                             {vl.nhomVatLieu}
                           </div>
                         )}
                         {vl.loaiVatLieu && (
-                          <div className="text-xs text-gray-500">
+                          <div className="text-sm text-gray-500">
                             {vl.loaiVatLieu}
                           </div>
                         )}
@@ -1405,7 +1407,7 @@ export default function VatLieuTable() {
                       </TableCell>
 
                       <TableCell
-                        sx={{ color: "#555", fontSize: 13 }}
+                        sx={{ color: "#555", fontSize: 15 }}
                         onClick={() => openEdit(vl)}
                       >
                         {vl.nhaCungCap?.ten || (
@@ -1431,6 +1433,7 @@ export default function VatLieuTable() {
                           <span
                             style={{
                               fontWeight: 700,
+                              fontSize: 15,
                               color: thieuHang ? "#ef4444" : "#1976d2",
                             }}
                           >
@@ -1440,14 +1443,14 @@ export default function VatLieuTable() {
                       </TableCell>
                       <TableCell
                         align="center"
-                        sx={{ color: "#555", fontSize: 13 }}
+                        sx={{ color: "#555", fontSize: 15 }}
                         onClick={() => openEdit(vl)}
                       >
                         {vl.tonKhoToiThieu ?? 0}
                       </TableCell>
                       <TableCell
                         align="right"
-                        sx={{ fontSize: 13, whiteSpace: "nowrap" }}
+                        sx={{ fontSize: 15, whiteSpace: "nowrap" }}
                         onClick={() => openEdit(vl)}
                       >
                         {vl.giaMua > 0 ? (
@@ -1459,13 +1462,13 @@ export default function VatLieuTable() {
                         )}
                       </TableCell>
                       <TableCell
-                        sx={{ color: "#6b7280", fontSize: 13 }}
+                        sx={{ color: "#6b7280", fontSize: 15 }}
                         onClick={() => openEdit(vl)}
                       >
                         {vl.donViTinh || "—"}
                       </TableCell>
                       <TableCell
-                        sx={{ color: "#9ca3af", fontSize: 12, maxWidth: 120 }}
+                        sx={{ color: "#9ca3af", fontSize: 14, maxWidth: 120 }}
                         onClick={() => openEdit(vl)}
                       >
                         <span className="line-clamp-1">{vl.ghiChu || ""}</span>
