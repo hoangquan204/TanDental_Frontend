@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const DEFAULT_COL_WIDTHS = [140, 120, 200, 80, 200, 80, 120, 100, 40, 120, 120, 140];
+const DEFAULT_COL_WIDTHS = [135, 135, 200, 80, 200, 80, 120, 100, 40, 120, 120, 135];
 
 const DonHangTable = ({ data, selectedId, onRowClick }) => {
     const isDataValid = Array.isArray(data);
@@ -169,7 +169,7 @@ const DonHangTable = ({ data, selectedId, onRowClick }) => {
                 /* ── DESKTOP: Table ── */
                 <div className="overflow-x-auto">
                     <table
-                        className="text-sm text-left bg-white border"
+                        className="text-left bg-white border"
                         style={{ tableLayout: 'fixed', width: totalWidth, minWidth: '100%' }}
                     >
                         <colgroup>

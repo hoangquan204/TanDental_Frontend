@@ -50,6 +50,29 @@ import {
   SETTING_MENU,
 } from "../../config/menuConfig";
 
+// 🎨 BẢNG MÀU CHO ICON — mỗi mục một màu riêng để dễ phân biệt khi nhìn lướt qua
+const ICON_COLOR_PALETTE = [
+  "#2563eb", // blue
+  "#f59e0b", // amber
+  "#ef4444", // red
+  "#8b5cf6", // violet
+  "#10b981", // emerald
+  "#ec4899", // pink
+  "#06b6d4", // cyan
+  "#f97316", // orange
+  "#6366f1", // indigo
+  "#14b8a6", // teal
+  "#84cc16", // lime
+  "#a855f7", // purple
+  "#0ea5e9", // sky
+  "#22c55e", // green
+  "#eab308", // yellow
+];
+
+// Màu cố định cho icon của 2 nhóm menu xổ (không đổi theo index)
+const CUSTOMER_GROUP_COLOR = "#8b5cf6"; // violet — nhóm "Quản lý khách hàng"
+const SETTING_GROUP_COLOR = "#64748b"; // slate — nhóm "Thiết lập"
+
 const Sidebar = ({ collapsed }) => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -155,11 +178,23 @@ const Sidebar = ({ collapsed }) => {
     color: "inherit",
   };
 
+  /* ===== MÀU ICON THEO ROUTER (ổn định, không đổi khi list thay đổi thứ tự lọc) ===== */
+  const getIconColor = (router) => {
+    // Hash đơn giản từ router để mỗi mục luôn nhận đúng 1 màu cố định
+    let hash = 0;
+    for (let i = 0; i < router.length; i++) {
+      hash = router.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    const index = Math.abs(hash) % ICON_COLOR_PALETTE.length;
+    return ICON_COLOR_PALETTE[index];
+  };
+
   /* ===== RENDER MENU ITEM ===== */
   const renderMenuItem = (item, nested = false) => {
     const active = checkActive(item.router);
     // 🚨 FIX QUAN TRỌNG: Nếu là menu con, chỉ thụt lề khi sidebar MỞ. Nếu ĐÓNG, lùi về 1.5 bằng hàng với cha.
     const paddingLeft = nested && isOpen ? 3.5 : 1.5;
+    const iconColor = getIconColor(item.router);
 
     return (
       <Tooltip
@@ -172,7 +207,11 @@ const Sidebar = ({ collapsed }) => {
           onClick={() => handleNavigate(item.router)}
           sx={getListItemSx(paddingLeft, active)}
         >
-          <ListItemIcon sx={iconSx}>{item.icon}</ListItemIcon>
+          <ListItemIcon sx={iconSx}>
+            {React.cloneElement(item.icon, {
+              style: { color: iconColor, ...(item.icon.props?.style || {}) },
+            })}
+          </ListItemIcon>
           <ListItemText primary={item.name} sx={{ whiteSpace: "nowrap" }} />
         </ListItemButton>
       </Tooltip>
@@ -210,7 +249,7 @@ const Sidebar = ({ collapsed }) => {
               sx={getListItemSx(1.5, false)}
             >
               <ListItemIcon sx={iconSx}>
-                <People />
+                <People style={{ color: CUSTOMER_GROUP_COLOR }} />
               </ListItemIcon>
               <ListItemText
                 primary="Quản lý khách hàng"
@@ -242,7 +281,7 @@ const Sidebar = ({ collapsed }) => {
               sx={getListItemSx(1.5, false)}
             >
               <ListItemIcon sx={iconSx}>
-                <Settings />
+                <Settings style={{ color: SETTING_GROUP_COLOR }} />
               </ListItemIcon>
               <ListItemText primary="Thiết lập" sx={{ whiteSpace: "nowrap" }} />
               {isOpen &&
