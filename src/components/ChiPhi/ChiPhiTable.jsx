@@ -105,7 +105,7 @@ const ChiPhiTable = ({ danhSachChiPhi, isLoading, onPrintTable, onEdit, onDelete
 
     return (
         // Container bao ngoài: flex column, chiều cao 100% từ cha
-        <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1, height: '100%', overflow: 'hidden' }}>
 
             {/* ── MOBILE ONLY: Form + Toolbar cố định, KHÔNG scroll ─────────── */}
             <Box sx={{ display: { xs: 'flex', md: 'none' }, flexDirection: 'column', gap: 1.5, flexShrink: 0, mb: 1.5 }}>
@@ -144,7 +144,7 @@ const ChiPhiTable = ({ danhSachChiPhi, isLoading, onPrintTable, onEdit, onDelete
             {filterPopover}
 
             {/* BaseTable chiếm toàn bộ chiều cao còn lại và tự xử lý scroll */}
-            <Box sx={{ flex: 1, minHeight: 0 }}>
+            <Box sx={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>
                 <BaseTable
                     columns={columns}
                     tongTien={coDuLieu ? tongChiPhi : undefined}
