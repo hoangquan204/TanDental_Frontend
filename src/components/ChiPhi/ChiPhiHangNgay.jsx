@@ -92,7 +92,7 @@ const ChiPhiHangNgay = ({ danhSachChiPhi, isLoading, filter, onAdd, onDelete }) 
             </Box>
 
             {/* Bảng chiếm toàn bộ chiều cao còn lại, scroll do BaseTable bên trong xử lý */}
-            <Box sx={{ flex: 1, minHeight: 0, overflowY: { xs: 'auto', md: 'hidden' } }}>
+            <Box sx={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
                 <ChiPhiTable
                     danhSachChiPhi={dailyData}
                     isLoading={isLoading}

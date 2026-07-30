@@ -122,8 +122,8 @@ const QuyChiPhiWidget = () => {
         <>
             {/* GIAO DIỆN WIDGET CHÍNH */}
             <Box
-                className="w-full md:w-auto flex flex-col md:flex-row md:items-center gap-1 md:gap-2 bg-white px-3 py-2 md:px-4 rounded-xl border border-slate-200 shadow-sm transition-all"
-                sx={{ minWidth: { xs: '100%', md: 650 } }}
+                className="flex flex-col md:flex-row md:items-center gap-1 md:gap-2 bg-white px-3 py-2 md:px-4 rounded-xl border border-slate-200 shadow-sm transition-all"
+                sx={{ width: { xs: '100%', md: 'fit-content' } }}
             >
                 {/* Mobile: grid 10 cột (2 - 5 - 3), 1 dòng, căn giữa */}
                 <Box className="w-full grid grid-cols-10 gap-2 items-center md:hidden">
@@ -149,11 +149,7 @@ const QuyChiPhiWidget = () => {
                             </span>
                         </Typography>
 
-                        {thongTinQuy?.lanNapCuoi && (
-                            <Typography color="textSecondary" noWrap sx={{ fontSize: '0.9rem' }}>
-                                +{new Intl.NumberFormat('vi-VN').format(thongTinQuy?.soTienNapCuoi || 0)}đ ({dayjs(thongTinQuy.lanNapCuoi).format('DD/MM')})
-                            </Typography>
-                        )}
+
                     </Box>
 
                     {/* Cột 3 - 3: 2 icon còn lại bên phải */}
@@ -183,18 +179,18 @@ const QuyChiPhiWidget = () => {
                 </Box>
 
                 {/* Desktop */}
-                <Box className="hidden md:flex md:flex-row md:items-center gap-12 w-full">
+                <Box className="hidden md:flex md:flex-row md:items-center gap-4 w-fit">
                     <IconButton
                         size="small"
                         onClick={handleOpenLichSu}
-                        sx={{ bgcolor: 'rgba(241,245,249,.8)', '&:hover': { bgcolor: '#e2e8f0' } }}
+                        sx={{ bgcolor: 'rgba(241,245,249,.8)', width: 'max-content', '&:hover': { bgcolor: '#e2e8f0' } }}
                     >
                         <ZoomInIcon sx={{ fontSize: 30, color: '#0284c7' }} />
                     </IconButton>
 
                     <Box className="flex items-center gap-2">
                         <Typography variant="body1" whiteSpace="nowrap">
-                            <b>Tồn quỹ hiện tại:</b>
+                            <b>Quỹ:</b>
                         </Typography>
 
                         <Typography
@@ -207,30 +203,28 @@ const QuyChiPhiWidget = () => {
                         >
                             {new Intl.NumberFormat('vi-VN').format(thongTinQuy?.soDu || 0)} đ
                         </Typography>
-
-                        {thongTinQuy?.lanNapCuoi && (
-                            <Typography variant="body1" color="textSecondary" whiteSpace="nowrap">
-                                (Lần cuối: <span style={{ fontWeight: 600 }}>
-                                    +{new Intl.NumberFormat('vi-VN').format(thongTinQuy?.soTienNapCuoi || 0)}đ
-                                </span> - {dayjs(thongTinQuy.lanNapCuoi).format('DD/MM/YY')})
-                            </Typography>
-                        )}
                     </Box>
 
-                    <Box className="flex-1 flex items-center justify-end gap-1">
+                    {/* Đã bỏ flex-1 và justify-end ở đây để các nút ôm sát vào phần số tiền */}
+                    <Box className="flex items-center gap-1 ml-2">
                         <Button
                             size="small"
                             variant="contained"
                             sx={{
                                 bgcolor: '#0284c7',
                                 '&:hover': { bgcolor: '#0369a1' },
-                                borderRadius: '8px',
+                                borderRadius: '50%',
                                 textTransform: 'none',
-                                fontSize: '1rem'
+                                fontSize: '1.125rem',
+                                minWidth: 36,
+                                width: 36,
+                                height: 36,
+                                padding: 0,
+                                lineHeight: 1,
                             }}
                             onClick={() => setIsNapQuyOpen(true)}
                         >
-                            + Nộp quỹ
+                            +
                         </Button>
 
                         <IconButton size="small" onClick={handleOpenEditQuy}>
