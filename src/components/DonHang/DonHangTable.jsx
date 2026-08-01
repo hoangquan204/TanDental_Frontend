@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const DEFAULT_COL_WIDTHS = [135, 135, 200, 80, 200, 80, 120, 100, 40, 120, 120, 135];
+const DEFAULT_COL_WIDTHS = [135, 135, 200, 80, 200, 80, 120, 100, 50, 120, 120, 135];
 
 const DonHangTable = ({ data, selectedId, onRowClick }) => {
     const isDataValid = Array.isArray(data);
