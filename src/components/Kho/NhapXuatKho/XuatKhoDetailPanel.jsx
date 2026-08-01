@@ -220,12 +220,6 @@ export default function XuatKhoDetailPanel({ phieu, onClose, onUpdated }) {
                         <div className="p-4 flex flex-col gap-5">
                             {/* Meta info */}
                             <div className="flex flex-col gap-2 bg-gray-100 p-3">
-                                <InfoRow label="Ngày tạo" value={formatNgay(fullPhieu.ngayTao)} />
-                                <InfoRow label="Bộ phận" value={fullPhieu.boPhan} />
-                                <InfoRow label="Nhân viên" value={fullPhieu.nhanVien} />
-                                {fullPhieu.ghiChu && (
-                                    <InfoRow label="Ghi chú" value={fullPhieu.ghiChu} />
-                                )}
                                 <div className="flex items-center gap-2 text-sm">
                                     <span className="text-gray-500 w-28 shrink-0">Trạng thái:</span>
                                     <span
@@ -235,6 +229,12 @@ export default function XuatKhoDetailPanel({ phieu, onClose, onUpdated }) {
                                         {fullPhieu.trangThai}
                                     </span>
                                 </div>
+                                <InfoRow label="Ngày tạo" value={formatNgay(fullPhieu.ngayTao)} />
+                                <InfoRow label="Bộ phận" value={fullPhieu.boPhan} />
+                                <InfoRow label="Nhân viên" value={fullPhieu.nhanVien} />
+                                {fullPhieu.ghiChu && (
+                                    <InfoRow label="Ghi chú" value={fullPhieu.ghiChu} />
+                                )}
                             </div>
 
                             {/* Danh sách vật liệu */}

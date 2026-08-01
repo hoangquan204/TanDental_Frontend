@@ -27,10 +27,10 @@ export default function PhieuNhapTable({ data, selectedId, onRowClick, hasMore, 
                 <table className="hidden sm:table w-full border-collapse text-sm text-left bg-white">
                     <thead className="sticky top-0 z-10">
                         <tr className="shadow">
-                            <th className={`${rowBase} ${imBg}`}>Ngày nhập</th>
-                            <th className={`${rowBase} ${imBg}`}>Số phiếu</th>
+                            <th className={`${rowBase} ${imBg} w-36 truncate`}>Ngày nhập</th>
+                            <th className={`${rowBase} ${imBg} w-36 truncate`}>Số phiếu</th>
                             <th className={`${rowBase} ${imBg}`}>Nhà cung cấp</th>
-                            <th className={`${rowBase} ${imBg}`}>Thành tiền</th>
+                            <th className={`${rowBase} ${imBg} w-30 truncate`}>Thành tiền</th>
                             <th className={`${rowBase} ${imBg} text-center`}>VAT</th>
                             <th className={`${rowBase} ${imBg}`}>Trạng thái</th>
                         </tr>

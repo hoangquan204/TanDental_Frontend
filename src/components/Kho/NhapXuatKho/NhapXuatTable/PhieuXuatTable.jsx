@@ -25,10 +25,9 @@ export default function PhieuXuatTable({ data, selectedId, onRowClick, hasMore, 
                 <table className="hidden sm:table w-full border-collapse text-sm text-left bg-white">
                     <thead className="sticky top-0 z-10">
                         <tr className="shadow">
-                            <th className={`${rowBase} ${exBg}`}>Ngày xuất</th>
-                            <th className={`${rowBase} ${exBg}`}>Số phiếu</th>
-                            <th className={`${rowBase} ${exBg}`}>Bộ phận</th>
-                            <th className={`${rowBase} ${exBg}`}>Nhân viên</th>
+                            <th className={`${rowBase} ${exBg} w-36 truncate`}>Ngày xuất</th>
+                            <th className={`${rowBase} ${exBg} w-36 truncate`}>Bộ phận</th>
+                            <th className={`${rowBase} ${exBg} w-36 truncate`}>Nhân viên</th>
                             <th className={`${rowBase} ${exBg}`}>Trạng thái</th>
                         </tr>
                     </thead>
@@ -46,7 +45,6 @@ export default function PhieuXuatTable({ data, selectedId, onRowClick, hasMore, 
                                     className={`cursor-pointer transition-colors ${isSelected ? "bg-green-50" : "hover:bg-gray-50"}`}
                                 >
                                     <td className={`${rowBase} ${borderBottom} whitespace-nowrap`}>{formatNgay(row.ngayTao)}</td>
-                                    <td className={`${rowBase} ${borderBottom} whitespace-nowrap`}>{row.soPhieu}</td>
                                     <td className={`${rowBase} ${borderBottom}`}>{row.boPhan}</td>
                                     <td className={`${rowBase} ${borderBottom}`}>{row.nhanVien}</td>
                                     <td className={`${rowBase} ${borderBottom}`}>

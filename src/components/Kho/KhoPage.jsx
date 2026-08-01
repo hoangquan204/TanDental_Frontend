@@ -97,7 +97,6 @@ export default function KhoPage() {
           pb: { xs: 1, sm: 0 }, // Thêm khoảng cách dưới khối thống kê khi xuống dòng trên mobile
           display: "flex",
           alignItems: "center",
-          justifyContent: "space-between",
           flexWrap: { xs: "wrap-reverse", sm: "wrap" },
           gap: 1,
         }}
@@ -162,18 +161,15 @@ export default function KhoPage() {
               gap: 0.75,
               px: 1.5,
               py: 0.5,
-              borderRadius: "999px",
               cursor: "pointer",
-              backgroundColor: "#e3f2fd",
-              color: "#1976d2",
-              fontSize: 13,
+              backgroundColor: "#195ad9",
+              color: "white",
               fontWeight: 600,
               whiteSpace: "nowrap",
-              "&:hover": { backgroundColor: "#d0e6fb" },
             }}
           >
             <CategoryIcon sx={{ fontSize: 16 }} />
-            {tongVatLieu} vl trong kho
+            {tongVatLieu} vl kho
           </Box>
 
           <Box
@@ -188,21 +184,16 @@ export default function KhoPage() {
               gap: 0.75,
               px: 1.5,
               py: 0.5,
-              borderRadius: "999px",
               cursor: soHangThieuHang > 0 ? "pointer" : "default",
-              backgroundColor: soHangThieuHang > 0 ? "#fee2e2" : "#dcfce7",
-              color: soHangThieuHang > 0 ? "#ef4444" : "#22c55e",
-              fontSize: 13,
+              backgroundColor: soHangThieuHang > 0 ? "#d91919" : "#22d919",
+              color: "#fff",
               fontWeight: 600,
               whiteSpace: "nowrap",
-              "&:hover": {
-                backgroundColor: soHangThieuHang > 0 ? "#fbd0d0" : "#dcfce7",
-              },
             }}
           >
             <WarningAmberIcon sx={{ fontSize: 16 }} />
             {soHangThieuHang > 0
-              ? `${soHangThieuHang} vl thiếu hàng`
+              ? `${soHangThieuHang} vl thiếu`
               : "Tồn kho ổn định"}
           </Box>
         </Box>

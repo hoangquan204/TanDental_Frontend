@@ -53,6 +53,9 @@ export default function NhapKhoDetailPanel({ phieu, onClose, onUpdated }) {
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
     const [updatingStatus, setUpdatingStatus] = useState(false);
     const [updatingThanhToan, setUpdatingThanhToan] = useState(false);
+    const [editingPhiPhatSinh, setEditingPhiPhatSinh] = useState(false);
+    const [phiPhatSinhInput, setPhiPhatSinhInput] = useState(0);
+    const [savingPhiPhatSinh, setSavingPhiPhatSinh] = useState(false);
 
     const { user } = useSelector(state => state.auth);
 
@@ -142,6 +145,34 @@ export default function NhapKhoDetailPanel({ phieu, onClose, onUpdated }) {
         }
     }
 
+    function handleOpenEditPhiPhatSinh() {
+        if (isLocked) {
+            toast.error("Phiếu đã nhận, không thể chỉnh sửa");
+            return;
+        }
+        setPhiPhatSinhInput(fullPhieu?.phiPhatSinh || 0);
+        setEditingPhiPhatSinh(true);
+    }
+
+    async function handleSavePhiPhatSinh() {
+        if (!fullPhieu) return;
+        setSavingPhiPhatSinh(true);
+        try {
+            await dispatch(
+                updatePhieuNhapKho({ id: fullPhieu._id, phiPhatSinh: Number(phiPhatSinhInput) || 0 })
+            ).unwrap();
+            const res = await dispatch(fetchPhieuNhapKhoById(fullPhieu._id)).unwrap();
+            setFullPhieu(res.data || res);
+            toast.success("Cập nhật phí phát sinh thành công");
+            setEditingPhiPhatSinh(false);
+            onUpdated?.();
+        } catch (err) {
+            toast.error(err?.message || "Cập nhật thất bại");
+        } finally {
+            setSavingPhiPhatSinh(false);
+        }
+    }
+
     async function handleConfirmDelete() {
         try {
             await dispatch(deletePhieuNhapKho(fullPhieu._id)).unwrap();
@@ -170,7 +201,7 @@ export default function NhapKhoDetailPanel({ phieu, onClose, onUpdated }) {
     const isLocked = fullPhieu?.trangThaiNhap === "Đã nhận" && user?.quyenSuDung?.ten !== "Admin";
     const tongTien = (fullPhieu?.danhSachVatLieu || []).reduce(
         (s, i) => s + (i.thanhTien || 0),
-        0
+        fullPhieu?.phiPhatSinh || 0
     );
 
     return (
@@ -257,6 +288,22 @@ export default function NhapKhoDetailPanel({ phieu, onClose, onUpdated }) {
                         <div className="p-4 flex flex-col gap-5">
                             {/* Meta info */}
                             <div className="flex flex-col gap-2 bg-gray-100 rounded-lg p-3">
+                                {/* Trạng thái nhập */}
+                                <div className="flex items-center gap-2 text-sm">
+                                    <span className="text-gray-500 w-28 shrink-0">Nhập kho:</span>
+                                    <span className={`text-sm text-white font-medium px-2.5 py-0.5 ${fullPhieu.trangThaiNhap === "Đã nhận" ? "bg-green-500" : "bg-yellow-500"
+                                        }`}>
+                                        {fullPhieu.trangThaiNhap}
+                                    </span>
+                                </div>
+                                {/* Trạng thái thanh toán */}
+                                <div className="flex items-center gap-2 text-sm">
+                                    <span className="text-gray-500 w-28 shrink-0">Thanh toán:</span>
+                                    <span className={`text-sm text-white font-medium px-2.5 py-0.5 ${fullPhieu.trangThaiThanhToan === "Đã thanh toán" ? "bg-green-500" : "bg-orange-400"
+                                        }`}>
+                                        {fullPhieu.trangThaiThanhToan}
+                                    </span>
+                                </div>
                                 <InfoRow label="Ngày tạo" value={formatNgay(fullPhieu.ngayTao)} />
                                 {fullPhieu.ngayNhan && (
                                     <InfoRow label="Ngày nhận" value={formatNgay(fullPhieu.ngayNhan)} />
@@ -267,21 +314,54 @@ export default function NhapKhoDetailPanel({ phieu, onClose, onUpdated }) {
                                 {fullPhieu.ghiChu && (
                                     <InfoRow label="Ghi chú" value={fullPhieu.ghiChu} />
                                 )}
-                                {/* Trạng thái nhập */}
+                                {/* Phí phát sinh */}
                                 <div className="flex items-center gap-2 text-sm">
-                                    <span className="text-gray-500 w-28 shrink-0">Nhập kho:</span>
-                                    <span className={`text-xs text-white font-medium px-2.5 py-0.5 rounded ${fullPhieu.trangThaiNhap === "Đã nhận" ? "bg-green-500" : "bg-yellow-500"
-                                        }`}>
-                                        {fullPhieu.trangThaiNhap}
-                                    </span>
-                                </div>
-                                {/* Trạng thái thanh toán */}
-                                <div className="flex items-center gap-2 text-sm">
-                                    <span className="text-gray-500 w-28 shrink-0">Thanh toán:</span>
-                                    <span className={`text-xs text-white font-medium px-2.5 py-0.5 rounded ${fullPhieu.trangThaiThanhToan === "Đã thanh toán" ? "bg-green-500" : "bg-orange-400"
-                                        }`}>
-                                        {fullPhieu.trangThaiThanhToan}
-                                    </span>
+                                    <span className="text-gray-500 w-28 shrink-0">Phí phát sinh:</span>
+                                    {editingPhiPhatSinh ? (
+                                        <div className="flex items-center gap-2 flex-1">
+                                            <input
+                                                type="number"
+                                                min={0}
+                                                autoFocus
+                                                value={phiPhatSinhInput}
+                                                onChange={(e) => setPhiPhatSinhInput(e.target.value)}
+                                                className="border rounded px-2 py-1 text-sm w-32 focus:outline-none focus:ring-1 focus:ring-green-500 bg-white"
+                                            />
+                                            <button
+                                                type="button"
+                                                onClick={handleSavePhiPhatSinh}
+                                                disabled={savingPhiPhatSinh}
+                                                className="text-xs font-medium text-white bg-green-500 hover:bg-green-600 px-2.5 py-1 rounded disabled:opacity-60"
+                                            >
+                                                {savingPhiPhatSinh ? "..." : "Lưu"}
+                                            </button>
+                                            <button
+                                                type="button"
+                                                onClick={() => setEditingPhiPhatSinh(false)}
+                                                disabled={savingPhiPhatSinh}
+                                                className="text-xs font-medium text-gray-600 hover:bg-gray-100 px-2.5 py-1 rounded border border-gray-300"
+                                            >
+                                                Hủy
+                                            </button>
+                                        </div>
+                                    ) : (
+                                        <div className="flex items-center gap-2">
+                                            <span>
+                                                {fullPhieu.phiPhatSinh
+                                                    ? Number(fullPhieu.phiPhatSinh).toLocaleString("vi-VN") + " ₫"
+                                                    : "—"}
+                                            </span>
+                                            <button
+                                                type="button"
+                                                onClick={handleOpenEditPhiPhatSinh}
+                                                title={isLocked ? "Phiếu đã nhận" : "Sửa phí phát sinh"}
+                                                className={`w-6 h-6 flex items-center justify-center rounded-full transition ${isLocked ? "opacity-40 cursor-not-allowed" : "hover:bg-gray-200"
+                                                    }`}
+                                            >
+                                                <EditIcon sx={{ fontSize: 16 }} />
+                                            </button>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
 

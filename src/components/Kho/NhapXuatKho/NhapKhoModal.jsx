@@ -288,22 +288,17 @@ export default function NhapKhoModal({ open, onClose, editData = null, preSelect
         }
     };
 
-    const editVlIds = useMemo(() => {
-        if (!isEdit || !editData?.danhSachVatLieu) return null;
-        return new Set(editData.danhSachVatLieu.map((item) => item.vatLieu?._id || item.vatLieu));
-    }, [isEdit, editData]);
-
+    // Vật liệu đã tick (checked) luôn nổi lên đầu danh sách — áp dụng cho cả tạo mới lẫn sửa
     const vatLieuList = useMemo(() => {
         const list = kho.vatLieu || [];
-        if (!editVlIds || editVlIds.size === 0) return list;
-        const selected = [];
+        const checked = [];
         const rest = [];
         list.forEach((vl) => {
-            if (editVlIds.has(vl._id)) selected.push(vl);
+            if (items[vl._id]?.checked) checked.push(vl);
             else rest.push(vl);
         });
-        return [...selected, ...rest];
-    }, [kho.vatLieu, editVlIds]);
+        return [...checked, ...rest];
+    }, [kho.vatLieu, items]);
 
     if (!open) return null;
 
