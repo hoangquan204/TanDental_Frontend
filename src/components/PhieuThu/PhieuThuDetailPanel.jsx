@@ -25,6 +25,14 @@ const formatDate = (d) => {
   });
 };
 
+const formatMonthYear = (d) => {
+  if (!d) return "—";
+  const date = new Date(d);
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const year = date.getFullYear();
+  return `Tháng ${month}/${year}`;
+};
+
 const formatDateShort = (d) => {
   if (!d) return "—";
   return new Date(d).toLocaleDateString("vi-VN", {
@@ -176,8 +184,8 @@ export default function PhieuThuDetailPanel({ phieuThu, onClose, onUpdated }) {
                   value={phieuThu.phuongThucThanhToan}
                 />
                 <InfoRow
-                  label="Ngày thu"
-                  value={formatDate(phieuThu.ngayThu)}
+                  label="Ghi nhận doanh thu"
+                  value={formatMonthYear(phieuThu.ngayGhiNhanDoanhThu || phieuThu.ngayThu)}
                 />
                 <InfoRow
                   label="Ngày tạo"

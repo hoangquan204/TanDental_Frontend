@@ -81,7 +81,7 @@ const SearchInput = React.memo(({ onSearch }) => {
                 '&:hover fieldset': { borderColor: '#bae6fd' },
                 '&.Mui-focused fieldset': { borderColor: '#0ea5e9', borderWidth: '1px' },
                 '& .MuiInputBase-input': {
-                    fontSize: '0.875rem',
+                    fontSize: '1rem',
                     color: '#0f172a',
                     '&::placeholder': { color: '#94a3b8', opacity: 1 }
                 }
