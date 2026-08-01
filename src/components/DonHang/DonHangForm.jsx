@@ -33,8 +33,8 @@ const QuickAddModal = ({ open, onClose, title, children, onSubmit, loading }) =>
         <h3 className="font-bold text-base mb-4 text-blue-700">{title}</h3>
         <div className="flex flex-col gap-3">{children}</div>
         <div className="flex gap-2 mt-5 justify-end">
-          <button onClick={onClose} className="px-4 py-1.5 text-sm rounded border border-gray-300 text-gray-600 hover:bg-gray-50">Hủy</button>
-          <button onClick={onSubmit} disabled={loading} className="px-4 py-1.5 text-sm rounded bg-blue-500 text-white hover:bg-blue-600 disabled:opacity-50">
+          <button onClick={onClose} className="px-4 py-1.5 text-base rounded border border-gray-300 text-gray-600 hover:bg-gray-50">Hủy</button>
+          <button onClick={onSubmit} disabled={loading} className="px-4 py-1.5 text-base rounded bg-blue-500 text-white hover:bg-blue-600 disabled:opacity-50">
             {loading ? "Đang lưu..." : "Thêm"}
           </button>
         </div>
@@ -46,18 +46,18 @@ const QuickAddModal = ({ open, onClose, title, children, onSubmit, loading }) =>
 
 const QuickAddField = ({ label, value, onChange, placeholder, type = "text" }) => (
   <div>
-    <label className="text-xs text-gray-500">{label}</label>
+    <label className="text-base text-gray-500">{label}</label>
     {type === "select" ? (
       <select value={value} onChange={e => onChange(e.target.value)}
-        className="w-full border-b border-gray-300 outline-none py-1 text-sm mt-1 bg-transparent">
+        className="w-full border-b border-gray-300 outline-none py-1 text-base mt-1 bg-transparent">
         {placeholder}
       </select>
     ) : type === "textarea" ? (
       <textarea value={value} onChange={e => onChange(e.target.value)} rows={2}
-        className="w-full border border-gray-200 rounded outline-none py-1 px-2 text-sm mt-1 resize-none" placeholder={placeholder} />
+        className="w-full border border-gray-200 rounded outline-none py-1 px-2 text-base mt-1 resize-none" placeholder={placeholder} />
     ) : (
       <input type="text" value={value} onChange={e => onChange(e.target.value)}
-        className="w-full border-b border-gray-300 outline-none py-1 text-sm mt-1" placeholder={placeholder} />
+        className="w-full border-b border-gray-300 outline-none py-1 text-base mt-1" placeholder={placeholder} />
     )}
   </div>
 );
@@ -103,7 +103,7 @@ const SearchInput = ({
 
   return (
     <div className="flex items-center gap-3 relative" ref={wrapperRef}>
-      <div className="w-8 h-8 rounded-full bg-gray-300 text-white flex items-center justify-center font-bold text-sm shrink-0 uppercase">
+      <div className="w-8 h-8 rounded-full bg-gray-300 text-white flex items-center justify-center font-bold text-base shrink-0 uppercase">
         {avatarChar}
       </div>
       <div className="flex-1 relative">
@@ -114,7 +114,7 @@ const SearchInput = ({
         )}
         <input
           type="text"
-          className="w-full border-b border-gray-300 outline-none pb-1 text-sm bg-transparent focus:border-blue-500"
+          className="w-full border-b border-gray-300 outline-none pb-1 text-base bg-transparent focus:border-blue-500"
           placeholder={placeholder}
           value={searchTerm}
           onChange={(e) => {
@@ -141,7 +141,7 @@ const SearchInput = ({
               filteredOptions.map((opt) => (
                 <div
                   key={opt._id}
-                  className="px-3 py-2 text-sm hover:bg-gray-100 cursor-pointer"
+                  className="px-3 py-2 text-base hover:bg-gray-100 cursor-pointer"
                   onClick={() => {
                     setSearchTerm(opt.nameDisplay);
                     onChange(opt._id);
@@ -152,7 +152,7 @@ const SearchInput = ({
                 </div>
               ))
             ) : (
-              <div className="px-3 py-2 text-sm text-gray-500 italic">
+              <div className="px-3 py-2 text-base text-gray-500 italic">
                 Không tìm thấy kết quả
               </div>
             )}
@@ -715,10 +715,10 @@ const DonHangForm = () => {
     <div className="fixed inset-0 z-[1299] bg-white flex flex-col w-full h-full overflow-hidden">
       {/* Top bar */}
       <div className="h-10 bg-[#00a8ff] flex justify-between items-center px-4 shrink-0">
-        <span className="text-white font-medium text-sm flex items-center gap-2">
+        <span className="text-white font-medium text-base flex items-center gap-2">
           {isViewOnly ? "Xem đơn hàng (chỉ đọc)" : isEditMode ? "Chỉnh sửa đơn hàng" : "Tạo đơn hàng mới"}
           {formData.maDonHang && (
-            <span className="bg-white/20 text-white text-xs font-bold px-2 py-0.5 rounded">
+            <span className="bg-white/20 text-white text-base font-bold px-2 py-0.5 rounded">
               {formData.maDonHang}
             </span>
           )}
@@ -903,7 +903,7 @@ const DonHangForm = () => {
 
               {/* ── Desktop table (md+) ── */}
               <div className="hidden md:block">
-                <table className="w-full min-w-[600px] text-sm text-left">
+                <table className="w-full min-w-[600px] text-base text-left">
                   <thead className="bg-[#f0f9ff] text-gray-600 border-b">
                     <tr>
                       <th className="p-3 w-32 font-medium">Loại</th>
@@ -943,7 +943,7 @@ const DonHangForm = () => {
                               <button
                                 type="button"
                                 onClick={() => handleViewDonHangGoc(sp.donHangCu)}
-                                className="text-xs text-blue-600 px-3 py-1 underline"
+                                className="text-base text-blue-600 px-3 py-1 underline"
                               >
                                 Xem đh gốc
                               </button>
@@ -987,7 +987,7 @@ const DonHangForm = () => {
                                     value={sp.viTriText || ""}
                                     onChange={(e) => handleSanPhamChange(index, "viTriText", e.target.value)}
                                     placeholder="Nhập vị trí..."
-                                    className="w-full border-b border-blue-200 p-1 outline-none bg-transparent text-sm"
+                                    className="w-full border-b border-blue-200 p-1 outline-none bg-transparent text-base"
                                   />
                                 );
                               }
@@ -1044,7 +1044,7 @@ const DonHangForm = () => {
                             <button
                               type="button"
                               onClick={() => setYeuCauThuModal({ open: true, spIndex: index })}
-                              className={`text-xs rounded px-2 py-1 whitespace-nowrap transition font-medium border ${(sp.yeuCauThu || []).length > 0
+                              className={`text-base rounded px-2 py-1 whitespace-nowrap transition font-medium border ${(sp.yeuCauThu || []).length > 0
                                 ? "bg-blue-500 text-white border-blue-500 hover:bg-blue-600"
                                 : "bg-white text-blue-500 border-blue-300 hover:bg-blue-50"
                                 }`}
@@ -1103,7 +1103,7 @@ const DonHangForm = () => {
                           className="w-full py-4 px-6 text-green-600 font-bold hover:bg-blue-100 cursor-pointer flex items-center justify-start gap-2 transition"
                         >
                           <span className="text-3xl leading-none font-black">+</span>
-                          <span className="text-sm mt-1">Thêm sản phẩm</span>
+                          <span className="text-base mt-1">Thêm sản phẩm</span>
                         </button>
                       </td>
                     </tr>
@@ -1117,7 +1117,7 @@ const DonHangForm = () => {
                   <div key={index} className="border-b border-blue-100 bg-[#e1f5fe] p-3 space-y-2">
                     {/* Card header */}
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-semibold text-blue-700 uppercase tracking-wide">
+                      <span className="text-base font-semibold text-blue-700 uppercase tracking-wide">
                         Sản phẩm #{index + 1}
                       </span>
                       <button
@@ -1143,11 +1143,11 @@ const DonHangForm = () => {
 
                     {/* Loại */}
                     <div>
-                      <label className="block text-xs text-gray-500 mb-1">Loại</label>
+                      <label className="block text-base text-gray-500 mb-1">Loại</label>
                       <select
                         value={sp.loaiDon}
                         onChange={(e) => handleSanPhamChange(index, "loaiDon", e.target.value)}
-                        className="w-full border border-blue-200 rounded p-2 text-sm outline-none bg-white"
+                        className="w-full border border-blue-200 rounded p-2 text-base outline-none bg-white"
                       >
                         <option value="Mới">Mới</option>
                         <option value="Hàng sửa">Hàng sửa</option>
@@ -1158,7 +1158,7 @@ const DonHangForm = () => {
                         <button
                           type="button"
                           onClick={() => handleViewDonHangGoc(sp.donHangCu)}
-                          className="text-xs text-blue-600 underline mt-1"
+                          className="text-base text-blue-600 underline mt-1"
                         >
                           Xem đh gốc
                         </button>
@@ -1167,7 +1167,7 @@ const DonHangForm = () => {
 
                     {/* Sản phẩm */}
                     <div>
-                      <label className="block text-xs text-gray-500 mb-1">Sản phẩm</label>
+                      <label className="block text-base text-gray-500 mb-1">Sản phẩm</label>
                       <SearchInput
                         placeholder="Tìm sản phẩm..."
                         options={sanPhamList}
@@ -1184,14 +1184,14 @@ const DonHangForm = () => {
 
                     {/* Vị trí */}
                     <div>
-                      <label className="block text-xs text-gray-500 mb-1">Vị trí</label>
+                      <label className="block text-base text-gray-500 mb-1">Vị trí</label>
                       {(() => {
                         const loaiTinh = getLoaiTinh(sp.sanPham);
                         if (loaiTinh === "Bán hàm" || loaiTinh === "Hàm") {
                           return (
                             <div
                               onClick={() => setViTriHamModal({ open: true, index })}
-                              className="w-full border border-blue-200 rounded p-2 bg-white cursor-pointer text-blue-600 hover:text-blue-800 min-h-[38px] flex items-center text-sm"
+                              className="w-full border border-blue-200 rounded p-2 bg-white cursor-pointer text-blue-600 hover:text-blue-800 min-h-[38px] flex items-center text-base"
                             >
                               {sp.viTriText || (
                                 <span className="text-blue-400 italic">Chọn vị trí...</span>
@@ -1206,7 +1206,7 @@ const DonHangForm = () => {
                               value={sp.viTriText || ""}
                               onChange={(e) => handleSanPhamChange(index, "viTriText", e.target.value)}
                               placeholder="Nhập vị trí..."
-                              className="w-full border border-blue-200 rounded p-2 outline-none bg-white text-sm"
+                              className="w-full border border-blue-200 rounded p-2 outline-none bg-white text-base"
                             />
                           );
                         }
@@ -1216,7 +1216,7 @@ const DonHangForm = () => {
                               setEditingSpIndex(index);
                               setIsViTriModalOpen(true);
                             }}
-                            className="w-full border border-blue-200 rounded p-2 bg-white cursor-pointer text-blue-600 hover:text-blue-800 min-h-[38px] flex items-center text-sm"
+                            className="w-full border border-blue-200 rounded p-2 bg-white cursor-pointer text-blue-600 hover:text-blue-800 min-h-[38px] flex items-center text-base"
                           >
                             {renderViTriText(sp) || (
                               <span className="text-blue-400 italic">Chọn răng...</span>
@@ -1229,7 +1229,7 @@ const DonHangForm = () => {
                     {/* Số lượng + Màu */}
                     <div className="grid grid-cols-2 gap-2">
                       <div>
-                        <label className="block text-xs text-gray-500 mb-1">Số lượng</label>
+                        <label className="block text-base text-gray-500 mb-1">Số lượng</label>
                         <input
                           type="number"
                           min="0"
@@ -1238,28 +1238,28 @@ const DonHangForm = () => {
                           onChange={(e) =>
                             handleSanPhamChange(index, "soLuong", parseInt(e.target.value))
                           }
-                          className="w-full border border-blue-200 rounded p-2 outline-none bg-white text-center font-bold text-gray-700 text-sm"
+                          className="w-full border border-blue-200 rounded p-2 outline-none bg-white text-center font-bold text-gray-700 text-base"
                         />
                       </div>
                       <div>
-                        <label className="block text-xs text-gray-500 mb-1">Màu</label>
+                        <label className="block text-base text-gray-500 mb-1">Màu</label>
                         <input
                           type="text"
                           value={sp.mau}
                           onChange={(e) => handleSanPhamChange(index, "mau", e.target.value)}
-                          className="w-full border border-blue-200 rounded p-2 outline-none bg-white text-sm"
+                          className="w-full border border-blue-200 rounded p-2 outline-none bg-white text-base"
                         />
                       </div>
                     </div>
 
                     {/* Ghi chú */}
                     <div>
-                      <label className="block text-xs text-gray-500 mb-1">Ghi chú</label>
+                      <label className="block text-base text-gray-500 mb-1">Ghi chú</label>
                       <input
                         type="text"
                         value={sp.ghiChu}
                         onChange={(e) => handleSanPhamChange(index, "ghiChu", e.target.value)}
-                        className="w-full border border-blue-200 rounded p-2 outline-none bg-white text-sm"
+                        className="w-full border border-blue-200 rounded p-2 outline-none bg-white text-base"
                       />
                     </div>
 
@@ -1268,7 +1268,7 @@ const DonHangForm = () => {
                       <button
                         type="button"
                         onClick={() => setYeuCauThuModal({ open: true, spIndex: index })}
-                        className={`w-full text-sm rounded px-3 py-2 transition font-medium border ${(sp.yeuCauThu || []).length > 0
+                        className={`w-full text-base rounded px-3 py-2 transition font-medium border ${(sp.yeuCauThu || []).length > 0
                           ? "bg-blue-500 text-white border-blue-500 hover:bg-blue-600"
                           : "bg-white text-blue-500 border-blue-300 hover:bg-blue-50"
                           }`}
@@ -1305,7 +1305,7 @@ const DonHangForm = () => {
                   className="w-full py-4 px-6 bg-[#f0f9ff] text-green-600 font-bold hover:bg-blue-100 cursor-pointer flex items-center justify-start gap-2 transition"
                 >
                   <span className="text-3xl leading-none font-black">+</span>
-                  <span className="text-sm mt-1">Thêm sản phẩm</span>
+                  <span className="text-base mt-1">Thêm sản phẩm</span>
                 </button>
               </div>
 
@@ -1319,25 +1319,25 @@ const DonHangForm = () => {
                   <div className="flex flex-col sm:flex-row border-b border-gray-100">
                     {/* Chỉ định của bác sĩ */}
                     <div className="flex-1 p-4 border-b sm:border-b-0 sm:border-r border-gray-100 flex flex-col gap-1">
-                      <label className="text-xs text-gray-400 font-medium uppercase tracking-wide">Chỉ định của bác sĩ</label>
+                      <label className="text-base text-gray-400 font-medium uppercase tracking-wide">Chỉ định của bác sĩ</label>
                       <textarea
                         name="chiDinhBacSi"
                         value={formData.chiDinhBacSi}
                         onChange={handleInputChange}
                         rows={4}
-                        className="w-full min-h-20 md:min-h-36 outline-none text-sm text-gray-700 bg-transparent placeholder-gray-300"
+                        className="w-full min-h-20 md:min-h-36 outline-none text-base text-gray-700 bg-transparent placeholder-gray-300"
                         placeholder="Nhập chỉ định bác sĩ..."
                       />
                     </div>
                     {/* Ghi chú */}
                     <div className="flex-1 p-4 flex flex-col gap-1">
-                      <label className="text-xs text-gray-400 font-medium uppercase tracking-wide">Ghi chú</label>
+                      <label className="text-base text-gray-400 font-medium uppercase tracking-wide">Ghi chú</label>
                       <textarea
                         name="ghiChuChung"
                         value={formData.ghiChuChung}
                         onChange={handleInputChange}
                         rows={4}
-                        className="w-full min-h-20 md:min-h-36 outline-none text-sm text-gray-700 bg-transparent placeholder-gray-300"
+                        className="w-full min-h-20 md:min-h-36 outline-none text-base text-gray-700 bg-transparent placeholder-gray-300"
                         placeholder="Nhập ghi chú..."
                       />
                     </div>
@@ -1345,25 +1345,25 @@ const DonHangForm = () => {
                   <div className="flex flex-col sm:flex-row border-gray-100">
                     {/* Ghi chú tài chính */}
                     <div className="flex-1 p-4 border-b sm:border-b-0 sm:border-r border-gray-100 flex flex-col gap-1">
-                      <label className="text-xs text-gray-400 font-medium uppercase tracking-wide">Ghi chú về tài chính</label>
+                      <label className="text-base text-gray-400 font-medium uppercase tracking-wide">Ghi chú về tài chính</label>
                       <textarea
                         name="ghiChuTaiChinh"
                         value={formData.ghiChuTaiChinh}
                         onChange={handleInputChange}
                         rows={3}
-                        className="w-full min-h-20 md:min-h-36 outline-none text-sm text-gray-700 bg-transparent placeholder-gray-300"
+                        className="w-full min-h-20 md:min-h-36 outline-none text-base text-gray-700 bg-transparent placeholder-gray-300"
                         placeholder="Nhập ghi chú tài chính..."
                       />
                     </div>
                     {/* Ghi chú sản xuất */}
                     <div className="flex-1 p-4 flex flex-col gap-1">
-                      <label className="text-xs text-gray-400 font-medium uppercase tracking-wide">Ghi chú sản xuất</label>
+                      <label className="text-base text-gray-400 font-medium uppercase tracking-wide">Ghi chú sản xuất</label>
                       <textarea
                         name="ghiChuSanXuat"
                         value={formData.ghiChuSanXuat || ""}
                         onChange={handleInputChange}
                         rows={3}
-                        className="w-full min-h-20 md:min-h-36 outline-none text-sm text-gray-700 bg-transparent placeholder-gray-300"
+                        className="w-full min-h-20 md:min-h-36 outline-none text-base text-gray-700 bg-transparent placeholder-gray-300"
                         placeholder="Nhập ghi chú sản xuất..."
                       />
                     </div>
@@ -1390,7 +1390,7 @@ const DonHangForm = () => {
           {isEditMode && (
             <button
               onClick={() => navigate(`/donhang/${id}/print`)}
-              className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-1.5 rounded text-sm flex items-center gap-1"
+              className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-1.5 rounded text-base flex items-center gap-1"
               title="In đơn hàng (F4)"
             >
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="w-4 h-4">
@@ -1402,7 +1402,7 @@ const DonHangForm = () => {
           {isEditMode && (
             <button
               onClick={() => navigate(`/donhang/${id}/delivery-note`)}
-              className="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-1.5 rounded text-sm"
+              className="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-1.5 rounded text-base"
             >
               In Phiếu giao hàng
             </button>
@@ -1413,7 +1413,7 @@ const DonHangForm = () => {
                 if (!formData._id) { toast.error("Vui lòng lưu đơn hàng trước khi thêm thẻ bảo hành"); return; }
                 setIsPhieuBaoHanhModalOpen(true);
               }}
-              className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-1.5 rounded text-sm"
+              className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-1.5 rounded text-base"
             >
               + Thêm thẻ bảo hành
             </button>
@@ -1421,7 +1421,7 @@ const DonHangForm = () => {
           {isEditMode && validWarranties.length > 0 && (
             <button
               onClick={() => { setSelectedWarranty(validWarranties[0]); setOpenPrintWarranty(true); }}
-              className="bg-purple-500 hover:bg-purple-600 text-white px-4 py-1.5 rounded text-sm flex items-center gap-1"
+              className="bg-purple-500 hover:bg-purple-600 text-white px-4 py-1.5 rounded text-base flex items-center gap-1"
             >
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="w-4 h-4">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 9V2m12 0v7M6 13H2v8a2 2 0 002 2h16a2 2 0 002-2v-8h-4m0 0V9m0 4v8m-6-8h4" />
@@ -1433,7 +1433,7 @@ const DonHangForm = () => {
             <button
               type="button"
               onClick={() => setIsAddTodoOpen(true)}
-              className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-1.5 rounded text-sm flex items-center"
+              className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-1.5 rounded text-base flex items-center"
             >
               Thêm ghi chú
             </button>
@@ -1566,23 +1566,23 @@ const DonHangForm = () => {
               </svg>
               <h3 className="font-bold text-base text-gray-800">Thoát mà chưa lưu?</h3>
             </div>
-            <p className="text-sm text-gray-600 mb-5">Bạn có thay đổi chưa được lưu. Nếu thoát, các thay đổi sẽ bị mất.</p>
+            <p className="text-base text-gray-600 mb-5">Bạn có thay đổi chưa được lưu. Nếu thoát, các thay đổi sẽ bị mất.</p>
             <div className="flex gap-2 justify-end">
               <button
                 onClick={() => setShowExitWarning(false)}
-                className="px-4 py-1.5 text-sm rounded border border-gray-300 text-gray-600 hover:bg-gray-50"
+                className="px-4 py-1.5 text-base rounded border border-gray-300 text-gray-600 hover:bg-gray-50"
               >
                 Ở lại
               </button>
               <button
                 onClick={() => navigate(-1)}
-                className="px-4 py-1.5 text-sm rounded bg-red-500 text-white hover:bg-red-600"
+                className="px-4 py-1.5 text-base rounded bg-red-500 text-white hover:bg-red-600"
               >
                 Thoát không lưu
               </button>
               <button
                 onClick={() => { setShowExitWarning(false); handleSaveRef.current(); }}
-                className="px-4 py-1.5 text-sm rounded bg-blue-500 text-white hover:bg-blue-600"
+                className="px-4 py-1.5 text-base rounded bg-blue-500 text-white hover:bg-blue-600"
               >
                 Lưu và thoát
               </button>
@@ -1617,13 +1617,13 @@ const DonHangForm = () => {
           <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/40" onClick={() => setYeuCauThuModal({ open: false, spIndex: null })}>
             <div className="bg-white rounded-xl shadow-2xl w-[420px] max-w-[95vw] overflow-hidden" onClick={e => e.stopPropagation()}>
               <div className="flex items-center justify-between bg-[#00a8ff] px-4 py-3">
-                <span className="text-white font-semibold text-sm">Yêu cầu thử</span>
+                <span className="text-white font-semibold text-base">Yêu cầu thử</span>
                 <button type="button" onClick={() => setYeuCauThuModal({ open: false, spIndex: null })} className="text-white hover:text-blue-200 transition text-xl leading-none">&times;</button>
               </div>
               <div className="px-4 pt-4 pb-2">
-                <table className="w-full text-sm border-collapse">
+                <table className="w-full text-base border-collapse">
                   <thead>
-                    <tr className="border-b border-gray-200 text-gray-500 text-xs">
+                    <tr className="border-b border-gray-200 text-gray-500 text-base">
                       <th className="text-left pb-2 w-10">STT</th>
                       <th className="text-left pb-2">Công đoạn</th>
                       <th className="text-left pb-2">Ngày tạo</th>
@@ -1632,13 +1632,13 @@ const DonHangForm = () => {
                   </thead>
                   <tbody>
                     {items.length === 0 && (
-                      <tr><td colSpan={4} className="py-4 text-center text-gray-400 text-xs italic">Chưa có yêu cầu nào</td></tr>
+                      <tr><td colSpan={4} className="py-4 text-center text-gray-400 text-base italic">Chưa có yêu cầu nào</td></tr>
                     )}
                     {items.map((item, i) => (
                       <tr key={i} className="border-b border-gray-100">
-                        <td className="py-2 text-gray-500 text-xs">{i + 1}</td>
+                        <td className="py-2 text-gray-500 text-base">{i + 1}</td>
                         <td className="py-2 font-medium text-gray-800">{item.congDoan}</td>
-                        <td className="py-2 text-gray-500 text-xs">{new Date(item.ngayTao).toLocaleString("vi-VN", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit", hour12: false })}</td>
+                        <td className="py-2 text-gray-500 text-base">{new Date(item.ngayTao).toLocaleString("vi-VN", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit", hour12: false })}</td>
                         <td className="py-2 text-center">
                           <button type="button" onClick={() => removeItem(i)} className="text-orange-400 hover:text-red-500 transition">
                             <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" /></svg>
@@ -1650,11 +1650,11 @@ const DonHangForm = () => {
                 </table>
               </div>
               <div className="flex gap-2 px-4 pb-3">
-                <button type="button" onClick={() => addItem("Thử Sườn")} className="flex-1 bg-[#00a8ff] hover:bg-blue-600 text-white text-xs font-semibold rounded-full py-2 transition">+ Thử Sườn</button>
-                <button type="button" onClick={() => addItem("Thử sứ thô")} className="flex-1 bg-[#00a8ff] hover:bg-blue-600 text-white text-xs font-semibold rounded-full py-2 transition">+ Thử sứ thô</button>
+                <button type="button" onClick={() => addItem("Thử Sườn")} className="flex-1 bg-[#00a8ff] hover:bg-blue-600 text-white text-base font-semibold rounded-full py-2 transition">+ Thử Sườn</button>
+                <button type="button" onClick={() => addItem("Thử sứ thô")} className="flex-1 bg-[#00a8ff] hover:bg-blue-600 text-white text-base font-semibold rounded-full py-2 transition">+ Thử sứ thô</button>
               </div>
               <div className="flex justify-end px-4 pb-4">
-                <button type="button" onClick={() => setYeuCauThuModal({ open: false, spIndex: null })} className="bg-gray-200 hover:bg-gray-300 text-gray-700 text-sm font-medium rounded px-5 py-1.5 transition">Xác nhận</button>
+                <button type="button" onClick={() => setYeuCauThuModal({ open: false, spIndex: null })} className="bg-gray-200 hover:bg-gray-300 text-gray-700 text-base font-medium rounded px-5 py-1.5 transition">Xác nhận</button>
               </div>
             </div>
           </div>,
@@ -1693,7 +1693,7 @@ const DonHangForm = () => {
         <QuickAddField label="SĐT" value={quickAddBacSi.form.soDienThoai} placeholder="Số điện thoại..." onChange={v => setQuickAddBacSi(s => ({ ...s, form: { ...s.form, soDienThoai: v } }))} />
         <QuickAddField label="Tiêu đề" value={quickAddBacSi.form.tieuDe} placeholder="Bác sĩ / Nha sĩ..." onChange={v => setQuickAddBacSi(s => ({ ...s, form: { ...s.form, tieuDe: v } }))} />
         <QuickAddField label="Mô tả" type="textarea" value={quickAddBacSi.form.moTa} placeholder="Mô tả..." onChange={v => setQuickAddBacSi(s => ({ ...s, form: { ...s.form, moTa: v } }))} />
-        {!formData.nhaKhoa && <p className="text-xs text-orange-500">⚠ Vui lòng chọn nha khoa trước</p>}
+        {!formData.nhaKhoa && <p className="text-base text-orange-500">⚠ Vui lòng chọn nha khoa trước</p>}
       </QuickAddModal>
 
       {/* Quick-add: Bệnh Nhân */}
@@ -1707,9 +1707,9 @@ const DonHangForm = () => {
         <QuickAddField label="Tên *" value={quickAddBenhNhan.form.hoVaTen} placeholder="Tên bệnh nhân..." onChange={v => setQuickAddBenhNhan(s => ({ ...s, form: { ...s.form, hoVaTen: v } }))} />
         <QuickAddField label="Số hồ sơ" value={quickAddBenhNhan.form.soHoSo} placeholder="Số hồ sơ..." onChange={v => setQuickAddBenhNhan(s => ({ ...s, form: { ...s.form, soHoSo: v } }))} />
         <div>
-          <label className="text-xs text-gray-500">Giới tính</label>
+          <label className="text-base text-gray-500">Giới tính</label>
           <select value={quickAddBenhNhan.form.gioiTinh} onChange={e => setQuickAddBenhNhan(s => ({ ...s, form: { ...s.form, gioiTinh: e.target.value } }))}
-            className="w-full border-b border-gray-300 outline-none py-1 text-sm mt-1 bg-transparent">
+            className="w-full border-b border-gray-300 outline-none py-1 text-base mt-1 bg-transparent">
             <option value="">-- Chọn --</option>
             <option value="Nam">Nam</option>
             <option value="Nữ">Nữ</option>
@@ -1717,7 +1717,7 @@ const DonHangForm = () => {
         </div>
         <QuickAddField label="Tỉnh / Thành phố" value={quickAddBenhNhan.form.tinh} placeholder="Hồ Chí Minh..." onChange={v => setQuickAddBenhNhan(s => ({ ...s, form: { ...s.form, tinh: v } }))} />
         <QuickAddField label="Quận / Huyện" value={quickAddBenhNhan.form.quanHuyen} placeholder="Bình Thạnh..." onChange={v => setQuickAddBenhNhan(s => ({ ...s, form: { ...s.form, quanHuyen: v } }))} />
-        {!formData.nhaKhoa && <p className="text-xs text-orange-500">⚠ Vui lòng chọn nha khoa trước</p>}
+        {!formData.nhaKhoa && <p className="text-base text-orange-500">⚠ Vui lòng chọn nha khoa trước</p>}
       </QuickAddModal>
     </div>
   );
@@ -1755,14 +1755,14 @@ const RightSidePanel = ({
           <button
             key={tab.key}
             onClick={() => setActiveTab(tab.key)}
-            className={`flex-1 py-2.5 text-sm font-medium transition border-b-2 relative ${activeTab === tab.key
+            className={`flex-1 py-2.5 text-base font-medium transition border-b-2 relative ${activeTab === tab.key
               ? "border-blue-500 text-blue-700 bg-blue-50"
               : "border-transparent text-gray-500 hover:text-gray-700"
               }`}
           >
             {tab.label}
             {tab.badge !== undefined && tab.badge > 0 && (
-              <span className="absolute -top-1 -right-1 bg-orange-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+              <span className="absolute -top-1 -right-1 bg-orange-500 text-white text-base rounded-full w-5 h-5 flex items-center justify-center">
                 {tab.badge}
               </span>
             )}
@@ -1774,7 +1774,7 @@ const RightSidePanel = ({
       <div className="flex-1 overflow-y-auto p-3">
         {activeTab === "sanxuat" && (
           <div className="flex flex-col gap-3">
-            <h4 className="text-sm font-semibold text-gray-700">
+            <h4 className="text-base font-semibold text-gray-700">
               Phụ kiện đi kèm
             </h4>
             <DanhSachPhuKien
@@ -1789,7 +1789,7 @@ const RightSidePanel = ({
         {activeTab === "ghichu" && (
           <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-1">
-              <label className="text-xs text-gray-500 font-medium">
+              <label className="text-base text-gray-500 font-medium">
                 Chỉ định của bác sĩ
               </label>
               <textarea
@@ -1797,12 +1797,12 @@ const RightSidePanel = ({
                 value={formData.chiDinhBacSi}
                 onChange={handleInputChange}
                 rows={3}
-                className="w-full border rounded p-2 text-sm outline-none resize-none focus:ring-1 focus:ring-blue-400"
+                className="w-full border rounded p-2 text-base outline-none resize-none focus:ring-1 focus:ring-blue-400"
                 placeholder="Nhập chỉ định..."
               />
             </div>
             <div className="flex flex-col gap-1">
-              <label className="text-xs text-gray-500 font-medium">
+              <label className="text-base text-gray-500 font-medium">
                 Ghi chú chung
               </label>
               <textarea
@@ -1810,12 +1810,12 @@ const RightSidePanel = ({
                 value={formData.ghiChuChung}
                 onChange={handleInputChange}
                 rows={4}
-                className="w-full border rounded p-2 text-sm outline-none resize-none focus:ring-1 focus:ring-blue-400"
+                className="w-full border rounded p-2 text-base outline-none resize-none focus:ring-1 focus:ring-blue-400"
                 placeholder="Nhập ghi chú..."
               />
             </div>
             <div className="flex flex-col gap-1">
-              <label className="text-xs text-gray-500 font-medium">
+              <label className="text-base text-gray-500 font-medium">
                 Ghi chú tài chính
               </label>
               <textarea
@@ -1823,7 +1823,7 @@ const RightSidePanel = ({
                 value={formData.ghiChuTaiChinh}
                 onChange={handleInputChange}
                 rows={3}
-                className="w-full border rounded p-2 text-sm outline-none resize-none focus:ring-1 focus:ring-blue-400"
+                className="w-full border rounded p-2 text-base outline-none resize-none focus:ring-1 focus:ring-blue-400"
                 placeholder="Nhập ghi chú tài chính..."
               />
             </div>

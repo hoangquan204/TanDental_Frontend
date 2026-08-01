@@ -265,7 +265,7 @@ export default function DonHangChuaXuatModal({ open, onClose, selectedClinic, on
               <div className="flex items-center gap-2 relative">
                 <button
                   onClick={(e) => setAnchorElCustomDate(e.currentTarget)}
-                  className="h-10 px-3 flex items-center justify-center gap-2 text-sm font-medium text-blue-700 bg-blue-50 border border-blue-200 rounded-lg hover:bg-blue-100 transition-colors shadow-sm min-w-[220px]"
+                  className="h-10 px-3 flex items-center justify-center gap-2 text-base font-medium text-blue-700 bg-blue-50 border border-blue-200 rounded-lg hover:bg-blue-100 transition-colors shadow-sm min-w-[220px]"
                 >
                   <CalendarTodayIcon sx={{ fontSize: 18 }} />
                   {fromDate && toDate
@@ -290,10 +290,10 @@ export default function DonHangChuaXuatModal({ open, onClose, selectedClinic, on
             )}
 
             <div className="flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-gray-50 focus-within:border-blue-400 focus-within:bg-white transition-all min-w-[200px]">
-              <input type="text" placeholder="Tìm mã đơn..." value={searchMaDon} onChange={(e) => setSearchMaDon(e.target.value)} className="flex-1 text-sm bg-transparent outline-none text-gray-700" />
+              <input type="text" placeholder="Tìm mã đơn..." value={searchMaDon} onChange={(e) => setSearchMaDon(e.target.value)} className="flex-1 text-base bg-transparent outline-none text-gray-700" />
             </div>
 
-            <div className="ml-auto text-sm text-gray-500 font-medium hidden sm:block">
+            <div className="ml-auto text-base text-gray-500 font-medium hidden sm:block">
               {visibleCount < displayedData.length ? `${visibleCount}/${displayedData.length}` : displayedData.length} dòng | Tổng: <span className="text-[#00a8df] font-bold">{fmtVND(totalCost)}</span>
             </div>
           </div>

@@ -45,7 +45,7 @@ export default function GhiChuPage() {
     if (filterStatus === "Tất cả") return true;
     return note.trangThai === filterStatus;
   });
-  
+
   // Add Note Modal State
   const [openAddModal, setOpenAddModal] = useState(false);
 
@@ -53,7 +53,7 @@ export default function GhiChuPage() {
   const [openConfirmModal, setOpenConfirmModal] = useState(false);
   const [selectedNote, setSelectedNote] = useState(null);
   const [deleting, setDeleting] = useState(false);
-  
+
   // Bulk Delete Completed Notes State
   const [openDeleteCompletedModal, setOpenDeleteCompletedModal] = useState(false);
   const [cleaningCompleted, setCleaningCompleted] = useState(false);
@@ -126,7 +126,7 @@ export default function GhiChuPage() {
     } catch (err) {
       toast.error(
         "Lỗi khi cập nhật trạng thái ghi chú: " +
-          (err.response?.data?.message || err.message)
+        (err.response?.data?.message || err.message)
       );
     }
   };
@@ -146,7 +146,7 @@ export default function GhiChuPage() {
     } catch (err) {
       toast.error(
         "Lỗi khi xóa ghi chú: " +
-          (err.response?.data?.message || err.message)
+        (err.response?.data?.message || err.message)
       );
     } finally {
       setDeleting(false);
@@ -166,7 +166,7 @@ export default function GhiChuPage() {
     } catch (err) {
       toast.error(
         "Lỗi khi dọn dẹp ghi chú: " +
-          (err.response?.data?.message || err.message)
+        (err.response?.data?.message || err.message)
       );
     } finally {
       setCleaningCompleted(false);
@@ -210,7 +210,7 @@ export default function GhiChuPage() {
                 variant="outlined"
                 color="error"
                 onClick={() => setOpenDeleteCompletedModal(true)}
-                className="border-red-600 text-red-600 hover:bg-red-50 shadow-sm rounded-xl min-w-0 p-2 sm:px-4 sm:py-2 flex items-center justify-center font-semibold text-xs sm:text-sm"
+                className="border-red-600 text-red-600 hover:bg-red-50 shadow-sm rounded-xl min-w-0 p-2 sm:px-4 sm:py-2 flex items-center justify-center font-semibold text-base sm:text-base"
                 style={{ textTransform: "none" }}
               >
                 <DeleteIcon className="sm:mr-1" fontSize="small" />
@@ -221,7 +221,7 @@ export default function GhiChuPage() {
               variant="contained"
               color="primary"
               onClick={handleOpenAdd}
-              className="bg-blue-600 hover:bg-blue-700 shadow-sm rounded-xl min-w-0 p-2 sm:px-4 sm:py-2 text-white flex items-center justify-center text-xs sm:text-sm"
+              className="bg-blue-600 hover:bg-blue-700 shadow-sm rounded-xl min-w-0 p-2 sm:px-4 sm:py-2 text-white flex items-center justify-center text-base sm:text-base"
               style={{ textTransform: "none" }}
             >
               <AddIcon />
@@ -235,7 +235,7 @@ export default function GhiChuPage() {
           <Button
             variant={filterStatus === "Chưa hoàn thành" ? "contained" : "outlined"}
             onClick={() => setFilterStatus("Chưa hoàn thành")}
-            className="rounded-xl px-4 py-1.5 font-semibold text-xs sm:text-sm shadow-sm"
+            className="rounded-xl px-4 py-1.5 font-semibold text-base sm:text-base shadow-sm"
             style={{ textTransform: "none" }}
           >
             Chưa hoàn thành
@@ -243,7 +243,7 @@ export default function GhiChuPage() {
           <Button
             variant={filterStatus === "Đã hoàn thành" ? "contained" : "outlined"}
             onClick={() => setFilterStatus("Đã hoàn thành")}
-            className="rounded-xl px-4 py-1.5 font-semibold text-xs sm:text-sm shadow-sm"
+            className="rounded-xl px-4 py-1.5 font-semibold text-base sm:text-base shadow-sm"
             style={{ textTransform: "none" }}
           >
             Đã hoàn thành
@@ -251,7 +251,7 @@ export default function GhiChuPage() {
           <Button
             variant={filterStatus === "Tất cả" ? "contained" : "outlined"}
             onClick={() => setFilterStatus("Tất cả")}
-            className="rounded-xl px-4 py-1.5 font-semibold text-xs sm:text-sm shadow-sm"
+            className="rounded-xl px-4 py-1.5 font-semibold text-base sm:text-base shadow-sm"
             style={{ textTransform: "none" }}
           >
             Tất cả
@@ -290,12 +290,12 @@ export default function GhiChuPage() {
                             {note.donHang ? (
                               <Link
                                 to={`/donhang/${note.donHang._id}/edit`}
-                                className="text-blue-600 font-bold hover:underline hover:text-blue-800 transition text-sm"
+                                className="text-blue-600 font-bold hover:underline hover:text-blue-800 transition text-base"
                               >
                                 {`${note.donHang.benhNhan?.hoVaTen || "Trống"} - ${note.donHang.nhaKhoa?.tenGiaoDich || note.donHang.nhaKhoa?.hoVaTen || "Trống"}`}
                               </Link>
                             ) : note.maDonHang ? (
-                              <span className="text-gray-700 font-semibold text-sm">{note.maDonHang}</span>
+                              <span className="text-gray-700 font-semibold text-base">{note.maDonHang}</span>
                             ) : (
                               <Chip
                                 label="Ghi chú chung"
@@ -307,7 +307,7 @@ export default function GhiChuPage() {
                           <TableCell className="text-gray-800 font-medium whitespace-pre-wrap">
                             {note.noiDung}
                           </TableCell>
-                          <TableCell className="text-gray-500 text-sm">{formatDateTime(note.createdAt)}</TableCell>
+                          <TableCell className="text-gray-500 text-base">{formatDateTime(note.createdAt)}</TableCell>
                           <TableCell>
                             <Chip
                               label={note.trangThai}
@@ -373,12 +373,12 @@ export default function GhiChuPage() {
                       {note.donHang ? (
                         <Link
                           to={`/donhang/${note.donHang._id}/edit`}
-                          className="text-blue-600 font-bold hover:underline text-xs"
+                          className="text-blue-600 font-bold hover:underline text-base"
                         >
                           {`${note.donHang.benhNhan?.hoVaTen || "Trống"} - ${note.donHang.nhaKhoa?.tenGiaoDich || note.donHang.nhaKhoa?.hoVaTen || "Trống"}`}
                         </Link>
                       ) : note.maDonHang ? (
-                        <span className="text-gray-700 font-semibold text-sm">{note.maDonHang}</span>
+                        <span className="text-gray-700 font-semibold text-base">{note.maDonHang}</span>
                       ) : (
                         <Chip
                           label="Ghi chú chung"
@@ -395,7 +395,7 @@ export default function GhiChuPage() {
                       />
                     </div>
 
-                    <div className="text-gray-800 font-medium text-sm whitespace-pre-wrap leading-relaxed">
+                    <div className="text-gray-800 font-medium text-base whitespace-pre-wrap leading-relaxed">
                       {note.noiDung}
                     </div>
 
@@ -428,7 +428,7 @@ export default function GhiChuPage() {
                   </Paper>
                 ))
               ) : (
-                <div className="py-8 text-center text-gray-400 italic text-sm">
+                <div className="py-8 text-center text-gray-400 italic text-base">
                   Không có ghi chú nào phù hợp bộ lọc
                 </div>
               )}
@@ -447,7 +447,7 @@ export default function GhiChuPage() {
           Xác nhận xóa ghi chú?
         </DialogTitle>
         <DialogContent>
-          <DialogContentText className="text-sm text-gray-500">
+          <DialogContentText className="text-base text-gray-500">
             Bạn có chắc chắn muốn xóa ghi chú này? Hành động này không thể hoàn tác.
           </DialogContentText>
         </DialogContent>
@@ -477,7 +477,7 @@ export default function GhiChuPage() {
           Xác nhận dọn dẹp ghi chú?
         </DialogTitle>
         <DialogContent>
-          <DialogContentText className="text-sm text-gray-500">
+          <DialogContentText className="text-base text-gray-500">
             Bạn có chắc chắn muốn xóa nhanh tất cả các ghi chú đã hoàn thành? Hành động này không thể hoàn tác.
           </DialogContentText>
         </DialogContent>

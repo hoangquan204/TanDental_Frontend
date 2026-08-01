@@ -226,7 +226,7 @@ export default function StaffTable() {
               <div className="flex justify-between items-start mb-3">
                 <div>
                   <h3 className="font-bold text-gray-800">{item.HoTenNV}</h3>
-                  <p className="text-xs text-gray-500">{item.MSNV || "-"}</p>
+                  <p className="text-base text-gray-500">{item.MSNV || "-"}</p>
                 </div>
                 <Chip
                   label={getStatusText(item.Status)}
@@ -236,7 +236,7 @@ export default function StaffTable() {
               </div>
 
               {/* Details */}
-              <div className="space-y-2 text-sm text-gray-700 mb-3">
+              <div className="space-y-2 text-base text-gray-700 mb-3">
                 <div>
                   <span className="font-semibold">Email:</span> {item.Email}
                 </div>
@@ -404,23 +404,23 @@ function StaffEditModal({ staffId, onClose }) {
         setOpen(false);
         onClose();
       }}
-      sx={{ 
-        zIndex: 1200, 
-        '& .MuiDrawer-paper': { 
-          top: { xs: 64, sm: 70 }, 
-          height: { xs: 'calc(100vh - 64px)', sm: 'calc(100vh - 70px)' } 
-        } 
+      sx={{
+        zIndex: 1200,
+        '& .MuiDrawer-paper': {
+          top: { xs: 64, sm: 70 },
+          height: { xs: 'calc(100vh - 64px)', sm: 'calc(100vh - 70px)' }
+        }
       }}
     >
       <Box sx={{ width: { xs: "100vw", sm: 450 } }} className="flex flex-col h-full bg-white">
         {/* Header giống trang đơn hàng */}
         <div className="bg-[#4fc3f7] border-b px-4 py-3 flex items-center justify-between shrink-0">
           <div className="flex items-center gap-2 text-white">
-            <div 
+            <div
               onClick={() => {
                 setOpen(false);
                 onClose();
-              }} 
+              }}
               className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-blue-500 hover:cursor-pointer transition-all duration-100"
             >
               <ArrowForwardIcon sx={{ fontSize: 22 }} />
@@ -536,7 +536,7 @@ function StaffEditModal({ staffId, onClose }) {
           <button
             onClick={handleSubmit}
             disabled={loading}
-            className="flex-1 py-2 rounded-lg font-medium text-sm bg-blue-500 hover:bg-blue-600 text-white transition flex items-center justify-center gap-1.5 uppercase"
+            className="flex-1 py-2 rounded-lg font-medium text-base bg-blue-500 hover:bg-blue-600 text-white transition flex items-center justify-center gap-1.5 uppercase"
           >
             Lưu thay đổi
           </button>

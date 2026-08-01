@@ -113,7 +113,7 @@ const DonHangTable = ({ data, selectedId, onRowClick }) => {
                 /* ── MOBILE: Card list ── */
                 <div>
                     {renderMobileOrders.length === 0 ? (
-                        <p className="text-center py-8 text-gray-500 text-sm">Không có dữ liệu đơn hàng</p>
+                        <p className="text-center py-8 text-gray-500 text-base">Không có dữ liệu đơn hàng</p>
                     ) : (
                         renderMobileOrders.map((dh, index) => (
                             <div

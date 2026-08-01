@@ -29,7 +29,7 @@ function formatNgay(dateStr) {
 
 function InfoRow({ label, value }) {
     return (
-        <div className="flex items-start gap-2 text-sm">
+        <div className="flex items-start gap-2 text-base">
             <span className="text-gray-500 w-28 shrink-0">{label}:</span>
             <span>{value || "—"}</span>
         </div>
@@ -213,17 +213,17 @@ export default function XuatKhoDetailPanel({ phieu, onClose, onUpdated }) {
                 {/* Body */}
                 <div className="flex-1 overflow-y-auto">
                     {loading ? (
-                        <div className="flex items-center justify-center h-32 text-sm text-gray-400">
+                        <div className="flex items-center justify-center h-32 text-base text-gray-400">
                             Đang tải...
                         </div>
                     ) : fullPhieu ? (
                         <div className="p-4 flex flex-col gap-5">
                             {/* Meta info */}
                             <div className="flex flex-col gap-2 bg-gray-100 p-3">
-                                <div className="flex items-center gap-2 text-sm">
+                                <div className="flex items-center gap-2 text-base">
                                     <span className="text-gray-500 w-28 shrink-0">Trạng thái:</span>
                                     <span
-                                        className={`text-sm text-white font-medium px-2.5 py-0.5 ${isLocked ? "bg-green-500" : "bg-yellow-500"
+                                        className={`text-base text-white font-medium px-2.5 py-0.5 ${isLocked ? "bg-green-500" : "bg-yellow-500"
                                             }`}
                                     >
                                         {fullPhieu.trangThai}
@@ -239,11 +239,11 @@ export default function XuatKhoDetailPanel({ phieu, onClose, onUpdated }) {
 
                             {/* Danh sách vật liệu */}
                             <div>
-                                <h3 className="text-sm font-semibold text-gray-600 mb-2">
+                                <h3 className="text-base font-semibold text-gray-600 mb-2">
                                     Danh sách vật liệu ({fullPhieu.danhSachVatLieu?.length || 0})
                                 </h3>
                                 <div className="border border-gray-200 overflow-hidden">
-                                    <table className="w-full text-xs">
+                                    <table className="w-full text-base">
                                         <thead>
                                             <tr className="bg-green-100">
                                                 <th className="text-left py-1 px-2 font-normal text-gray-700">Vật liệu</th>
@@ -295,7 +295,7 @@ export default function XuatKhoDetailPanel({ phieu, onClose, onUpdated }) {
 
                             {/* Action button */}
                             {isLocked ? (
-                                <div className="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-green-50 border border-green-200 text-sm text-green-700">
+                                <div className="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-green-50 border border-green-200 text-base text-green-700">
                                     <LockIcon sx={{ fontSize: 16 }} />
                                     Đã xuất kho
                                 </div>
@@ -303,7 +303,7 @@ export default function XuatKhoDetailPanel({ phieu, onClose, onUpdated }) {
                                 <button
                                     onClick={handleConfirmXuat}
                                     disabled={confirmingXuat}
-                                    className="w-full py-2.5 rounded-lg text-sm font-medium bg-green-500 text-white hover:bg-green-600 transition disabled:opacity-60"
+                                    className="w-full py-2.5 rounded-lg text-base font-medium bg-green-500 text-white hover:bg-green-600 transition disabled:opacity-60"
                                 >
                                     {confirmingXuat ? "Đang xử lý..." : "Xác nhận xuất kho"}
                                 </button>
@@ -319,19 +319,19 @@ export default function XuatKhoDetailPanel({ phieu, onClose, onUpdated }) {
                             Xóa phiếu{" "}
                             <span className="text-red-600 font-semibold">{fullPhieu?.soPhieu}</span>?
                         </p>
-                        <p className="text-sm text-gray-500 text-center">
+                        <p className="text-base text-gray-500 text-center">
                             Thao tác này không thể hoàn tác.
                         </p>
                         <div className="flex gap-3">
                             <button
                                 onClick={() => setShowDeleteConfirm(false)}
-                                className="px-5 py-2 rounded-lg border border-gray-300 text-sm text-gray-600 hover:bg-gray-100 transition"
+                                className="px-5 py-2 rounded-lg border border-gray-300 text-base text-gray-600 hover:bg-gray-100 transition"
                             >
                                 Hủy
                             </button>
                             <button
                                 onClick={handleConfirmDelete}
-                                className="px-5 py-2 rounded-lg bg-red-500 text-white text-sm font-medium hover:bg-red-600 transition"
+                                className="px-5 py-2 rounded-lg bg-red-500 text-white text-base font-medium hover:bg-red-600 transition"
                             >
                                 Xóa
                             </button>

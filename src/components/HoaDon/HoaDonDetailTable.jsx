@@ -145,7 +145,7 @@ const DetailRow = React.memo(({ sp, idx, isLocked, canEditItems, uniqueOrdersCou
                                 e.target.value
                             )
                         }
-                        className="w-[34px] h-[34px] rounded-md border border-gray-300 bg-gray-50 cursor-pointer outline-none text-sm"
+                        className="w-[34px] h-[34px] rounded-md border border-gray-300 bg-gray-50 cursor-pointer outline-none text-base"
                     >
                         <option value="phanTram">%</option>
                         <option value="tienMat">đ</option>
@@ -387,13 +387,13 @@ const HoaDonDetailTable = ({ rows, navigate, handleGhiChuChange, handleGiamGiaCh
                 <div className="fixed inset-0 z-[1600] flex items-center justify-center bg-black/40 backdrop-blur-sm">
                     <div className="bg-white rounded-2xl shadow-xl p-6 w-[90%] max-w-md mx-4">
                         <p className="text-gray-900 font-bold text-lg mb-2">Xác nhận loại bỏ</p>
-                        <p className="text-gray-600 text-sm mb-6 leading-relaxed">
+                        <p className="text-gray-600 text-base mb-6 leading-relaxed">
                             Thao tác này sẽ loại bỏ tất cả sản phẩm của Đơn hàng <span className="font-bold text-black">{deleteTarget.maDonHang}</span> ra khỏi danh sách! Bạn có chắc không?
                         </p>
                         <div className="flex justify-end gap-3">
                             <button
                                 onClick={() => setDeleteTarget(null)}
-                                className="px-5 py-2.5 rounded-xl text-sm font-semibold text-black hover:bg-gray-100 transition-colors"
+                                className="px-5 py-2.5 rounded-xl text-base font-semibold text-black hover:bg-gray-100 transition-colors"
                             >
                                 Không
                             </button>
@@ -402,7 +402,7 @@ const HoaDonDetailTable = ({ rows, navigate, handleGhiChuChange, handleGiamGiaCh
                                     onRemoveDonHang(deleteTarget._id);
                                     setDeleteTarget(null);
                                 }}
-                                className="px-5 py-2.5 bg-[#00a8df] text-white rounded-xl text-sm font-bold hover:bg-sky-600 transition-colors shadow-sm"
+                                className="px-5 py-2.5 bg-[#00a8df] text-white rounded-xl text-base font-bold hover:bg-sky-600 transition-colors shadow-sm"
                             >
                                 Có
                             </button>

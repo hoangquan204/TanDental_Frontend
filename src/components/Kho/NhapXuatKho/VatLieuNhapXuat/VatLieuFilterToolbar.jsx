@@ -18,10 +18,10 @@ const PRINT_OPTIONS = [
 function StatusCheckboxGroup({ selectedTrangThai, onToggle }) {
     return (
         <div>
-            <div className="text-xs font-semibold text-sky-600 uppercase tracking-wide">Nhập kho</div>
+            <div className="text-base font-semibold text-sky-600 uppercase tracking-wide">Nhập kho</div>
             <div className="grid grid-cols-2 gap-1 mb-2">
                 {NHAP_STATUSES.map((s) => (
-                    <label key={s} className="flex items-center gap-2 px-1 py-1.5 text-xs text-slate-700 hover:bg-gray-50 rounded cursor-pointer">
+                    <label key={s} className="flex items-center gap-2 px-1 py-1.5 text-base text-slate-700 hover:bg-gray-50 rounded cursor-pointer">
                         <input
                             type="checkbox"
                             checked={selectedTrangThai.includes(s)}
@@ -33,10 +33,10 @@ function StatusCheckboxGroup({ selectedTrangThai, onToggle }) {
                 ))}
             </div>
 
-            <div className="text-xs font-semibold text-blue-600 uppercase tracking-wide">Thanh toán</div>
+            <div className="text-base font-semibold text-blue-600 uppercase tracking-wide">Thanh toán</div>
             <div className="grid grid-cols-2 gap-1 mb-2">
                 {NHAP_THANHTOAN_STATUSES.map((s) => (
-                    <label key={s} className="flex items-center gap-2 px-1 py-1.5 text-xs text-slate-700 hover:bg-gray-50 rounded cursor-pointer">
+                    <label key={s} className="flex items-center gap-2 px-1 py-1.5 text-base text-slate-700 hover:bg-gray-50 rounded cursor-pointer">
                         <input
                             type="checkbox"
                             checked={selectedTrangThai.includes(s)}
@@ -48,10 +48,10 @@ function StatusCheckboxGroup({ selectedTrangThai, onToggle }) {
                 ))}
             </div>
 
-            <div className="text-xs font-semibold text-green-600 uppercase tracking-wide">Xuất kho</div>
+            <div className="text-base font-semibold text-green-600 uppercase tracking-wide">Xuất kho</div>
             <div className="grid grid-cols-2 gap-1 mb-2">
                 {XUAT_STATUSES.map((s) => (
-                    <label key={s} className="flex items-center gap-2 px-1 py-1.5 text-xs text-slate-700 hover:bg-gray-50 rounded cursor-pointer">
+                    <label key={s} className="flex items-center gap-2 px-1 py-1.5 text-base text-slate-700 hover:bg-gray-50 rounded cursor-pointer">
                         <input
                             type="checkbox"
                             checked={selectedTrangThai.includes(s)}
@@ -63,10 +63,10 @@ function StatusCheckboxGroup({ selectedTrangThai, onToggle }) {
                 ))}
             </div>
 
-            <div className="text-xs font-semibold text-purple-600 uppercase tracking-wide">VAT</div>
+            <div className="text-base font-semibold text-purple-600 uppercase tracking-wide">VAT</div>
             <div className="grid grid-cols-2 gap-1">
                 {VAT_STATUSES.map((s) => (
-                    <label key={s} className="flex items-center gap-2 px-1 py-1.5 text-xs text-slate-700 hover:bg-gray-50 rounded cursor-pointer">
+                    <label key={s} className="flex items-center gap-2 px-1 py-1.5 text-base text-slate-700 hover:bg-gray-50 rounded cursor-pointer">
                         <input
                             type="checkbox"
                             checked={selectedTrangThai.includes(s)}
@@ -161,14 +161,14 @@ function FilterModal({
     };
 
     const selectClass =
-        "h-8 w-full text-xs bg-white border border-gray-300 rounded outline-none hover:border-gray-400 focus:border-sky-400 transition text-slate-700";
+        "h-8 w-full text-base bg-white border border-gray-300 rounded outline-none hover:border-gray-400 focus:border-sky-400 transition text-slate-700";
 
     return (
         <div className="absolute top-2 left-12 z-50 flex items-start justify-center">
             <div ref={modalRef} className="w-[300px] overflow-y-auto bg-white rounded-lg border border-gray-200 shadow-xl">
 
                 <div className="flex items-center justify-between px-3 py-1 border-b border-gray-100">
-                    <h3 className="text-xs font-semibold text-slate-800">Bộ lọc</h3>
+                    <h3 className="text-base font-semibold text-slate-800">Bộ lọc</h3>
                     <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
                         <CloseIcon sx={{ fontSize: 20 }} />
                     </button>
@@ -176,7 +176,7 @@ function FilterModal({
 
                 <div className="p-3 space-y-2">
                     <div>
-                        <label className="block text-xs font-medium text-gray-500 mb-1">Tháng</label>
+                        <label className="block text-base font-medium text-gray-500 mb-1">Tháng</label>
                         <select
                             value={draftMonth}
                             onChange={(e) => setDraftMonth(e.target.value)}
@@ -190,7 +190,7 @@ function FilterModal({
                     </div>
 
                     <div>
-                        <label className="block text-xs font-medium text-gray-500 mb-1">Nhà cung cấp</label>
+                        <label className="block text-base font-medium text-gray-500 mb-1">Nhà cung cấp</label>
                         <select
                             value={draftNCC}
                             onChange={(e) => setDraftNCC(e.target.value)}
@@ -204,7 +204,7 @@ function FilterModal({
                     </div>
 
                     <div>
-                        <label className="block text-xs font-medium text-gray-500 mb-1">Bộ phận</label>
+                        <label className="block text-base font-medium text-gray-500 mb-1">Bộ phận</label>
                         <select
                             value={draftBoPhan}
                             onChange={(e) => setDraftBoPhan(e.target.value)}
@@ -218,7 +218,7 @@ function FilterModal({
                     </div>
 
                     <div>
-                        <label className="block text-xs font-medium text-gray-500 mb-1">Nhân viên</label>
+                        <label className="block text-base font-medium text-gray-500 mb-1">Nhân viên</label>
                         <select
                             value={draftNhanVien}
                             onChange={(e) => setDraftNhanVien(e.target.value)}
@@ -232,7 +232,7 @@ function FilterModal({
                     </div>
 
                     <div>
-                        <label className="block text-xs font-medium text-gray-500 mb-2">Trạng thái</label>
+                        <label className="block text-base font-medium text-gray-500 mb-2">Trạng thái</label>
                         <StatusCheckboxGroup
                             selectedTrangThai={draftTrangThai}
                             onToggle={toggleDraftTrangThai}
@@ -244,13 +244,13 @@ function FilterModal({
                     <button
                         onClick={handleClearAll}
                         disabled={!isFiltered}
-                        className="text-sm text-gray-500 hover:text-red-500 disabled:opacity-40 disabled:cursor-not-allowed transition"
+                        className="text-base text-gray-500 hover:text-red-500 disabled:opacity-40 disabled:cursor-not-allowed transition"
                     >
                         Xóa bộ lọc
                     </button>
                     <button
                         onClick={handleApply}
-                        className="text-sm bg-sky-500 text-white rounded px-4 py-1.5 hover:bg-sky-600 transition"
+                        className="text-base bg-sky-500 text-white rounded px-4 py-1.5 hover:bg-sky-600 transition"
                     >
                         Áp dụng
                     </button>
@@ -287,11 +287,11 @@ function PrintMenu({ printSelection, onTogglePrintSelection, onPrintConfirm }) {
 
             {open && (
                 <div className="absolute right-0 mt-1 w-52 bg-white border border-gray-200 rounded shadow-lg z-50 p-2">
-                    <p className="text-xs text-gray-400 px-2 pb-1">Chọn nội dung in</p>
+                    <p className="text-base text-gray-400 px-2 pb-1">Chọn nội dung in</p>
                     {PRINT_OPTIONS.map((opt) => (
                         <label
                             key={opt.key}
-                            className="flex items-center gap-2 px-2 py-1.5 text-sm text-slate-700 rounded hover:bg-gray-50 cursor-pointer"
+                            className="flex items-center gap-2 px-2 py-1.5 text-base text-slate-700 rounded hover:bg-gray-50 cursor-pointer"
                         >
                             <input
                                 type="checkbox"
@@ -309,7 +309,7 @@ function PrintMenu({ printSelection, onTogglePrintSelection, onPrintConfirm }) {
                                 setOpen(false);
                             }}
                             disabled={!hasSelection}
-                            className="w-full text-sm bg-sky-500 text-white rounded py-1.5 hover:bg-sky-600 disabled:opacity-40 disabled:cursor-not-allowed transition"
+                            className="w-full text-base bg-sky-500 text-white rounded py-1.5 hover:bg-sky-600 disabled:opacity-40 disabled:cursor-not-allowed transition"
                         >
                             In
                         </button>

@@ -125,7 +125,7 @@ const DonHangDeliveryNotePrintPreview = () => {
   return (
     <div className="min-h-screen bg-gray-200">
       <div className="h-10 bg-[#00a8ff] flex justify-between items-center px-4">
-        <span className="text-white font-medium text-sm">Phiếu giao hàng</span>
+        <span className="text-white font-medium text-base">Phiếu giao hàng</span>
         <button
           onClick={() => navigate(-1)}
           className="text-white text-2xl font-bold leading-none hover:text-gray-200 transition"
@@ -141,8 +141,8 @@ const DonHangDeliveryNotePrintPreview = () => {
         >
           <div className="text-center">
             <div className="font-bold text-base">{company?.Ten || ""}</div>
-            <div className="text-xs">{company?.DienThoai ? `Điện thoại: ${company.DienThoai}` : ""}</div>
-            <div className="text-sm font-bold mt-2">PHIẾU GIAO HÀNG</div>
+            <div className="text-base">{company?.DienThoai ? `Điện thoại: ${company.DienThoai}` : ""}</div>
+            <div className="text-base font-bold mt-2">PHIẾU GIAO HÀNG</div>
             <div className="border-b border-dashed border-gray-500 mt-2" />
           </div>
 

@@ -407,22 +407,22 @@ export default function PhieuThuEditModal({ phieuThu, open, onClose, onSuccess }
 
                     <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-5 space-y-4">
                         {error && (
-                            <div className="bg-red-50 border border-red-200 text-red-700 rounded-lg px-4 py-2 text-sm">{error}</div>
+                            <div className="bg-red-50 border border-red-200 text-red-700 rounded-lg px-4 py-2 text-base">{error}</div>
                         )}
 
                         <div className="grid grid-cols-1 sm:grid-cols-[50%_1fr_30%] gap-6 sm:gap-x-0">
                             <div>
-                                <p className="text-xs text-gray-400 mb-1">Công ty</p>
+                                <p className="text-base text-gray-400 mb-1">Công ty</p>
                                 <div className="flex items-center gap-2 border-b-2 border-gray-200 pb-1">
                                     {tenKhach && (
                                         <div className="w-8 h-8 rounded-full bg-[#29b6f6] flex items-center justify-center shrink-0">
-                                            <span className="text-white font-bold text-xs">{getInitials(tenKhach)}</span>
+                                            <span className="text-white font-bold text-base">{getInitials(tenKhach)}</span>
                                         </div>
                                     )}
-                                    <span className="text-sm font-semibold text-gray-800">{tenKhach || "—"}</span>
+                                    <span className="text-base font-semibold text-gray-800">{tenKhach || "—"}</span>
                                 </div>
                                 {tenKhach && (
-                                    <div className="mt-3 bg-[#e3f2fd] rounded-xl px-4 py-3 space-y-1 text-sm">
+                                    <div className="mt-3 bg-[#e3f2fd] rounded-xl px-4 py-3 space-y-1 text-base">
                                         <div className="flex gap-2"><span className="text-gray-500 w-20 shrink-0">Địa chỉ:</span><span className="text-gray-700">{address || "—"}</span></div>
                                         <div className="flex gap-2"><span className="text-gray-500 w-20 shrink-0">Điện thoại:</span><span className="text-gray-500">{nk.soDienThoai || ""}</span></div>
                                         <div className="flex gap-2"><span className="text-gray-500 w-20 shrink-0">Mô tả:</span><span className="text-gray-700">{nk.moTa || ""}</span></div>
@@ -432,7 +432,7 @@ export default function PhieuThuEditModal({ phieuThu, open, onClose, onSuccess }
 
                             <div className="space-y-4 sm:col-start-3">
                                 <div className="relative">
-                                    <p className="text-xs text-gray-400 mb-0.5">Tổng số tiền thu</p>
+                                    <p className="text-base text-gray-400 mb-0.5">Tổng số tiền thu</p>
                                     <div className="border border-gray-200 rounded-xl px-4 py-3">
                                         <input
                                             type="text"
@@ -445,7 +445,7 @@ export default function PhieuThuEditModal({ phieuThu, open, onClose, onSuccess }
                                         />
                                     </div>
                                     {lechTien !== 0 && Number(soTienThu) > 0 && (
-                                        <p className={`text-xs font-semibold mt-1 text-right ${lechTien > 0 ? "text-orange-500" : "text-red-500"}`}>
+                                        <p className={`text-base font-semibold mt-1 text-right ${lechTien > 0 ? "text-orange-500" : "text-red-500"}`}>
                                             {lechTien > 0 ? `Còn dư: ${fmt(lechTien)}` : `Bị lệch: ${fmt(lechTien)}`}
                                         </p>
                                     )}
@@ -458,8 +458,8 @@ export default function PhieuThuEditModal({ phieuThu, open, onClose, onSuccess }
                                                     onMouseDown={() => handleTotalAmountChange(String(val))}
                                                     className="px-4 py-2.5 hover:bg-blue-50 cursor-pointer flex items-center justify-between"
                                                 >
-                                                    <span className="text-sm font-semibold text-gray-800">{fmt(val)}</span>
-                                                    <span className="text-xs text-gray-400">₫</span>
+                                                    <span className="text-base font-semibold text-gray-800">{fmt(val)}</span>
+                                                    <span className="text-base text-gray-400">₫</span>
                                                 </div>
                                             ))}
                                         </div>
@@ -467,7 +467,7 @@ export default function PhieuThuEditModal({ phieuThu, open, onClose, onSuccess }
                                 </div>
 
                                 <div>
-                                    <p className="text-xs text-gray-400 mb-0.5">Ngày thu</p>
+                                    <p className="text-base text-gray-400 mb-0.5">Ngày thu</p>
                                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                                         <DateTimePicker
                                             format="DD/MM/YYYY HH:mm"
@@ -519,14 +519,14 @@ export default function PhieuThuEditModal({ phieuThu, open, onClose, onSuccess }
                                             }`}
                                     >
                                         <span
-                                            className={`absolute left-0 pointer-events-none transition-all duration-200 ${isFloating ? "top-0.5 text-[11px]" : "top-5 text-sm"
+                                            className={`absolute left-0 pointer-events-none transition-all duration-200 ${isFloating ? "top-0.5 text-[11px]" : "top-5 text-base"
                                                 } ${isOpenThang ? "text-[#29b6f6]" : "text-gray-400"}`}
                                         >
                                             Tháng ghi nhận doanh thu
                                         </span>
 
                                         <div className="flex items-center justify-between min-h-[20px]">
-                                            <span className={`text-sm leading-5 text-gray-800`}>
+                                            <span className={`text-base leading-5 text-gray-800`}>
                                                 {selectedThangLabel ? `Tháng ${selectedThangLabel}` : "\u00A0"}
                                             </span>
                                             <CalendarMonthIcon
@@ -547,7 +547,7 @@ export default function PhieuThuEditModal({ phieuThu, open, onClose, onSuccess }
                                                             setThangDoanhThu(opt.value);
                                                             setIsOpenThang(false);
                                                         }}
-                                                        className={`flex items-center justify-between px-4 py-2.5 text-sm cursor-pointer transition-colors hover:bg-sky-50 ${isSelected ? "bg-sky-50 text-[#29b6f6] font-semibold" : "text-gray-700"
+                                                        className={`flex items-center justify-between px-4 py-2.5 text-base cursor-pointer transition-colors hover:bg-sky-50 ${isSelected ? "bg-sky-50 text-[#29b6f6] font-semibold" : "text-gray-700"
                                                             }`}
                                                     >
                                                         Tháng {opt.label}
@@ -560,15 +560,15 @@ export default function PhieuThuEditModal({ phieuThu, open, onClose, onSuccess }
                                 </div>
 
                                 <div>
-                                    <p className="text-xs text-gray-400 mb-0.5">Phương thức thanh toán</p>
+                                    <p className="text-base text-gray-400 mb-0.5">Phương thức thanh toán</p>
                                     <select value={phuongThuc} onChange={(e) => setPhuongThuc(e.target.value)}
-                                        className="w-full border-b-2 border-gray-200 focus:border-[#29b6f6] bg-transparent text-sm text-gray-800 py-1 outline-none appearance-none cursor-pointer">
+                                        className="w-full border-b-2 border-gray-200 focus:border-[#29b6f6] bg-transparent text-base text-gray-800 py-1 outline-none appearance-none cursor-pointer">
                                         <option value="Tiền mặt">Tiền mặt</option>
                                         <option value="Chuyển khoản">Chuyển khoản</option>
                                     </select>
                                 </div>
                                 {ngt.hoVaTen && (
-                                    <p className="text-xs text-gray-400 text-right">
+                                    <p className="text-base text-gray-400 text-right">
                                         <span className="font-medium text-gray-600">{ngt.hoVaTen}</span> tạo lúc {formatDateDisplay(phieuThu.ngayTao || phieuThu.createdAt)}
                                     </p>
                                 )}
@@ -577,12 +577,12 @@ export default function PhieuThuEditModal({ phieuThu, open, onClose, onSuccess }
 
                         {isLoadingData ? (
                             <div className="flex justify-center items-center py-6">
-                                <span className="text-gray-400 text-sm">Đang tải dữ liệu hóa đơn...</span>
+                                <span className="text-gray-400 text-base">Đang tải dữ liệu hóa đơn...</span>
                             </div>
                         ) : chiTietHoaDon.length > 0 && (
                             <div className="rounded-xl overflow-hidden border border-gray-200 bg-white">
                                 <div className="overflow-x-auto">
-                                    <table className="w-full min-w-[850px] text-sm">
+                                    <table className="w-full min-w-[850px] text-base">
                                         <thead className="border-b border-gray-100">
                                             <tr className="text-gray-500 bg-gray-50/50">
                                                 <th className="w-10 px-4 py-3 text-left whitespace-nowrap">
@@ -678,7 +678,7 @@ export default function PhieuThuEditModal({ phieuThu, open, onClose, onSuccess }
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 items-start pb-4 sm:pb-0">
                             <div className="space-y-4">
                                 <div>
-                                    <p className="text-xs text-gray-400 mb-1">Nội dung thu</p>
+                                    <p className="text-base text-gray-400 mb-1">Nội dung thu</p>
                                     <input type="text" value={noiDung} onChange={(e) => setNoiDung(e.target.value)}
                                         className="w-full border-b-2 border-gray-200 focus:border-[#29b6f6] bg-transparent text-base text-gray-800 py-1 outline-none" />
                                 </div>
@@ -696,13 +696,13 @@ export default function PhieuThuEditModal({ phieuThu, open, onClose, onSuccess }
                                         navigate(`/phieu-thu/${phieuThu._id}/print`);
                                     }
                                 }}
-                                className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-sm text-gray-600 hover:bg-gray-50 transition">
+                                className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-base text-gray-600 hover:bg-gray-50 transition">
                                 <PrintIcon sx={{ fontSize: 16 }} />
                                 In phiếu thu (F2)
                             </button>
                             <button onClick={handleSave}
                                 disabled={loading}
-                                className="flex items-center gap-2 px-5 py-2 bg-[#29b6f6] hover:bg-[#0091ea] text-white rounded-lg text-sm font-semibold transition disabled:opacity-50 shadow-sm">
+                                className="flex items-center gap-2 px-5 py-2 bg-[#29b6f6] hover:bg-[#0091ea] text-white rounded-lg text-base font-semibold transition disabled:opacity-50 shadow-sm">
                                 {loading && (
                                     <svg className="animate-spin w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />

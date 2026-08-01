@@ -56,16 +56,16 @@ const NhanVienFormModal = ({ open, onClose, initialData = null }) => {
     setFormData(
       initialData
         ? {
-            hoVaTen: initialData.hoVaTen || "",
-            cccd: initialData.cccd || "",
-            diaChi: initialData.diaChi || "",
-            soDienThoai: initialData.soDienThoai || "",
-            email: initialData.email || "",
-            chucVu: initialData.chucVu || "",
-            luongCanBan: initialData.luongCanBan || 0,
-            ngayCongThang: initialData.ngayCongThang || 28, // 🔥 Nhận dữ liệu cũ hoặc fallback về 28
-            trangThai: initialData.trangThai || "Đang làm",
-          }
+          hoVaTen: initialData.hoVaTen || "",
+          cccd: initialData.cccd || "",
+          diaChi: initialData.diaChi || "",
+          soDienThoai: initialData.soDienThoai || "",
+          email: initialData.email || "",
+          chucVu: initialData.chucVu || "",
+          luongCanBan: initialData.luongCanBan || 0,
+          ngayCongThang: initialData.ngayCongThang || 28, // 🔥 Nhận dữ liệu cũ hoặc fallback về 28
+          trangThai: initialData.trangThai || "Đang làm",
+        }
         : initialState
     );
   }, [initialData, open]);
@@ -146,25 +146,25 @@ const NhanVienFormModal = ({ open, onClose, initialData = null }) => {
           <h2 className="text-lg font-extrabold text-white tracking-tight">
             {isEdit ? "Cập nhật nhân viên" : "Thêm nhân viên mới"}
           </h2>
-          <p className="text-xs text-slate-400 mt-0.5">
+          <p className="text-base text-slate-400 mt-0.5">
             Quản lý thông tin nhân viên
           </p>
         </div>
         <div className="flex items-center gap-3">
           <span
-            className="text-xs font-bold px-2.5 py-1 rounded-full"
+            className="text-base font-bold px-2.5 py-1 rounded-full"
             style={
               isEdit
                 ? {
-                    background: "#1e3a5f",
-                    color: "#93c5fd",
-                    border: "1px solid #2563eb",
-                  }
+                  background: "#1e3a5f",
+                  color: "#93c5fd",
+                  border: "1px solid #2563eb",
+                }
                 : {
-                    background: "#166534",
-                    color: "#86efac",
-                    border: "1px solid #166534",
-                  }
+                  background: "#166534",
+                  color: "#86efac",
+                  border: "1px solid #166534",
+                }
             }
           >
             {isEdit ? "EDIT MODE" : "NEW"}
@@ -183,7 +183,7 @@ const NhanVienFormModal = ({ open, onClose, initialData = null }) => {
         {/* ── Section: Thông tin cá nhân ── */}
         <div className="flex items-center gap-2 mb-3">
           <span className="w-1 h-4 rounded-full bg-blue-500 inline-block" />
-          <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+          <span className="text-base font-bold text-slate-500 uppercase tracking-wider">
             Thông tin cá nhân
           </span>
         </div>
@@ -271,7 +271,7 @@ const NhanVienFormModal = ({ open, onClose, initialData = null }) => {
         {/* ── Section: Công việc & lương ── */}
         <div className="flex items-center gap-2 mb-3">
           <span className="w-1 h-4 rounded-full bg-emerald-500 inline-block" />
-          <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+          <span className="text-base font-bold text-slate-500 uppercase tracking-wider">
             Công việc &amp; lương
           </span>
         </div>
@@ -316,7 +316,7 @@ const NhanVienFormModal = ({ open, onClose, initialData = null }) => {
                 ),
                 endAdornment: (
                   <InputAdornment position="end">
-                    <span className="text-slate-400 text-xs">VNĐ</span>
+                    <span className="text-slate-400 text-base">VNĐ</span>
                   </InputAdornment>
                 ),
               }}
@@ -344,7 +344,7 @@ const NhanVienFormModal = ({ open, onClose, initialData = null }) => {
                 ),
                 endAdornment: (
                   <InputAdornment position="end">
-                    <span className="text-slate-400 text-xs">Ngày</span>
+                    <span className="text-slate-400 text-base">Ngày</span>
                   </InputAdornment>
                 ),
               }}
@@ -360,7 +360,7 @@ const NhanVienFormModal = ({ open, onClose, initialData = null }) => {
         {/* ── Section: Ghi chú ── */}
         <div className="flex items-center gap-2 mb-3">
           <span className="w-1 h-4 rounded-full bg-slate-400 inline-block" />
-          <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+          <span className="text-base font-bold text-slate-500 uppercase tracking-wider">
             Ghi chú
           </span>
         </div>
@@ -401,14 +401,14 @@ const NhanVienFormModal = ({ open, onClose, initialData = null }) => {
       <div className="flex items-center justify-end gap-2 px-5 py-4 bg-white border-t border-slate-100">
         <button
           onClick={onClose}
-          className="px-4 py-2 text-sm font-medium text-slate-500 rounded-lg hover:bg-slate-100 transition-colors"
+          className="px-4 py-2 text-base font-medium text-slate-500 rounded-lg hover:bg-slate-100 transition-colors"
         >
           Hủy
         </button>
         <button
           onClick={handleSubmit}
           disabled={loading}
-          className="flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-bold text-white transition-all disabled:opacity-60"
+          className="flex items-center gap-2 px-5 py-2 rounded-lg text-base font-bold text-white transition-all disabled:opacity-60"
           style={{
             background: loading
               ? "#94a3b8"

@@ -292,7 +292,7 @@ export default function PhieuThuPage() {
                                 }
                             }
                         }}
-                        className={`w-full text-left px-4 py-2.5 text-sm flex items-center gap-2 border-b border-gray-100 transition ${cf.preset === p.key ? "bg-blue-50 text-blue-700 font-semibold" : "text-gray-700 hover:bg-gray-50"}`}
+                        className={`w-full text-left px-4 py-2.5 text-base flex items-center gap-2 border-b border-gray-100 transition ${cf.preset === p.key ? "bg-blue-50 text-blue-700 font-semibold" : "text-gray-700 hover:bg-gray-50"}`}
                     >
                         {p.isCalendar && <CalendarTodayIcon sx={{ fontSize: 14 }} />}
                         {p.label}
@@ -301,7 +301,7 @@ export default function PhieuThuPage() {
                         <div className="px-4 py-3 bg-blue-50/30 border-b border-gray-100" onClick={(e) => e.stopPropagation()}>
                             <button
                                 onClick={(e) => setAnchorElCustomDate(e.currentTarget)}
-                                className="w-full h-9 px-2 flex items-center justify-center gap-2 text-xs font-semibold text-blue-700 bg-white border border-blue-200 rounded-lg hover:bg-blue-50 transition-colors shadow-sm"
+                                className="w-full h-9 px-2 flex items-center justify-center gap-2 text-base font-semibold text-blue-700 bg-white border border-blue-200 rounded-lg hover:bg-blue-50 transition-colors shadow-sm"
                             >
                                 {cf.customFrom && cf.customTo
                                     ? `${dayjs(cf.customFrom).format('DD/MM/YYYY')} - ${dayjs(cf.customTo).format('DD/MM/YYYY')}`
@@ -363,7 +363,7 @@ export default function PhieuThuPage() {
                                     {/* Ngày thu */}
                                     <div className="relative border-b border-gray-100" onClick={(e) => e.stopPropagation()}>
                                         <button
-                                            className="w-full flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition text-sm"
+                                            className="w-full flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition text-base"
                                             onClick={() => { setOpenPickerModal(null); setOpenDateModal(openDateModal === "ngayThu" ? null : "ngayThu"); }}
                                         >
                                             <span className={draftNgayThu.preset ? "text-blue-600 font-medium" : "text-gray-600"}>
@@ -384,12 +384,12 @@ export default function PhieuThuPage() {
                                                     onChange={(e) => setNhaKhoaSearch(e.target.value)}
                                                     placeholder="Tìm nha khoa..."
                                                     autoFocus
-                                                    className="w-full border-b border-blue-400 px-3 py-1.5 text-sm focus:outline-none"
+                                                    className="w-full border-b border-blue-400 px-3 py-1.5 text-base focus:outline-none"
                                                 />
                                             </div>
                                         ) : (
                                             <button
-                                                className="w-full flex items-start px-4 py-3 hover:bg-gray-50 transition text-sm"
+                                                className="w-full flex items-start px-4 py-3 hover:bg-gray-50 transition text-base"
                                                 onClick={() => { setOpenDateModal(null); setNhaKhoaSearch(""); setOpenPickerModal("nhaKhoa"); }}
                                             >
                                                 <span className={draftNhaKhoa ? "text-blue-600 font-medium truncate" : "text-gray-400"}>
@@ -401,17 +401,17 @@ export default function PhieuThuPage() {
                                             <div className="absolute left-2 top-full z-[100] w-[90%] bg-white rounded-xl shadow-xl border border-gray-200 max-h-56 overflow-y-auto">
                                                 {draftNhaKhoa && (
                                                     <button onClick={() => { setDraftNhaKhoa(null); setOpenPickerModal(null); }}
-                                                        className="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-red-50 border-b border-gray-100 transition">
+                                                        className="w-full text-left px-4 py-2 text-base text-red-500 hover:bg-red-50 border-b border-gray-100 transition">
                                                         Bỏ chọn
                                                     </button>
                                                 )}
                                                 {filteredNhaKhoaOpts.map((item) => (
                                                     <button key={item._id} onClick={() => { setDraftNhaKhoa(item); setOpenPickerModal(null); }}
-                                                        className={`w-full text-left px-4 py-2 text-sm border-b border-gray-50 transition ${draftNhaKhoa?._id === item._id ? "bg-blue-50 text-blue-700 font-semibold" : "text-gray-700 hover:bg-gray-50"}`}>
+                                                        className={`w-full text-left px-4 py-2 text-base border-b border-gray-50 transition ${draftNhaKhoa?._id === item._id ? "bg-blue-50 text-blue-700 font-semibold" : "text-gray-700 hover:bg-gray-50"}`}>
                                                         {item.name}
                                                     </button>
                                                 ))}
-                                                {filteredNhaKhoaOpts.length === 0 && <p className="text-center text-xs text-gray-400 py-4">Không tìm thấy</p>}
+                                                {filteredNhaKhoaOpts.length === 0 && <p className="text-center text-base text-gray-400 py-4">Không tìm thấy</p>}
                                             </div>
                                         )}
                                     </div>
@@ -421,7 +421,7 @@ export default function PhieuThuPage() {
                                         <button onClick={handleResetDraft} className="p-1.5 rounded-full hover:bg-gray-100 text-gray-500 transition" title="Reset lọc">
                                             <RefreshIcon sx={{ fontSize: 20 }} />
                                         </button>
-                                        <button onClick={handleApplyFilters} className="flex items-center gap-1 px-4 py-1.5 bg-green-500 hover:bg-green-600 text-white text-sm font-semibold rounded-lg transition shadow-sm">
+                                        <button onClick={handleApplyFilters} className="flex items-center gap-1 px-4 py-1.5 bg-green-500 hover:bg-green-600 text-white text-base font-semibold rounded-lg transition shadow-sm">
                                             ✓ Lưu
                                         </button>
                                     </div>
@@ -478,7 +478,7 @@ export default function PhieuThuPage() {
                 {isFiltered && (
                     <div className="flex items-center gap-2 px-3 pb-2.5 flex-wrap">
                         {appliedNgayThu.preset && (
-                            <span className="inline-flex items-center gap-1 bg-blue-100 text-blue-700 text-xs font-medium px-2.5 py-1 rounded-full">
+                            <span className="inline-flex items-center gap-1 bg-blue-100 text-blue-700 text-base font-medium px-2.5 py-1 rounded-full">
                                 <CalendarTodayIcon sx={{ fontSize: 11 }} />
                                 {getDateLabel(appliedNgayThu)}
                                 {appliedNgayThu.preset === "custom" && appliedNgayThu.customFrom && ` ${dayjs(appliedNgayThu.customFrom).format('DD/MM/YYYY')}`}
@@ -492,7 +492,7 @@ export default function PhieuThuPage() {
                             </span>
                         )}
                         {appliedNhaKhoa && (
-                            <span className="inline-flex items-center gap-1 bg-blue-100 text-blue-700 text-xs font-medium px-2.5 py-1 rounded-full">
+                            <span className="inline-flex items-center gap-1 bg-blue-100 text-blue-700 text-base font-medium px-2.5 py-1 rounded-full">
                                 <StoreIcon sx={{ fontSize: 11 }} />
                                 {appliedNhaKhoa.name}
                                 <button
@@ -511,9 +511,9 @@ export default function PhieuThuPage() {
             <div className="bg-white rounded shadow-sm overflow-hidden border">
                 <div className="sm:hidden divide-y divide-gray-100">
                     {loading ? (
-                        <p className="text-center py-10 text-gray-400 text-sm">Đang tải dữ liệu...</p>
+                        <p className="text-center py-10 text-gray-400 text-base">Đang tải dữ liệu...</p>
                     ) : danhSach.length === 0 ? (
-                        <p className="text-center py-10 text-gray-400 text-sm">Không có dữ liệu</p>
+                        <p className="text-center py-10 text-gray-400 text-base">Không có dữ liệu</p>
                     ) : (
                         danhSach.map((pt) => (
                             <div
@@ -522,26 +522,26 @@ export default function PhieuThuPage() {
                                 className={`px-4 py-3 cursor-pointer transition-colors ${selectedPhieuThu?._id === pt._id ? "bg-blue-50" : "hover:bg-gray-50"}`}
                             >
                                 <div className="flex items-center justify-between mb-1">
-                                    <span className="font-semibold text-blue-700 text-sm">
+                                    <span className="font-semibold text-blue-700 text-base">
                                         {pt.soPhieuThu || formatSoPhieu(pt._id)}
                                     </span>
-                                    <span className="font-semibold text-green-700 text-sm">
+                                    <span className="font-semibold text-green-700 text-base">
                                         {formatCurrency(pt.soTienThu)}
                                     </span>
                                 </div>
-                                <p className="text-sm text-gray-800 font-medium truncate">
+                                <p className="text-base text-gray-800 font-medium truncate">
                                     {pt.nhaKhoaInfo?.hoVaTen || pt.nhaKhoaInfo?.tenGiaoDich || "—"}
                                 </p>
                                 <div className="flex items-center gap-2 mt-0.5">
-                                    <span className="text-xs text-gray-400">{formatDateTime(pt.ngayThu)}</span>
+                                    <span className="text-base text-gray-400">{formatDateTime(pt.ngayThu)}</span>
                                     {pt.phuongThucThanhToan && (
-                                        <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${pt.phuongThucThanhToan === "Chuyển khoản" ? "bg-blue-100 text-blue-700" : "bg-gray-100 text-gray-700"}`}>
+                                        <span className={`text-base px-2 py-0.5 rounded-full font-medium ${pt.phuongThucThanhToan === "Chuyển khoản" ? "bg-blue-100 text-blue-700" : "bg-gray-100 text-gray-700"}`}>
                                             {pt.phuongThucThanhToan}
                                         </span>
                                     )}
                                 </div>
                                 {pt.noiDung && (
-                                    <p className="text-xs text-gray-400 mt-0.5 truncate">{pt.noiDung}</p>
+                                    <p className="text-base text-gray-400 mt-0.5 truncate">{pt.noiDung}</p>
                                 )}
                             </div>
                         ))
@@ -549,7 +549,7 @@ export default function PhieuThuPage() {
                 </div>
 
                 <div className="hidden sm:block overflow-x-auto">
-                    <table className="w-full min-w-[640px] text-sm text-left whitespace-nowrap">
+                    <table className="w-full min-w-[640px] text-base text-left whitespace-nowrap">
                         <thead className="bg-blue-50 text-blue-600 font-medium border-b sticky top-0 z-10">
                             <tr>
                                 <th className="px-4 py-3 text-base ">Số phiếu</th>
@@ -579,7 +579,7 @@ export default function PhieuThuPage() {
                                         <td className="px-4 py-3 text-base  text-right font-semibold text-green-700">{formatCurrency(pt.soTienThu)}</td>
                                         <td className="px-4 py-3 text-base  max-w-[200px] truncate hidden md:table-cell" title={pt.noiDung}>{pt.noiDung || " "}</td>
                                         <td className="px-4 py-3 text-base  hidden sm:table-cell">
-                                            <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${pt.phuongThucThanhToan === "Chuyển khoản" ? "bg-blue-100 text-blue-700" : "bg-gray-100 text-gray-700"}`}>
+                                            <span className={`text-base px-2 py-0.5 rounded-full font-medium ${pt.phuongThucThanhToan === "Chuyển khoản" ? "bg-blue-100 text-blue-700" : "bg-gray-100 text-gray-700"}`}>
                                                 {pt.phuongThucThanhToan || "-"}
                                             </span>
                                         </td>
@@ -590,14 +590,14 @@ export default function PhieuThuPage() {
                         </tbody>
                     </table>
                 </div>
-                <div className="bg-gray-50 border-t p-3 flex justify-between items-center text-sm text-gray-600">
+                <div className="bg-gray-50 border-t p-3 flex justify-between items-center text-base text-gray-600">
                     <span>Tổng: {pagination.total || 0} phiếu thu</span>
                     <div className="flex items-center gap-2">
                         <button disabled={page <= 1} onClick={() => setPage((p) => p - 1)}
-                            className="px-2 py-1 border rounded text-xs hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed">← Trước</button>
-                        <span className="text-xs">Trang {page} / {totalPages}</span>
+                            className="px-2 py-1 border rounded text-base hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed">← Trước</button>
+                        <span className="text-base">Trang {page} / {totalPages}</span>
                         <button disabled={page >= totalPages} onClick={() => setPage((p) => p + 1)}
-                            className="px-2 py-1 border rounded text-xs hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed">Sau →</button>
+                            className="px-2 py-1 border rounded text-base hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed">Sau →</button>
                     </div>
                 </div>
             </div>
@@ -635,11 +635,11 @@ export default function PhieuThuPage() {
 
                                 {/* 🔥 CUSTOM DROPDOWN CHỌN NGÀY XUẤT EXCEL 🔥 */}
                                 <div>
-                                    <p className="text-sm font-semibold text-gray-500 mb-1">Chọn ngày xuất</p>
+                                    <p className="text-base font-semibold text-gray-500 mb-1">Chọn ngày xuất</p>
                                     <div className="relative" ref={exportDateRef}>
                                         <button
                                             type="button"
-                                            className="w-full flex items-center justify-between border-b border-gray-300 bg-transparent py-2 hover:bg-gray-50 transition text-sm text-left shadow-none"
+                                            className="w-full flex items-center justify-between border-b border-gray-300 bg-transparent py-2 hover:bg-gray-50 transition text-base text-left shadow-none"
                                             onClick={() => setOpenExportDateDropdown(!openExportDateDropdown)}
                                         >
                                             <span className={exportDateFilter?.preset ? "text-blue-700 font-medium truncate" : "text-gray-900"}>
@@ -664,7 +664,7 @@ export default function PhieuThuPage() {
                                                                     setExportDateAnchorEl(exportDateRef.current);
                                                                 }
                                                             }}
-                                                            className={`w-full text-left px-4 py-2.5 text-sm flex items-center gap-2 border-b border-gray-100 transition ${exportDateFilter?.preset === p.key ? "bg-blue-50 text-blue-700 font-semibold" : "text-gray-700 hover:bg-gray-50"}`}
+                                                            className={`w-full text-left px-4 py-2.5 text-base flex items-center gap-2 border-b border-gray-100 transition ${exportDateFilter?.preset === p.key ? "bg-blue-50 text-blue-700 font-semibold" : "text-gray-700 hover:bg-gray-50"}`}
                                                         >
                                                             {p.isCalendar && <CalendarTodayIcon sx={{ fontSize: 14 }} />}
                                                             {p.label}
@@ -675,7 +675,7 @@ export default function PhieuThuPage() {
                                                                 <button
                                                                     type="button"
                                                                     onClick={() => setExportDateAnchorEl(exportDateRef.current)}
-                                                                    className="w-full h-9 px-2 flex items-center justify-center gap-2 text-xs font-semibold text-blue-700 bg-white border border-blue-200 rounded-lg hover:bg-blue-50 transition-colors shadow-sm"
+                                                                    className="w-full h-9 px-2 flex items-center justify-center gap-2 text-base font-semibold text-blue-700 bg-white border border-blue-200 rounded-lg hover:bg-blue-50 transition-colors shadow-sm"
                                                                 >
                                                                     {exportDateFilter.customFrom && exportDateFilter.customTo
                                                                         ? `${dayjs(exportDateFilter.customFrom).format('DD/MM/YYYY')} - ${dayjs(exportDateFilter.customTo).format('DD/MM/YYYY')}`
@@ -711,7 +711,7 @@ export default function PhieuThuPage() {
 
                                 {/* CUSTOM DROPDOWN NHA KHOA */}
                                 <div>
-                                    <p className="text-sm font-semibold text-gray-500 mb-1">Nha khoa</p>
+                                    <p className="text-base font-semibold text-gray-500 mb-1">Nha khoa</p>
                                     <div ref={exportNhaKhoaRef} className="relative">
                                         {openExportNhaKhoaDropdown ? (
                                             <div className="border border-blue-400 rounded bg-white px-3 py-2 shadow-sm">
@@ -721,13 +721,13 @@ export default function PhieuThuPage() {
                                                     onChange={(e) => setExportNhaKhoaSearch(e.target.value)}
                                                     placeholder="Tìm nha khoa..."
                                                     autoFocus
-                                                    className="w-full border-b border-gray-300 px-2 py-1 text-sm focus:outline-none focus:border-blue-500"
+                                                    className="w-full border-b border-gray-300 px-2 py-1 text-base focus:outline-none focus:border-blue-500"
                                                 />
                                             </div>
                                         ) : (
                                             <button
                                                 type="button"
-                                                className="w-full flex items-center justify-between border-b border-gray-300 bg-transparent py-2 hover:bg-gray-50 transition text-sm text-left shadow-none"
+                                                className="w-full flex items-center justify-between border-b border-gray-300 bg-transparent py-2 hover:bg-gray-50 transition text-base text-left shadow-none"
                                                 onClick={() => { setExportNhaKhoaSearch(""); setOpenExportNhaKhoaDropdown(true); }}
                                             >
                                                 <span className={exportNhaKhoaObj ? "text-blue-700 font-medium truncate" : "text-gray-900"}>
@@ -745,7 +745,7 @@ export default function PhieuThuPage() {
                                                     <button
                                                         type="button"
                                                         onClick={() => { setExportNhaKhoaObj(null); setOpenExportNhaKhoaDropdown(false); }}
-                                                        className="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-red-50 border-b border-gray-100 transition"
+                                                        className="w-full text-left px-4 py-2 text-base text-red-500 hover:bg-red-50 border-b border-gray-100 transition"
                                                     >
                                                         Bỏ chọn (Tất cả nha khoa)
                                                     </button>
@@ -755,13 +755,13 @@ export default function PhieuThuPage() {
                                                         type="button"
                                                         key={item._id}
                                                         onClick={() => { setExportNhaKhoaObj(item); setOpenExportNhaKhoaDropdown(false); }}
-                                                        className={`w-full text-left px-4 py-2 text-sm border-b border-gray-50 transition ${exportNhaKhoaObj?._id === item._id ? "bg-blue-50 text-blue-700 font-semibold" : "text-gray-700 hover:bg-gray-50"}`}
+                                                        className={`w-full text-left px-4 py-2 text-base border-b border-gray-50 transition ${exportNhaKhoaObj?._id === item._id ? "bg-blue-50 text-blue-700 font-semibold" : "text-gray-700 hover:bg-gray-50"}`}
                                                     >
                                                         {item.name}
                                                     </button>
                                                 ))}
                                                 {filteredExportNhaKhoaOpts.length === 0 && (
-                                                    <p className="text-center text-xs text-gray-400 py-4">Không tìm thấy</p>
+                                                    <p className="text-center text-base text-gray-400 py-4">Không tìm thấy</p>
                                                 )}
                                             </div>
                                         )}

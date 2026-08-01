@@ -40,7 +40,7 @@ export default function HeaderUser() {
   return (
     <div className="flex items-center gap-2">
       {/* NAME */}
-      <Typography className="text-sm font-medium hidden md:block">
+      <Typography className="text-base font-medium hidden md:block">
         {user?.HoTenNV}
       </Typography>
 
@@ -55,7 +55,7 @@ export default function HeaderUser() {
       <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
         <div className="px-4 py-2">
           <Typography className="font-semibold">{user?.HoTenNV}</Typography>
-          <Typography className="text-sm text-gray-500">
+          <Typography className="text-base text-gray-500">
             {user?.MSNV}
           </Typography>
         </div>

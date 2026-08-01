@@ -183,7 +183,7 @@ export default function SanPhamTable() {
             >
               {/* Tên + actions */}
               <div className="flex items-start justify-between gap-2">
-                <span className="font-semibold text-gray-800 text-sm leading-snug flex-1">
+                <span className="font-semibold text-gray-800 text-base leading-snug flex-1">
                   {item.tenSanPham}
                 </span>
                 <div className="flex items-center gap-0.5 shrink-0">
@@ -204,7 +204,7 @@ export default function SanPhamTable() {
               </div>
 
               {/* Details grid */}
-              <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs mt-1">
+              <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-base mt-1">
                 <div className="flex flex-col gap-0.5">
                   <span
                     className="text-gray-400 uppercase tracking-wide font-semibold"
@@ -288,7 +288,7 @@ export default function SanPhamTable() {
                   {item.tenSanPham}
                 </TableCell>
                 <TableCell>
-                  <span className="bg-blue-50 text-blue-700 px-2 py-1 rounded text-xs font-medium border border-blue-100">
+                  <span className="bg-blue-50 text-blue-700 px-2 py-1 rounded text-base font-medium border border-blue-100">
                     {item.loaiTinh}
                   </span>
                 </TableCell>

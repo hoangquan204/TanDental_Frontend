@@ -206,11 +206,11 @@ const NhapXuatPrintPreview = () => {
                     <button onClick={() => navigate(-1)} className="text-white hover:text-gray-200 transition">
                         <ArrowBackIcon sx={{ fontSize: 20 }} />
                     </button>
-                    <span className="text-white font-medium text-sm">IN DANH SÁCH NHẬP XUẤT</span>
+                    <span className="text-white font-medium text-base">IN DANH SÁCH NHẬP XUẤT</span>
                 </div>
                 <button
                     onClick={() => window.print()}
-                    className="flex items-center gap-1 text-white hover:text-gray-200 transition text-sm"
+                    className="flex items-center gap-1 text-white hover:text-gray-200 transition text-base"
                 >
                     <LocalPrintshopIcon sx={{ fontSize: 20 }} />
                     In

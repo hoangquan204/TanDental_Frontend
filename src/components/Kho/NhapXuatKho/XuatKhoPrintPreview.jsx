@@ -55,11 +55,11 @@ const XuatKhoPrintPreview = () => {
                     >
                         <ArrowBackIcon sx={{ fontSize: 20 }} />
                     </button>
-                    <span className="text-white font-medium text-sm">PHIẾU XUẤT KHO</span>
+                    <span className="text-white font-medium text-base">PHIẾU XUẤT KHO</span>
                 </div>
                 <button
                     onClick={() => window.print()}
-                    className="flex items-center gap-1 text-white hover:text-gray-200 transition text-sm"
+                    className="flex items-center gap-1 text-white hover:text-gray-200 transition text-base"
                 >
                     <LocalPrintshopIcon sx={{ fontSize: 20 }} />
                     In phiếu

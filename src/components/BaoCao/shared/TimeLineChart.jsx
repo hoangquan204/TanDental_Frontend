@@ -91,11 +91,11 @@ const TimeLineChart = ({ data, loading }) => {
             <div ref={wrapperRef} className="w-full overflow-x-auto overflow-y-hidden pb-2 custom-scrollbar">
 
                 {loading ? (
-                    <div className="h-[260px] w-full flex items-center justify-center animate-pulse text-blue-400 font-bold italic text-sm">
+                    <div className="h-[260px] w-full flex items-center justify-center animate-pulse text-blue-400 font-bold italic text-base">
                         Đang thiết lập biểu đồ...
                     </div>
                 ) : data.length === 0 ? (
-                    <div className="h-[260px] w-full flex items-center justify-center text-gray-400 text-sm italic">
+                    <div className="h-[260px] w-full flex items-center justify-center text-gray-400 text-base italic">
                         Không có dữ liệu doanh số
                     </div>
                 ) : containerWidth > 0 ? (

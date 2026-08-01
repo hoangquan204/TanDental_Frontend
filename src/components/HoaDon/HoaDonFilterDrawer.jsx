@@ -79,7 +79,7 @@ const HoaDonFilterDrawer = ({
                                 }
                             }
                         }}
-                        className={`w-full text-left px-4 py-2.5 text-sm flex items-center gap-2 border-b border-gray-100 transition ${draftNgayXuat.preset === p.key ? "bg-blue-50 text-blue-700 font-semibold" : "text-gray-700 hover:bg-gray-50"}`}
+                        className={`w-full text-left px-4 py-2.5 text-base flex items-center gap-2 border-b border-gray-100 transition ${draftNgayXuat.preset === p.key ? "bg-blue-50 text-blue-700 font-semibold" : "text-gray-700 hover:bg-gray-50"}`}
                     >
                         {p.isCalendar && <CalendarTodayIcon sx={{ fontSize: 14 }} />}
                         {p.label}
@@ -89,7 +89,7 @@ const HoaDonFilterDrawer = ({
                         <div className="px-4 py-3 bg-blue-50/30 border-b border-gray-100" onClick={(e) => e.stopPropagation()}>
                             <button
                                 onClick={(e) => setAnchorElCustomDate(e.currentTarget)}
-                                className="w-full h-9 px-2 flex items-center justify-center gap-2 text-xs font-semibold text-blue-700 bg-white border border-blue-200 rounded-lg hover:bg-blue-50 transition-colors shadow-sm"
+                                className="w-full h-9 px-2 flex items-center justify-center gap-2 text-base font-semibold text-blue-700 bg-white border border-blue-200 rounded-lg hover:bg-blue-50 transition-colors shadow-sm"
                             >
                                 {draftNgayXuat.customFrom && draftNgayXuat.customTo
                                     ? `${dayjs(draftNgayXuat.customFrom).format('DD/MM/YYYY')} - ${dayjs(draftNgayXuat.customTo).format('DD/MM/YYYY')}`
@@ -138,7 +138,7 @@ const HoaDonFilterDrawer = ({
             {/* Ngày xuất */}
             <div className="relative border-b border-gray-100" onClick={(e) => e.stopPropagation()}>
                 <button
-                    className="w-full flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition text-sm"
+                    className="w-full flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition text-base"
                     onClick={() => { setOpenPickerModal(null); setOpenDateModal(openDateModal === "ngayXuat" ? null : "ngayXuat"); }}
                 >
                     <span className={draftNgayXuat.preset ? "text-blue-600 font-medium" : "text-gray-600"}>
@@ -159,12 +159,12 @@ const HoaDonFilterDrawer = ({
                             onChange={(e) => setNhaKhoaSearch(e.target.value)}
                             placeholder="Tìm nha khoa..."
                             autoFocus
-                            className="w-full border-b border-blue-400 px-3 py-1.5 text-sm focus:outline-none"
+                            className="w-full border-b border-blue-400 px-3 py-1.5 text-base focus:outline-none"
                         />
                     </div>
                 ) : (
                     <button
-                        className="w-full flex items-start px-4 py-3 hover:bg-gray-50 transition text-sm"
+                        className="w-full flex items-start px-4 py-3 hover:bg-gray-50 transition text-base"
                         onClick={() => { setOpenDateModal(null); setNhaKhoaSearch(""); setOpenPickerModal("nhaKhoa"); }}
                     >
                         <span className={draftNhaKhoa ? "text-blue-600 font-medium truncate" : "text-gray-400"}>
@@ -176,17 +176,17 @@ const HoaDonFilterDrawer = ({
                     <div className="absolute left-2 top-full z-[100] w-[90%] bg-white rounded-xl shadow-xl border border-gray-200 max-h-56 overflow-y-auto">
                         {draftNhaKhoa && (
                             <button onClick={() => { setDraftNhaKhoa(null); setOpenPickerModal(null); }}
-                                className="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-red-50 border-b border-gray-100 transition">
+                                className="w-full text-left px-4 py-2 text-base text-red-500 hover:bg-red-50 border-b border-gray-100 transition">
                                 Bỏ chọn
                             </button>
                         )}
                         {filteredNhaKhoaOpts.map((item) => (
                             <button key={item._id} onClick={() => { setDraftNhaKhoa(item); setOpenPickerModal(null); }}
-                                className={`w-full text-left px-4 py-2 text-sm border-b border-gray-50 transition ${draftNhaKhoa?._id === item._id ? "bg-blue-50 text-blue-700 font-semibold" : "text-gray-700 hover:bg-gray-50"}`}>
+                                className={`w-full text-left px-4 py-2 text-base border-b border-gray-50 transition ${draftNhaKhoa?._id === item._id ? "bg-blue-50 text-blue-700 font-semibold" : "text-gray-700 hover:bg-gray-50"}`}>
                                 {item.name}
                             </button>
                         ))}
-                        {filteredNhaKhoaOpts.length === 0 && <p className="text-center text-xs text-gray-400 py-4">Không tìm thấy</p>}
+                        {filteredNhaKhoaOpts.length === 0 && <p className="text-center text-base text-gray-400 py-4">Không tìm thấy</p>}
                     </div>
                 )}
             </div>
@@ -194,7 +194,7 @@ const HoaDonFilterDrawer = ({
             {/* Trạng thái */}
             <div className="relative border-b border-gray-100" onClick={(e) => e.stopPropagation()}>
                 <button
-                    className="w-full flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition text-sm"
+                    className="w-full flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition text-base"
                     onClick={() => { setOpenDateModal(null); setOpenPickerModal(openPickerModal === "trangThai" ? null : "trangThai"); }}
                 >
                     <span className={draftTrangThai.length > 0 ? "text-blue-600 font-medium truncate" : "text-gray-600"}>
@@ -210,7 +210,7 @@ const HoaDonFilterDrawer = ({
                             <button
                                 key={status}
                                 onClick={() => toggleTrangThai(status)}
-                                className={`flex items-center gap-2 w-full text-left px-4 py-2.5 text-sm border-b border-gray-100 transition ${draftTrangThai.includes(status) ? "bg-blue-50 text-blue-700 font-semibold" : "text-gray-700 hover:bg-gray-50"}`}
+                                className={`flex items-center gap-2 w-full text-left px-4 py-2.5 text-base border-b border-gray-100 transition ${draftTrangThai.includes(status) ? "bg-blue-50 text-blue-700 font-semibold" : "text-gray-700 hover:bg-gray-50"}`}
                             >
                                 <span className={`w-4 h-4 rounded border flex items-center justify-center shrink-0 ${draftTrangThai.includes(status) ? "bg-blue-500 border-blue-500" : "border-gray-300"}`}>
                                     {draftTrangThai.includes(status) && <span className="text-white text-[10px] leading-none">✓</span>}
@@ -233,7 +233,7 @@ const HoaDonFilterDrawer = ({
                 </button>
                 <button
                     onClick={() => { onApply(draftNgayXuat, draftNhaKhoa, draftTrangThai); onClose(); }}
-                    className="flex items-center gap-1 px-4 py-1.5 bg-green-500 hover:bg-green-600 text-white text-sm font-semibold rounded-lg transition shadow-sm"
+                    className="flex items-center gap-1 px-4 py-1.5 bg-green-500 hover:bg-green-600 text-white text-base font-semibold rounded-lg transition shadow-sm"
                 >
                     ✓ Lưu
                 </button>

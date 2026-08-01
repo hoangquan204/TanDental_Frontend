@@ -419,8 +419,8 @@ export default function ChonViTriRangModal({
 
                     {/* Product + summary */}
                     <div className="px-4 pt-3 pb-2 shrink-0 border-b border-gray-100">
-                        <div className="font-bold text-gray-800 text-sm uppercase tracking-wide mb-0.5">{tenSanPham}</div>
-                        <div className="text-xs text-gray-600 space-y-0.5 min-h-[14px]">
+                        <div className="font-bold text-gray-800 text-base uppercase tracking-wide mb-0.5">{tenSanPham}</div>
+                        <div className="text-base text-gray-600 space-y-0.5 min-h-[14px]">
                             {roiText && <div><b>Rời:</b> {roiText}</div>}
                             {cauText && <div><b>Cầu:</b> {cauText}</div>}
                             {!roiText && !cauText && <div className="text-gray-400 italic">Chưa chọn răng nào</div>}
@@ -460,7 +460,7 @@ export default function ChonViTriRangModal({
                                 if (onConfirm) onConfirm(selectedObjects);
                                 onClose?.();
                             }}
-                            className="bg-[#00a8ff] hover:bg-blue-500 text-white px-8 py-2 rounded-full text-sm font-bold shadow-md transition"
+                            className="bg-[#00a8ff] hover:bg-blue-500 text-white px-8 py-2 rounded-full text-base font-bold shadow-md transition"
                         >
                             Đồng ý
                         </button>
@@ -487,10 +487,10 @@ export default function ChonViTriRangModal({
 
                 <div className="px-8 py-5">
                     <div className="flex gap-10 items-start mb-5">
-                        <div className="font-bold text-gray-800 uppercase text-sm shrink-0" style={{ minWidth: 130 }}>
+                        <div className="font-bold text-gray-800 uppercase text-base shrink-0" style={{ minWidth: 130 }}>
                             {tenSanPham}
                         </div>
-                        <div className="text-sm text-gray-700 space-y-0.5">
+                        <div className="text-base text-gray-700 space-y-0.5">
                             {roiText && <div><b>Rời:</b>  {roiText}</div>}
                             {cauText && <div><b>Cầu:</b>  {cauText}</div>}
                             {!roiText && !cauText && <div className="text-gray-400 italic">Chưa chọn răng nào</div>}
@@ -520,7 +520,7 @@ export default function ChonViTriRangModal({
                             if (onConfirm) onConfirm(selectedObjects);
                             onClose?.();
                         }}
-                        className="bg-[#00a8ff] hover:bg-blue-500 text-white px-8 py-2 rounded-full text-sm font-bold shadow-md transition"
+                        className="bg-[#00a8ff] hover:bg-blue-500 text-white px-8 py-2 rounded-full text-base font-bold shadow-md transition"
                     >
                         Đồng ý
                     </button>

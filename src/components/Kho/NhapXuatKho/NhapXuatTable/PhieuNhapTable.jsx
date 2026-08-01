@@ -24,7 +24,7 @@ export default function PhieuNhapTable({ data, selectedId, onRowClick, hasMore, 
             <div className="max-h-[600px] overflow-y-auto table-scroll">
 
                 {/* ── TABLE — desktop (sm+) ── */}
-                <table className="hidden sm:table w-full border-collapse text-sm text-left bg-white">
+                <table className="hidden sm:table w-full border-collapse text-base text-left bg-white">
                     <thead className="sticky top-0 z-10">
                         <tr className="shadow">
                             <th className={`${rowBase} ${imBg} w-36 truncate`}>Ngày nhập</th>
@@ -70,11 +70,11 @@ export default function PhieuNhapTable({ data, selectedId, onRowClick, hasMore, 
                                     </td>
                                     <td className={`${rowBase} ${borderBottom}`}>
                                         <div className="flex flex-col gap-1">
-                                            <span className={`text-xs text-white font-medium px-2 py-0.5 rounded w-fit ${row.trangThaiNhap === "Đã nhận" ? "bg-green-500" : "bg-yellow-500"
+                                            <span className={`text-base text-white font-medium px-2 py-0.5 rounded w-fit ${row.trangThaiNhap === "Đã nhận" ? "bg-green-500" : "bg-yellow-500"
                                                 }`}>
                                                 {row.trangThaiNhap}
                                             </span>
-                                            <span className={`text-xs text-white font-medium px-2 py-0.5 rounded w-fit ${row.trangThaiThanhToan === "Đã thanh toán" ? "bg-green-500" : "bg-orange-400"
+                                            <span className={`text-base text-white font-medium px-2 py-0.5 rounded w-fit ${row.trangThaiThanhToan === "Đã thanh toán" ? "bg-green-500" : "bg-orange-400"
                                                 }`}>
                                                 {row.trangThaiThanhToan}
                                             </span>
@@ -99,7 +99,7 @@ export default function PhieuNhapTable({ data, selectedId, onRowClick, hasMore, 
                 {/* ── CARD LIST — mobile (< sm) ── */}
                 <div className="sm:hidden flex flex-col gap-2 p-2 bg-gray-50">
                     {data.length === 0 ? (
-                        <p className="text-sm text-gray-400 text-center py-6">Không có dữ liệu</p>
+                        <p className="text-base text-gray-400 text-center py-6">Không có dữ liệu</p>
                     ) : data.map((row) => {
                         const nccTen = row.nhaCungCap?.ten || "—";
                         const isSelected = row._id === selectedId;
@@ -111,20 +111,20 @@ export default function PhieuNhapTable({ data, selectedId, onRowClick, hasMore, 
                             >
                                 {/* Header row: số phiếu + trạng thái */}
                                 <div className="flex items-center justify-between mb-2">
-                                    <span className="font-semibold text-sm text-gray-800">{row.soPhieu}</span>
+                                    <span className="font-semibold text-base text-gray-800">{row.soPhieu}</span>
                                     <div className="flex flex-col gap-1 items-end">
-                                        <span className={`text-xs text-white font-medium px-2 py-0.5 rounded ${row.trangThaiNhap === "Đã nhận" ? "bg-green-500" : "bg-yellow-500"
+                                        <span className={`text-base text-white font-medium px-2 py-0.5 rounded ${row.trangThaiNhap === "Đã nhận" ? "bg-green-500" : "bg-yellow-500"
                                             }`}>
                                             {row.trangThaiNhap}
                                         </span>
-                                        <span className={`text-xs text-white font-medium px-2 py-0.5 rounded ${row.trangThaiThanhToan === "Đã thanh toán" ? "bg-green-500" : "bg-orange-400"
+                                        <span className={`text-base text-white font-medium px-2 py-0.5 rounded ${row.trangThaiThanhToan === "Đã thanh toán" ? "bg-green-500" : "bg-orange-400"
                                             }`}>
                                             {row.trangThaiThanhToan}
                                         </span>
                                     </div>
                                 </div>
                                 {/* Details */}
-                                <div className="grid grid-cols-2 gap-x-3 gap-y-1 text-xs text-gray-600">
+                                <div className="grid grid-cols-2 gap-x-3 gap-y-1 text-base text-gray-600">
                                     <span className="text-gray-400">Ngày nhập</span>
                                     <span>{formatNgay(row.ngayTao)}</span>
 
@@ -152,7 +152,7 @@ export default function PhieuNhapTable({ data, selectedId, onRowClick, hasMore, 
 
                     {/* Tổng mobile */}
                     {data.length > 0 && (
-                        <div className="sticky bottom-0 flex justify-between items-center rounded-lg border border-sky-200 bg-sky-50 px-3 py-2 text-sm font-medium text-gray-700">
+                        <div className="sticky bottom-0 flex justify-between items-center rounded-lg border border-sky-200 bg-sky-50 px-3 py-2 text-base font-medium text-gray-700">
                             <span>Tổng</span>
                             <span>{tongTien.toLocaleString("vi-VN")} ₫</span>
                         </div>
@@ -163,7 +163,7 @@ export default function PhieuNhapTable({ data, selectedId, onRowClick, hasMore, 
             {/* Sentinel */}
             <div ref={sentinelRef} className="h-1" />
             {loadingMore && (
-                <div className="text-center py-2 text-xs text-gray-400">Đang tải thêm...</div>
+                <div className="text-center py-2 text-base text-gray-400">Đang tải thêm...</div>
             )}
         </div>
     );

@@ -175,7 +175,7 @@ export default function NhaCungCapTable() {
           <button
             onClick={() => exportDanhSachNhaCungCapToExcel(filteredData)}
             title="Xuất Excel danh sách nhà cung cấp"
-            className="px-3 py-1.5 rounded-lg bg-[#29b6f6] hover:bg-[#0091ea] text-white text-sm font-medium flex items-center gap-1 transition"
+            className="px-3 py-1.5 rounded-lg bg-[#29b6f6] hover:bg-[#0091ea] text-white text-base font-medium flex items-center gap-1 transition"
           >
             <DownloadIcon sx={{ fontSize: 17 }} />
             <span className="hidden sm:inline">Xuất Excel</span>
@@ -183,7 +183,7 @@ export default function NhaCungCapTable() {
 
           <button
             onClick={openAdd}
-            className="px-3 py-1.5 rounded-lg bg-[#388e3c] hover:bg-[#2e7d32] text-white text-sm font-medium flex items-center gap-1 transition"
+            className="px-3 py-1.5 rounded-lg bg-[#388e3c] hover:bg-[#2e7d32] text-white text-base font-medium flex items-center gap-1 transition"
           >
             <AddIcon sx={{ fontSize: 17 }} />
             <span className="hidden xs:inline">Thêm</span>

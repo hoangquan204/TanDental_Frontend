@@ -77,13 +77,13 @@ const PhieuBaoHanhList = ({ phieuBaoHanhList, onDelete, donHangId }) => {
             }
           >
             <div className="flex items-center gap-3 flex-1">
-              <div className="text-sm font-medium">
+              <div className="text-base font-medium">
                 {pbh.maBaoHanh} - {pbh.sanPham?.tenSanPham}
               </div>
-              <div className="text-xs text-gray-500 bg-yellow-50 px-2 py-1 rounded">
+              <div className="text-base text-gray-500 bg-yellow-50 px-2 py-1 rounded">
                 QR: <span className="font-semibold text-yellow-700">{pbh.maQR}</span>
               </div>
-              <div className="text-xs text-gray-500">
+              <div className="text-base text-gray-500">
                 Bảo hành: {new Date(pbh.baoHanhTu).toLocaleDateString("vi-VN")} đến{" "}
                 {new Date(pbh.baoHanhDen).toLocaleDateString("vi-VN")}
               </div>
@@ -93,7 +93,7 @@ const PhieuBaoHanhList = ({ phieuBaoHanhList, onDelete, donHangId }) => {
                 e.stopPropagation();
                 handleDelete(pbh._id);
               }}
-              className="text-red-500 hover:text-red-700 text-sm"
+              className="text-red-500 hover:text-red-700 text-base"
             >
               Xóa
             </button>
@@ -101,7 +101,7 @@ const PhieuBaoHanhList = ({ phieuBaoHanhList, onDelete, donHangId }) => {
 
           {expandedId === pbh._id && (
             <div className="border-t bg-gray-50 p-3 space-y-2">
-              <div className="grid grid-cols-2 gap-3 text-sm">
+              <div className="grid grid-cols-2 gap-3 text-base">
                 <div>
                   <span className="text-gray-600">Mẫu thẻ:</span>{" "}
                   <span className="font-medium">{pbh.mauTheTi}</span>
@@ -151,7 +151,7 @@ const PhieuBaoHanhList = ({ phieuBaoHanhList, onDelete, donHangId }) => {
                 </TextField>
                 <button
                   onClick={() => setPrintWarranty(pbh)}
-                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg"
+                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-base font-medium rounded-lg"
                 >
                   🖨 In thẻ bảo hành
                 </button>

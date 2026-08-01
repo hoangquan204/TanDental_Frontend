@@ -608,11 +608,11 @@ const HoaDonPage = () => {
 
             {/* CUSTOM DROPDOWN CHỌN NGÀY XUẤT EXCEL */}
             <div>
-              <p className="text-sm font-semibold mb-2 text-gray-800">Chọn ngày xuất</p>
+              <p className="text-base font-semibold mb-2 text-gray-800">Chọn ngày xuất</p>
               <div className="relative" ref={exportDateRef}>
                 <button
                   type="button"
-                  className="w-full flex items-center justify-between px-3 py-2 border border-gray-300 rounded bg-white hover:bg-gray-50 transition text-sm text-left shadow-sm"
+                  className="w-full flex items-center justify-between px-3 py-2 border border-gray-300 rounded bg-white hover:bg-gray-50 transition text-base text-left shadow-sm"
                   onClick={() => setOpenExportDateDropdown(!openExportDateDropdown)}
                 >
                   <span className={exportDateFilter?.preset ? "text-blue-700 font-medium truncate" : "text-gray-500"}>
@@ -637,7 +637,7 @@ const HoaDonPage = () => {
                               setExportDateAnchorEl(exportDateRef.current);
                             }
                           }}
-                          className={`w-full text-left px-4 py-2.5 text-sm flex items-center gap-2 border-b border-gray-100 transition ${exportDateFilter?.preset === p.key ? "bg-blue-50 text-blue-700 font-semibold" : "text-gray-700 hover:bg-gray-50"}`}
+                          className={`w-full text-left px-4 py-2.5 text-base flex items-center gap-2 border-b border-gray-100 transition ${exportDateFilter?.preset === p.key ? "bg-blue-50 text-blue-700 font-semibold" : "text-gray-700 hover:bg-gray-50"}`}
                         >
                           {p.isCalendar && <CalendarTodayIcon sx={{ fontSize: 14 }} />}
                           {p.label}
@@ -648,7 +648,7 @@ const HoaDonPage = () => {
                             <button
                               type="button"
                               onClick={() => setExportDateAnchorEl(exportDateRef.current)}
-                              className="w-full h-9 px-2 flex items-center justify-center gap-2 text-xs font-semibold text-blue-700 bg-white border border-blue-200 rounded-lg hover:bg-blue-50 transition-colors shadow-sm"
+                              className="w-full h-9 px-2 flex items-center justify-center gap-2 text-base font-semibold text-blue-700 bg-white border border-blue-200 rounded-lg hover:bg-blue-50 transition-colors shadow-sm"
                             >
                               {exportDateFilter.customFrom && exportDateFilter.customTo
                                 ? `${dayjs(exportDateFilter.customFrom).format('DD/MM/YYYY')} - ${dayjs(exportDateFilter.customTo).format('DD/MM/YYYY')}`
@@ -684,7 +684,7 @@ const HoaDonPage = () => {
 
             {/* CUSTOM DROPDOWN NHA KHOA */}
             <div>
-              <p className="text-sm font-semibold mb-2 text-gray-800">Nha khoa</p>
+              <p className="text-base font-semibold mb-2 text-gray-800">Nha khoa</p>
               <div ref={exportNhaKhoaRef} className="relative">
                 {openExportNhaKhoaDropdown ? (
                   <div className="border border-blue-400 rounded bg-white px-3 py-2 shadow-sm">
@@ -694,13 +694,13 @@ const HoaDonPage = () => {
                       onChange={(e) => setExportNhaKhoaSearch(e.target.value)}
                       placeholder="Tìm nha khoa..."
                       autoFocus
-                      className="w-full border-b border-gray-300 px-2 py-1 text-sm focus:outline-none focus:border-blue-500"
+                      className="w-full border-b border-gray-300 px-2 py-1 text-base focus:outline-none focus:border-blue-500"
                     />
                   </div>
                 ) : (
                   <button
                     type="button"
-                    className="w-full flex items-center justify-between px-3 py-2 border border-gray-300 rounded bg-white hover:bg-gray-50 transition text-sm text-left shadow-sm"
+                    className="w-full flex items-center justify-between px-3 py-2 border border-gray-300 rounded bg-white hover:bg-gray-50 transition text-base text-left shadow-sm"
                     onClick={() => { setExportNhaKhoaSearch(""); setOpenExportNhaKhoaDropdown(true); }}
                   >
                     <span className={exportNhaKhoaObj ? "text-blue-700 font-medium truncate" : "text-gray-500"}>
@@ -718,7 +718,7 @@ const HoaDonPage = () => {
                       <button
                         type="button"
                         onClick={() => { setExportNhaKhoaObj(null); setOpenExportNhaKhoaDropdown(false); }}
-                        className="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-red-50 border-b border-gray-100 transition"
+                        className="w-full text-left px-4 py-2 text-base text-red-500 hover:bg-red-50 border-b border-gray-100 transition"
                       >
                         Bỏ chọn (Tất cả nha khoa)
                       </button>
@@ -728,13 +728,13 @@ const HoaDonPage = () => {
                         type="button"
                         key={item._id}
                         onClick={() => { setExportNhaKhoaObj(item); setOpenExportNhaKhoaDropdown(false); }}
-                        className={`w-full text-left px-4 py-2 text-sm border-b border-gray-50 transition ${exportNhaKhoaObj?._id === item._id ? "bg-blue-50 text-blue-700 font-semibold" : "text-gray-700 hover:bg-gray-50"}`}
+                        className={`w-full text-left px-4 py-2 text-base border-b border-gray-50 transition ${exportNhaKhoaObj?._id === item._id ? "bg-blue-50 text-blue-700 font-semibold" : "text-gray-700 hover:bg-gray-50"}`}
                       >
                         {item.name}
                       </button>
                     ))}
                     {filteredExportNhaKhoaOpts.length === 0 && (
-                      <p className="text-center text-xs text-gray-400 py-4">Không tìm thấy</p>
+                      <p className="text-center text-base text-gray-400 py-4">Không tìm thấy</p>
                     )}
                   </div>
                 )}
@@ -742,7 +742,7 @@ const HoaDonPage = () => {
             </div>
 
             <div>
-              <p className="text-sm font-semibold mb-2 text-gray-800">Trạng thái (chọn nhiều)</p>
+              <p className="text-base font-semibold mb-2 text-gray-800">Trạng thái (chọn nhiều)</p>
               <FormControl fullWidth size="small">
                 <Select
                   multiple displayEmpty value={exportTrangThai} onChange={(e) => setExportTrangThai(e.target.value)}
@@ -772,11 +772,11 @@ const HoaDonPage = () => {
                 setExportNhaKhoaObj(null);
                 setExportTrangThai([]);
               }}
-              className="px-4 py-2 text-sm font-medium text-gray-600 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors"
+              className="px-4 py-2 text-base font-medium text-gray-600 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors"
             >
               Hủy
             </button>
-            <button onClick={handleExport} disabled={exporting} className="px-4 py-2 text-sm font-medium text-white bg-[#1b7a34] rounded-md hover:bg-green-700 transition-colors flex items-center gap-1 disabled:opacity-50">
+            <button onClick={handleExport} disabled={exporting} className="px-4 py-2 text-base font-medium text-white bg-[#1b7a34] rounded-md hover:bg-green-700 transition-colors flex items-center gap-1 disabled:opacity-50">
               <DownloadIcon fontSize="small" />
               {exporting ? "Đang xuất..." : "Tải xuống"}
             </button>

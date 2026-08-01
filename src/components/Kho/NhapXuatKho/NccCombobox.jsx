@@ -69,7 +69,7 @@ export default function NccCombobox({ value, onChange, options = [], disabled, o
 
     if (disabled) {
         return (
-            <div className="border rounded px-2 py-1.5 text-sm bg-gray-100 text-gray-400 cursor-not-allowed">
+            <div className="border rounded px-2 py-1.5 text-base bg-gray-100 text-gray-400 cursor-not-allowed">
                 {selectedLabel || "—"}
             </div>
         );
@@ -86,12 +86,12 @@ export default function NccCombobox({ value, onChange, options = [], disabled, o
                     placeholder="Tìm NCC..."
                     onChange={handleInputChange}
                     onFocus={() => setOpen(true)}
-                    className="flex-1 px-2 py-1.5 text-sm bg-transparent outline-none min-w-0"
+                    className="flex-1 px-2 py-1.5 text-base bg-transparent outline-none min-w-0"
                 />
                 {/* Nút xóa lựa chọn */}
                 {value && (
                     <button type="button" onClick={handleClear}
-                        className="px-1 text-gray-400 hover:text-gray-600 text-xs shrink-0"
+                        className="px-1 text-gray-400 hover:text-gray-600 text-base shrink-0"
                         title="Bỏ chọn">
                         ✕
                     </button>
@@ -112,14 +112,14 @@ export default function NccCombobox({ value, onChange, options = [], disabled, o
                     {/* Danh sách NCC */}
                     <ul className="max-h-44 overflow-y-auto divide-y divide-gray-50">
                         {filtered.length === 0 ? (
-                            <li className="px-3 py-2 text-sm text-gray-400 italic">
+                            <li className="px-3 py-2 text-base text-gray-400 italic">
                                 Không tìm thấy "{query}"
                             </li>
                         ) : (
                             filtered.map((opt) => (
                                 <li key={opt._id}
                                     onMouseDown={() => handleSelect(opt)}
-                                    className={`px-3 py-2 text-sm cursor-pointer hover:bg-green-50 transition-colors ${opt._id === value ? "bg-green-50 font-medium text-green-700" : "text-gray-700"}`}>
+                                    className={`px-3 py-2 text-base cursor-pointer hover:bg-green-50 transition-colors ${opt._id === value ? "bg-green-50 font-medium text-green-700" : "text-gray-700"}`}>
                                     {opt.ten}
                                 </li>
                             ))
@@ -129,7 +129,7 @@ export default function NccCombobox({ value, onChange, options = [], disabled, o
                     {/* Nút thêm mới — luôn hiển thị */}
                     <div className="border-t bg-gray-50">
                         <button type="button" onMouseDown={handleAddNew}
-                            className="w-full flex items-center gap-2 px-3 py-2 text-sm text-blue-600 hover:bg-blue-50 transition-colors font-medium">
+                            className="w-full flex items-center gap-2 px-3 py-2 text-base text-blue-600 hover:bg-blue-50 transition-colors font-medium">
                             <span className="text-base leading-none">＋</span>
                             Thêm
                         </button>

@@ -29,7 +29,7 @@ function formatNgay(dateStr) {
 
 function InfoRow({ label, value }) {
     return (
-        <div className="flex items-start gap-2 text-sm">
+        <div className="flex items-start gap-2 text-base">
             <span className="text-gray-500 w-28 shrink-0">{label}:</span>
             <span>{value || "—"}</span>
         </div>
@@ -281,7 +281,7 @@ export default function NhapKhoDetailPanel({ phieu, onClose, onUpdated }) {
                 {/* Body */}
                 <div className="flex-1 overflow-y-auto">
                     {loading ? (
-                        <div className="flex items-center justify-center h-32 text-sm text-gray-400">
+                        <div className="flex items-center justify-center h-32 text-base text-gray-400">
                             Đang tải...
                         </div>
                     ) : fullPhieu ? (
@@ -289,17 +289,17 @@ export default function NhapKhoDetailPanel({ phieu, onClose, onUpdated }) {
                             {/* Meta info */}
                             <div className="flex flex-col gap-2 bg-gray-100 rounded-lg p-3">
                                 {/* Trạng thái nhập */}
-                                <div className="flex items-center gap-2 text-sm">
+                                <div className="flex items-center gap-2 text-base">
                                     <span className="text-gray-500 w-28 shrink-0">Nhập kho:</span>
-                                    <span className={`text-sm text-white font-medium px-2.5 py-0.5 ${fullPhieu.trangThaiNhap === "Đã nhận" ? "bg-green-500" : "bg-yellow-500"
+                                    <span className={`text-base text-white font-medium px-2.5 py-0.5 ${fullPhieu.trangThaiNhap === "Đã nhận" ? "bg-green-500" : "bg-yellow-500"
                                         }`}>
                                         {fullPhieu.trangThaiNhap}
                                     </span>
                                 </div>
                                 {/* Trạng thái thanh toán */}
-                                <div className="flex items-center gap-2 text-sm">
+                                <div className="flex items-center gap-2 text-base">
                                     <span className="text-gray-500 w-28 shrink-0">Thanh toán:</span>
-                                    <span className={`text-sm text-white font-medium px-2.5 py-0.5 ${fullPhieu.trangThaiThanhToan === "Đã thanh toán" ? "bg-green-500" : "bg-orange-400"
+                                    <span className={`text-base text-white font-medium px-2.5 py-0.5 ${fullPhieu.trangThaiThanhToan === "Đã thanh toán" ? "bg-green-500" : "bg-orange-400"
                                         }`}>
                                         {fullPhieu.trangThaiThanhToan}
                                     </span>
@@ -315,7 +315,7 @@ export default function NhapKhoDetailPanel({ phieu, onClose, onUpdated }) {
                                     <InfoRow label="Ghi chú" value={fullPhieu.ghiChu} />
                                 )}
                                 {/* Phí phát sinh */}
-                                <div className="flex items-center gap-2 text-sm">
+                                <div className="flex items-center gap-2 text-base">
                                     <span className="text-gray-500 w-28 shrink-0">Phí phát sinh:</span>
                                     {editingPhiPhatSinh ? (
                                         <div className="flex items-center gap-2 flex-1">
@@ -325,13 +325,13 @@ export default function NhapKhoDetailPanel({ phieu, onClose, onUpdated }) {
                                                 autoFocus
                                                 value={phiPhatSinhInput}
                                                 onChange={(e) => setPhiPhatSinhInput(e.target.value)}
-                                                className="border rounded px-2 py-1 text-sm w-32 focus:outline-none focus:ring-1 focus:ring-green-500 bg-white"
+                                                className="border rounded px-2 py-1 text-base w-32 focus:outline-none focus:ring-1 focus:ring-green-500 bg-white"
                                             />
                                             <button
                                                 type="button"
                                                 onClick={handleSavePhiPhatSinh}
                                                 disabled={savingPhiPhatSinh}
-                                                className="text-xs font-medium text-white bg-green-500 hover:bg-green-600 px-2.5 py-1 rounded disabled:opacity-60"
+                                                className="text-base font-medium text-white bg-green-500 hover:bg-green-600 px-2.5 py-1 rounded disabled:opacity-60"
                                             >
                                                 {savingPhiPhatSinh ? "..." : "Lưu"}
                                             </button>
@@ -339,7 +339,7 @@ export default function NhapKhoDetailPanel({ phieu, onClose, onUpdated }) {
                                                 type="button"
                                                 onClick={() => setEditingPhiPhatSinh(false)}
                                                 disabled={savingPhiPhatSinh}
-                                                className="text-xs font-medium text-gray-600 hover:bg-gray-100 px-2.5 py-1 rounded border border-gray-300"
+                                                className="text-base font-medium text-gray-600 hover:bg-gray-100 px-2.5 py-1 rounded border border-gray-300"
                                             >
                                                 Hủy
                                             </button>
@@ -368,11 +368,11 @@ export default function NhapKhoDetailPanel({ phieu, onClose, onUpdated }) {
 
                             {/* Danh sách vật liệu */}
                             <div>
-                                <h3 className="text-sm font-semibold text-gray-600 mb-2">
+                                <h3 className="text-base font-semibold text-gray-600 mb-2">
                                     Danh sách vật liệu ({fullPhieu.danhSachVatLieu?.length || 0})
                                 </h3>
                                 <div className="border border-gray-200 overflow-hidden">
-                                    <table className="w-full text-xs">
+                                    <table className="w-full text-base">
                                         <thead>
                                             <tr className="bg-sky-100">
                                                 <th className="text-left py-1 px-2 font-normal text-gray-700">Vật liệu</th>
@@ -426,7 +426,7 @@ export default function NhapKhoDetailPanel({ phieu, onClose, onUpdated }) {
                             <div className="flex flex-col gap-2">
                                 {/* Xác nhận nhận hàng */}
                                 {fullPhieu.trangThaiNhap === "Đã nhận" ? (
-                                    <div className="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-green-50 border border-green-200 text-sm text-green-700">
+                                    <div className="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-green-50 border border-green-200 text-base text-green-700">
                                         <LockIcon sx={{ fontSize: 16 }} />
                                         Đã nhập kho
                                     </div>
@@ -434,7 +434,7 @@ export default function NhapKhoDetailPanel({ phieu, onClose, onUpdated }) {
                                     <button
                                         onClick={handleConfirmNhan}
                                         disabled={updatingStatus}
-                                        className="w-full py-2.5 rounded-lg text-sm font-medium bg-green-500 text-white hover:bg-green-600 transition disabled:opacity-60"
+                                        className="w-full py-2.5 rounded-lg text-base font-medium bg-green-500 text-white hover:bg-green-600 transition disabled:opacity-60"
                                     >
                                         {updatingStatus ? "Đang cập nhật..." : "Đánh dấu Đã nhận"}
                                     </button>
@@ -442,7 +442,7 @@ export default function NhapKhoDetailPanel({ phieu, onClose, onUpdated }) {
 
                                 {/* Xác nhận thanh toán */}
                                 {fullPhieu.trangThaiThanhToan === "Đã thanh toán" ? (
-                                    <div className="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-blue-50 border border-blue-200 text-sm text-blue-700">
+                                    <div className="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-blue-50 border border-blue-200 text-base text-blue-700">
                                         <LockIcon sx={{ fontSize: 16 }} />
                                         Đã thanh toán
                                     </div>
@@ -450,7 +450,7 @@ export default function NhapKhoDetailPanel({ phieu, onClose, onUpdated }) {
                                     <button
                                         onClick={handleConfirmThanhToan}
                                         disabled={updatingThanhToan}
-                                        className="w-full py-2.5 rounded-lg text-sm font-medium bg-blue-500 text-white hover:bg-blue-600 transition disabled:opacity-60"
+                                        className="w-full py-2.5 rounded-lg text-base font-medium bg-blue-500 text-white hover:bg-blue-600 transition disabled:opacity-60"
                                     >
                                         {updatingThanhToan ? "Đang cập nhật..." : "Đánh dấu Đã thanh toán"}
                                     </button>
@@ -467,19 +467,19 @@ export default function NhapKhoDetailPanel({ phieu, onClose, onUpdated }) {
                             Xóa phiếu{" "}
                             <span className="text-red-600 font-semibold">{fullPhieu?.soPhieu}</span>?
                         </p>
-                        <p className="text-sm text-gray-500 text-center">
+                        <p className="text-base text-gray-500 text-center">
                             Thao tác này không thể hoàn tác.
                         </p>
                         <div className="flex gap-3">
                             <button
                                 onClick={() => setShowDeleteConfirm(false)}
-                                className="px-5 py-2 rounded-lg border border-gray-300 text-sm text-gray-600 hover:bg-gray-100 transition"
+                                className="px-5 py-2 rounded-lg border border-gray-300 text-base text-gray-600 hover:bg-gray-100 transition"
                             >
                                 Hủy
                             </button>
                             <button
                                 onClick={handleConfirmDelete}
-                                className="px-5 py-2 rounded-lg bg-red-500 text-white text-sm font-medium hover:bg-red-600 transition"
+                                className="px-5 py-2 rounded-lg bg-red-500 text-white text-base font-medium hover:bg-red-600 transition"
                             >
                                 Xóa
                             </button>

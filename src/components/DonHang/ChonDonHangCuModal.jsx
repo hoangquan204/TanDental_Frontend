@@ -64,12 +64,12 @@ const ChonDonHangCuModal = ({ isOpen, onClose, onSelect, patientId, nhaKhoaName,
                             <input
                                 type="text"
                                 placeholder="Tìm mã đơn hàng..."
-                                className="flex-1 outline-none text-sm bg-transparent"
+                                className="flex-1 outline-none text-base bg-transparent"
                                 value={searchCode}
                                 onChange={(e) => setSearchCode(e.target.value)}
                             />
                             {benhNhanName && (
-                                <span className="text-xs text-gray-500 font-medium shrink-0">{benhNhanName}</span>
+                                <span className="text-base text-gray-500 font-medium shrink-0">{benhNhanName}</span>
                             )}
                         </div>
 
@@ -79,7 +79,7 @@ const ChonDonHangCuModal = ({ isOpen, onClose, onSelect, patientId, nhaKhoaName,
                                 <input
                                     type="text"
                                     placeholder="Nhập mã đơn hàng, từ khóa..."
-                                    className="w-full outline-none text-sm bg-transparent"
+                                    className="w-full outline-none text-base bg-transparent"
                                     value={searchCode}
                                     onChange={(e) => setSearchCode(e.target.value)}
                                 />
@@ -87,17 +87,17 @@ const ChonDonHangCuModal = ({ isOpen, onClose, onSelect, patientId, nhaKhoaName,
 
                             <div className="relative border-b border-gray-300 pb-1 mt-2">
                                 <label className="text-[11px] text-gray-500 absolute -top-4 left-0">Người liên hệ</label>
-                                <input type="text" readOnly value={bacSiName || ''} className="w-full outline-none text-sm bg-transparent text-gray-700" />
+                                <input type="text" readOnly value={bacSiName || ''} className="w-full outline-none text-base bg-transparent text-gray-700" />
                             </div>
 
                             <div className="relative border-b border-gray-300 pb-1 mt-2">
                                 <label className="text-[11px] text-gray-500 absolute -top-4 left-0">Bệnh nhân</label>
-                                <input type="text" readOnly value={benhNhanName || ''} className="w-full outline-none text-sm bg-transparent text-gray-800 font-bold" />
+                                <input type="text" readOnly value={benhNhanName || ''} className="w-full outline-none text-base bg-transparent text-gray-800 font-bold" />
                             </div>
 
                             <div className="relative border-b border-gray-300 pb-1 mt-2">
                                 <label className="text-[11px] text-gray-500 absolute -top-4 left-0">Ngày nhận (Từ - Đến)</label>
-                                <input type="text" placeholder="Từ - Đến" readOnly className="w-full outline-none text-sm bg-transparent text-gray-400 cursor-not-allowed" />
+                                <input type="text" placeholder="Từ - Đến" readOnly className="w-full outline-none text-base bg-transparent text-gray-400 cursor-not-allowed" />
                                 <span className="absolute right-0 top-0 text-gray-400">📅</span>
                             </div>
 
@@ -109,11 +109,11 @@ const ChonDonHangCuModal = ({ isOpen, onClose, onSelect, patientId, nhaKhoaName,
 
                     {/* DANH SÁCH ĐƠN HÀNG */}
                     <div className="flex-1 flex flex-col bg-white overflow-hidden p-3 md:p-6">
-                        <h3 className="text-gray-600 font-bold uppercase mb-3 text-xs md:text-sm shrink-0">{nhaKhoaName || 'NHA KHOA'}</h3>
+                        <h3 className="text-gray-600 font-bold uppercase mb-3 text-base md:text-base shrink-0">{nhaKhoaName || 'NHA KHOA'}</h3>
 
                         {/* Desktop table */}
                         <div className="hidden md:block flex-1 overflow-y-auto border border-gray-200 rounded">
-                            <table className="w-full text-sm text-left">
+                            <table className="w-full text-base text-left">
                                 <thead className="bg-gray-50 text-gray-600 border-b sticky top-0">
                                     <tr>
                                         <th className="p-3 font-medium">Ngày nhận</th>
@@ -168,11 +168,11 @@ const ChonDonHangCuModal = ({ isOpen, onClose, onSelect, patientId, nhaKhoaName,
                                         className="border border-gray-200 rounded-lg p-3 bg-white hover:bg-blue-50 active:bg-blue-100 cursor-pointer transition"
                                     >
                                         <div className="flex items-center justify-between mb-1">
-                                            <span className="font-semibold text-gray-800 text-sm">{order.maDonHang || 'TAN...'}</span>
-                                            <span className="text-xs text-gray-400">{new Date(order.ngayNhan).toLocaleDateString('vi-VN')}</span>
+                                            <span className="font-semibold text-gray-800 text-base">{order.maDonHang || 'TAN...'}</span>
+                                            <span className="text-base text-gray-400">{new Date(order.ngayNhan).toLocaleDateString('vi-VN')}</span>
                                         </div>
-                                        <p className="text-sm text-blue-700 font-medium">{renderSpSummary(order.danhSachSanPham)}</p>
-                                        <p className="text-xs text-gray-500 mt-1">{order.bacSi?.hoVaTen || bacSiName}</p>
+                                        <p className="text-base text-blue-700 font-medium">{renderSpSummary(order.danhSachSanPham)}</p>
+                                        <p className="text-base text-gray-500 mt-1">{order.bacSi?.hoVaTen || bacSiName}</p>
                                     </div>
                                 ))
                             )}

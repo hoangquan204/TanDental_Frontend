@@ -64,13 +64,13 @@ const PhuKienModal = ({ isOpen, onClose, initialSelected, onSave }) => {
                             <input
                                 type="text" placeholder="Tìm kiếm phụ kiện"
                                 value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full px-3 py-1.5 border rounded outline-none text-sm"
+                                className="w-full px-3 py-1.5 border rounded outline-none text-base"
                             />
                         </div>
                         <div className="flex-1 overflow-y-auto">
                             {filteredPhuKien.map((pk, idx) => (
                                 <div key={idx} onClick={() => handleSelect(pk)} className="flex justify-between items-center px-4 py-3 border-b hover:bg-gray-100 cursor-pointer">
-                                    <span className="text-sm font-medium text-gray-700">{pk}</span>
+                                    <span className="text-base font-medium text-gray-700">{pk}</span>
                                     <div className="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center text-gray-600">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
                                     </div>
@@ -81,7 +81,7 @@ const PhuKienModal = ({ isOpen, onClose, initialSelected, onSave }) => {
 
                     {/* Cột phải */}
                     <div className="flex-1 flex flex-col p-4 bg-white">
-                        <div className="flex text-sm font-semibold text-gray-600 border-b pb-2 mb-2">
+                        <div className="flex text-base font-semibold text-gray-600 border-b pb-2 mb-2">
                             <div className="w-12 text-center">S.L</div>
                             <div className="flex-1">Phụ kiện</div>
                             <div className="w-40 text-center">Sở hữu</div>
@@ -89,10 +89,10 @@ const PhuKienModal = ({ isOpen, onClose, initialSelected, onSave }) => {
                         </div>
                         <div className="flex-1 overflow-y-auto">
                             {selectedList.length === 0 ? (
-                                <div className="text-center text-gray-400 mt-10 text-sm">Vui lòng chọn</div>
+                                <div className="text-center text-gray-400 mt-10 text-base">Vui lòng chọn</div>
                             ) : (
                                 selectedList.map((item, idx) => (
-                                    <div key={idx} className="flex items-center text-sm py-3 border-b border-gray-50 hover:bg-gray-50">
+                                    <div key={idx} className="flex items-center text-base py-3 border-b border-gray-50 hover:bg-gray-50">
                                         <div className="w-12 flex justify-center">
                                             <input
                                                 type="number"
@@ -136,7 +136,7 @@ const PhuKienModal = ({ isOpen, onClose, initialSelected, onSave }) => {
                 </div>
 
                 <div className="p-4 border-t flex justify-end bg-gray-50 shrink-0">
-                    <button onClick={() => { onSave(selectedList); onClose(); }} className="bg-[#00a8ff] hover:bg-blue-500 text-white px-8 py-2 rounded-full shadow-sm text-sm font-bold transition">
+                    <button onClick={() => { onSave(selectedList); onClose(); }} className="bg-[#00a8ff] hover:bg-blue-500 text-white px-8 py-2 rounded-full shadow-sm text-base font-bold transition">
                         Đồng ý
                     </button>
                 </div>

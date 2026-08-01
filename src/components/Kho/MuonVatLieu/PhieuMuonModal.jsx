@@ -231,7 +231,7 @@ export default function PhieuMuonModal({ open, onClose, editData = null }) {
 
                         {/* Bộ chọn loại phiếu — chỉ cho đổi khi tạo mới */}
                         {!isEdit && (
-                            <div className="inline-flex rounded-full border border-gray-300 bg-white p-0.5 text-xs font-medium w-fit">
+                            <div className="inline-flex rounded-full border border-gray-300 bg-white p-0.5 text-base font-medium w-fit">
                                 <button type="button" onClick={() => setFormLoai("Mượn")}
                                     className={`px-3 py-1 rounded-full transition-colors ${isMuon ? "bg-sky-600 text-white" : "text-gray-500 hover:text-sky-700"
                                         }`}>
@@ -246,7 +246,7 @@ export default function PhieuMuonModal({ open, onClose, editData = null }) {
                         )}
 
                         {checkedItems.length > 0 && (
-                            <p className="text-xs sm:text-sm text-gray-500 sm:ml-1">
+                            <p className="text-base sm:text-base text-gray-500 sm:ml-1">
                                 Đã chọn {checkedItems.length} vật liệu
                             </p>
                         )}
@@ -261,52 +261,52 @@ export default function PhieuMuonModal({ open, onClose, editData = null }) {
                     <div className="p-3 sm:p-4 border-b shrink-0">
                         <div className="flex flex-col sm:flex-row gap-3">
                             <div className="flex-1">
-                                <label className="text-xs text-gray-600">Tên đối tác *</label>
+                                <label className="text-base text-gray-600">Tên đối tác *</label>
                                 <input type="text" disabled={locked} value={doiTac.ten}
                                     onChange={(e) => setDoiTac((p) => ({ ...p, ten: e.target.value }))}
                                     placeholder="ABC Dental"
-                                    className="border rounded w-full px-2 py-1.5 text-sm disabled:bg-gray-100 disabled:text-gray-400" />
+                                    className="border rounded w-full px-2 py-1.5 text-base disabled:bg-gray-100 disabled:text-gray-400" />
                             </div>
                             <div className="flex-1">
-                                <label className="text-xs text-gray-600">Địa chỉ</label>
+                                <label className="text-base text-gray-600">Địa chỉ</label>
                                 <input type="text" disabled={locked} value={doiTac.diaChi}
                                     onChange={(e) => setDoiTac((p) => ({ ...p, diaChi: e.target.value }))}
                                     placeholder="Ninh Kiều, Cần Thơ"
-                                    className="border rounded w-full px-2 py-1.5 text-sm disabled:bg-gray-100 disabled:text-gray-400" />
+                                    className="border rounded w-full px-2 py-1.5 text-base disabled:bg-gray-100 disabled:text-gray-400" />
                             </div>
                             <div className="flex-1">
-                                <label className="text-xs text-gray-600">Số điện thoại</label>
+                                <label className="text-base text-gray-600">Số điện thoại</label>
                                 <input type="text" disabled={locked} value={doiTac.soDienThoai}
                                     onChange={(e) => setDoiTac((p) => ({ ...p, soDienThoai: e.target.value }))}
                                     placeholder="0123456789"
-                                    className="border rounded w-full px-2 py-1.5 text-sm disabled:bg-gray-100 disabled:text-gray-400" />
+                                    className="border rounded w-full px-2 py-1.5 text-base disabled:bg-gray-100 disabled:text-gray-400" />
                             </div>
                         </div>
 
                         <div className="mt-3">
-                            <label className="text-xs text-gray-600">Nhân viên</label>
+                            <label className="text-base text-gray-600">Nhân viên</label>
                             <input type="text" value={nhanVien}
                                 onChange={(e) => setNhanVien(e.target.value)}
                                 placeholder="Nguyễn Văn A"
-                                className="block border rounded w-full sm:w-[282px] px-2 py-1.5 text-sm disabled:bg-gray-100 disabled:text-gray-400" />
+                                className="block border rounded w-full sm:w-[282px] px-2 py-1.5 text-base disabled:bg-gray-100 disabled:text-gray-400" />
                         </div>
                     </div>
 
                     {locked && (
-                        <div className="px-4 sm:px-6 py-2 bg-yellow-50 text-xs text-yellow-700 border-b shrink-0">
+                        <div className="px-4 sm:px-6 py-2 bg-yellow-50 text-base text-yellow-700 border-b shrink-0">
                             Phiếu đã được xử lý (đã nhận hoặc đã trả) nên không thể sửa danh sách vật liệu / đối tác. Chỉ có thể cập nhật ghi chú.
                         </div>
                     )}
 
                     {/* Table header — desktop only */}
-                    <div className={`hidden sm:grid px-6 py-2.5 border-b shrink-0 gap-3 items-center text-xs font-semibold text-gray-500 uppercase tracking-wide ${isMuon ? "bg-sky-100/50" : "bg-green-100/50"}`}
+                    <div className={`hidden sm:grid px-6 py-2.5 border-b shrink-0 gap-3 items-center text-base font-semibold text-gray-500 uppercase tracking-wide ${isMuon ? "bg-sky-100/50" : "bg-green-100/50"}`}
                         style={{ gridTemplateColumns: "40px 1fr 120px 1fr" }}>
                         <input type="checkbox" checked={allChecked} disabled={locked} onChange={toggleCheckAll}
                             className={`w-4 h-4 cursor-pointer ${accentAccent}`} />
                         <div>
                             <input type="text" value={search} onChange={(e) => setSearch(e.target.value)}
                                 placeholder="Tìm vật liệu..."
-                                className="w-full px-2 py-1 text-sm font-normal border text-black" />
+                                className="w-full px-2 py-1 text-base font-normal border text-black" />
                         </div>
                         <div>Số lượng</div>
                         <div>Mô tả</div>
@@ -317,26 +317,26 @@ export default function PhieuMuonModal({ open, onClose, editData = null }) {
                         <div className="px-4 py-2">
                             <input type="text" value={search} onChange={(e) => setSearch(e.target.value)}
                                 placeholder="Tìm vật liệu..."
-                                className="w-full px-2 py-1.5 text-sm border rounded text-black" />
+                                className="w-full px-2 py-1.5 text-base border rounded text-black" />
                         </div>
                         <div className="flex items-center gap-2 px-4 py-2 bg-gray-50 border-t">
                             <input type="checkbox" checked={allChecked} disabled={locked} onChange={toggleCheckAll}
                                 className={`w-4 h-4 cursor-pointer ${accentAccent}`} />
-                            <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Chọn tất cả</span>
+                            <span className="text-base font-semibold text-gray-500 uppercase tracking-wide">Chọn tất cả</span>
                         </div>
                     </div>
 
                     {/* Body */}
                     <div className="flex-1 overflow-y-auto divide-y divide-gray-100">
                         {kho.loading ? (
-                            <div className="flex items-center justify-center h-40 text-gray-400 text-sm">Đang tải...</div>
+                            <div className="flex items-center justify-center h-40 text-gray-400 text-base">Đang tải...</div>
                         ) : vatLieuList.length === 0 ? (
-                            <div className="flex items-center justify-center h-40 text-gray-400 text-sm">Không có vật liệu.</div>
+                            <div className="flex items-center justify-center h-40 text-gray-400 text-base">Không có vật liệu.</div>
                         ) : vatLieuList.map((vl) => {
                             const item = items[vl._id];
                             if (!item) return null;
                             const on = item.checked;
-                            const inputCls = `border rounded px-2 py-1.5 text-sm w-full focus:outline-none ${!on ? "bg-gray-100 text-gray-400 cursor-not-allowed" : "bg-white"}`;
+                            const inputCls = `border rounded px-2 py-1.5 text-base w-full focus:outline-none ${!on ? "bg-gray-100 text-gray-400 cursor-not-allowed" : "bg-white"}`;
                             return (
                                 <div key={vl._id} className={`transition-colors ${on ? rowOn : "hover:bg-gray-50/60"}`}>
 
@@ -347,8 +347,8 @@ export default function PhieuMuonModal({ open, onClose, editData = null }) {
                                             onChange={() => toggleCheck(vl._id)}
                                             className={`w-4 h-4 cursor-pointer ${accentAccent}`} />
                                         <div>
-                                            <div className={`text-sm font-medium ${on ? "text-gray-800" : "text-gray-400"}`}>{vl.tenVatLieu}</div>
-                                            <div className="text-xs text-gray-400">{vl.maVatLieu}{vl.donViTinh ? ` · ${vl.donViTinh}` : ""}</div>
+                                            <div className={`text-base font-medium ${on ? "text-gray-800" : "text-gray-400"}`}>{vl.tenVatLieu}</div>
+                                            <div className="text-base text-gray-400">{vl.maVatLieu}{vl.donViTinh ? ` · ${vl.donViTinh}` : ""}</div>
                                         </div>
                                         <input type="number" min={0} disabled={!on || locked} value={item.soLuong}
                                             onChange={(e) => updateField(vl._id, "soLuong", e.target.value)}
@@ -365,24 +365,24 @@ export default function PhieuMuonModal({ open, onClose, editData = null }) {
                                                 onChange={() => toggleCheck(vl._id)}
                                                 className={`w-4 h-4 mt-0.5 cursor-pointer shrink-0 ${accentAccent}`} />
                                             <div className="flex-1 min-w-0">
-                                                <div className={`text-sm font-semibold leading-tight ${on ? "text-gray-800" : "text-gray-400"}`}>{vl.tenVatLieu}</div>
-                                                <div className="text-xs text-gray-400 mt-0.5">{vl.maVatLieu}{vl.donViTinh ? ` · ${vl.donViTinh}` : ""}</div>
+                                                <div className={`text-base font-semibold leading-tight ${on ? "text-gray-800" : "text-gray-400"}`}>{vl.tenVatLieu}</div>
+                                                <div className="text-base text-gray-400 mt-0.5">{vl.maVatLieu}{vl.donViTinh ? ` · ${vl.donViTinh}` : ""}</div>
                                             </div>
                                         </div>
 
                                         {on && (
                                             <div className="pl-7 space-y-2">
                                                 <div>
-                                                    <label className="block text-xs text-gray-500 mb-1">Số lượng</label>
+                                                    <label className="block text-base text-gray-500 mb-1">Số lượng</label>
                                                     <input type="number" min={0} disabled={locked} value={item.soLuong}
                                                         onChange={(e) => updateField(vl._id, "soLuong", e.target.value)}
-                                                        className="border rounded px-2 py-1.5 text-sm w-full focus:outline-none bg-white disabled:bg-gray-100 disabled:text-gray-400" />
+                                                        className="border rounded px-2 py-1.5 text-base w-full focus:outline-none bg-white disabled:bg-gray-100 disabled:text-gray-400" />
                                                 </div>
                                                 <div>
-                                                    <label className="block text-xs text-gray-500 mb-1">Mô tả</label>
+                                                    <label className="block text-base text-gray-500 mb-1">Mô tả</label>
                                                     <input type="text" disabled={locked} value={item.moTa} placeholder="Ghi chú riêng..."
                                                         onChange={(e) => updateField(vl._id, "moTa", e.target.value)}
-                                                        className="border rounded px-2 py-1.5 text-sm w-full focus:outline-none bg-white disabled:bg-gray-100 disabled:text-gray-400" />
+                                                        className="border rounded px-2 py-1.5 text-base w-full focus:outline-none bg-white disabled:bg-gray-100 disabled:text-gray-400" />
                                                 </div>
                                             </div>
                                         )}
@@ -395,22 +395,22 @@ export default function PhieuMuonModal({ open, onClose, editData = null }) {
                     {/* Footer */}
                     <div className="border-t bg-gray-50 px-4 sm:px-6 py-3 sm:py-4 shrink-0 space-y-3">
                         <div>
-                            <label className="hidden sm:block text-sm font-medium text-gray-700 mb-1">Ghi chú</label>
+                            <label className="hidden sm:block text-base font-medium text-gray-700 mb-1">Ghi chú</label>
                             <textarea rows={2} placeholder="Ghi chú chung..."
-                                className="border rounded w-full px-3 py-2 text-sm resize-none focus:outline-none"
+                                className="border rounded w-full px-3 py-2 text-base resize-none focus:outline-none"
                                 value={ghiChu} onChange={(e) => setGhiChu(e.target.value)} />
                         </div>
                         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                            <span className="hidden sm:inline text-xs text-gray-400">
+                            <span className="hidden sm:inline text-base text-gray-400">
                                 {checkedItems.length > 0 ? `${checkedItems.length} vật liệu đã chọn` : ""}
                             </span>
                             <div className="flex gap-3 justify-end">
                                 <button type="button" onClick={onClose}
-                                    className="px-4 py-2 border rounded text-sm text-gray-600 hover:bg-gray-100 transition-colors">
+                                    className="px-4 py-2 border rounded text-base text-gray-600 hover:bg-gray-100 transition-colors">
                                     Hủy
                                 </button>
                                 <button type="submit" disabled={submitting}
-                                    className={`px-5 py-2 text-white text-sm font-medium rounded disabled:opacity-50 transition-colors ${accentBg}`}>
+                                    className={`px-5 py-2 text-white text-base font-medium rounded disabled:opacity-50 transition-colors ${accentBg}`}>
                                     {submitting ? "Đang lưu..." : isEdit ? "Cập nhật" : "Lưu phiếu"}
                                 </button>
                             </div>

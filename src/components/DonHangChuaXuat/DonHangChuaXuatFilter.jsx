@@ -111,7 +111,7 @@ export default function DonHangChuaXuatFilter({
             placeholder="Tìm nha khoa..."
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
-            className="flex-1 md:text-sm text-base bg-transparent outline-none text-gray-700 placeholder-gray-400"
+            className="flex-1 md:text-base text-base bg-transparent outline-none text-gray-700 placeholder-gray-400"
           />
           {searchText && (
             <button
@@ -138,7 +138,7 @@ export default function DonHangChuaXuatFilter({
       {selectedClinic && selectedNhaKhoa && (
         <div className="px-3 pt-3 pb-2 border-b bg-gray-50 flex items-center gap-2">
           <div
-            className="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-xs flex-shrink-0"
+            className="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-base flex-shrink-0"
             style={{ backgroundColor: "#1976d2" }}
           >
             {selectedNhaKhoa.hoVaTen?.slice(0, 2).toUpperCase()}
@@ -204,7 +204,7 @@ export default function DonHangChuaXuatFilter({
               <circle cx="11" cy="11" r="8" />
               <line x1="21" y1="21" x2="16.65" y2="16.65" />
             </svg>
-            <p className="text-xs mt-2">Không tìm thấy nha khoa</p>
+            <p className="text-base mt-2">Không tìm thấy nha khoa</p>
           </div>
         ) : (
           filteredData.map((nk) => {
@@ -243,7 +243,7 @@ export default function DonHangChuaXuatFilter({
                   </div>
                   {info.count > 0 && (
                     <span
-                      className="text-sm font-bold flex-shrink-0"
+                      className="text-base font-bold flex-shrink-0"
                       style={{ color: "#ed6c02" }}
                     >
                       {info.count}

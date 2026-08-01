@@ -261,7 +261,7 @@ const NhanVienTable = () => {
               <h2 className="text-xl font-extrabold text-slate-800 tracking-tight">
                 Nhân viên
               </h2>
-              <p className="text-xs text-slate-400 mt-0.5">
+              <p className="text-base text-slate-400 mt-0.5">
                 {sortedData.length} / {data?.length || 0} nhân viên
               </p>
             </div>
@@ -283,7 +283,7 @@ const NhanVienTable = () => {
               <select
                 value={filterChucVu}
                 onChange={(e) => setFilterChucVu(e.target.value)}
-                className="text-sm border border-slate-200 rounded-lg px-3 py-2 bg-white text-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-300"
+                className="text-base border border-slate-200 rounded-lg px-3 py-2 bg-white text-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-300"
               >
                 <option value="">Tất cả chức vụ</option>
                 {chucVuOptions.map((cv) => (
@@ -297,7 +297,7 @@ const NhanVienTable = () => {
               <select
                 value={sortChucVu}
                 onChange={(e) => setSortChucVu(e.target.value)}
-                className="text-sm border border-slate-200 rounded-lg px-3 py-2 bg-white text-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-300"
+                className="text-base border border-slate-200 rounded-lg px-3 py-2 bg-white text-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-300"
               >
                 <option value="">Sắp xếp chức vụ</option>
                 <option value="asc">Chức vụ A → Z</option>
@@ -309,7 +309,7 @@ const NhanVienTable = () => {
                   setSelectedNhanVien(null);
                   setOpen(true);
                 }}
-                className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-semibold text-white shadow transition-all"
+                className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-base font-semibold text-white shadow transition-all"
                 style={{
                   background: "linear-gradient(135deg,#2563eb,#3b82f6)",
                 }}
@@ -325,7 +325,7 @@ const NhanVienTable = () => {
           {/* Table */}
           <div className="nv-scroll-wrapper bg-white">
             <table
-              className="nv-table w-full text-sm"
+              className="nv-table w-full text-base"
               style={{ borderCollapse: "collapse" }}
             >
               <thead>
@@ -333,7 +333,7 @@ const NhanVienTable = () => {
                   {COLS.map((col, i) => (
                     <th
                       key={col || `col-${i}`}
-                      className="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider whitespace-nowrap"
+                      className="px-4 py-3 text-left text-base font-bold uppercase tracking-wider whitespace-nowrap"
                       style={{
                         color: "#fff",
                         background: "#2563eb",
@@ -358,8 +358,8 @@ const NhanVienTable = () => {
                         (e.currentTarget.style.background = "#eff6ff")
                       }
                       onMouseLeave={(e) =>
-                        (e.currentTarget.style.background =
-                          idx % 2 === 0 ? "#fff" : "#f8fafc")
+                      (e.currentTarget.style.background =
+                        idx % 2 === 0 ? "#fff" : "#f8fafc")
                       }
                     >
                       {/* ── Sticky: Họ tên ── */}
@@ -370,7 +370,7 @@ const NhanVienTable = () => {
                       >
                         <button
                           onClick={() => navigate(`/nhan-vien/${nv._id}`)}
-                          className="font-semibold text-blue-600 hover:underline text-sm"
+                          className="font-semibold text-blue-600 hover:underline text-base"
                         >
                           {nv.hoVaTen}
                         </button>
@@ -378,17 +378,17 @@ const NhanVienTable = () => {
 
                       <td
                         data-label="Chức vụ"
-                        className="px-4 py-3 text-slate-600 text-sm whitespace-nowrap"
+                        className="px-4 py-3 text-slate-600 text-base whitespace-nowrap"
                         style={{ borderBottom: "1px solid #f1f5f9" }}
                       >
-                        <span className="px-2 py-0.5 bg-slate-100 rounded-full text-xs font-medium">
+                        <span className="px-2 py-0.5 bg-slate-100 rounded-full text-base font-medium">
                           {nv.chucVu || "—"}
                         </span>
                       </td>
 
                       <td
                         data-label="CCCD"
-                        className="px-4 py-3 text-slate-500 text-sm"
+                        className="px-4 py-3 text-slate-500 text-base"
                         style={{ borderBottom: "1px solid #f1f5f9" }}
                       >
                         {nv.cccd}
@@ -396,7 +396,7 @@ const NhanVienTable = () => {
 
                       <td
                         data-label="SĐT"
-                        className="px-4 py-3 text-slate-600 text-sm whitespace-nowrap"
+                        className="px-4 py-3 text-slate-600 text-base whitespace-nowrap"
                         style={{ borderBottom: "1px solid #f1f5f9" }}
                       >
                         {nv.soDienThoai || "—"}
@@ -404,7 +404,7 @@ const NhanVienTable = () => {
 
                       <td
                         data-label="Địa chỉ"
-                        className="px-4 py-3 text-slate-500 text-sm"
+                        className="px-4 py-3 text-slate-500 text-base"
                         style={{ borderBottom: "1px solid #f1f5f9" }}
                       >
                         {nv.diaChi ? (
@@ -420,7 +420,7 @@ const NhanVienTable = () => {
 
                       <td
                         data-label="Lương cơ bản"
-                        className="px-4 py-3 whitespace-nowrap font-bold text-emerald-600 text-sm"
+                        className="px-4 py-3 whitespace-nowrap font-bold text-emerald-600 text-base"
                         style={{ borderBottom: "1px solid #f1f5f9" }}
                       >
                         {Number(nv.luongCanBan).toLocaleString("vi-VN")} đ
@@ -428,7 +428,7 @@ const NhanVienTable = () => {
 
                       <td
                         data-label="Ngày công tháng"
-                        className="px-4 py-3 whitespace-nowrap font-medium text-slate-600 text-sm text-center"
+                        className="px-4 py-3 whitespace-nowrap font-medium text-slate-600 text-base text-center"
                         style={{ borderBottom: "1px solid #f1f5f9" }}
                       >
                         {nv.ngayCongThang || 28} ngày
@@ -436,7 +436,7 @@ const NhanVienTable = () => {
 
                       <td
                         data-label="Ngày tạo"
-                        className="px-4 py-3 whitespace-nowrap font-medium text-slate-600 text-sm text-center"
+                        className="px-4 py-3 whitespace-nowrap font-medium text-slate-600 text-base text-center"
                         style={{ borderBottom: "1px solid #f1f5f9" }}
                       >
                         {formatDateVN(nv.ngayTao)}
@@ -444,7 +444,7 @@ const NhanVienTable = () => {
 
                       <td
                         data-label="Ghi chú"
-                        className="px-4 py-3 text-slate-500 text-sm"
+                        className="px-4 py-3 text-slate-500 text-base"
                         style={{
                           borderBottom: "1px solid #f1f5f9",
                           whiteSpace: "pre-wrap",
@@ -496,7 +496,7 @@ const NhanVienTable = () => {
                   <tr>
                     <td
                       colSpan={9}
-                      className="text-center py-12 text-slate-400 text-sm"
+                      className="text-center py-12 text-slate-400 text-base"
                     >
                       Không có dữ liệu
                     </td>

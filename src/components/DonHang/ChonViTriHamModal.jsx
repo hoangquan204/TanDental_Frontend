@@ -75,7 +75,7 @@ export default function ChonViTriHamModal({ open, onClose, onSave, loaiTinh, ini
                     })}
 
                     {displayText && (
-                        <div className="mt-1 text-xs text-gray-500 italic">
+                        <div className="mt-1 text-base text-gray-500 italic">
                             Đã chọn: <span className="font-medium text-gray-700">{displayText}</span>
                         </div>
                     )}
@@ -85,13 +85,13 @@ export default function ChonViTriHamModal({ open, onClose, onSave, loaiTinh, ini
                 <div className="flex justify-end gap-2 px-6 pb-5">
                     <button
                         onClick={onClose}
-                        className="px-4 py-1.5 text-sm rounded border border-gray-300 text-gray-600 hover:bg-gray-50"
+                        className="px-4 py-1.5 text-base rounded border border-gray-300 text-gray-600 hover:bg-gray-50"
                     >
                         Hủy
                     </button>
                     <button
                         onClick={handleSave}
-                        className="px-6 py-1.5 text-sm rounded-full bg-[#00a8ff] text-white font-bold hover:bg-blue-500 shadow-md transition"
+                        className="px-6 py-1.5 text-base rounded-full bg-[#00a8ff] text-white font-bold hover:bg-blue-500 shadow-md transition"
                     >
                         Đồng ý
                     </button>

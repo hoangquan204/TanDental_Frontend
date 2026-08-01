@@ -9,10 +9,10 @@ const TRA_STATUSES = ["Chưa trả", "Đã trả"];
 function StatusCheckboxGroup({ selectedTrangThai, onToggle }) {
     return (
         <div>
-            <div className="text-xs font-semibold text-sky-600 uppercase tracking-wide">Nhận</div>
+            <div className="text-base font-semibold text-sky-600 uppercase tracking-wide">Nhận</div>
             <div className="grid grid-cols-2 gap-1 mb-2">
                 {NHAN_STATUSES.map((s) => (
-                    <label key={s} className="flex items-center gap-2 px-1 py-1.5 text-xs text-slate-700 hover:bg-gray-50 rounded cursor-pointer">
+                    <label key={s} className="flex items-center gap-2 px-1 py-1.5 text-base text-slate-700 hover:bg-gray-50 rounded cursor-pointer">
                         <input
                             type="checkbox"
                             checked={selectedTrangThai.includes(s)}
@@ -24,10 +24,10 @@ function StatusCheckboxGroup({ selectedTrangThai, onToggle }) {
                 ))}
             </div>
 
-            <div className="text-xs font-semibold text-green-600 uppercase tracking-wide">Trả</div>
+            <div className="text-base font-semibold text-green-600 uppercase tracking-wide">Trả</div>
             <div className="grid grid-cols-2 gap-1">
                 {TRA_STATUSES.map((s) => (
-                    <label key={s} className="flex items-center gap-2 px-1 py-1.5 text-xs text-slate-700 hover:bg-gray-50 rounded cursor-pointer">
+                    <label key={s} className="flex items-center gap-2 px-1 py-1.5 text-base text-slate-700 hover:bg-gray-50 rounded cursor-pointer">
                         <input
                             type="checkbox"
                             checked={selectedTrangThai.includes(s)}
@@ -105,14 +105,14 @@ function FilterModal({
     };
 
     const selectClass =
-        "h-8 w-full text-xs bg-white border border-gray-300 rounded outline-none hover:border-gray-400 focus:border-sky-400 transition text-slate-700";
+        "h-8 w-full text-base bg-white border border-gray-300 rounded outline-none hover:border-gray-400 focus:border-sky-400 transition text-slate-700";
 
     return (
         <div className="absolute top-2 left-12 z-50 flex items-start justify-center">
             <div ref={modalRef} className="w-[280px] overflow-y-auto bg-white rounded-lg border border-gray-200 shadow-xl">
 
                 <div className="flex items-center justify-between px-3 py-1 border-b border-gray-100">
-                    <h3 className="text-xs font-semibold text-slate-800">Bộ lọc</h3>
+                    <h3 className="text-base font-semibold text-slate-800">Bộ lọc</h3>
                     <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
                         <CloseIcon sx={{ fontSize: 20 }} />
                     </button>
@@ -120,7 +120,7 @@ function FilterModal({
 
                 <div className="p-3 space-y-2">
                     <div>
-                        <label className="block text-xs font-medium text-gray-500 mb-1">Ngày tạo</label>
+                        <label className="block text-base font-medium text-gray-500 mb-1">Ngày tạo</label>
                         <select
                             value={draftMonth}
                             onChange={(e) => setDraftMonth(e.target.value)}
@@ -134,7 +134,7 @@ function FilterModal({
                     </div>
 
                     <div>
-                        <label className="block text-xs font-medium text-gray-500 mb-2">Trạng thái</label>
+                        <label className="block text-base font-medium text-gray-500 mb-2">Trạng thái</label>
                         <StatusCheckboxGroup
                             selectedTrangThai={draftTrangThai}
                             onToggle={toggleDraftTrangThai}
@@ -146,13 +146,13 @@ function FilterModal({
                     <button
                         onClick={handleClearAll}
                         disabled={!isFiltered}
-                        className="text-sm text-gray-500 hover:text-red-500 disabled:opacity-40 disabled:cursor-not-allowed transition"
+                        className="text-base text-gray-500 hover:text-red-500 disabled:opacity-40 disabled:cursor-not-allowed transition"
                     >
                         Xóa bộ lọc
                     </button>
                     <button
                         onClick={handleApply}
-                        className="text-sm bg-sky-500 text-white rounded px-4 py-1.5 hover:bg-sky-600 transition"
+                        className="text-base bg-sky-500 text-white rounded px-4 py-1.5 hover:bg-sky-600 transition"
                     >
                         Áp dụng
                     </button>

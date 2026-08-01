@@ -81,7 +81,7 @@ export default function NhaKhoaModal({ isQuickMenu }) {
     <>
       {isQuickMenu ? (
         <button
-          className="w-full flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 border-b last:border-0"
+          className="w-full flex items-center px-4 py-3 text-base text-gray-700 hover:bg-gray-100 border-b last:border-0"
           onClick={() => setOpen(true)}
         >
           <span className="mr-3 text-gray-500">

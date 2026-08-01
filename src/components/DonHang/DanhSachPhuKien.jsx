@@ -5,11 +5,11 @@ const DanhSachPhuKien = ({ phuKienDaChon, setPhuKienDaChon }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     return (
-        <div className="w-full h-full border border-gray-200 rounded bg-white p-3 text-sm flex flex-col relative">
+        <div className="w-full h-full border border-gray-200 rounded bg-white p-3 text-base flex flex-col relative">
             <div className="flex justify-between items-center border-b border-gray-200 pb-2 mb-2 font-semibold text-gray-600">
                 <div className="flex gap-4">
                     <span className="w-8 text-center">S.L</span>
-                    <span>Phụ kiện <span className="bg-[#00a8ff] text-white rounded-full px-1.5 text-xs">{phuKienDaChon.length}</span></span>
+                    <span>Phụ kiện <span className="bg-[#00a8ff] text-white rounded-full px-1.5 text-base">{phuKienDaChon.length}</span></span>
                 </div>
 
                 {/* Nút Sở hữu v= mở Modal */}

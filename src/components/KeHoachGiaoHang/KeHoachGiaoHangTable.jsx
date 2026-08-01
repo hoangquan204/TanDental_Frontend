@@ -386,9 +386,9 @@ const KeHoachGiaoHangTable = () => {
                 }
               }
             }}
-            className={`w-full text-left px-4 py-2.5 text-sm flex items-center gap-2 border-b border-gray-100 transition ${cf.preset === p.key
-                ? "bg-blue-50 text-blue-700 font-semibold"
-                : "text-gray-700 hover:bg-gray-50"
+            className={`w-full text-left px-4 py-2.5 text-base flex items-center gap-2 border-b border-gray-100 transition ${cf.preset === p.key
+              ? "bg-blue-50 text-blue-700 font-semibold"
+              : "text-gray-700 hover:bg-gray-50"
               }`}
           >
             {p.isCalendar && <CalendarTodayIcon sx={{ fontSize: 14 }} />}
@@ -405,7 +405,7 @@ const KeHoachGiaoHangTable = () => {
                   setActiveDateType(filterKey);
                   setAnchorElCustomDate(e.currentTarget);
                 }}
-                className="w-full h-9 px-2 flex items-center justify-center gap-2 text-xs font-semibold text-blue-700 bg-white border border-blue-200 rounded-lg hover:bg-blue-50 transition-colors shadow-sm"
+                className="w-full h-9 px-2 flex items-center justify-center gap-2 text-base font-semibold text-blue-700 bg-white border border-blue-200 rounded-lg hover:bg-blue-50 transition-colors shadow-sm"
               >
                 {cf.customFrom && cf.customTo
                   ? `${dayjs(cf.customFrom).format("DD/MM/YYYY")} - ${dayjs(
@@ -574,8 +574,8 @@ const KeHoachGiaoHangTable = () => {
           <div className="flex w-full mb-4 rounded-lg overflow-hidden shadow-md">
             <div
               className={`flex-1 cursor-pointer bg-blue-700 hover:bg-blue-600 active:bg-blue-800 text-white px-5 py-3 flex items-center gap-3 transition-all duration-200 hover:shadow-inner hover:scale-[1.02] hover:z-10 relative ${appliedHenGiao?.preset === "today"
-                  ? "ring-2 ring-inset ring-white/50"
-                  : ""
+                ? "ring-2 ring-inset ring-white/50"
+                : ""
                 }`}
               onClick={() => {
                 dispatch(
@@ -597,7 +597,7 @@ const KeHoachGiaoHangTable = () => {
                 <div className="text-3xl font-extrabold leading-none">
                   {loadingThongKe ? "..." : giaoHomNay}
                 </div>
-                <div className="text-sm font-semibold mt-0.5 opacity-90">
+                <div className="text-base font-semibold mt-0.5 opacity-90">
                   Giao hôm nay
                 </div>
               </div>
@@ -605,8 +605,8 @@ const KeHoachGiaoHangTable = () => {
 
             <div
               className={`flex-1 cursor-pointer bg-red-600 hover:bg-red-500 active:bg-red-700 text-white px-5 py-3 flex items-center gap-3 transition-all duration-200 hover:shadow-inner hover:scale-[1.02] hover:z-10 relative ${appliedHenGiao?.preset === "overdue"
-                  ? "ring-2 ring-inset ring-white/50"
-                  : ""
+                ? "ring-2 ring-inset ring-white/50"
+                : ""
                 }`}
               onClick={() => {
                 // "Trễ" = henGiao < hôm nay (không bao gồm hôm nay) + chưa hoàn thành
@@ -643,7 +643,7 @@ const KeHoachGiaoHangTable = () => {
                 <div className="text-3xl font-extrabold leading-none">
                   {loadingThongKe ? "..." : treHenGiao}
                 </div>
-                <div className="text-sm font-semibold mt-0.5 opacity-90">
+                <div className="text-base font-semibold mt-0.5 opacity-90">
                   Trễ
                 </div>
               </div>
@@ -651,9 +651,9 @@ const KeHoachGiaoHangTable = () => {
 
             <div
               className={`flex-1 cursor-pointer bg-purple-700 hover:bg-purple-600 active:bg-purple-800 text-white px-5 py-3 flex items-center gap-3 transition-all duration-200 hover:shadow-inner hover:scale-[1.02] hover:z-10 relative ${appliedTrangThai.length === 1 &&
-                  appliedTrangThai[0] === "Đang thử"
-                  ? "ring-2 ring-inset ring-white/50"
-                  : ""
+                appliedTrangThai[0] === "Đang thử"
+                ? "ring-2 ring-inset ring-white/50"
+                : ""
                 }`}
               onClick={() => {
                 const isActive =
@@ -672,7 +672,7 @@ const KeHoachGiaoHangTable = () => {
                 <div className="text-3xl font-extrabold leading-none">
                   {loadingThongKe ? "..." : guiThu}
                 </div>
-                <div className="text-sm font-semibold mt-0.5 opacity-90">
+                <div className="text-base font-semibold mt-0.5 opacity-90">
                   Đang thử
                 </div>
               </div>
@@ -688,8 +688,8 @@ const KeHoachGiaoHangTable = () => {
                 onClick={handleOpenFilter}
                 title="Bộ lọc"
                 className={`relative p-1.5 rounded transition ${isFiltered
-                    ? "text-blue-600 bg-blue-50 hover:bg-blue-100"
-                    : "text-gray-500 hover:bg-gray-100"
+                  ? "text-blue-600 bg-blue-50 hover:bg-blue-100"
+                  : "text-gray-500 hover:bg-gray-100"
                   }`}
               >
                 <FilterAltIcon sx={{ fontSize: 20 }} />
@@ -711,7 +711,7 @@ const KeHoachGiaoHangTable = () => {
                     onClick={(e) => e.stopPropagation()}
                   >
                     <button
-                      className="w-full flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition text-sm"
+                      className="w-full flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition text-base"
                       onClick={() => {
                         setOpenPickerModal(null);
                         setOpenDateModal(
@@ -747,7 +747,7 @@ const KeHoachGiaoHangTable = () => {
                     onClick={(e) => e.stopPropagation()}
                   >
                     <button
-                      className="w-full flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition text-sm"
+                      className="w-full flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition text-base"
                       onClick={() => {
                         setOpenPickerModal(null);
                         setOpenDateModal(
@@ -790,12 +790,12 @@ const KeHoachGiaoHangTable = () => {
                           onChange={(e) => setNhaKhoaSearch(e.target.value)}
                           placeholder="Tìm nha khoa..."
                           autoFocus
-                          className="w-full border-b border-blue-400 px-3 py-1.5 text-sm focus:outline-none"
+                          className="w-full border-b border-blue-400 px-3 py-1.5 text-base focus:outline-none"
                         />
                       </div>
                     ) : (
                       <button
-                        className="w-full flex items-start px-4 py-3 hover:bg-gray-50 transition text-sm"
+                        className="w-full flex items-start px-4 py-3 hover:bg-gray-50 transition text-base"
                         onClick={() => {
                           setOpenDateModal(null);
                           setNhaKhoaSearch("");
@@ -821,7 +821,7 @@ const KeHoachGiaoHangTable = () => {
                               setDraftNhaKhoa(null);
                               setOpenPickerModal(null);
                             }}
-                            className="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-red-50 border-b border-gray-100 transition"
+                            className="w-full text-left px-4 py-2 text-base text-red-500 hover:bg-red-50 border-b border-gray-100 transition"
                           >
                             Bỏ chọn
                           </button>
@@ -833,16 +833,16 @@ const KeHoachGiaoHangTable = () => {
                               setDraftNhaKhoa(item);
                               setOpenPickerModal(null);
                             }}
-                            className={`w-full text-left px-4 py-2 text-sm border-b border-gray-50 transition ${draftNhaKhoa?._id === item._id
-                                ? "bg-blue-50 text-blue-700 font-semibold"
-                                : "text-gray-700 hover:bg-gray-50"
+                            className={`w-full text-left px-4 py-2 text-base border-b border-gray-50 transition ${draftNhaKhoa?._id === item._id
+                              ? "bg-blue-50 text-blue-700 font-semibold"
+                              : "text-gray-700 hover:bg-gray-50"
                               }`}
                           >
                             {item.name}
                           </button>
                         ))}
                         {filteredNhaKhoaOpts.length === 0 && (
-                          <p className="text-center text-xs text-gray-400 py-4">
+                          <p className="text-center text-base text-gray-400 py-4">
                             Không tìm thấy
                           </p>
                         )}
@@ -854,7 +854,7 @@ const KeHoachGiaoHangTable = () => {
                     className="border-b border-gray-100 px-3 py-2.5"
                     onClick={(e) => e.stopPropagation()}
                   >
-                    <p className="text-xs text-gray-400 mb-1.5">Trạng thái</p>
+                    <p className="text-base text-gray-400 mb-1.5">Trạng thái</p>
                     <div className="flex flex-wrap gap-1.5">
                       {TRANG_THAI_OPTIONS.map((status) => {
                         const isActive = draftTrangThai.includes(status);
@@ -876,7 +876,7 @@ const KeHoachGiaoHangTable = () => {
                           <button
                             key={status}
                             onClick={() => toggleDraftTrangThai(status)}
-                            className={`px-2.5 py-1 rounded-full border text-xs font-medium transition-all ${colorMap[status]}`}
+                            className={`px-2.5 py-1 rounded-full border text-base font-medium transition-all ${colorMap[status]}`}
                           >
                             {status}
                           </button>
@@ -895,7 +895,7 @@ const KeHoachGiaoHangTable = () => {
                     </button>
                     <button
                       onClick={handleApplyFilters}
-                      className="flex items-center gap-1 px-4 py-1.5 bg-green-500 hover:bg-green-600 text-white text-sm font-semibold rounded-lg transition shadow-sm"
+                      className="flex items-center gap-1 px-4 py-1.5 bg-green-500 hover:bg-green-600 text-white text-base font-semibold rounded-lg transition shadow-sm"
                     >
                       ✓ Lưu
                     </button>
@@ -905,7 +905,7 @@ const KeHoachGiaoHangTable = () => {
             </div>
 
             {appliedHenGiao?.preset && (
-              <span className="inline-flex items-center gap-1 bg-blue-100 text-blue-700 text-xs font-medium px-2.5 py-1 rounded-full">
+              <span className="inline-flex items-center gap-1 bg-blue-100 text-blue-700 text-base font-medium px-2.5 py-1 rounded-full">
                 <CalendarTodayIcon sx={{ fontSize: 11 }} />
                 Hẹn giao: {getDateLabel(appliedHenGiao)}
                 {appliedHenGiao.preset === "custom" &&
@@ -930,7 +930,7 @@ const KeHoachGiaoHangTable = () => {
               </span>
             )}
             {appliedNgayNhan?.preset && (
-              <span className="inline-flex items-center gap-1 bg-blue-100 text-blue-700 text-xs font-medium px-2.5 py-1 rounded-full">
+              <span className="inline-flex items-center gap-1 bg-blue-100 text-blue-700 text-base font-medium px-2.5 py-1 rounded-full">
                 <CalendarTodayIcon sx={{ fontSize: 11 }} />
                 Nhận: {getDateLabel(appliedNgayNhan)}
                 {appliedNgayNhan.preset === "custom" &&
@@ -955,7 +955,7 @@ const KeHoachGiaoHangTable = () => {
               </span>
             )}
             {appliedNhaKhoa && (
-              <span className="inline-flex items-center gap-1 bg-blue-100 text-blue-700 text-xs font-medium px-2.5 py-1 rounded-full">
+              <span className="inline-flex items-center gap-1 bg-blue-100 text-blue-700 text-base font-medium px-2.5 py-1 rounded-full">
                 <StoreIcon sx={{ fontSize: 11 }} />
                 {appliedNhaKhoa.name}
                 <button
@@ -974,7 +974,7 @@ const KeHoachGiaoHangTable = () => {
             {appliedTrangThai.map((status) => (
               <span
                 key={status}
-                className="inline-flex items-center gap-1 bg-blue-100 text-blue-700 text-xs font-medium px-2.5 py-1 rounded-full"
+                className="inline-flex items-center gap-1 bg-blue-100 text-blue-700 text-base font-medium px-2.5 py-1 rounded-full"
               >
                 {status}
                 <button
@@ -1008,7 +1008,7 @@ const KeHoachGiaoHangTable = () => {
                 placeholder="Tìm kiếm..."
                 value={searchText}
                 onChange={(e) => setSearchText(e.target.value)}
-                className="pl-8 pr-3 py-1.5 border rounded-full md:text-sm text-base bg-white w-full focus:outline-none focus:ring-1 focus:ring-blue-400"
+                className="pl-8 pr-3 py-1.5 border rounded-full md:text-base text-base bg-white w-full focus:outline-none focus:ring-1 focus:ring-blue-400"
               />
               {searchText && (
                 <button
@@ -1059,7 +1059,7 @@ const KeHoachGiaoHangTable = () => {
                 <CircularProgress size={28} sx={{ color: "#26a69a" }} />
               </div>
             ) : filteredOrders.length === 0 ? (
-              <p className="text-center py-8 text-gray-500 text-sm">
+              <p className="text-center py-8 text-gray-500 text-base">
                 Không có dữ liệu
               </p>
             ) : (
@@ -1078,8 +1078,8 @@ const KeHoachGiaoHangTable = () => {
                     key={order._id}
                     onClick={() => setSelectedDonHang(order)}
                     className={`px-4 py-3 cursor-pointer transition-colors ${selectedDonHang?._id === order._id
-                        ? "bg-sky-100"
-                        : "hover:bg-gray-50"
+                      ? "bg-sky-100"
+                      : "hover:bg-gray-50"
                       }`}
                   >
                     <div className="flex items-center justify-between mb-1">
@@ -1088,20 +1088,20 @@ const KeHoachGiaoHangTable = () => {
                           e.stopPropagation();
                           navigate(`/donhang/${order._id}/edit`);
                         }}
-                        className={`font-semibold text-sm hover:underline ${overdue ? "text-red-500" : "text-blue-700"
+                        className={`font-semibold text-base hover:underline ${overdue ? "text-red-500" : "text-blue-700"
                           }`}
                       >
                         {maDon}
                       </button>
                       <TrangThaiBadge value={order.trangThai} />
                     </div>
-                    <p className="text-sm text-gray-800 font-medium truncate">
+                    <p className="text-base text-gray-800 font-medium truncate">
                       {order.nhaKhoa?.tenGiaoDich ||
                         order.nhaKhoa?.hoVaTen ||
                         "—"}
                     </p>
                     {(order.bacSi?.hoVaTen || order.benhNhan?.hoVaTen) && (
-                      <p className="text-xs text-gray-500 mt-0.5 truncate">
+                      <p className="text-base text-gray-500 mt-0.5 truncate">
                         {[
                           order.bacSi?.hoVaTen && `BS: ${order.bacSi.hoVaTen}`,
                           order.benhNhan?.hoVaTen &&
@@ -1111,7 +1111,7 @@ const KeHoachGiaoHangTable = () => {
                           .join(" · ")}
                       </p>
                     )}
-                    <div className="flex items-center gap-3 mt-1 text-xs text-gray-400">
+                    <div className="flex items-center gap-3 mt-1 text-base text-gray-400">
                       {order.ngayNhan && (
                         <span>
                           Nhận: {format(parseISO(order.ngayNhan), "dd/MM/yyyy")}
@@ -1124,7 +1124,7 @@ const KeHoachGiaoHangTable = () => {
                       </span>
                     </div>
                     {order.ghiChuChung && (
-                      <p className="text-xs text-gray-400 mt-0.5 truncate">
+                      <p className="text-base text-gray-400 mt-0.5 truncate">
                         {order.ghiChuChung}
                       </p>
                     )}
@@ -1136,7 +1136,7 @@ const KeHoachGiaoHangTable = () => {
 
           <div className="hidden sm:block overflow-x-auto">
             <table
-              className="text-sm text-left"
+              className="text-base text-left"
               style={{
                 tableLayout: "fixed",
                 width: colWidths.reduce((a, b) => a + b, 0),
@@ -1200,11 +1200,11 @@ const KeHoachGiaoHangTable = () => {
                           key={`${order._id}_${spIdx}`}
                           onClick={() => setSelectedDonHang(order)}
                           className={`border-b cursor-pointer transition-colors ${selectedDonHang?._id === order._id
-                              ? "bg-sky-100 border-sky-200"
-                              : "hover:bg-gray-50"
+                            ? "bg-sky-100 border-sky-200"
+                            : "hover:bg-gray-50"
                             }`}
                         >
-                          <td className="px-3 py-2.5 truncate text-xs text-gray-600">
+                          <td className="px-3 py-2.5 truncate text-base text-gray-600">
                             {order.ngayNhan
                               ? format(
                                 parseISO(order.ngayNhan),
@@ -1218,40 +1218,40 @@ const KeHoachGiaoHangTable = () => {
                                 e.stopPropagation();
                                 navigate(`/donhang/${order._id}/edit`);
                               }}
-                              className={`font-medium text-sm hover:underline ${overdue
-                                  ? "text-red-500"
-                                  : today
-                                    ? "text-blue-600"
-                                    : "text-gray-700"
+                              className={`font-medium text-base hover:underline ${overdue
+                                ? "text-red-500"
+                                : today
+                                  ? "text-blue-600"
+                                  : "text-gray-700"
                                 }`}
                             >
                               {maDon}
                             </button>
                           </td>
                           <td
-                            className={`px-3 py-2.5 truncate text-sm font-medium ${overdue ? "text-red-500" : "text-gray-700"
+                            className={`px-3 py-2.5 truncate text-base font-medium ${overdue ? "text-red-500" : "text-gray-700"
                               }`}
                           >
                             {format(date, "HH:mm dd/MM/yyyy")}
                           </td>
-                          <td className="px-3 py-2.5 truncate text-sm text-gray-800">
+                          <td className="px-3 py-2.5 truncate text-base text-gray-800">
                             {order.nhaKhoa?.tenGiaoDich ||
                               order.nhaKhoa?.hoVaTen}
                           </td>
-                          <td className="px-3 py-2.5 truncate text-sm text-gray-700">
+                          <td className="px-3 py-2.5 truncate text-base text-gray-700">
                             {order.bacSi?.hoVaTen}
                           </td>
-                          <td className="px-3 py-2.5 truncate text-sm text-gray-700">
+                          <td className="px-3 py-2.5 truncate text-base text-gray-700">
                             {order.benhNhan?.hoVaTen}
                           </td>
-                          <td className="px-3 py-2.5 truncate text-sm text-gray-700">
+                          <td className="px-3 py-2.5 truncate text-base text-gray-700">
                             {formatSingleSanPham(sp)}
                           </td>
                           <td className="px-3 py-2.5 truncate">
                             <TrangThaiBadge value={order.trangThai} />
                           </td>
                           <td
-                            className="px-3 py-2.5 truncate text-sm text-gray-700"
+                            className="px-3 py-2.5 truncate text-base text-gray-700"
                             title={order.ghiChuChung || ""}
                           >
                             {order.ghiChuChung}
@@ -1264,7 +1264,7 @@ const KeHoachGiaoHangTable = () => {
                       <tr>
                         <td
                           colSpan="9"
-                          className="text-center py-10 text-gray-400 text-sm"
+                          className="text-center py-10 text-gray-400 text-base"
                         >
                           Không có dữ liệu
                         </td>
@@ -1279,7 +1279,7 @@ const KeHoachGiaoHangTable = () => {
 
         <div ref={sentinelRef} className="h-4" />
         {loadingMore && (
-          <div className="text-center py-3 text-gray-400 text-sm print:hidden">
+          <div className="text-center py-3 text-gray-400 text-base print:hidden">
             Đang tải thêm...
           </div>
         )}
@@ -1404,7 +1404,7 @@ const TrangThaiBadge = ({ value }) => {
   };
   return (
     <span
-      className={`px-2 py-1 rounded font-medium text-xs ${map[value] || "bg-gray-100 text-gray-600"
+      className={`px-2 py-1 rounded font-medium text-base ${map[value] || "bg-gray-100 text-gray-600"
         }`}
     >
       {value || "Chờ xử lý"}

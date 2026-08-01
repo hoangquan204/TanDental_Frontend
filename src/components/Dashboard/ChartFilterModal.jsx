@@ -84,7 +84,7 @@ export const ChartFilterModal = ({
                   key={opt}
                   value={opt}
                   control={<Radio size="small" color="success" />}
-                  label={<span className="text-sm">{opt}</span>}
+                  label={<span className="text-base">{opt}</span>}
                   className="mb-[-5px]"
                 />
               ))}
@@ -103,13 +103,13 @@ export const ChartFilterModal = ({
               <FormControlLabel
                 value="day"
                 control={<Radio size="small" color="success" />}
-                label={<span className="text-sm">Ngày</span>}
+                label={<span className="text-base">Ngày</span>}
                 className="mb-[-5px]"
               />
               <FormControlLabel
                 value="week"
                 control={<Radio size="small" color="success" />}
-                label={<span className="text-sm">Tuần</span>}
+                label={<span className="text-base">Tuần</span>}
                 className="mb-[-5px]"
               />
             </RadioGroup>
@@ -120,7 +120,7 @@ export const ChartFilterModal = ({
           Biểu đồ
         </Typography>
         <div className="flex justify-between items-center mb-2">
-          <span className="text-sm text-gray-700">
+          <span className="text-base text-gray-700">
             Hiển thị số liệu trên biểu đồ
           </span>
           <Switch
@@ -130,7 +130,7 @@ export const ChartFilterModal = ({
           />
         </div>
         <div className="flex justify-between items-center">
-          <span className="text-sm text-gray-700">Hiển thị chú thích</span>
+          <span className="text-base text-gray-700">Hiển thị chú thích</span>
           <Switch
             checked={config.showLegend}
             onChange={(e) => handleChange("showLegend", e.target.checked)}

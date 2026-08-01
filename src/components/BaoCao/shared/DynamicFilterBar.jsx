@@ -6,7 +6,7 @@ import CustomDateRangePicker from '../../common/DateRangePicker';
 /* GIAO DIỆN GẠCH CHÂN */
 const FieldWrapper = ({ label, children, className = '' }) => (
     <div className={`flex flex-col gap-1 min-w-0 ${className}`}>
-        <span className="text-sm text-gray-500 leading-none">{label}</span>
+        <span className="text-base text-gray-500 leading-none">{label}</span>
         {/* Giữ w-fit để gạch dưới ôm sát chữ */}
         <div className="flex items-center border-b-2 border-gray-400 pb-1 min-w-0 w-fit">
             {children}
@@ -76,7 +76,7 @@ const DynamicFilterBar = ({
                         className="order-1 md:order-2 w-full md:w-auto flex flex-col gap-1"
                         style={{ minWidth: 180 }}
                     >
-                        <span className="text-sm text-gray-500 leading-none">{extraFilterLabel || 'Loại'}</span>
+                        <span className="text-base text-gray-500 leading-none">{extraFilterLabel || 'Loại'}</span>
                         <div className="text-base font-medium text-gray-900">
                             {extraFilters}
                         </div>

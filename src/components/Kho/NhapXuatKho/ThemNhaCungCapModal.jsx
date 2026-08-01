@@ -63,7 +63,7 @@ export default function ThemNhaCungCapModal({ open, onClose, initialTen = "", on
                 <form onSubmit={handleSubmit} className="px-6 py-4 space-y-3">
                     {/* Tên — bắt buộc, có sẵn text đã nhập */}
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                        <label className="block text-base font-medium text-gray-700 mb-1">
                             Tên nhà cung cấp <span className="text-red-500">*</span>
                         </label>
                         <input
@@ -72,45 +72,45 @@ export default function ThemNhaCungCapModal({ open, onClose, initialTen = "", on
                             value={form.ten}
                             onChange={handleChange}
                             placeholder="Nhập tên nhà cung cấp..."
-                            className={`border rounded w-full px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 ${error ? "border-red-400" : ""}`}
+                            className={`border rounded w-full px-3 py-2 text-base focus:outline-none focus:ring-1 focus:ring-blue-500 ${error ? "border-red-400" : ""}`}
                         />
-                        {error && <p className="text-xs text-red-500 mt-1">{error}</p>}
+                        {error && <p className="text-base text-red-500 mt-1">{error}</p>}
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Số điện thoại</label>
+                        <label className="block text-base font-medium text-gray-700 mb-1">Số điện thoại</label>
                         <input name="soDienThoai" value={form.soDienThoai} onChange={handleChange}
                             placeholder="0901..."
-                            className="border rounded w-full px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" />
+                            className="border rounded w-full px-3 py-2 text-base focus:outline-none focus:ring-1 focus:ring-blue-500" />
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                        <label className="block text-base font-medium text-gray-700 mb-1">Email</label>
                         <input name="email" type="email" value={form.email} onChange={handleChange}
                             placeholder="ncc@example.com"
-                            className="border rounded w-full px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" />
+                            className="border rounded w-full px-3 py-2 text-base focus:outline-none focus:ring-1 focus:ring-blue-500" />
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Địa chỉ</label>
+                        <label className="block text-base font-medium text-gray-700 mb-1">Địa chỉ</label>
                         <input name="diaChi" value={form.diaChi} onChange={handleChange}
                             placeholder="Địa chỉ..."
-                            className="border rounded w-full px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" />
+                            className="border rounded w-full px-3 py-2 text-base focus:outline-none focus:ring-1 focus:ring-blue-500" />
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Ghi chú</label>
+                        <label className="block text-base font-medium text-gray-700 mb-1">Ghi chú</label>
                         <textarea name="ghiChu" rows={2} value={form.ghiChu} onChange={handleChange}
-                            className="border rounded w-full px-3 py-2 text-sm resize-none focus:outline-none focus:ring-1 focus:ring-blue-500" />
+                            className="border rounded w-full px-3 py-2 text-base resize-none focus:outline-none focus:ring-1 focus:ring-blue-500" />
                     </div>
 
                     <div className="flex justify-end gap-3 pt-1">
                         <button type="button" onClick={onClose}
-                            className="px-4 py-2 border rounded text-sm text-gray-600 hover:bg-gray-100 transition-colors">
+                            className="px-4 py-2 border rounded text-base text-gray-600 hover:bg-gray-100 transition-colors">
                             Hủy
                         </button>
                         <button type="submit" disabled={loading}
-                            className="px-5 py-2 bg-blue-600 text-white text-sm font-medium rounded hover:bg-blue-700 disabled:opacity-50 transition-colors">
+                            className="px-5 py-2 bg-blue-600 text-white text-base font-medium rounded hover:bg-blue-700 disabled:opacity-50 transition-colors">
                             {loading ? "Đang thêm..." : "Thêm"}
                         </button>
                     </div>

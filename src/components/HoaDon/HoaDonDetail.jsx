@@ -431,12 +431,12 @@ const HoaDonDetail = () => {
   const renderFinancialBlock = () => (
     <div className="space-y-4">
       <div className="flex items-start justify-between">
-        <span className="text-gray-800 text-sm">Tổng cộng</span>
+        <span className="text-gray-800 text-base">Tổng cộng</span>
         <span className="font-bold text-gray-900 text-[15px]">{fmtVND(fin.tongCong)}</span>
       </div>
 
       <div className="flex items-center justify-between">
-        <span className="text-gray-800 text-sm shrink-0">Chiết khấu</span>
+        <span className="text-gray-800 text-base shrink-0">Chiết khấu</span>
         <div className="flex items-center flex-1 justify-end ml-4">
           <input
             type="number" min={0} max={100}
@@ -449,7 +449,7 @@ const HoaDonDetail = () => {
             }}
             className="w-12 border-b border-gray-400 text-center text-base outline-none bg-transparent pb-0.5 no-spinner"
           />
-          <span className="mx-2 text-gray-800 text-sm">% =</span>
+          <span className="mx-2 text-gray-800 text-base">% =</span>
           <input
             type="text" inputMode="numeric"
             disabled={isLocked}
@@ -465,7 +465,7 @@ const HoaDonDetail = () => {
       </div>
 
       <div className="flex items-center justify-between">
-        <span className="text-gray-800 text-sm shrink-0">Thuế</span>
+        <span className="text-gray-800 text-base shrink-0">Thuế</span>
         <div className="flex items-center flex-1 justify-end ml-4">
           <input
             type="number" min={0} max={100}
@@ -478,7 +478,7 @@ const HoaDonDetail = () => {
             }}
             className="w-12 border-b border-gray-400 text-center text-base outline-none bg-transparent pb-0.5 no-spinner"
           />
-          <span className="mx-2 text-gray-800 text-sm">% =</span>
+          <span className="mx-2 text-gray-800 text-base">% =</span>
           <input
             type="text" inputMode="numeric"
             disabled={isLocked}
@@ -494,7 +494,7 @@ const HoaDonDetail = () => {
       </div>
 
       <div className="flex items-center justify-between">
-        <span className="text-gray-800 text-sm shrink-0">Chi phí khác</span>
+        <span className="text-gray-800 text-base shrink-0">Chi phí khác</span>
         <div className="flex items-center flex-1 justify-end ml-4">
           <input
             disabled={isLocked}
@@ -562,19 +562,19 @@ const HoaDonDetail = () => {
         <div className="fixed inset-0 z-[1400] flex items-center justify-center bg-black/40 backdrop-blur-sm">
           <div className="bg-white rounded-2xl shadow-2xl p-6 w-[90%] max-w-sm mx-4">
             <p className="text-gray-900 font-semibold text-base mb-1.5">Thoát mà không lưu?</p>
-            <p className="text-gray-500 text-sm mb-6 leading-relaxed">
+            <p className="text-gray-500 text-base mb-6 leading-relaxed">
               Bạn có thay đổi chưa được lưu. Bạn muốn làm gì?
             </p>
             <div className="flex gap-3">
               <button
                 onClick={() => { setShowExitConfirm(false); navigate(-1); }}
-                className="flex-1 px-4 py-2.5 border border-gray-300 rounded-xl text-sm font-semibold text-gray-600 hover:bg-gray-50 transition-colors"
+                className="flex-1 px-4 py-2.5 border border-gray-300 rounded-xl text-base font-semibold text-gray-600 hover:bg-gray-50 transition-colors"
               >
                 Không lưu
               </button>
               <button
                 onClick={() => handleSave(false, true)}
-                className="flex-1 px-4 py-2.5 bg-[#00a8df] text-white rounded-xl text-sm font-bold hover:bg-sky-600 transition-colors flex items-center justify-center gap-1.5 shadow-sm"
+                className="flex-1 px-4 py-2.5 bg-[#00a8df] text-white rounded-xl text-base font-bold hover:bg-sky-600 transition-colors flex items-center justify-center gap-1.5 shadow-sm"
               >
                 <Save className="w-4 h-4" /> Lưu
               </button>
@@ -592,19 +592,19 @@ const HoaDonDetail = () => {
               </div>
               <p className="text-gray-900 font-bold text-lg">Xóa hóa đơn?</p>
             </div>
-            <p className="text-gray-500 text-sm mb-6 leading-relaxed">
+            <p className="text-gray-500 text-base mb-6 leading-relaxed">
               Hành động này không thể hoàn tác. Các đơn hàng trong hóa đơn này sẽ được trả về trạng thái <span className="font-semibold text-gray-700">Chờ xuất hóa đơn</span>.
             </p>
             <div className="flex gap-3">
               <button
                 onClick={() => setShowDeleteConfirm(false)}
-                className="flex-1 px-4 py-2.5 border border-gray-300 rounded-xl text-sm font-semibold text-gray-600 hover:bg-gray-50 transition-colors"
+                className="flex-1 px-4 py-2.5 border border-gray-300 rounded-xl text-base font-semibold text-gray-600 hover:bg-gray-50 transition-colors"
               >
                 Hủy bỏ
               </button>
               <button
                 onClick={executeDelete}
-                className="flex-1 px-4 py-2.5 bg-red-600 text-white rounded-xl text-sm font-bold hover:bg-red-700 transition-colors shadow-sm"
+                className="flex-1 px-4 py-2.5 bg-red-600 text-white rounded-xl text-base font-bold hover:bg-red-700 transition-colors shadow-sm"
               >
                 Xóa ngay
               </button>
@@ -617,19 +617,19 @@ const HoaDonDetail = () => {
         <div className="fixed inset-0 z-[1400] flex items-center justify-center bg-black/40 backdrop-blur-sm">
           <div className="bg-white rounded-2xl shadow-2xl p-6 w-[90%] max-w-sm mx-4">
             <p className="text-gray-900 font-bold text-lg mb-2">Xác nhận chốt hóa đơn?</p>
-            <p className="text-gray-500 text-sm mb-6 leading-relaxed">
+            <p className="text-gray-500 text-base mb-6 leading-relaxed">
               Hóa đơn sẽ được <b>Lưu</b> và chuyển sang trạng thái <b>Chưa thanh toán</b>.
             </p>
             <div className="flex gap-3">
               <button
                 onClick={() => setShowXacNhanConfirm(false)}
-                className="flex-1 px-4 py-2.5 border border-gray-300 rounded-xl text-sm font-semibold text-gray-600 hover:bg-gray-50 transition-colors"
+                className="flex-1 px-4 py-2.5 border border-gray-300 rounded-xl text-base font-semibold text-gray-600 hover:bg-gray-50 transition-colors"
               >
                 Hủy bỏ
               </button>
               <button
                 onClick={() => handleSave(true)}
-                className="flex-1 px-4 py-2.5 bg-green-600 text-white rounded-xl text-sm font-bold hover:bg-green-700 transition-colors shadow-sm"
+                className="flex-1 px-4 py-2.5 bg-green-600 text-white rounded-xl text-base font-bold hover:bg-green-700 transition-colors shadow-sm"
               >
                 Đồng ý
               </button>
@@ -643,7 +643,7 @@ const HoaDonDetail = () => {
           <h1 className="text-white text-base">
             Hóa đơn <span className="font-bold">{hoaDon.soHoaDon || "---"}</span>
           </h1>
-          <span className={`text-sm font-bold px-2 py-0.5 rounded ${TRANG_THAI_COLOR[hoaDon.trangThai] || "bg-orange-500 text-white"}`}>
+          <span className={`text-base font-bold px-2 py-0.5 rounded ${TRANG_THAI_COLOR[hoaDon.trangThai] || "bg-orange-500 text-white"}`}>
             {hoaDon.trangThai}
           </span>
         </div>
@@ -654,11 +654,11 @@ const HoaDonDetail = () => {
 
       <div className="bg-white px-4 lg:px-6 py-4 flex flex-col lg:flex-row items-stretch gap-3 lg:gap-4 shrink-0">
         <div className="order-1 lg:hidden px-1">
-          <p className="text-sm text-gray-400 font-medium">Giá trị thanh toán</p>
+          <p className="text-base text-gray-400 font-medium">Giá trị thanh toán</p>
           <p className="text-3xl font-black text-gray-900 leading-tight mt-1 mb-3">
             {fmtVND(fin.giaTriThanhToan)}
           </p>
-          <p className="text-sm text-gray-400 font-medium mt-4">Ngày xuất</p>
+          <p className="text-base text-gray-400 font-medium mt-4">Ngày xuất</p>
           <div className="flex items-center mt-0.5 mb-4">
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker
@@ -686,11 +686,11 @@ const HoaDonDetail = () => {
         </div>
 
         <div className="order-3 lg:hidden px-1 flex items-start gap-4">
-          <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-white font-bold text-sm shrink-0">
+          <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-white font-bold text-base shrink-0">
             {initials}
           </div>
           <div>
-            <p className="text-sm text-gray-400 font-medium">Nha khoa</p>
+            <p className="text-base text-gray-400 font-medium">Nha khoa</p>
             <p className="font-bold text-gray-900 text-base leading-tight mt-0.5 uppercase">
               {hoaDon.nhaKhoa?.hoVaTen || "---"}
             </p>
@@ -702,7 +702,7 @@ const HoaDonDetail = () => {
           <p><span className="text-gray-500 inline-block w-20">Điện thoại:</span><span className="font-medium">{hoaDon.nhaKhoa?.soDienThoai || ""}</span></p>
           <p><span className="text-gray-500 inline-block w-20">Mô tả:</span><span className="font-medium">{hoaDon.nhaKhoa?.moTa || ""}</span></p>
           <div className="pt-3 mt-1.5 border-t border-[#00a8df]/30 flex items-center justify-between">
-            <span className="text-gray-700 font-bold uppercase text-sm tracking-wide">
+            <span className="text-gray-700 font-bold uppercase text-base tracking-wide">
               Công nợ:
             </span>
             <span className="font-black text-gray-700 text-xl">
@@ -712,12 +712,12 @@ const HoaDonDetail = () => {
         </div>
 
         <div className="order-5 lg:hidden px-1 py-4">
-          <p className="text-sm text-gray-400 font-medium">Chính sách thanh toán</p>
+          <p className="text-base text-gray-400 font-medium">Chính sách thanh toán</p>
           <select
             disabled={isLocked}
             value={formState.chinhSachThanhToan}
             onChange={(e) => setField("chinhSachThanhToan", e.target.value)}
-            className="border-0 border-b border-gray-300 text-sm text-gray-800 outline-none bg-transparent pr-4 py-0.5 mt-0.5 w-full"
+            className="border-0 border-b border-gray-300 text-base text-gray-800 outline-none bg-transparent pr-4 py-0.5 mt-0.5 w-full"
           >
             {CHINH_SACH_OPTIONS.map((o) => (
               <option key={o}>{o}</option>
@@ -731,19 +731,19 @@ const HoaDonDetail = () => {
               {initials}
             </div>
             <div>
-              <p className="text-sm text-gray-400 font-medium">Nha khoa</p>
+              <p className="text-base text-gray-400 font-medium">Nha khoa</p>
               <p className="font-bold text-gray-900 text-base leading-tight mt-0.5 uppercase">
                 {hoaDon.nhaKhoa?.hoVaTen || "---"}
               </p>
             </div>
           </div>
           <div className="-mt-2">
-            <p className="text-sm text-gray-400 font-medium">Chính sách thanh toán</p>
+            <p className="text-base text-gray-400 font-medium">Chính sách thanh toán</p>
             <select
               disabled={isLocked}
               value={formState.chinhSachThanhToan}
               onChange={(e) => setField("chinhSachThanhToan", e.target.value)}
-              className="border-0 border-b border-gray-300 text-sm text-gray-800 outline-none bg-transparent pr-4 py-0.5 mt-0.5 w-4/5"
+              className="border-0 border-b border-gray-300 text-base text-gray-800 outline-none bg-transparent pr-4 py-0.5 mt-0.5 w-4/5"
             >
               {CHINH_SACH_OPTIONS.map((o) => (
                 <option key={o}>{o}</option>
@@ -753,12 +753,12 @@ const HoaDonDetail = () => {
         </div>
 
         <div className="hidden lg:flex lg:order-3 lg:w-[30%] pl-8 flex-col justify-center ">
-          <p className="text-sm text-gray-400 font-medium">Giá trị thanh toán</p>
+          <p className="text-base text-gray-400 font-medium">Giá trị thanh toán</p>
           <p className="text-3xl font-black text-gray-900 leading-tight mt-1 mb-3">
             {fmtVND(fin.giaTriThanhToan)}
           </p>
           <div className="flex flex-col gap-1">
-            <p className="text-sm text-gray-400 font-medium">Ngày xuất</p>
+            <p className="text-base text-gray-400 font-medium">Ngày xuất</p>
             <div className="flex items-center">
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DatePicker
@@ -802,7 +802,7 @@ const HoaDonDetail = () => {
         <div className="flex flex-col md:flex-row mt-6 bg-gray-50/30 shrink-0 items-stretch">
           <div className="w-full md:w-[60%] lg:w-[70%] p-4 md:p-6 space-y-6">
             <div>
-              <p className="text-xs text-gray-500 font-medium mb-1.5">Ghi chú cho khách hàng</p>
+              <p className="text-base text-gray-500 font-medium mb-1.5">Ghi chú cho khách hàng</p>
               <textarea
                 value={formState.ghiChuChoKhachHang}
                 onChange={(e) => setField("ghiChuChoKhachHang", e.target.value)}
@@ -811,7 +811,7 @@ const HoaDonDetail = () => {
               />
             </div>
             <div>
-              <p className="text-xs text-gray-500 font-medium mb-1.5">Ghi chú nội bộ</p>
+              <p className="text-base text-gray-500 font-medium mb-1.5">Ghi chú nội bộ</p>
               <textarea
                 value={formState.ghiChuNoiBo}
                 onChange={(e) => setField("ghiChuNoiBo", e.target.value)}
@@ -832,7 +832,7 @@ const HoaDonDetail = () => {
 
       <footer className="fixed bottom-0 left-0 right-0 h-14 bg-white border-t border-gray-200 flex items-center justify-between px-4 md:px-6 z-[1310] shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
         <div className="flex items-center gap-4">
-          <span className="hidden sm:block text-xs text-gray-400 font-medium">
+          <span className="hidden sm:block text-base text-gray-400 font-medium">
             Kế Toán Tạo lúc {fmtDateTime(hoaDon.createdAt)}
             {hoaDon.updatedAt && hoaDon.updatedAt !== hoaDon.createdAt && (
               <span className="ml-1.5 italic text-gray-500">

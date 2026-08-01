@@ -117,7 +117,7 @@ export const CommonAddButton = ({
       onClick={onClick}
       disabled={disabled}
       startIcon={<AddIcon />}
-      className={`bg-blue-600 hover:bg-blue-700 shadow-sm rounded-xl min-w-0 p-2 sm:px-4 sm:py-2 text-white flex items-center justify-center font-semibold text-sm transition-all duration-200 ${className}`}
+      className={`bg-blue-600 hover:bg-blue-700 shadow-sm rounded-xl min-w-0 p-2 sm:px-4 sm:py-2 text-white flex items-center justify-center font-semibold text-base transition-all duration-200 ${className}`}
       style={{ textTransform: "none", ...style }}
       {...props}
     >
@@ -231,7 +231,7 @@ export const CommonExcelButton = ({
       onClick={onClick}
       disabled={disabled}
       startIcon={<FileDownloadIcon fontSize="small" />}
-      className={`bg-green-600 hover:bg-green-700 text-white shadow-sm rounded-xl min-w-0 p-2 sm:px-3 sm:py-1.5 flex items-center justify-center font-semibold text-sm transition-all duration-200 ${className}`}
+      className={`bg-green-600 hover:bg-green-700 text-white shadow-sm rounded-xl min-w-0 p-2 sm:px-3 sm:py-1.5 flex items-center justify-center font-semibold text-base transition-all duration-200 ${className}`}
       style={{ textTransform: "none", ...style }}
       {...props}
     >

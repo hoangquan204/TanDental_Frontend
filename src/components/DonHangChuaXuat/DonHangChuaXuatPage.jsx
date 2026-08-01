@@ -47,7 +47,7 @@ export default function DonHangChuaXuatPage() {
       {isInitialLoading && (
         <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-white/80 backdrop-blur-sm gap-3">
           <CircularProgress size={32} sx={{ color: "#00a8df" }} />
-          <span className="text-sm text-gray-500">Đang tải dữ liệu...</span>
+          <span className="text-base text-gray-500">Đang tải dữ liệu...</span>
         </div>
       )}
       <div className="w-full md:w-auto md:h-full max-h-[35vh] md:max-h-none flex-shrink-0 border-b md:border-b-0 md:border-r overflow-y-auto">

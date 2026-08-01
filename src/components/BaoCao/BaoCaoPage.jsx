@@ -105,7 +105,7 @@ const BaoCaoPage = () => {
                     {/* Chỉ hiện dữ liệu khi đã bấm XEM */}
                     {!hasSearched ? (
                         <div className="flex flex-col items-center justify-center text-gray-400 gap-3 py-16 bg-white rounded-2xl border border-gray-100 shadow-sm mt-4">
-                            <span className="text-gray-400 font-medium italic text-sm">Vui lòng chọn thời gian và bấm "Xem" để hiển thị dữ liệu báo cáo.</span>
+                            <span className="text-gray-400 font-medium italic text-base">Vui lòng chọn thời gian và bấm "Xem" để hiển thị dữ liệu báo cáo.</span>
                         </div>
                     ) : (
                         <div className="mt-6 animate-in fade-in duration-500">

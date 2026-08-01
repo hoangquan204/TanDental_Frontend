@@ -616,7 +616,7 @@ function SearchableDropdown({
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
-        className="h-9 min-w-[150px] px-3 text-sm text-left bg-white border border-gray-300 rounded flex items-center justify-between gap-2 hover:border-gray-400 transition"
+        className="h-9 min-w-[150px] px-3 text-base text-left bg-white border border-gray-300 rounded flex items-center justify-between gap-2 hover:border-gray-400 transition"
       >
         <span className={value ? "text-slate-700" : "text-gray-400"}>
           {value || placeholder}
@@ -636,7 +636,7 @@ function SearchableDropdown({
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder={`Tìm ${placeholder.toLowerCase()}...`}
-              className="w-full px-2 py-1.5 md:text-sm text-base border border-gray-200 rounded outline-none focus:border-sky-400"
+              className="w-full px-2 py-1.5 md:text-base text-base border border-gray-200 rounded outline-none focus:border-sky-400"
             />
           </div>
           <ul className="max-h-48 overflow-y-auto py-1">
@@ -646,7 +646,7 @@ function SearchableDropdown({
                 setSearch("");
                 setOpen(false);
               }}
-              className="px-3 py-1.5 text-sm text-gray-400 hover:bg-gray-50 cursor-pointer"
+              className="px-3 py-1.5 text-base text-gray-400 hover:bg-gray-50 cursor-pointer"
             >
               Tất cả
             </li>
@@ -659,7 +659,7 @@ function SearchableDropdown({
                     setSearch("");
                     setOpen(false);
                   }}
-                  className={`px-3 py-1.5 text-sm cursor-pointer hover:bg-sky-50 hover:text-sky-700 ${value === opt
+                  className={`px-3 py-1.5 text-base cursor-pointer hover:bg-sky-50 hover:text-sky-700 ${value === opt
                     ? "bg-sky-50 text-sky-700 font-medium"
                     : "text-slate-700"
                     }`}
@@ -668,7 +668,7 @@ function SearchableDropdown({
                 </li>
               ))
             ) : (
-              <li className="px-3 py-2 text-sm text-gray-400 text-center">
+              <li className="px-3 py-2 text-base text-gray-400 text-center">
                 Không tìm thấy
               </li>
             )}
@@ -1147,7 +1147,7 @@ export default function VatLieuTable() {
                 placeholder="Tìm vật liệu..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full h-9 pl-8 pr-3 md:text-sm text-base border border-gray-300 rounded outline-none focus:border-sky-400 hover:border-gray-400 transition bg-white"
+                className="w-full h-9 pl-8 pr-3 md:text-base text-base border border-gray-300 rounded outline-none focus:border-sky-400 hover:border-gray-400 transition bg-white"
               />
             </div>
             <div className="flex items-center gap-1.5 shrink-0">
@@ -1170,7 +1170,7 @@ export default function VatLieuTable() {
               <button
                 onClick={handleExportExcel}
                 disabled={exporting}
-                className="h-9 px-3 text-sm font-medium text-white bg-[#29b6f6] hover:bg-[#0091ea] rounded flex items-center gap-1 transition disabled:opacity-60 disabled:cursor-not-allowed"
+                className="h-9 px-3 text-base font-medium text-white bg-[#29b6f6] hover:bg-[#0091ea] rounded flex items-center gap-1 transition disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {exporting ? (
                   <CircularProgress size={14} sx={{ color: "#fff" }} />
@@ -1183,7 +1183,7 @@ export default function VatLieuTable() {
               </button>
               <button
                 onClick={openAdd}
-                className="h-9 px-3 text-sm font-medium text-white bg-[#1976d2] hover:bg-[#1565c0] rounded flex items-center gap-1 transition"
+                className="h-9 px-3 text-base font-medium text-white bg-[#1976d2] hover:bg-[#1565c0] rounded flex items-center gap-1 transition"
               >
                 <AddIcon sx={{ fontSize: 17 }} />
                 <span className="hidden sm:inline">Thêm vật liệu</span>
@@ -1219,7 +1219,7 @@ export default function VatLieuTable() {
             <select
               value={filterTrangThai}
               onChange={(e) => setFilterTrangThai(e.target.value)}
-              className="h-9 px-3 text-sm text-slate-700 bg-white border border-gray-300 rounded hover:border-gray-400 outline-none focus:border-sky-400 transition cursor-pointer"
+              className="h-9 px-3 text-base text-slate-700 bg-white border border-gray-300 rounded hover:border-gray-400 outline-none focus:border-sky-400 transition cursor-pointer"
             >
               <option value="">Tất cả tồn kho</option>
               <option value="du">Đủ hàng</option>
@@ -1229,7 +1229,7 @@ export default function VatLieuTable() {
             {(filterNCC || filterNhom || filterLoai || filterTrangThai) && (
               <button
                 onClick={() => dispatch(resetVatLieuFilters())}
-                className="h-9 px-3 text-sm text-gray-600 bg-white border border-gray-300 rounded hover:bg-gray-100 transition"
+                className="h-9 px-3 text-base text-gray-600 bg-white border border-gray-300 rounded hover:bg-gray-100 transition"
               >
                 Xóa lọc
               </button>
@@ -1238,20 +1238,20 @@ export default function VatLieuTable() {
         </div>
         {selectedIds.length > 0 && (
           <div className="flex flex-wrap items-center gap-2 mb-3 px-4 py-2.5 bg-blue-50 border border-blue-200 rounded-lg">
-            <span className="text-sm font-medium text-blue-700">
+            <span className="text-base font-medium text-blue-700">
               Đã chọn {selectedIds.length} vật liệu
             </span>
             <div className="flex-1" />
             <button
               onClick={() => setNhapModalOpen(true)}
-              className="h-8 px-3 text-sm font-medium text-white bg-green-600 hover:bg-green-700 rounded flex items-center gap-1.5 transition"
+              className="h-8 px-3 text-base font-medium text-white bg-green-600 hover:bg-green-700 rounded flex items-center gap-1.5 transition"
             >
               <AddIcon sx={{ fontSize: 16 }} />
               Tạo phiếu nhập
             </button>
             <button
               onClick={() => setXuatModalOpen(true)}
-              className="h-8 px-3 text-sm font-medium text-white bg-orange-500 hover:bg-orange-600 rounded flex items-center gap-1.5 transition"
+              className="h-8 px-3 text-base font-medium text-white bg-orange-500 hover:bg-orange-600 rounded flex items-center gap-1.5 transition"
             >
               <AddIcon sx={{ fontSize: 16 }} />
               Tạo phiếu xuất
@@ -1259,7 +1259,7 @@ export default function VatLieuTable() {
             {isSystemAdmin && (
               <button
                 onClick={() => setDeleteManyOpen(true)}
-                className="h-8 px-3 text-sm font-medium text-white bg-red-500 hover:bg-red-600 rounded flex items-center gap-1.5 transition"
+                className="h-8 px-3 text-base font-medium text-white bg-red-500 hover:bg-red-600 rounded flex items-center gap-1.5 transition"
               >
                 <DeleteIcon sx={{ fontSize: 16 }} />
                 Xóa ({selectedIds.length})
@@ -1267,7 +1267,7 @@ export default function VatLieuTable() {
             )}
             <button
               onClick={() => setSelectedIds([])}
-              className="h-8 px-3 text-sm text-gray-600 bg-white border border-gray-300 rounded hover:bg-gray-100 transition"
+              className="h-8 px-3 text-base text-gray-600 bg-white border border-gray-300 rounded hover:bg-gray-100 transition"
             >
               Bỏ chọn
             </button>
@@ -1390,12 +1390,12 @@ export default function VatLieuTable() {
                         onClick={() => openEdit(vl)}
                       >
                         {vl.nhomVatLieu && (
-                          <div className="text-xs font-medium text-blue-700">
+                          <div className="text-base font-medium text-blue-700">
                             {vl.nhomVatLieu}
                           </div>
                         )}
                         {vl.loaiVatLieu && (
-                          <div className="text-xs text-gray-500">
+                          <div className="text-base text-gray-500">
                             {vl.loaiVatLieu}
                           </div>
                         )}
@@ -1409,7 +1409,7 @@ export default function VatLieuTable() {
                         onClick={() => openEdit(vl)}
                       >
                         {vl.nhaCungCap?.ten || (
-                          <span className="text-gray-400 italic text-xs">
+                          <span className="text-gray-400 italic text-base">
                             —
                           </span>
                         )}
@@ -1569,22 +1569,22 @@ export default function VatLieuTable() {
                     sx={{ mt: 1, display: "flex", gap: 1, flexWrap: "wrap" }}
                   >
                     {vl.nhomVatLieu && (
-                      <span className="text-xs font-medium text-blue-700 bg-blue-50 px-2 py-0.5 rounded">
+                      <span className="text-base font-medium text-blue-700 bg-blue-50 px-2 py-0.5 rounded">
                         {vl.nhomVatLieu}
                       </span>
                     )}
                     {vl.loaiVatLieu && (
-                      <span className="text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded">
+                      <span className="text-base text-gray-500 bg-gray-100 px-2 py-0.5 rounded">
                         {vl.loaiVatLieu}
                       </span>
                     )}
                     {vl.formRang && (
-                      <span className="text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded">
+                      <span className="text-base text-gray-500 bg-gray-100 px-2 py-0.5 rounded">
                         {vl.formRang}
                       </span>
                     )}
                     {vl.mauRang && (
-                      <span className="text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded">
+                      <span className="text-base text-gray-500 bg-gray-100 px-2 py-0.5 rounded">
                         {vl.mauRang}
                       </span>
                     )}

@@ -22,12 +22,12 @@ export default function PhieuXuatTable({ data, selectedId, onRowClick, hasMore, 
             <div className="max-h-[600px] overflow-y-auto table-scroll">
 
                 {/* ── TABLE — desktop (sm+) ── */}
-                <table className="hidden sm:table w-full border-collapse text-sm text-left bg-white">
+                <table className="hidden sm:table w-full border-collapse text-base text-left bg-white">
                     <thead className="sticky top-0 z-10">
                         <tr className="shadow">
-                            <th className={`${rowBase} ${exBg} w-36 truncate`}>Ngày xuất</th>
-                            <th className={`${rowBase} ${exBg} w-36 truncate`}>Bộ phận</th>
-                            <th className={`${rowBase} ${exBg} w-36 truncate`}>Nhân viên</th>
+                            <th className={`${rowBase} ${exBg} w-40 truncate`}>Ngày xuất</th>
+                            <th className={`${rowBase} ${exBg} w-20 truncate`}>Bộ phận</th>
+                            <th className={`${rowBase} ${exBg} w-20 truncate`}>Nhân viên</th>
                             <th className={`${rowBase} ${exBg}`}>Trạng thái</th>
                         </tr>
                     </thead>
@@ -44,11 +44,11 @@ export default function PhieuXuatTable({ data, selectedId, onRowClick, hasMore, 
                                     onClick={() => onRowClick(row)}
                                     className={`cursor-pointer transition-colors ${isSelected ? "bg-green-50" : "hover:bg-gray-50"}`}
                                 >
-                                    <td className={`${rowBase} ${borderBottom} whitespace-nowrap`}>{formatNgay(row.ngayTao)}</td>
+                                    <td className={`${rowBase} ${borderBottom}`}>{formatNgay(row.ngayTao)}</td>
                                     <td className={`${rowBase} ${borderBottom}`}>{row.boPhan}</td>
                                     <td className={`${rowBase} ${borderBottom}`}>{row.nhanVien}</td>
                                     <td className={`${rowBase} ${borderBottom}`}>
-                                        <span className={`text-sm text-white font-medium px-2.5 py-0.5 ${row.trangThai === "Đã xuất" ? "bg-green-500" : "bg-yellow-500"}`}>
+                                        <span className={`text-base text-white font-medium px-2.5 py-0.5 ${row.trangThai === "Đã xuất" ? "bg-green-500" : "bg-yellow-500"}`}>
                                             {row.trangThai}
                                         </span>
                                     </td>
@@ -61,7 +61,7 @@ export default function PhieuXuatTable({ data, selectedId, onRowClick, hasMore, 
                 {/* ── CARD LIST — mobile (< sm) ── */}
                 <div className="sm:hidden flex flex-col gap-2 p-2 bg-gray-50">
                     {data.length === 0 ? (
-                        <p className="text-sm text-gray-400 text-center py-6">Không có dữ liệu</p>
+                        <p className="text-base text-gray-400 text-center py-6">Không có dữ liệu</p>
                     ) : data.map((row) => {
                         const isSelected = row._id === selectedId;
                         return (
@@ -72,13 +72,13 @@ export default function PhieuXuatTable({ data, selectedId, onRowClick, hasMore, 
                             >
                                 {/* Header row: số phiếu + trạng thái */}
                                 <div className="flex items-center justify-between mb-2">
-                                    <span className="font-semibold text-sm text-gray-800">{row.soPhieu}</span>
-                                    <span className={`text-xs text-white font-medium px-2 py-0.5 rounded ${row.trangThai === "Đã xuất" ? "bg-green-500" : "bg-yellow-500"}`}>
+                                    <span className="font-semibold text-base text-gray-800">{row.soPhieu}</span>
+                                    <span className={`text-base text-white font-medium px-2 py-0.5 rounded ${row.trangThai === "Đã xuất" ? "bg-green-500" : "bg-yellow-500"}`}>
                                         {row.trangThai}
                                     </span>
                                 </div>
                                 {/* Details */}
-                                <div className="grid grid-cols-2 gap-x-3 gap-y-1 text-xs text-gray-600">
+                                <div className="grid grid-cols-2 gap-x-3 gap-y-1 text-base text-gray-600">
                                     <span className="text-gray-400">Ngày xuất</span>
                                     <span>{formatNgay(row.ngayTao)}</span>
 
@@ -96,7 +96,7 @@ export default function PhieuXuatTable({ data, selectedId, onRowClick, hasMore, 
                 {/* Sentinel */}
                 <div ref={sentinelRef} className="h-1" />
                 {loadingMore && (
-                    <div className="text-center py-2 text-xs text-gray-400">Đang tải thêm...</div>
+                    <div className="text-center py-2 text-base text-gray-400">Đang tải thêm...</div>
                 )}
             </div>
         </div>

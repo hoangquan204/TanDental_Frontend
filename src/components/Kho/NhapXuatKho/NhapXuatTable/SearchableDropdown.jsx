@@ -23,7 +23,7 @@ export default function SearchableDropdown({ options, value, onChange, placehold
             <button
                 type="button"
                 onClick={() => setOpen((o) => !o)}
-                className="h-9 min-w-[170px] px-3 text-sm text-left bg-white border border-gray-300 rounded flex items-center justify-between gap-2 hover:border-gray-400 transition"
+                className="h-9 min-w-[170px] px-3 text-base text-left bg-white border border-gray-300 rounded flex items-center justify-between gap-2 hover:border-gray-400 transition"
             >
                 <span className={value ? "text-slate-700" : "text-gray-400"}>
                     {value || placeholder}
@@ -43,13 +43,13 @@ export default function SearchableDropdown({ options, value, onChange, placehold
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
                             placeholder={`Tìm ${placeholder.toLowerCase()}...`}
-                            className="w-full px-2 py-1.5 md:text-sm text-base border border-gray-200 rounded outline-none focus:border-sky-400"
+                            className="w-full px-2 py-1.5 md:text-base text-base border border-gray-200 rounded outline-none focus:border-sky-400"
                         />
                     </div>
                     <ul className="max-h-48 overflow-y-auto py-1">
                         <li
                             onClick={() => { onChange(""); setSearch(""); setOpen(false); }}
-                            className="px-3 py-1.5 text-sm text-gray-400 hover:bg-gray-50 cursor-pointer"
+                            className="px-3 py-1.5 text-base text-gray-400 hover:bg-gray-50 cursor-pointer"
                         >
                             Tất cả
                         </li>
@@ -57,13 +57,13 @@ export default function SearchableDropdown({ options, value, onChange, placehold
                             <li
                                 key={opt}
                                 onClick={() => { onChange(opt); setSearch(""); setOpen(false); }}
-                                className={`px-3 py-1.5 text-sm cursor-pointer hover:bg-sky-50 hover:text-sky-700 ${value === opt ? "bg-sky-50 text-sky-700 font-medium" : "text-slate-700"
+                                className={`px-3 py-1.5 text-base cursor-pointer hover:bg-sky-50 hover:text-sky-700 ${value === opt ? "bg-sky-50 text-sky-700 font-medium" : "text-slate-700"
                                     }`}
                             >
                                 {opt}
                             </li>
                         )) : (
-                            <li className="px-3 py-2 text-sm text-gray-400 text-center">Không tìm thấy</li>
+                            <li className="px-3 py-2 text-base text-gray-400 text-center">Không tìm thấy</li>
                         )}
                     </ul>
                 </div>

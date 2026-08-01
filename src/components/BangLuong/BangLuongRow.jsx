@@ -5,7 +5,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Tooltip } from "@mui/material";
 
 const inputClass =
-  "text-center text-sm rounded-md border border-transparent bg-slate-50 hover:border-slate-300 focus:border-blue-400 focus:bg-white focus:outline-none transition-all";
+  "text-center text-base rounded-md border border-transparent bg-slate-50 hover:border-slate-300 focus:border-blue-400 focus:bg-white focus:outline-none transition-all";
 
 // Ngày công — số nguyên, giữ nguyên
 const NumInput = ({ value, onChange, wide }) => (
@@ -95,7 +95,7 @@ const BangLuongRow = ({ item, onChange, isEven, onRowClick, onDelete }) => {
       >
         <button
           onClick={() => navigate(`/nhan-vien/${item._id}`)}
-          className="font-semibold text-blue-600 hover:text-blue-800 hover:underline transition-colors text-sm"
+          className="font-semibold text-blue-600 hover:text-blue-800 hover:underline transition-colors text-base"
         >
           {item.hoVaTen}
         </button>
@@ -103,7 +103,7 @@ const BangLuongRow = ({ item, onChange, isEven, onRowClick, onDelete }) => {
 
       {/* Lương cơ bản */}
       <td
-        className="px-4 py-2 text-right text-sm text-gray-600 whitespace-nowrap"
+        className="px-4 py-2 text-right text-base text-gray-600 whitespace-nowrap"
         style={{ borderBottom: "1px solid #f1f5f9" }}
         onClick={onRowClick}
       >
@@ -112,7 +112,7 @@ const BangLuongRow = ({ item, onChange, isEven, onRowClick, onDelete }) => {
 
       {/* Ngày công tháng */}
       <td
-        className="px-4 py-2 text-right text-sm text-gray-600 whitespace-nowrap"
+        className="px-4 py-2 text-right text-base text-gray-600 whitespace-nowrap"
         style={{ borderBottom: "1px solid #f1f5f9" }}
       >
         {item.ngayCongThang}
@@ -120,7 +120,7 @@ const BangLuongRow = ({ item, onChange, isEven, onRowClick, onDelete }) => {
 
       {/* Lương ngày */}
       <td
-        className="px-4 py-2 text-right text-sm text-gray-600 whitespace-nowrap"
+        className="px-4 py-2 text-right text-base text-gray-600 whitespace-nowrap"
         style={{ borderBottom: "1px solid #f1f5f9" }}
       >
         {fmt(luongNgay)}
@@ -140,7 +140,7 @@ const BangLuongRow = ({ item, onChange, isEven, onRowClick, onDelete }) => {
 
       {/* Thành tiền công */}
       <td
-        className="px-4 py-2 text-right text-sm font-medium text-slate-700 whitespace-nowrap"
+        className="px-4 py-2 text-right text-base font-medium text-slate-700 whitespace-nowrap"
         style={{ borderBottom: "1px solid #f1f5f9" }}
       >
         {fmt(thanhTienCong)}
@@ -203,7 +203,7 @@ const BangLuongRow = ({ item, onChange, isEven, onRowClick, onDelete }) => {
 
       {/* Tổng phụ cấp */}
       <td
-        className="px-4 py-2 text-right text-sm text-slate-600 whitespace-nowrap"
+        className="px-4 py-2 text-right text-base text-slate-600 whitespace-nowrap"
         style={{ borderBottom: "1px solid #f1f5f9" }}
       >
         {fmt(tongPhuCap)}
@@ -211,7 +211,7 @@ const BangLuongRow = ({ item, onChange, isEven, onRowClick, onDelete }) => {
 
       {/* Thực nhận */}
       <td
-        className="px-4 py-2 text-right text-sm font-extrabold whitespace-nowrap"
+        className="px-4 py-2 text-right text-base font-extrabold whitespace-nowrap"
         style={{ borderBottom: "1px solid #f1f5f9", color: "#059669" }}
       >
         {fmt(thucNhan)}

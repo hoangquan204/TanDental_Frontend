@@ -406,7 +406,7 @@ const PhieuBaoHanhModal = ({ open, onClose, donHang, warranty, onSuccess }) => {
           {/* 1. Mã bảo hành | Mẫu thẻ ở trên cùng */}
           <div className="grid grid-cols-2 gap-4 mt-6">
             <div>
-              <label className="text-xs text-slate-600 font-bold block mb-2">Mã bảo hành</label>
+              <label className="text-base text-slate-600 font-bold block mb-2">Mã bảo hành</label>
               <TextField
                 disabled
                 value={warrantyState ? warrantyState.maBaoHanh : maDonHang}
@@ -416,7 +416,7 @@ const PhieuBaoHanhModal = ({ open, onClose, donHang, warranty, onSuccess }) => {
               />
             </div>
             <div>
-              <label className="text-xs text-slate-600 font-bold block mb-2">Mẫu thẻ *</label>
+              <label className="text-base text-slate-600 font-bold block mb-2">Mẫu thẻ *</label>
               <TextField
                 select
                 fullWidth
@@ -471,7 +471,7 @@ const PhieuBaoHanhModal = ({ open, onClose, donHang, warranty, onSuccess }) => {
 
           {/* 3. Danh sách sản phẩm + năm bảo hành */}
           <div className="flex flex-col gap-4 my-2">
-            <label className="text-xs text-slate-600 font-bold block">Danh sách sản phẩm bảo hành</label>
+            <label className="text-base text-slate-600 font-bold block">Danh sách sản phẩm bảo hành</label>
             {availableProducts.map((sp, idx) => {
               const config = productWarrantyConfigs[idx] || {};
               const calculatedEndDate = getCalculatedEndDate(sp, config);
@@ -482,11 +482,11 @@ const PhieuBaoHanhModal = ({ open, onClose, donHang, warranty, onSuccess }) => {
                       <span className="font-bold text-base text-slate-800">
                         {idx + 1}. {sp.sanPham?.tenSanPham || `Sản phẩm ${idx + 1}`}
                       </span>
-                      
+
                       <div className="flex flex-wrap gap-2 mt-1 w-full">
-                        <div className="bg-sky-50 border border-sky-200 text-sky-800 text-xs px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+                        <div className="bg-sky-50 border border-sky-200 text-sky-800 text-base px-3 py-1.5 rounded-lg flex items-center gap-1.5">
                           <span className="text-slate-500 font-medium">Vị trí:</span>
-                          <span className="text-sm font-bold">
+                          <span className="text-base font-bold">
                             {sp.viTriRang || (sp.viTri?.map((v) => {
                               if (!v.soRang || v.soRang.length === 0) return "";
                               if (v.kieu === "Rời" || v.soRang.length === 1) return v.soRang.join(", ");
@@ -495,21 +495,21 @@ const PhieuBaoHanhModal = ({ open, onClose, donHang, warranty, onSuccess }) => {
                           </span>
                         </div>
 
-                        <div className="bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+                        <div className="bg-emerald-50 border border-emerald-200 text-emerald-800 text-base px-3 py-1.5 rounded-lg flex items-center gap-1.5">
                           <span className="text-slate-500 font-medium">Số lượng:</span>
-                          <span className="text-sm font-bold">{sp.soLuong || 1}</span>
+                          <span className="text-base font-bold">{sp.soLuong || 1}</span>
                         </div>
 
                         {sp.mau && (
-                          <div className="bg-amber-50 border border-amber-200 text-amber-800 text-xs px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+                          <div className="bg-amber-50 border border-amber-200 text-amber-800 text-base px-3 py-1.5 rounded-lg flex items-center gap-1.5">
                             <span className="text-slate-500 font-medium">Màu:</span>
-                            <span className="text-sm font-bold">{sp.mau}</span>
+                            <span className="text-base font-bold">{sp.mau}</span>
                           </div>
                         )}
 
-                        <div className="bg-slate-50 border border-slate-200 text-slate-700 text-xs px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+                        <div className="bg-slate-50 border border-slate-200 text-slate-700 text-base px-3 py-1.5 rounded-lg flex items-center gap-1.5">
                           <span className="text-slate-500 font-medium">Ngày bắt đầu:</span>
-                          <span className="text-sm font-bold text-slate-800">
+                          <span className="text-base font-bold text-slate-800">
                             {formatDateVN(sp.baoHanhTu || fullDonHang?.ngayNhan)}
                           </span>
                         </div>
@@ -519,7 +519,7 @@ const PhieuBaoHanhModal = ({ open, onClose, donHang, warranty, onSuccess }) => {
 
                   {/* Tên sản phẩm bảo hành */}
                   <div>
-                    <label className="block text-xs font-bold text-slate-600 mb-1.5">
+                    <label className="block text-base font-bold text-slate-600 mb-1.5">
                       Tên sản phẩm bảo hành:
                     </label>
                     <TextField
@@ -528,14 +528,14 @@ const PhieuBaoHanhModal = ({ open, onClose, donHang, warranty, onSuccess }) => {
                       onChange={(e) => handleConfigChange(idx, "tenSanPhamBaoHanh", e.target.value)}
                       fullWidth
                       size="small"
-                      InputProps={{ className: "bg-white rounded-lg text-sm" }}
+                      InputProps={{ className: "bg-white rounded-lg text-base" }}
                     />
                   </div>
 
                   {/* Controls for Year Select & Calendar Custom Date */}
                   <div className="grid grid-cols-1 md:grid-cols-11 gap-4 items-center">
                     <div className="md:col-span-5">
-                      <label className="block text-xs font-bold text-slate-600 mb-1.5">
+                      <label className="block text-base font-bold text-slate-600 mb-1.5">
                         Theo số năm cố định:
                       </label>
                       <TextField
@@ -548,7 +548,7 @@ const PhieuBaoHanhModal = ({ open, onClose, donHang, warranty, onSuccess }) => {
                         }}
                         fullWidth
                         size="small"
-                        InputProps={{ className: "rounded-lg text-sm bg-white" }}
+                        InputProps={{ className: "rounded-lg text-base bg-white" }}
                       >
                         <MenuItem value="">-- Chọn số năm --</MenuItem>
                         {Array.from({ length: 10 }, (_, i) => i + 1).map((year) => (
@@ -560,13 +560,13 @@ const PhieuBaoHanhModal = ({ open, onClose, donHang, warranty, onSuccess }) => {
                     </div>
 
                     <div className="md:col-span-1 flex items-center justify-center pt-2 md:pt-0">
-                      <span className="text-slate-400 text-xs font-bold uppercase tracking-wider bg-slate-100 px-2 py-0.5 rounded-md">
+                      <span className="text-slate-400 text-base font-bold uppercase tracking-wider bg-slate-100 px-2 py-0.5 rounded-md">
                         hoặc
                       </span>
                     </div>
 
                     <div className="md:col-span-5">
-                      <label className="block text-xs font-bold text-slate-600 mb-1.5">
+                      <label className="block text-base font-bold text-slate-600 mb-1.5">
                         Chọn ngày tùy chỉnh cụ thể:
                       </label>
                       <TextField
@@ -579,17 +579,17 @@ const PhieuBaoHanhModal = ({ open, onClose, donHang, warranty, onSuccess }) => {
                         }}
                         fullWidth
                         size="small"
-                        InputProps={{ className: "rounded-lg text-sm bg-white" }}
+                        InputProps={{ className: "rounded-lg text-base bg-white" }}
                       />
                     </div>
                   </div>
 
                   {/* Calculated Date Banner */}
                   <div className="bg-emerald-50 border border-emerald-200 rounded-lg px-4 py-2 flex items-center justify-between">
-                    <span className="font-bold text-xs text-emerald-800 uppercase tracking-wide">
+                    <span className="font-bold text-base text-emerald-800 uppercase tracking-wide">
                       Thời hạn áp dụng mới:
                     </span>
-                    <span className="text-sm font-bold text-emerald-700 bg-white border border-emerald-100 px-3 py-1 rounded shadow-sm">
+                    <span className="text-base font-bold text-emerald-700 bg-white border border-emerald-100 px-3 py-1 rounded shadow-sm">
                       {formatDateVN(sp.baoHanhTu || fullDonHang?.ngayNhan)} <span className="mx-1 text-emerald-400">→</span> {formatDateVN(calculatedEndDate)}
                     </span>
                   </div>

@@ -338,7 +338,7 @@ export default function DonHangChuaXuatTable({ selectedClinic, selectedOrders, s
           <div className="flex items-center flex-shrink-0">
             <button
               onClick={(e) => setAnchorElCustomDate(e.currentTarget)}
-              className="h-10 px-3 flex items-center gap-2 text-sm font-medium text-blue-700 bg-blue-50 border border-blue-200 rounded-lg hover:bg-blue-100 transition-colors whitespace-nowrap"
+              className="h-10 px-3 flex items-center gap-2 text-base font-medium text-blue-700 bg-blue-50 border border-blue-200 rounded-lg hover:bg-blue-100 transition-colors whitespace-nowrap"
             >
               <CalendarTodayIcon sx={{ fontSize: 14 }} />
               {dateLabel === '📅 Chọn trên lịch' ? (
@@ -380,7 +380,7 @@ export default function DonHangChuaXuatTable({ selectedClinic, selectedOrders, s
 
           <div className="flex items-center gap-1.5 px-2.5 rounded-lg border border-gray-200 bg-gray-50 focus-within:border-blue-400 focus-within:bg-white transition-all w-full sm:w-auto" style={{ minWidth: 200, height: "38px" }}>
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" strokeWidth="2.5" className="flex-shrink-0"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
-            <input type="text" placeholder="Tìm mã đơn hàng..." value={searchMaDon} onChange={(e) => setSearchMaDon(e.target.value)} className="flex-1 text-sm bg-transparent outline-none text-gray-700 placeholder-gray-400 w-full" />
+            <input type="text" placeholder="Tìm mã đơn hàng..." value={searchMaDon} onChange={(e) => setSearchMaDon(e.target.value)} className="flex-1 text-base bg-transparent outline-none text-gray-700 placeholder-gray-400 w-full" />
             {searchMaDon && (
               <button onClick={() => setSearchMaDon("")} className="text-gray-400 hover:text-gray-600 transition-colors">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>

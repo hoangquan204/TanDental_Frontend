@@ -151,7 +151,7 @@ const DoanhSoThoiGianPage = () => {
 
                 {!hasSearched ? (
                     <div className="flex flex-col items-center justify-center text-gray-400 gap-3 py-16 bg-white rounded-2xl border border-gray-100 shadow-sm mt-4">
-                        <span className="text-gray-400 font-medium italic text-sm">Vui lòng chọn thời gian và bấm "Xem" để hiển thị doanh số.</span>
+                        <span className="text-gray-400 font-medium italic text-base">Vui lòng chọn thời gian và bấm "Xem" để hiển thị doanh số.</span>
                     </div>
                 ) : (
                     <div className="mt-6 flex flex-col gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500">

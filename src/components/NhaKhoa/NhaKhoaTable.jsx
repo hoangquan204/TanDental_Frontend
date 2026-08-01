@@ -215,7 +215,7 @@ const FilterBar = React.memo(function FilterBar({
         <button
           onClick={handleApply}
           title="Lọc theo từ khóa và tỉnh/thành đã chọn"
-          className="px-2 sm:px-3 py-1.5 rounded-lg text-white text-sm font-medium flex items-center gap-1 transition"
+          className="px-2 sm:px-3 py-1.5 rounded-lg text-white text-base font-medium flex items-center gap-1 transition"
           style={{ backgroundColor: ACCENT }}
         >
           <SearchIcon sx={{ fontSize: 17 }} />
@@ -225,7 +225,7 @@ const FilterBar = React.memo(function FilterBar({
         <button
           onClick={onExportList}
           title="Xuất excel danh sách nha khoa"
-          className="px-2 sm:px-3 py-1.5 rounded-lg bg-slate-600 hover:bg-slate-700 text-white text-sm font-medium flex items-center gap-1 transition"
+          className="px-2 sm:px-3 py-1.5 rounded-lg bg-slate-600 hover:bg-slate-700 text-white text-base font-medium flex items-center gap-1 transition"
         >
           <DownloadIcon sx={{ fontSize: 17 }} />
           <span className="hidden sm:inline">Xuất danh sách</span>
@@ -234,7 +234,7 @@ const FilterBar = React.memo(function FilterBar({
         <button
           onClick={onOpenExportPrice}
           title="Xuất excel bảng giá riêng"
-          className="px-2 sm:px-3 py-1.5 rounded-lg bg-slate-600 hover:bg-slate-700 text-white text-sm font-medium flex items-center gap-1 transition"
+          className="px-2 sm:px-3 py-1.5 rounded-lg bg-slate-600 hover:bg-slate-700 text-white text-base font-medium flex items-center gap-1 transition"
         >
           <DownloadIcon sx={{ fontSize: 17 }} />
           <span className="hidden sm:inline">Xuất bảng giá</span>
@@ -853,8 +853,8 @@ export default function NhaKhoaTable() {
                           label={
                             item.createdAt
                               ? new Date(item.createdAt).toLocaleDateString(
-                                  "vi-VN"
-                                )
+                                "vi-VN"
+                              )
                               : "—"
                           }
                           size="small"

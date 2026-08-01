@@ -198,7 +198,7 @@ const DonHangDetailPanel = (props) => {
     if (!flowBtn) return null;
     if (flowBtn.type === "done") {
       return (
-        <button disabled className="flex-1 py-2 rounded-lg font-medium text-sm bg-green-100 text-green-700 border border-green-200 cursor-default flex items-center justify-center gap-1.5">
+        <button disabled className="flex-1 py-2 rounded-lg font-medium text-base bg-green-100 text-green-700 border border-green-200 cursor-default flex items-center justify-center gap-1.5">
           <CheckIcon sx={{ fontSize: 18 }} /> Đã hoàn thành
         </button>
       );
@@ -207,7 +207,7 @@ const DonHangDetailPanel = (props) => {
       return (
         <button
           onClick={() => handleAdvanceStatus(flowBtn)}
-          className="flex-1 py-2 rounded-lg font-medium text-sm bg-green-500 hover:bg-green-600 text-white transition flex items-center justify-center gap-1.5"
+          className="flex-1 py-2 rounded-lg font-medium text-base bg-green-500 hover:bg-green-600 text-white transition flex items-center justify-center gap-1.5"
         >
           <CheckIcon sx={{ fontSize: 18 }} /> Hoàn thành
         </button>
@@ -217,7 +217,7 @@ const DonHangDetailPanel = (props) => {
       return (
         <button
           onClick={() => handleAdvanceStatus(flowBtn)}
-          className="flex-1 py-2 rounded-lg font-medium text-sm bg-blue-500 hover:bg-blue-600 text-white transition flex items-center justify-center gap-1.5"
+          className="flex-1 py-2 rounded-lg font-medium text-base bg-blue-500 hover:bg-blue-600 text-white transition flex items-center justify-center gap-1.5"
         >
           <PlayArrowIcon sx={{ fontSize: 18 }} /> Sản xuất tiếp
         </button>
@@ -227,7 +227,7 @@ const DonHangDetailPanel = (props) => {
       return (
         <button
           onClick={() => handleAdvanceStatus(flowBtn)}
-          className="flex-1 py-2 rounded-lg font-medium text-sm bg-purple-500 hover:bg-purple-600 text-white transition flex items-center justify-center gap-1.5"
+          className="flex-1 py-2 rounded-lg font-medium text-base bg-purple-500 hover:bg-purple-600 text-white transition flex items-center justify-center gap-1.5"
         >
           {flowBtn.congDoan}
         </button>
@@ -350,7 +350,7 @@ const DonHangDetailPanel = (props) => {
         {/* NhaKhoa row */}
         {donHang && (
           <div className="border-b px-4 py-3 flex items-center gap-3 bg-white shrink-0">
-            <div className="w-9 h-9 rounded-full bg-teal-500 text-white flex items-center justify-center font-bold text-sm shrink-0 uppercase">
+            <div className="w-9 h-9 rounded-full bg-teal-500 text-white flex items-center justify-center font-bold text-base shrink-0 uppercase">
               {(donHang.nhaKhoa?.tenGiaoDich || donHang.nhaKhoa?.hoVaTen || "?").charAt(0)}
             </div>
             <div className="flex-1 min-w-0">
@@ -373,7 +373,7 @@ const DonHangDetailPanel = (props) => {
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key)}
-              className={`px-4 py-2.5 flex-1 text-sm font-medium transition border-b-2 ${activeTab === tab.key ? "border-teal-600 text-teal-700" : "border-transparent text-gray-500 hover:text-gray-700"}`}
+              className={`px-4 py-2.5 flex-1 text-base font-medium transition border-b-2 ${activeTab === tab.key ? "border-teal-600 text-teal-700" : "border-transparent text-gray-500 hover:text-gray-700"}`}
             >
               {tab.label}
             </button>
@@ -385,22 +385,22 @@ const DonHangDetailPanel = (props) => {
           {donHang && activeTab === "chitiet" && (
             <div className="flex flex-col">
               {/* Info rows */}
-              <div className="px-4 py-3 flex flex-col gap-1 text-sm border-b">
+              <div className="px-4 py-3 flex flex-col gap-1 text-base border-b">
                 {donHang.bacSi?.hoVaTen && (
                   <div className="flex items-start gap-2">
-                    <span className="text-gray-500 w-28 shrink-0">Bác sĩ:</span>
+                    <span className="text-gray-500 w-32 shrink-0">Bác sĩ:</span>
                     <span className="font-medium text-gray-800">{donHang.bacSi.hoVaTen}</span>
                   </div>
                 )}
                 {donHang.benhNhan?.hoVaTen && (
                   <div className="flex items-start gap-2">
-                    <span className="text-gray-500 w-28 shrink-0">Bệnh nhân:</span>
+                    <span className="text-gray-500 w-32 shrink-0">Bệnh nhân:</span>
                     <span className="font-medium text-gray-800">{donHang.benhNhan.hoVaTen}</span>
                   </div>
                 )}
                 {donHang.yeuCauHoanThanh && (
                   <div className="flex items-start gap-2">
-                    <span className="text-gray-500 w-28 shrink-0">Y/c hoàn thành:</span>
+                    <span className="text-gray-500 w-32 shrink-0">Y/c hoàn thành:</span>
                     <span className="font-medium text-gray-800">
                       {new Date(donHang.yeuCauHoanThanh).toLocaleString("vi-VN", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit", hour12: false })}
                     </span>
@@ -408,7 +408,7 @@ const DonHangDetailPanel = (props) => {
                 )}
                 {donHang.henGiao && (
                   <div className="flex items-start gap-2">
-                    <span className="text-gray-500 w-28 shrink-0">Hẹn giao:</span>
+                    <span className="text-gray-500 w-32 shrink-0">Hẹn giao:</span>
                     <span className="font-medium text-gray-800">
                       {new Date(donHang.henGiao).toLocaleString("vi-VN", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit", hour12: false })}
                     </span>
@@ -416,7 +416,7 @@ const DonHangDetailPanel = (props) => {
                 )}
                 {donHang.chiDinhBacSi && (
                   <div className="flex items-start gap-2">
-                    <span className="text-gray-500 w-28 shrink-0">Chỉ định:</span>
+                    <span className="text-gray-500 w-32 shrink-0">Chỉ định:</span>
                     <span className="font-medium text-gray-800 whitespace-pre-wrap">{donHang.chiDinhBacSi}</span>
                   </div>
                 )}
@@ -431,20 +431,20 @@ const DonHangDetailPanel = (props) => {
                   donHang.danhSachSanPham.map((sp, idx) => (
                     <div key={idx} className="mb-1 last:mb-0">
                       <div className="flex gap-1 items-center font-medium ">
-                        <div className="text-sm">{{ "Hàng sửa": "Sửa", "Hàng làm lại": "Làm lại", "Hàng bảo hành": "Bảo hành" }[sp.loaiDon] ?? sp.loaiDon}</div>
+                        <div className="text-base">{{ "Hàng sửa": "Sửa", "Hàng làm lại": "Làm lại", "Hàng bảo hành": "Bảo hành" }[sp.loaiDon] ?? sp.loaiDon}</div>
                         -
-                        <div className="text-sm">{sp.soLuong}</div>
-                        <div className="text-sm">{sp.sanPham?.tenSanPham || "N/A"}</div>
+                        <div className="text-base">{sp.soLuong}</div>
+                        <div className="text-base">{sp.sanPham?.tenSanPham || "N/A"}</div>
                       </div>
                       {(sp.viTri?.length > 0 || sp.viTriText) && (
-                        <div className="text-sm text-gray-700">• Vị trí: {renderViTriText(sp.viTri, sp.viTriText)}</div>
+                        <div className="text-base text-gray-700">• Vị trí: {renderViTriText(sp.viTri, sp.viTriText)}</div>
                       )}
-                      {sp.mau && <div className="text-sm text-gray-700">• Màu: {sp.mau}</div>}
-                      {sp.ghiChu && <div className="text-sm text-gray-700">• {sp.ghiChu}</div>}
+                      {sp.mau && <div className="text-base text-gray-700">• Màu: {sp.mau}</div>}
+                      {sp.ghiChu && <div className="text-base text-gray-700">• {sp.ghiChu}</div>}
                     </div>
                   ))
                 ) : (
-                  <div className="text-gray-400 text-sm italic">Chưa có sản phẩm</div>
+                  <div className="text-gray-400 text-base italic">Chưa có sản phẩm</div>
                 )}
 
                 {((hasWarranty || donHang?.danhSachSanPham?.some((sp) => sp.loaiDon === "Mới")) || hasRouteAccess(user, "/ghi-chu")) && (
@@ -452,7 +452,7 @@ const DonHangDetailPanel = (props) => {
                     {(hasWarranty || donHang?.danhSachSanPham?.some((sp) => sp.loaiDon === "Mới")) && (
                       <button
                         onClick={() => setIsPhieuBaoHanhOpen(true)}
-                        className={`font-medium text-sm px-3 py-1.5 rounded-full text-white flex items-center gap-2 transition-colors ${hasWarranty ? "bg-teal-500 hover:bg-teal-600" : "bg-slate-500 hover:bg-slate-600"}`}
+                        className={`font-medium text-base px-3 py-1.5 rounded-full text-white flex items-center gap-2 transition-colors ${hasWarranty ? "bg-teal-500 hover:bg-teal-600" : "bg-slate-500 hover:bg-slate-600"}`}
                       >
                         <ReceiptIcon sx={{ fontSize: 18 }} /> Thẻ bảo hành
                       </button>
@@ -460,7 +460,7 @@ const DonHangDetailPanel = (props) => {
                     {hasRouteAccess(user, "/ghi-chu") && (
                       <button
                         onClick={() => setIsAddTodoOpen(true)}
-                        className="font-medium text-sm px-3 py-1.5 rounded-full text-white flex items-center transition-colors bg-blue-500 hover:bg-blue-600"
+                        className="font-medium text-base px-3 py-1.5 rounded-full text-white flex items-center transition-colors bg-blue-500 hover:bg-blue-600"
                       >
                         Thêm ghi chú
                       </button>
@@ -476,9 +476,9 @@ const DonHangDetailPanel = (props) => {
                   <h4 className="font-semibold mb-2">Phụ kiện</h4>
                   <div className="flex flex-col gap-1">
                     {donHang.danhSachPhuKien.map((pk, idx) => (
-                      <div key={idx} className="text-sm">
+                      <div key={idx} className="text-base">
                         {pk.soLuong} {pk.tenPhuKien}
-                        {pk.soHuu && <span className="text-sm ml-1">• {pk.soHuu}</span>}
+                        {pk.soHuu && <span className="text-base ml-1">• {pk.soHuu}</span>}
                       </div>
                     ))}
                   </div>
@@ -491,13 +491,13 @@ const DonHangDetailPanel = (props) => {
                   <h4 className="font-semibold mb-2">Nhật ký chỉnh sửa</h4>
                   {Object.entries(groupedNhatKy).reverse().map(([dateKey, entries]) => (
                     <div key={dateKey} className="mb-3">
-                      <div className="text-sm font-medium mb-1">{dateKey}</div>
+                      <div className="text-base font-medium mb-1">{dateKey}</div>
                       {entries.map((entry, i) => {
                         const t = new Date(entry.thoiGian);
                         const timeStr = t.toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit", hour12: false });
                         return (
-                          <div key={i} className="flex gap-2 text-sm mb-1 ml-3">
-                            <span className="text-gray-600 text-xs pt-0.5">{timeStr}</span>
+                          <div key={i} className="flex gap-2 text-base mb-1 ml-3">
+                            <span className="text-gray-600 text-base pt-0.5">{timeStr}</span>
                             <span>
                               <span className="font-medium text-gray-800">{entry.nguoiThuc}</span>
                               <span className="text-gray-600 ml-1">{entry.hanhDong}</span>
@@ -521,11 +521,11 @@ const DonHangDetailPanel = (props) => {
                 return (
                   <div key={spIdx} className="mb-4 border rounded-lg overflow-hidden shadow-sm">
                     <div className="bg-gray-50 border-b px-3 py-2">
-                      <div className="font-semibold text-gray-800 text-sm">
+                      <div className="font-semibold text-gray-800 text-base">
                         {sp.sanPham?.tenSanPham || `Sản phẩm ${spIdx + 1}`}
                       </div>
                       {(sp.viTri?.length > 0 || sp.viTriText || sp.mau) && (
-                        <div className="text-sm text-gray-600 mt-0.5">
+                        <div className="text-base text-gray-600 mt-0.5">
                           {(sp.viTri?.length > 0 || sp.viTriText) && <><span className="font-medium text-black">{sp.soLuong}</span>{sp.viTri?.length > 0 ? " răng" : ""}: <span className="font-medium text-black">{renderViTriText(sp.viTri, sp.viTriText)}</span></>}
                           {sp.mau && <span className="ml-1">– Màu răng: <span className="font-medium text-black">{sp.mau}</span></span>}
                         </div>
@@ -537,7 +537,7 @@ const DonHangDetailPanel = (props) => {
                           const currentStatus = getCongDoanTrangThai(sp, cd.thuTu);
                           const isDropOpen = openDropdown?.spIndex === spIdx && openDropdown?.thuTu === cd.thuTu;
                           return (
-                            <div key={i} className="flex items-center justify-between px-3 py-1.5 text-sm font-medium hover:bg-gray-50">
+                            <div key={i} className="flex items-center justify-between px-3 py-1.5 text-base font-medium hover:bg-gray-50">
                               <span className="text-gray-700">{cd.thuTu}. {cd.tenCongDoan}</span>
                               <div className="relative shrink-0">
                                 <button
@@ -551,7 +551,7 @@ const DonHangDetailPanel = (props) => {
                                       setOpenDropdown({ spIndex: spIdx, thuTu: cd.thuTu, top: rect.bottom + 4, right: window.innerWidth - rect.right });
                                     }
                                   }}
-                                  className={`text-sm px-2 py-1 rounded transition ${CONG_DOAN_TRANG_THAI_STYLE[currentStatus]} ${props.fullscreen ? "cursor-default" : "hover:bg-gray-100"}`}
+                                  className={`text-base px-2 py-1 rounded transition ${CONG_DOAN_TRANG_THAI_STYLE[currentStatus]} ${props.fullscreen ? "cursor-default" : "hover:bg-gray-100"}`}
                                 >
                                   {currentStatus}
                                 </button>
@@ -565,7 +565,7 @@ const DonHangDetailPanel = (props) => {
                                       <button
                                         key={opt}
                                         onClick={() => handleCongDoanStatusChange(spIdx, cd.thuTu, opt)}
-                                        className={`block w-full text-left px-3 py-2 text-xs hover:bg-gray-50 transition ${opt === currentStatus ? "font-semibold text-cyan-600" : "text-gray-700"}`}
+                                        className={`block w-full text-left px-3 py-2 text-base hover:bg-gray-50 transition ${opt === currentStatus ? "font-semibold text-cyan-600" : "text-gray-700"}`}
                                       >
                                         {opt}
                                       </button>
@@ -578,20 +578,20 @@ const DonHangDetailPanel = (props) => {
                           );
                         })
                       ) : (
-                        <div className="px-3 py-3 text-sm text-gray-400 italic">Chưa có thông tin công đoạn</div>
+                        <div className="px-3 py-3 text-base text-gray-400 italic">Chưa có thông tin công đoạn</div>
                       )}
                     </div>
                   </div>
                 );
               })}
               {(!donHang.danhSachSanPham || donHang.danhSachSanPham.length === 0) && (
-                <div className="text-gray-400 text-sm italic text-center mt-8">Chưa có sản phẩm</div>
+                <div className="text-gray-400 text-base italic text-center mt-8">Chưa có sản phẩm</div>
               )}
             </div>
           )}
 
           {donHang && activeTab === "ghichu" && (
-            <div className="p-4 flex flex-col gap-4 text-sm">
+            <div className="p-4 flex flex-col gap-4 text-base">
               <NoteBlock label="Chỉ định của bác sĩ" value={donHang.chiDinhBacSi} />
               <NoteBlock label="Ghi chú chung" value={donHang.ghiChuChung} />
               <NoteBlock label="Ghi chú tài chính" value={donHang.ghiChuTaiChinh} />
@@ -606,14 +606,14 @@ const DonHangDetailPanel = (props) => {
             {renderFlowButton()}
             <button
               onClick={() => navigate(`/donhang/${donHang._id}/print`)}
-              className="flex-1 py-2 rounded-lg font-medium text-sm bg-blue-500 hover:bg-blue-600 text-white transition flex items-center justify-center gap-1.5"
+              className="flex-1 py-2 rounded-lg font-medium text-base bg-blue-500 hover:bg-blue-600 text-white transition flex items-center justify-center gap-1.5"
             >
               <PrintIcon />
               Phiếu chỉ định
             </button>
             <button
               onClick={() => navigate(`/donhang/${donHang._id}/delivery-note`)}
-              className="flex-1 py-2 rounded-lg font-medium text-sm bg-orange-500 hover:bg-orange-600 text-white transition flex items-center justify-center gap-1.5"
+              className="flex-1 py-2 rounded-lg font-medium text-base bg-orange-500 hover:bg-orange-600 text-white transition flex items-center justify-center gap-1.5"
             >
               <LocalShippingIcon />
               Phiếu giao hàng
@@ -659,7 +659,7 @@ const DonHangDetailPanel = (props) => {
           <p>
             Bạn có chắc chắn muốn xóa đơn hàng <strong>{maDonHang}</strong>?
           </p>
-          <p className="text-sm text-gray-500 mt-1">
+          <p className="text-base text-gray-500 mt-1">
             Hành động này không thể hoàn tác.
           </p>
         </DialogContent>

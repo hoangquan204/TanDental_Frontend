@@ -198,7 +198,7 @@ export default function CongTyPage() {
             onChange={handleAvatarUpload}
             className="hidden"
           />
-          <span className="text-blue-500 hover:text-blue-700 text-sm font-medium">
+          <span className="text-blue-500 hover:text-blue-700 text-base font-medium">
             Tải lên ảnh đại diện
           </span>
         </label>
@@ -206,7 +206,7 @@ export default function CongTyPage() {
 
       {/* COMPANY NAME */}
       <div className="mb-6 pb-6 border-b">
-        <label className="text-xs font-bold text-gray-500 uppercase">Công ty *</label>
+        <label className="text-base font-bold text-gray-500 uppercase">Công ty *</label>
         {editMode.Ten ? (
           <input
             type="text"
@@ -227,7 +227,7 @@ export default function CongTyPage() {
 
       {/* DESCRIPTION */}
       <div className="mb-6 pb-6 border-b">
-        <label className="text-xs font-bold text-gray-500 uppercase">Giới thiệu</label>
+        <label className="text-base font-bold text-gray-500 uppercase">Giới thiệu</label>
         {editMode.GioiThieu ? (
           <textarea
             value={company.GioiThieu}
@@ -249,18 +249,18 @@ export default function CongTyPage() {
       {/* WEBSITE, EMAIL, PHONE */}
       <div className="mb-6 pb-6 border-b grid grid-cols-1 sm:grid-cols-3 gap-6 w-full overflow-hidden">
         <div className="min-w-0 w-full">
-          <label className="text-xs font-bold text-gray-500 uppercase">Website</label>
+          <label className="text-base font-bold text-gray-500 uppercase">Website</label>
           {editMode.Website ? (
             <input
               type="url"
               value={company.Website}
               onChange={(e) => handleChange("Website", e.target.value)}
-              className="w-full max-w-full border-b-2 border-blue-500 px-0 py-2 focus:outline-none text-sm"
+              className="w-full max-w-full border-b-2 border-blue-500 px-0 py-2 focus:outline-none text-base"
               autoFocus
             />
           ) : (
             <p
-              className="text-blue-600 hover:underline py-2 cursor-pointer text-sm min-h-6 truncate"
+              className="text-blue-600 hover:underline py-2 cursor-pointer text-base min-h-6 truncate"
               onClick={() => toggleEditMode("Website")}
             >
               {company.Website}
@@ -269,18 +269,18 @@ export default function CongTyPage() {
         </div>
 
         <div className="min-w-0 w-full">
-          <label className="text-xs font-bold text-gray-500 uppercase">Email</label>
+          <label className="text-base font-bold text-gray-500 uppercase">Email</label>
           {editMode.Email ? (
             <input
               type="email"
               value={company.Email}
               onChange={(e) => handleChange("Email", e.target.value)}
-              className="w-full max-w-full border-b-2 border-blue-500 px-0 py-2 focus:outline-none text-sm"
+              className="w-full max-w-full border-b-2 border-blue-500 px-0 py-2 focus:outline-none text-base"
               autoFocus
             />
           ) : (
             <p
-              className="text-gray-700 py-2 cursor-pointer hover:text-blue-500 text-sm min-h-6 truncate"
+              className="text-gray-700 py-2 cursor-pointer hover:text-blue-500 text-base min-h-6 truncate"
               onClick={() => toggleEditMode("Email")}
             >
               {company.Email}
@@ -289,18 +289,18 @@ export default function CongTyPage() {
         </div>
 
         <div className="min-w-0 w-full">
-          <label className="text-xs font-bold text-gray-500 uppercase">Điện thoại</label>
+          <label className="text-base font-bold text-gray-500 uppercase">Điện thoại</label>
           {editMode.DienThoai ? (
             <input
               type="tel"
               value={company.DienThoai}
               onChange={(e) => handleChange("DienThoai", e.target.value)}
-              className="w-full max-w-full border-b-2 border-blue-500 px-0 py-2 focus:outline-none text-sm"
+              className="w-full max-w-full border-b-2 border-blue-500 px-0 py-2 focus:outline-none text-base"
               autoFocus
             />
           ) : (
             <p
-              className="text-gray-700 py-2 cursor-pointer hover:text-blue-500 text-sm min-h-6 truncate"
+              className="text-gray-700 py-2 cursor-pointer hover:text-blue-500 text-base min-h-6 truncate"
               onClick={() => toggleEditMode("DienThoai")}
             >
               {company.DienThoai}
@@ -311,7 +311,7 @@ export default function CongTyPage() {
 
       {/* ADDRESS */}
       <div className="mb-8 pb-8 border-b">
-        <label className="text-xs font-bold text-gray-500 uppercase">Địa chỉ</label>
+        <label className="text-base font-bold text-gray-500 uppercase">Địa chỉ</label>
         {editMode.DiaChi ? (
           <textarea
             value={company.DiaChi}
@@ -344,7 +344,7 @@ export default function CongTyPage() {
       </div>
 
       {/* METADATA */}
-      <div className="text-xs text-gray-400 mt-6 text-center">
+      <div className="text-base text-gray-400 mt-6 text-center">
         Được tạo bởi Administrator
         {company.createdAt && ` lúc ${new Date(company.createdAt).toLocaleString("vi-VN")}`}
       </div>

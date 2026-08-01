@@ -566,10 +566,10 @@ const Header = ({ onToggleSidebar }) => {
                               >
                                 <div className="flex items-start gap-2.5 flex-1 min-w-0">
                                   <div className="flex-1 min-w-0 text-left">
-                                    <p className="text-gray-800 font-semibold text-sm whitespace-pre-wrap leading-relaxed">
+                                    <p className="text-gray-800 font-semibold text-base whitespace-pre-wrap leading-relaxed">
                                       {todo.noiDung}
                                     </p>
-                                    <div className="flex items-start justify-between mt-1 text-xs text-gray-400 w-full">
+                                    <div className="flex items-start justify-between mt-1 text-base text-gray-400 w-full">
                                       {todo.donHang ? (
                                         <span
                                           onClick={() => {
@@ -604,7 +604,7 @@ const Header = ({ onToggleSidebar }) => {
                               </div>
                             ))
                           ) : (
-                            <div className="py-10 text-center text-gray-400 italic text-xs">
+                            <div className="py-10 text-center text-gray-400 italic text-base">
                               Không có ghi chú nào cần xử lý
                             </div>
                           )}

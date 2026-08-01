@@ -404,13 +404,13 @@ const MauTheBaoHanhPage = () => {
                     </TableCell>
                     <TableCell className="text-slate-600 py-4 max-w-xs truncate">
                       {mau.moTa || (
-                        <span className="text-slate-400 italic text-xs">
+                        <span className="text-slate-400 italic text-base">
                           Không có mô tả
                         </span>
                       )}
                     </TableCell>
                     <TableCell align="center" className="py-4">
-                      <span className="inline-flex items-center justify-center bg-sky-50 text-sky-700 text-xs font-bold px-3 py-1.5 rounded-full border border-sky-100">
+                      <span className="inline-flex items-center justify-center bg-sky-50 text-sky-700 text-base font-bold px-3 py-1.5 rounded-full border border-sky-100">
                         {mau.cacTruong?.length || 0} trường
                       </span>
                     </TableCell>
@@ -465,7 +465,7 @@ const MauTheBaoHanhPage = () => {
               <div className="space-y-4">
                 <div className="flex justify-between items-start gap-2">
                   <div className="flex-1">
-                    <div className="text-xs text-slate-400 uppercase font-bold tracking-wider mb-0.5">
+                    <div className="text-base text-slate-400 uppercase font-bold tracking-wider mb-0.5">
                       Tên Mẫu
                     </div>
                     <div className="font-bold text-lg text-slate-800">
@@ -492,20 +492,20 @@ const MauTheBaoHanhPage = () => {
 
                 {mau.moTa && (
                   <div>
-                    <div className="text-xs text-slate-400 uppercase font-bold tracking-wider mb-0.5">
+                    <div className="text-base text-slate-400 uppercase font-bold tracking-wider mb-0.5">
                       Mô Tả
                     </div>
-                    <div className="text-slate-600 text-sm line-clamp-2">
+                    <div className="text-slate-600 text-base line-clamp-2">
                       {mau.moTa}
                     </div>
                   </div>
                 )}
 
                 <div className="flex justify-between items-center bg-slate-50 p-3 rounded-xl border border-slate-100">
-                  <span className="text-xs font-semibold text-slate-500 uppercase tracking-wide">
+                  <span className="text-base font-semibold text-slate-500 uppercase tracking-wide">
                     Số trường đang kích hoạt
                   </span>
-                  <span className="text-sm font-extrabold text-sky-600 bg-sky-50 border border-sky-100 px-2.5 py-0.5 rounded-full">
+                  <span className="text-base font-extrabold text-sky-600 bg-sky-50 border border-sky-100 px-2.5 py-0.5 rounded-full">
                     {mau.cacTruong?.length || 0}
                   </span>
                 </div>
@@ -566,7 +566,7 @@ const MauTheBaoHanhPage = () => {
                 color="inherit"
                 onClick={handlePrintTest}
                 startIcon={<PrintIcon />}
-                className="font-semibold text-slate-200 border border-slate-700 bg-slate-800/50 hover:bg-white hover:text-blue-500 px-3 md:px-4 py-1.5 rounded-xl normal-case text-sm transition-all"
+                className="font-semibold text-slate-200 border border-slate-700 bg-slate-800/50 hover:bg-white hover:text-blue-500 px-3 md:px-4 py-1.5 rounded-xl normal-case text-base transition-all"
               >
                 In Thử
               </Button>
@@ -576,7 +576,7 @@ const MauTheBaoHanhPage = () => {
                 onClick={handleSave}
                 disabled={loading}
                 startIcon={<SaveIcon />}
-                className="font-semibold text-slate-200 border border-slate-700 bg-slate-800/50 hover:bg-white hover:text-blue-500 px-3 md:px-4 py-1.5 rounded-xl normal-case text-sm transition-all"
+                className="font-semibold text-slate-200 border border-slate-700 bg-slate-800/50 hover:bg-white hover:text-blue-500 px-3 md:px-4 py-1.5 rounded-xl normal-case text-base transition-all"
               >
                 {loading ? "Đang lưu..." : "Lưu Cấu Hình"}
               </Button>
@@ -589,8 +589,8 @@ const MauTheBaoHanhPage = () => {
           <div className="w-full lg:w-[45%] xl:w-[40%] p-4 md:p-6 flex flex-col gap-6 bg-white border-b lg:border-b-0 lg:border-r border-slate-200 overflow-y-auto shadow-sm z-10">
             {/* Template Information */}
             <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200/60 space-y-4">
-              <div className="flex items-center gap-2 text-slate-800 font-bold text-sm uppercase tracking-wider mb-2">
-                <SettingsIcon className="text-slate-500 text-sm" /> Thông tin
+              <div className="flex items-center gap-2 text-slate-800 font-bold text-base uppercase tracking-wider mb-2">
+                <SettingsIcon className="text-slate-500 text-base" /> Thông tin
                 mẫu phôi
               </div>
               <TextField
@@ -619,7 +619,7 @@ const MauTheBaoHanhPage = () => {
 
             {/* Visual Studio Card Preview */}
             <div className="flex-1 flex flex-col min-h-[350px]">
-              <div className="text-xs font-bold text-slate-500 mb-3 uppercase tracking-wider flex items-center justify-between">
+              <div className="text-base font-bold text-slate-500 mb-3 uppercase tracking-wider flex items-center justify-between">
                 <span>Khung hiển thị trực quan</span>
                 <span className="text-sky-600 bg-sky-50 font-semibold px-2 py-0.5 rounded-md border border-sky-100">
                   Kích thước chuẩn: 85x53mm
@@ -707,7 +707,7 @@ const MauTheBaoHanhPage = () => {
                 <h3 className="font-extrabold text-lg text-slate-800 tracking-tight">
                   Thiết lập tọa độ & định dạng văn bản
                 </h3>
-                <p className="text-xs text-slate-400 mt-0.5">
+                <p className="text-base text-slate-400 mt-0.5">
                   Tinh chỉnh khoảng cách lề (đơn vị: mm) và kích cỡ chữ hiển thị
                   (đơn vị: pt).
                 </p>
@@ -717,7 +717,7 @@ const MauTheBaoHanhPage = () => {
                 style={{ WebkitOverflowScrolling: "touch" }}
                 className="overflow-x-auto"
               >
-                <table className="w-full min-w-[680px] text-sm text-left border-collapse">
+                <table className="w-full min-w-[680px] text-base text-left border-collapse">
                   <thead>
                     <tr className="bg-slate-50 text-slate-700 font-bold border-b border-slate-200">
                       <th className="p-3 w-14 text-center">Bật</th>
@@ -776,7 +776,7 @@ const MauTheBaoHanhPage = () => {
                                   e.target.value
                                 )
                               }
-                              className="w-full text-center border border-slate-200 rounded-lg px-2 py-1.5 text-sm font-medium transition-all focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none disabled:bg-slate-100 disabled:text-slate-400"
+                              className="w-full text-center border border-slate-200 rounded-lg px-2 py-1.5 text-base font-medium transition-all focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none disabled:bg-slate-100 disabled:text-slate-400"
                             />
                           </td>
 
@@ -792,7 +792,7 @@ const MauTheBaoHanhPage = () => {
                                   e.target.value
                                 )
                               }
-                              className="w-full text-center border border-slate-200 rounded-lg px-2 py-1.5 text-sm font-medium transition-all focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none disabled:bg-slate-100 disabled:text-slate-400"
+                              className="w-full text-center border border-slate-200 rounded-lg px-2 py-1.5 text-base font-medium transition-all focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none disabled:bg-slate-100 disabled:text-slate-400"
                             />
                           </td>
 
@@ -808,7 +808,7 @@ const MauTheBaoHanhPage = () => {
                                   e.target.value
                                 )
                               }
-                              className="w-full text-center border border-slate-200 rounded-lg px-2 py-1.5 text-sm font-medium transition-all focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none disabled:bg-slate-100 disabled:text-slate-400"
+                              className="w-full text-center border border-slate-200 rounded-lg px-2 py-1.5 text-base font-medium transition-all focus:ring-2 focus:ring-sky-500 focus:border-sky-500 outline-none disabled:bg-slate-100 disabled:text-slate-400"
                               title={
                                 field.isQR
                                   ? "Kích thước ô QR Code"
@@ -878,7 +878,7 @@ const MauTheBaoHanhPage = () => {
                                 </ToggleButton>
                               </ToggleButtonGroup>
                             ) : (
-                              <span className="text-xs text-slate-400 font-medium italic bg-slate-50 px-2.5 py-1.5 border border-slate-100 rounded-lg inline-block">
+                              <span className="text-base text-slate-400 font-medium italic bg-slate-50 px-2.5 py-1.5 border border-slate-100 rounded-lg inline-block">
                                 Chỉ áp dụng cho QR Code
                               </span>
                             )}

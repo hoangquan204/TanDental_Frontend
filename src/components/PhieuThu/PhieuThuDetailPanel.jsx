@@ -58,9 +58,9 @@ const getInitials = (name) => {
 
 const InfoRow = ({ label, value, valueClass = "" }) => (
   <div className="flex justify-between items-center py-2.5 border-b border-gray-100 last:border-0">
-    <span className="text-sm text-gray-500">{label}</span>
+    <span className="text-base text-gray-500">{label}</span>
     <span
-      className={`text-sm text-gray-800 font-medium text-right ${valueClass}`}
+      className={`text-base text-gray-800 font-medium text-right ${valueClass}`}
     >
       {value ?? "—"}
     </span>
@@ -139,18 +139,18 @@ export default function PhieuThuDetailPanel({ phieuThu, onClose, onUpdated }) {
                     {tenKhach || "—"}
                   </p>
                   {address && (
-                    <p className="text-xs text-[#29b6f6] mt-0.5 truncate">
+                    <p className="text-base text-[#29b6f6] mt-0.5 truncate">
                       Địa chỉ: {address}
                     </p>
                   )}
-                  <p className="text-xs text-[#29b6f6] mt-0.5">
+                  <p className="text-base text-[#29b6f6] mt-0.5">
                     Điện thoại:{" "}
                     <span className="text-gray-400">
                       {nk.soDienThoai || "Chưa có"}
                     </span>
                   </p>
                   {nk.email !== undefined && (
-                    <p className="text-xs text-[#29b6f6] mt-0.5">
+                    <p className="text-base text-[#29b6f6] mt-0.5">
                       Email:{" "}
                       <span className="text-gray-400">
                         {nk.email || "Chưa có"}
@@ -170,7 +170,7 @@ export default function PhieuThuDetailPanel({ phieuThu, onClose, onUpdated }) {
                         sx={{ fontSize: 18, color: "#16a34a" }}
                       />
                     </div>
-                    <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                    <span className="text-base font-semibold text-gray-500 uppercase tracking-wider">
                       Số tiền thu
                     </span>
                   </div>
@@ -210,7 +210,7 @@ export default function PhieuThuDetailPanel({ phieuThu, onClose, onUpdated }) {
               {/* ── Card 3: Hóa đơn ── */}
               {danhSachHoaDon.length > 0 && (
                 <div className="bg-white rounded-2xl shadow-sm px-4 py-4">
-                  <p className="font-semibold text-gray-800 text-sm mb-3">
+                  <p className="font-semibold text-gray-800 text-base mb-3">
                     Hóa đơn {danhSachHoaDon.length > 1 ? `(${danhSachHoaDon.length})` : ""}
                   </p>
                   <div className="space-y-3">
@@ -226,7 +226,7 @@ export default function PhieuThuDetailPanel({ phieuThu, onClose, onUpdated }) {
                           <div className="flex justify-between items-center mb-2">
                             {/* 🔥 LOGIC HIỂN THỊ SDDK (Chữ cam, ẩn link) VÀ HÓA ĐƠN THƯỜNG */}
                             {hd.soHoaDon?.startsWith("SDDK") ? (
-                              <span className="text-orange-600 font-bold text-sm">
+                              <span className="text-orange-600 font-bold text-base">
                                 Số dư đầu kỳ (Nợ cũ)
                               </span>
                             ) : (
@@ -241,7 +241,7 @@ export default function PhieuThuDetailPanel({ phieuThu, onClose, onUpdated }) {
                             )}
 
                             {/* 🔥 ẨN NGÀY XUẤT CHO SDDK */}
-                            <span className="text-xs text-gray-500">
+                            <span className="text-base text-gray-500">
                               {hd.soHoaDon?.startsWith("SDDK")
                                 ? "—"
                                 : formatDateShort(hd.ngayXuatHoaDon)}
@@ -268,7 +268,7 @@ export default function PhieuThuDetailPanel({ phieuThu, onClose, onUpdated }) {
 
                           {hd.trangThai && (
                             <div className="mt-2 flex justify-end">
-                              <span className={`text-xs px-3 py-1 rounded-full font-medium ${hd.trangThai === "Đã thanh toán"
+                              <span className={`text-base px-3 py-1 rounded-full font-medium ${hd.trangThai === "Đã thanh toán"
                                 ? "bg-green-100 text-green-700"
                                 : hd.trangThai === "Thanh toán một phần"
                                   ? "bg-yellow-100 text-yellow-700"
@@ -296,7 +296,7 @@ export default function PhieuThuDetailPanel({ phieuThu, onClose, onUpdated }) {
                 navigate(`/phieu-thu/${phieuThu._id}/print`);
               }
             }}
-            className="flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 transition px-3 py-1.5 rounded-lg hover:bg-gray-100"
+            className="flex items-center gap-2 text-base text-gray-600 hover:text-gray-900 transition px-3 py-1.5 rounded-lg hover:bg-gray-100"
           >
             <PrintIcon sx={{ fontSize: 16 }} />
             In phiếu thu

@@ -65,7 +65,7 @@ const QuickAddMenu = () => {
             {hasRouteAccess(currentUser, "/nha-khoa") && <NhaKhoaModal isQuickMenu={true}></NhaKhoaModal>}
             {hasRouteAccess(currentUser, "/don-hang") && (
               <button
-                className="w-full flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 border-b last:border-0"
+                className="w-full flex items-center px-4 py-3 text-base text-gray-700 hover:bg-gray-100 border-b last:border-0"
                 onClick={() => {
                   navigate("/donhang/create");
                   setIsOpen(false);
@@ -79,7 +79,7 @@ const QuickAddMenu = () => {
             )}
             {hasRouteAccess(currentUser, "/cho-xuat-hoa-don") && (
               <button
-                className="w-full flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 border-b last:border-0"
+                className="w-full flex items-center px-4 py-3 text-base text-gray-700 hover:bg-gray-100 border-b last:border-0"
                 onClick={() => {
                   navigate("/cho-xuat-hoa-don");
                   setIsOpen(false);
@@ -93,7 +93,7 @@ const QuickAddMenu = () => {
             )}
             {hasRouteAccess(currentUser, "/phieu-thu") && (
               <button
-                className="w-full flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 border-b last:border-0"
+                className="w-full flex items-center px-4 py-3 text-base text-gray-700 hover:bg-gray-100 border-b last:border-0"
                 onClick={() => setOpenModal(true)}
               >
                 <span className="mr-3 text-gray-500">
@@ -107,7 +107,7 @@ const QuickAddMenu = () => {
             {hasRouteAccess(currentUser, "/nhan-vien") && <StaffModal isQuickMenu={true}></StaffModal>}
             {hasRouteAccess(currentUser, "/ghi-chu") && (
               <button
-                className="w-full flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 border-b last:border-0"
+                className="w-full flex items-center px-4 py-3 text-base text-gray-700 hover:bg-gray-100 border-b last:border-0"
                 onClick={() => {
                   setIsGhiChuModalOpen(true);
                   setIsOpen(false);

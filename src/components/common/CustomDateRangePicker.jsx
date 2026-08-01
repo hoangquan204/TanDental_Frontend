@@ -98,7 +98,7 @@ const CustomDateRangePicker = ({ open, anchorEl, onClose, initialDates, onApply 
                     ))}
                 </div>
 
-                <div className="grid grid-cols-7 gap-y-1 gap-x-0 text-center text-sm mb-4 relative z-0">
+                <div className="grid grid-cols-7 gap-y-1 gap-x-0 text-center text-base mb-4 relative z-0">
                     {daysInMonth.map((d, i) => {
                         const isCurrentMonth = d.isSame(currentMonth, 'month');
                         const isStart = tempDates.start && d.isSame(dayjs(tempDates.start), 'day');
@@ -142,7 +142,7 @@ const CustomDateRangePicker = ({ open, anchorEl, onClose, initialDates, onApply 
                 <div className="grid grid-cols-2 gap-2 mb-3">
                     <button
                         onClick={() => setSelectingMode('start')}
-                        className={`flex flex-col items-start p-2 rounded-xl border text-xs transition-colors ${selectingMode === 'start' ? 'border-blue-500 bg-blue-50' : 'border-gray-200 bg-gray-50 hover:bg-gray-100'}`}
+                        className={`flex flex-col items-start p-2 rounded-xl border text-base transition-colors ${selectingMode === 'start' ? 'border-blue-500 bg-blue-50' : 'border-gray-200 bg-gray-50 hover:bg-gray-100'}`}
                     >
                         <span className={`font-semibold mb-0.5 ${selectingMode === 'start' ? 'text-blue-600' : 'text-gray-500'}`}>Từ ngày</span>
                         <span className={`font-bold ${tempDates.start ? 'text-gray-900' : 'text-gray-400'}`}>
@@ -151,7 +151,7 @@ const CustomDateRangePicker = ({ open, anchorEl, onClose, initialDates, onApply 
                     </button>
                     <button
                         onClick={() => setSelectingMode('end')}
-                        className={`flex flex-col items-start p-2 rounded-xl border text-xs transition-colors ${selectingMode === 'end' ? 'border-blue-500 bg-blue-50' : 'border-gray-200 bg-gray-50 hover:bg-gray-100'}`}
+                        className={`flex flex-col items-start p-2 rounded-xl border text-base transition-colors ${selectingMode === 'end' ? 'border-blue-500 bg-blue-50' : 'border-gray-200 bg-gray-50 hover:bg-gray-100'}`}
                     >
                         <span className={`font-semibold mb-0.5 ${selectingMode === 'end' ? 'text-blue-600' : 'text-gray-500'}`}>Đến ngày</span>
                         <span className={`font-bold ${tempDates.end ? 'text-gray-900' : 'text-gray-400'}`}>
@@ -161,10 +161,10 @@ const CustomDateRangePicker = ({ open, anchorEl, onClose, initialDates, onApply 
                 </div>
 
                 <div className="grid grid-cols-2 gap-2">
-                    <button onClick={handleClear} className="py-2.5 text-sm font-semibold text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-xl transition-colors">
+                    <button onClick={handleClear} className="py-2.5 text-base font-semibold text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-xl transition-colors">
                         Xóa
                     </button>
-                    <button onClick={handleApplyInternal} className="py-2.5 text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-xl shadow-sm transition-colors active:scale-95">
+                    <button onClick={handleApplyInternal} className="py-2.5 text-base font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-xl shadow-sm transition-colors active:scale-95">
                         Áp dụng
                     </button>
                 </div>

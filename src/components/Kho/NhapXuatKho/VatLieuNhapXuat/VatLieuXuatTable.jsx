@@ -5,7 +5,7 @@ export default function VatLieuXuatTable({ data, selectedId, onRowClick }) {
     return (
         <div className="flex flex-col flex-1 min-w-0">
             <div className="max-h-[500px] overflow-y-auto table-scroll">
-                <table className="w-full border-collapse text-sm text-left bg-white">
+                <table className="w-full border-collapse text-base text-left bg-white">
                     <thead className="sticky top-0 z-10">
                         <tr className="shadow">
                             <th className={`${rowBase} ${exBg}`}>Tên vật liệu</th>

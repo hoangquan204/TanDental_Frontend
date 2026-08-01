@@ -678,9 +678,9 @@ const DonHangPage = () => {
               }));
               if (!p.isCalendar) setOpenDateModal(null);
             }}
-            className={`w-full text-left px-4 py-2.5 text-sm flex items-center gap-2 border-b border-gray-100 transition ${cf.preset === p.key
-                ? "bg-blue-50 text-blue-700 font-semibold"
-                : "text-gray-700 hover:bg-gray-50"
+            className={`w-full text-left px-4 py-2.5 text-base flex items-center gap-2 border-b border-gray-100 transition ${cf.preset === p.key
+              ? "bg-blue-50 text-blue-700 font-semibold"
+              : "text-gray-700 hover:bg-gray-50"
               }`}
           >
             {p.isCalendar && <CalendarTodayIcon sx={{ fontSize: 14 }} />}
@@ -697,7 +697,7 @@ const DonHangPage = () => {
                   const el = e.currentTarget;
                   setDatePickerAnchor((prev) => ({ ...prev, [dateKey]: el }));
                 }}
-                className="w-full flex items-center justify-between px-3 py-2 rounded-lg border border-blue-200 bg-white text-xs text-gray-700 hover:bg-blue-50 transition"
+                className="w-full flex items-center justify-between px-3 py-2 rounded-lg border border-blue-200 bg-white text-base text-gray-700 hover:bg-blue-50 transition"
               >
                 <span>
                   {cf.customFrom && cf.customTo
@@ -752,7 +752,7 @@ const DonHangPage = () => {
           }}
         >
           <div className="text-xl">{statusCounts?.["Chờ xử lý"] || 0}</div>
-          <div className="text-sm">Chờ xử lý</div>
+          <div className="text-base">Chờ xử lý</div>
         </div>
         <div
           className="flex-1 cursor-pointer bg-blue-500 hover:bg-blue-700 text-white px-2 transition-colors"
@@ -767,7 +767,7 @@ const DonHangPage = () => {
           }}
         >
           <div className="text-xl">{statusCounts?.["Đang sản xuất"] || 0}</div>
-          <div className="text-sm">Đang SX</div>
+          <div className="text-base">Đang SX</div>
         </div>
         <div
           className="flex-1 cursor-pointer bg-purple-500 hover:bg-purple-700 text-white px-2 transition-colors"
@@ -782,7 +782,7 @@ const DonHangPage = () => {
           }}
         >
           <div className="text-xl">{statusCounts?.["Đang thử"] || 0}</div>
-          <div className="text-sm">Đang thử</div>
+          <div className="text-base">Đang thử</div>
         </div>
         <div
           className="flex-1 cursor-pointer bg-green-500 hover:bg-green-700 text-white px-2 transition-colors"
@@ -797,7 +797,7 @@ const DonHangPage = () => {
           }}
         >
           <div className="text-xl">{statusCounts?.["Hoàn thành"] || 0}</div>
-          <div className="text-sm">Hoàn thành</div>
+          <div className="text-base">Hoàn thành</div>
         </div>
       </div>
 
@@ -834,7 +834,7 @@ const DonHangPage = () => {
                 onClick={(e) => e.stopPropagation()}
               >
                 <button
-                  className="w-full flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition text-sm"
+                  className="w-full flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition text-base"
                   onClick={() => {
                     setOpenPickerModal(null);
                     setOpenDateModal(
@@ -868,7 +868,7 @@ const DonHangPage = () => {
                 onClick={(e) => e.stopPropagation()}
               >
                 <button
-                  className="w-full flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition text-sm"
+                  className="w-full flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition text-base"
                   onClick={() => {
                     setOpenPickerModal(null);
                     setOpenDateModal(
@@ -902,7 +902,7 @@ const DonHangPage = () => {
                 onClick={(e) => e.stopPropagation()}
               >
                 <button
-                  className="w-full flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition text-sm"
+                  className="w-full flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition text-base"
                   onClick={() => {
                     setOpenPickerModal(null);
                     setOpenDateModal(
@@ -939,12 +939,12 @@ const DonHangPage = () => {
                       onChange={(e) => setNhaKhoaSearch(e.target.value)}
                       placeholder="Tìm nha khoa..."
                       autoFocus
-                      className="w-full border-b border-blue-400 px-3 py-1.5 text-sm focus:outline-none"
+                      className="w-full border-b border-blue-400 px-3 py-1.5 text-base focus:outline-none"
                     />
                   </div>
                 ) : (
                   <button
-                    className="w-full flex items-start px-4 py-3 hover:bg-gray-50 transition text-sm"
+                    className="w-full flex items-start px-4 py-3 hover:bg-gray-50 transition text-base"
                     onClick={() => {
                       setOpenDateModal(null);
                       setNhaKhoaSearch("");
@@ -970,7 +970,7 @@ const DonHangPage = () => {
                           setDraftNhaKhoa(null);
                           setOpenPickerModal(null);
                         }}
-                        className="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-red-50 border-b border-gray-100 transition"
+                        className="w-full text-left px-4 py-2 text-base text-red-500 hover:bg-red-50 border-b border-gray-100 transition"
                       >
                         Bỏ chọn
                       </button>
@@ -982,16 +982,16 @@ const DonHangPage = () => {
                           setDraftNhaKhoa(item);
                           setOpenPickerModal(null);
                         }}
-                        className={`w-full text-left px-4 py-2 text-sm border-b border-gray-50 transition ${draftNhaKhoa?._id === item._id
-                            ? "bg-blue-50 text-blue-700 font-semibold"
-                            : "text-gray-700 hover:bg-gray-50"
+                        className={`w-full text-left px-4 py-2 text-base border-b border-gray-50 transition ${draftNhaKhoa?._id === item._id
+                          ? "bg-blue-50 text-blue-700 font-semibold"
+                          : "text-gray-700 hover:bg-gray-50"
                           }`}
                       >
                         {item.name}
                       </button>
                     ))}
                     {filteredNhaKhoaOpts.length === 0 && (
-                      <p className="text-center text-xs text-gray-400 py-4">
+                      <p className="text-center text-base text-gray-400 py-4">
                         Không tìm thấy
                       </p>
                     )}
@@ -1011,12 +1011,12 @@ const DonHangPage = () => {
                       onChange={(e) => setBenhNhanSearch(e.target.value)}
                       placeholder="Tìm bệnh nhân..."
                       autoFocus
-                      className="w-full border-b border-blue-400 px-3 py-1.5 text-sm focus:outline-none"
+                      className="w-full border-b border-blue-400 px-3 py-1.5 text-base focus:outline-none"
                     />
                   </div>
                 ) : (
                   <button
-                    className="w-full flex items-start px-4 py-3 hover:bg-gray-50 transition text-sm"
+                    className="w-full flex items-start px-4 py-3 hover:bg-gray-50 transition text-base"
                     onClick={() => {
                       setOpenDateModal(null);
                       setBenhNhanSearch("");
@@ -1042,7 +1042,7 @@ const DonHangPage = () => {
                           setDraftBenhNhan(null);
                           setOpenPickerModal(null);
                         }}
-                        className="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-red-50 border-b border-gray-100 transition"
+                        className="w-full text-left px-4 py-2 text-base text-red-500 hover:bg-red-50 border-b border-gray-100 transition"
                       >
                         Bỏ chọn
                       </button>
@@ -1054,16 +1054,16 @@ const DonHangPage = () => {
                           setDraftBenhNhan(item);
                           setOpenPickerModal(null);
                         }}
-                        className={`w-full text-left px-4 py-2 text-sm border-b border-gray-50 transition ${draftBenhNhan?._id === item._id
-                            ? "bg-blue-50 text-blue-700 font-semibold"
-                            : "text-gray-700 hover:bg-gray-50"
+                        className={`w-full text-left px-4 py-2 text-base border-b border-gray-50 transition ${draftBenhNhan?._id === item._id
+                          ? "bg-blue-50 text-blue-700 font-semibold"
+                          : "text-gray-700 hover:bg-gray-50"
                           }`}
                       >
                         {item.name}
                       </button>
                     ))}
                     {filteredBenhNhanOpts.length === 0 && (
-                      <p className="text-center text-xs text-gray-400 py-4">
+                      <p className="text-center text-base text-gray-400 py-4">
                         Không tìm thấy
                       </p>
                     )}
@@ -1140,7 +1140,7 @@ const DonHangPage = () => {
                 </button>
                 <button
                   onClick={handleApplyFilters}
-                  className="flex items-center gap-1 px-4 py-1.5 bg-sky-500 hover:bg-sky-600 text-white text-sm font-semibold rounded-lg transition shadow-sm"
+                  className="flex items-center gap-1 px-4 py-1.5 bg-sky-500 hover:bg-sky-600 text-white text-base font-semibold rounded-lg transition shadow-sm"
                 >
                   Lưu
                 </button>
@@ -1159,7 +1159,7 @@ const DonHangPage = () => {
               placeholder="Nhập Số/Nha khoa/Bác sĩ/Bệnh nhân/Sản phẩm"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="bg-white shadow md:text-sm text-base px-10 py-1.5 rounded-full h-10 w-48 sm:w-96 focus:outline-sky-300"
+              className="bg-white shadow md:text-base text-base px-10 py-1.5 rounded-full h-10 w-48 sm:w-96 focus:outline-sky-300"
             />
             {searchTerm && (
               <button
@@ -1198,7 +1198,7 @@ const DonHangPage = () => {
       {isFiltered && (
         <div className="hidden sm:flex mb-3 flex-wrap gap-2">
           {appliedNgayNhan.preset && (
-            <span className="px-2 py-1 flex items-center gap-2 bg-slate-200 text-gray-800 text-sm rounded-full">
+            <span className="px-2 py-1 flex items-center gap-2 bg-slate-200 text-gray-800 text-base rounded-full">
               Ngày nhận: {getDateLabel(appliedNgayNhan)}
               {appliedNgayNhan.preset === "custom" &&
                 appliedNgayNhan.customFrom &&
@@ -1222,7 +1222,7 @@ const DonHangPage = () => {
             </span>
           )}
           {appliedYcHoanThanh.preset && (
-            <span className="px-2 py-1 flex items-center gap-2 bg-slate-200 text-gray-800 text-sm rounded-full">
+            <span className="px-2 py-1 flex items-center gap-2 bg-slate-200 text-gray-800 text-base rounded-full">
               Y/c hoàn thành: {getDateLabel(appliedYcHoanThanh)}
               {appliedYcHoanThanh.preset === "custom" &&
                 appliedYcHoanThanh.customFrom &&
@@ -1246,7 +1246,7 @@ const DonHangPage = () => {
             </span>
           )}
           {appliedHenGiao.preset && (
-            <span className="px-2 py-1 flex items-center gap-2 bg-slate-200 text-gray-800 text-sm rounded-full">
+            <span className="px-2 py-1 flex items-center gap-2 bg-slate-200 text-gray-800 text-base rounded-full">
               Hẹn giao: {getDateLabel(appliedHenGiao)}
               {appliedHenGiao.preset === "custom" &&
                 appliedHenGiao.customFrom &&
@@ -1270,7 +1270,7 @@ const DonHangPage = () => {
             </span>
           )}
           {appliedNhaKhoa && (
-            <span className="px-2 py-1 flex items-center gap-2 bg-slate-200 text-gray-800 text-sm rounded-full">
+            <span className="px-2 py-1 flex items-center gap-2 bg-slate-200 text-gray-800 text-base rounded-full">
               Nha khoa: {appliedNhaKhoa.name}
               <button
                 onClick={() => {
@@ -1288,7 +1288,7 @@ const DonHangPage = () => {
             </span>
           )}
           {appliedBenhNhan && (
-            <span className="px-2 py-1 flex items-center gap-2 bg-slate-200 text-gray-800 text-sm rounded-full">
+            <span className="px-2 py-1 flex items-center gap-2 bg-slate-200 text-gray-800 text-base rounded-full">
               Bệnh nhân: {appliedBenhNhan.name}
               <button
                 onClick={() => {
@@ -1308,7 +1308,7 @@ const DonHangPage = () => {
           {appliedTrangThai.map((status) => (
             <span
               key={status}
-              className="px-2 py-1 flex items-center gap-2 bg-slate-200 text-gray-800 text-sm rounded-full"
+              className="px-2 py-1 flex items-center gap-2 bg-slate-200 text-gray-800 text-base rounded-full"
             >
               Trạng thái: {status}
               <button
@@ -1345,7 +1345,7 @@ const DonHangPage = () => {
             onRowClick={handleRowClick}
           />
           {loadingMore && (
-            <div className="text-center py-3 text-gray-400 text-sm">
+            <div className="text-center py-3 text-gray-400 text-base">
               Đang tải thêm...
             </div>
           )}

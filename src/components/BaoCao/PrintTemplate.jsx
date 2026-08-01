@@ -68,8 +68,8 @@ const PrintTemplate = ({ data, startDate, endDate }) => {
             </div>
 
             <div className="text-right flex justify-between mb-2">
-                <p className="text-sm font-medium">Thời gian: {fullDateRange}</p>
-                <p className="text-sm italic">Ngày lập: {dayjs().format('DD/MM/YYYY')}</p>
+                <p className="text-base font-medium">Thời gian: {fullDateRange}</p>
+                <p className="text-base italic">Ngày lập: {dayjs().format('DD/MM/YYYY')}</p>
             </div>
 
             {/* BẢNG DỮ LIỆU */}
@@ -128,7 +128,7 @@ const PrintTemplate = ({ data, startDate, endDate }) => {
                     ))}
 
                     {/* Dòng tổng cộng */}
-                    <tr className="font-black bg-gray-100 text-sm">
+                    <tr className="font-black bg-gray-100 text-base">
                         <td className="border-2 border-black p-3 uppercase">Tổng cộng</td>
                         <td className="border-2 border-black p-3 text-center">{totals?.m}</td>
                         <td className="border-2 border-black p-3 text-center">{totals?.s}</td>

@@ -198,7 +198,7 @@ const PhieuBaoHanhPage = () => {
                   <SearchIcon className="text-slate-400" />
                 </InputAdornment>
               ),
-              className: "bg-slate-50/50 rounded-lg text-sm",
+              className: "bg-slate-50/50 rounded-lg text-base",
             }}
             className="flex-1"
           />
@@ -284,7 +284,7 @@ const PhieuBaoHanhPage = () => {
                       <TableCell className="font-semibold text-slate-900">
                         {phieu.benhNhan?.hoVaTen || "---"}
                       </TableCell>
-                      <TableCell className="text-slate-600 text-sm">
+                      <TableCell className="text-slate-600 text-base">
                         {phieu.nhaKhoa?.hoVaTen ||
                           phieu.nhaKhoa?.tenGiaoDich ||
                           "---"}
@@ -303,7 +303,7 @@ const PhieuBaoHanhPage = () => {
                           {phieu.danhSachBaoHanh?.map((item, idx) => (
                             <div
                               key={idx}
-                              className="text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-lg shadow-sm"
+                              className="text-base p-2.5 bg-slate-50 border border-slate-200 rounded-lg shadow-sm"
                             >
                               <div className="font-bold text-slate-800 mb-0.5">
                                 {idx + 1}.{" "}
@@ -337,7 +337,7 @@ const PhieuBaoHanhPage = () => {
                       </TableCell>
                       <TableCell>
                         <div
-                          className="text-sm text-slate-500 max-w-xs truncate"
+                          className="text-base text-slate-500 max-w-xs truncate"
                           title={phieu.ghiChu}
                         >
                           {phieu.ghiChu || "---"}
@@ -482,7 +482,7 @@ const PhieuBaoHanhPage = () => {
                         if (phieu.donHang?._id)
                           navigate(`/donhang/${phieu.donHang?._id}/edit`);
                       }}
-                      className="font-semibold text-slate-800 text-sm hover:text-blue-600 cursor-pointer transition-colors"
+                      className="font-semibold text-slate-800 text-base hover:text-blue-600 cursor-pointer transition-colors"
                     >
                       {phieu.donHang?.maDonHang || phieu.maBaoHanh || "---"}
                     </button>
@@ -491,7 +491,7 @@ const PhieuBaoHanhPage = () => {
                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
                       Bệnh Nhân
                     </span>
-                    <span className="font-bold text-slate-900 text-sm">
+                    <span className="font-bold text-slate-900 text-base">
                       {phieu.benhNhan?.hoVaTen || "---"}
                     </span>
                   </div>
@@ -501,7 +501,7 @@ const PhieuBaoHanhPage = () => {
                   <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
                     Nha Khoa
                   </span>
-                  <span className="font-medium text-slate-700 text-sm">
+                  <span className="font-medium text-slate-700 text-base">
                     {phieu.nhaKhoa?.hoVaTen ||
                       phieu.nhaKhoa?.tenGiaoDich ||
                       "---"}
@@ -517,7 +517,7 @@ const PhieuBaoHanhPage = () => {
                     color="primary"
                     size="small"
                     variant="soft"
-                    className="bg-blue-50 text-blue-700 font-bold text-xs"
+                    className="bg-blue-50 text-blue-700 font-bold text-base"
                   />
                 </div>
 
@@ -526,7 +526,7 @@ const PhieuBaoHanhPage = () => {
                     {phieu.danhSachBaoHanh?.map((item, idx) => (
                       <div
                         key={idx}
-                        className="text-xs p-3 bg-slate-50 rounded-lg border border-slate-200"
+                        className="text-base p-3 bg-slate-50 rounded-lg border border-slate-200"
                       >
                         <div className="font-bold text-slate-800">
                           {idx + 1}.{" "}
@@ -560,7 +560,7 @@ const PhieuBaoHanhPage = () => {
                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
                       Ghi Chú
                     </span>
-                    <span className="text-xs text-slate-600 italic mt-0.5 block">
+                    <span className="text-base text-slate-600 italic mt-0.5 block">
                       {phieu.ghiChu}
                     </span>
                   </div>

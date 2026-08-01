@@ -22,19 +22,17 @@ import { toast } from "sonner";
 
 const InfoRow = ({ icon, label, value, highlight, multiline }) => (
   <div
-    className={`flex py-3 ${
-      multiline ? "flex-col gap-1.5" : "items-center justify-between"
-    }`}
+    className={`flex py-3 ${multiline ? "flex-col gap-1.5" : "items-center justify-between"
+      }`}
     style={{ borderBottom: "1px dashed #e2e8f0" }}
   >
     <div className="flex items-center gap-2.5 text-slate-500">
       {React.cloneElement(icon, { sx: { fontSize: 18, color: "#94a3b8" } })}
-      <span className="text-sm font-medium">{label}</span>
+      <span className="text-base font-medium">{label}</span>
     </div>
     <span
-      className={`text-sm font-semibold ${
-        highlight ? "text-blue-600" : "text-slate-700"
-      } ${multiline ? "whitespace-pre-wrap break-words" : ""}`}
+      className={`text-base font-semibold ${highlight ? "text-blue-600" : "text-slate-700"
+        } ${multiline ? "whitespace-pre-wrap break-words" : ""}`}
     >
       {value || "—"}
     </span>
@@ -103,7 +101,7 @@ const NhanVienDetail = () => {
   if (!nhanVien)
     return (
       <div className="flex justify-center items-center min-h-screen bg-slate-50">
-        <div className="text-slate-400 text-sm">
+        <div className="text-slate-400 text-base">
           Không tìm thấy thông tin nhân viên
         </div>
       </div>
@@ -132,7 +130,7 @@ const NhanVienDetail = () => {
         {/* Back */}
         <button
           onClick={() => navigate(-1)}
-          className="flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-800 transition-colors"
+          className="flex items-center gap-1.5 text-base text-slate-500 hover:text-slate-800 transition-colors"
         >
           <ArrowBackIcon sx={{ fontSize: 17 }} />
           Quay lại
@@ -163,7 +161,7 @@ const NhanVienDetail = () => {
                   {nhanVien.hoVaTen}
                 </h1>
                 <span
-                  className="self-center md:self-auto text-xs font-bold px-2.5 py-1 rounded-full"
+                  className="self-center md:self-auto text-base font-bold px-2.5 py-1 rounded-full"
                   style={
                     isActive
                       ? { background: "#166534", color: "#86efac" }
@@ -173,7 +171,7 @@ const NhanVienDetail = () => {
                   {nhanVien.trangThai || "Đang làm"}
                 </span>
               </div>
-              <div className="flex items-center justify-center md:justify-start gap-1.5 mt-2 text-slate-400 text-sm">
+              <div className="flex items-center justify-center md:justify-start gap-1.5 mt-2 text-slate-400 text-base">
                 <WorkIcon sx={{ fontSize: 15 }} />
                 <span>{nhanVien.chucVu || "Nhân viên"}</span>
               </div>
@@ -183,7 +181,7 @@ const NhanVienDetail = () => {
                 {/* Lương cơ bản */}
                 <div className="inline-flex items-center gap-2 bg-white/10 rounded-xl px-4 py-2">
                   <PaidIcon sx={{ fontSize: 16, color: "#86efac" }} />
-                  <span className="text-sm font-bold text-emerald-300">
+                  <span className="text-base font-bold text-emerald-300">
                     Lương cơ bản:{" "}
                     {Number(nhanVien.luongCanBan || 0).toLocaleString("vi-VN")}{" "}
                     đ
@@ -193,7 +191,7 @@ const NhanVienDetail = () => {
                 {/* 🔥 Ngày công tháng hiển thị nhanh trên Hero Card */}
                 <div className="inline-flex items-center gap-2 bg-white/10 rounded-xl px-4 py-2">
                   <CalendarMonthIcon sx={{ fontSize: 16, color: "#fef08a" }} />
-                  <span className="text-sm font-bold text-yellow-300">
+                  <span className="text-base font-bold text-yellow-300">
                     Ngày công: {nhanVien.ngayCongThang ?? 28} ngày
                   </span>
                 </div>
@@ -206,7 +204,7 @@ const NhanVienDetail = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {/* Thông tin cá nhân */}
           <div className="bg-white rounded-2xl shadow p-6">
-            <h3 className="text-sm font-bold text-slate-700 uppercase tracking-wider mb-4 flex items-center gap-2">
+            <h3 className="text-base font-bold text-slate-700 uppercase tracking-wider mb-4 flex items-center gap-2">
               <span className="w-1 h-4 rounded-full bg-blue-500 inline-block" />
               Thông tin cá nhân
             </h3>
@@ -261,13 +259,13 @@ const NhanVienDetail = () => {
           {/* CCCD Images */}
           <div className="bg-white rounded-2xl shadow p-6 flex flex-col">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-sm font-bold text-slate-700 uppercase tracking-wider flex items-center gap-2">
+              <h3 className="text-base font-bold text-slate-700 uppercase tracking-wider flex items-center gap-2">
                 <span className="w-1 h-4 rounded-full bg-emerald-500 inline-block" />
                 Ảnh tài liệu CCCD
               </h3>
 
               <label
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-white cursor-pointer transition-all"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-base font-semibold text-white cursor-pointer transition-all"
                 style={{ background: uploading ? "#94a3b8" : "#3b82f6" }}
               >
                 {uploading ? (
@@ -320,7 +318,7 @@ const NhanVienDetail = () => {
               ) : (
                 <div className="flex flex-col items-center justify-center h-48 rounded-xl border-2 border-dashed border-slate-200 bg-slate-50">
                   <UploadIcon sx={{ fontSize: 36, color: "#cbd5e1", mb: 1 }} />
-                  <span className="text-sm text-slate-400 font-medium">
+                  <span className="text-base text-slate-400 font-medium">
                     Chưa có ảnh CCCD
                   </span>
                 </div>

@@ -44,7 +44,7 @@ export default function PhieuMuonTable({
                 </div>
 
                 {/* ── TABLE — desktop (sm+) ── */}
-                <table className="hidden sm:table w-full border-collapse text-sm text-left bg-white">
+                <table className="hidden sm:table w-full border-collapse text-base text-left bg-white">
                     <thead className="sticky top-10 z-10">
                         <tr className="shadow">
                             <th className={`${rowBase} ${themeBg}`}>Ngày tạo</th>
@@ -97,9 +97,9 @@ export default function PhieuMuonTable({
                 {/* ── CARD LIST — mobile (< sm) ── */}
                 <div className="sm:hidden flex flex-col gap-2 p-2 bg-gray-50">
                     {loading ? (
-                        <p className="text-sm text-gray-400 text-center py-6">Đang tải...</p>
+                        <p className="text-base text-gray-400 text-center py-6">Đang tải...</p>
                     ) : data.length === 0 ? (
-                        <p className="text-sm text-gray-400 text-center py-6">Không có dữ liệu</p>
+                        <p className="text-base text-gray-400 text-center py-6">Không có dữ liệu</p>
                     ) : data.map((row) => {
                         const items = row.danhSachVatLieu || [];
                         const tenVatLieu = items.map((i) => i.vatLieu?.tenVatLieu || "?").join(", ");
@@ -114,17 +114,17 @@ export default function PhieuMuonTable({
                                 className={`cursor-pointer rounded-lg border bg-white p-3 shadow-sm transition-colors ${isSelected ? `${selectedBorder} ${selectedBg}` : "border-gray-200"}`}
                             >
                                 <div className="flex items-center justify-between mb-2">
-                                    <span className="font-semibold text-sm text-gray-800 truncate">{row.doiTac?.ten || "—"}</span>
+                                    <span className="font-semibold text-base text-gray-800 truncate">{row.doiTac?.ten || "—"}</span>
                                     <div className="flex flex-col gap-1 items-end shrink-0">
-                                        <span className={`text-xs text-white font-medium px-2 py-0.5 rounded ${daNhan ? "bg-green-500" : "bg-yellow-500"}`}>
+                                        <span className={`text-base text-white font-medium px-2 py-0.5 rounded ${daNhan ? "bg-green-500" : "bg-yellow-500"}`}>
                                             {row.trangThaiNhan}
                                         </span>
-                                        <span className={`text-xs text-white font-medium px-2 py-0.5 rounded ${daTra ? "bg-green-500" : "bg-orange-400"}`}>
+                                        <span className={`text-base text-white font-medium px-2 py-0.5 rounded ${daTra ? "bg-green-500" : "bg-orange-400"}`}>
                                             {row.trangThaiTra}
                                         </span>
                                     </div>
                                 </div>
-                                <div className="grid grid-cols-2 gap-x-3 gap-y-1 text-xs text-gray-600">
+                                <div className="grid grid-cols-2 gap-x-3 gap-y-1 text-base text-gray-600">
                                     <span className="text-gray-400">Ngày tạo</span>
                                     <span>{formatNgay(row.ngayTao)}</span>
 
@@ -144,7 +144,7 @@ export default function PhieuMuonTable({
                 {/* Sentinel — nằm TRONG vùng cuộn để IntersectionObserver bắt đúng lúc chạm đáy */}
                 <div ref={sentinelRef} className="h-1" />
                 {loadingMore && (
-                    <div className="text-center py-2 text-xs text-gray-400">Đang tải thêm...</div>
+                    <div className="text-center py-2 text-base text-gray-400">Đang tải thêm...</div>
                 )}
             </div>
         </div>

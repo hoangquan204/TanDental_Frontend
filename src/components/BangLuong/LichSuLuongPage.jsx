@@ -247,13 +247,13 @@ const LichSuLuongPage = () => {
           </IconButton>
           <div>
             <div
-              className="text-white font-bold text-sm sm:text-base tracking-wide flex items-center gap-2"
+              className="text-white font-bold text-base sm:text-base tracking-wide flex items-center gap-2"
               style={{ letterSpacing: 2 }}
             >
               <HistoryIcon sx={{ fontSize: 18 }} />
               LỊCH SỬ LƯƠNG CĂN BẢN
             </div>
-            <div className="text-sky-200 text-xs">{rangeLabel}</div>
+            <div className="text-sky-200 text-base">{rangeLabel}</div>
           </div>
         </div>
 
@@ -264,12 +264,12 @@ const LichSuLuongPage = () => {
             placeholder="Tìm nhân viên..."
             value={searchTen}
             onChange={(e) => setSearchTen(e.target.value)}
-            className="md:text-sm text-base rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 focus:outline-none focus:border-sky-400 flex-1"
+            className="md:text-base text-base rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 focus:outline-none focus:border-sky-400 flex-1"
             style={{ minWidth: 160, maxWidth: 260 }}
           />
           {/* Từ tháng/năm */}
           <div className="flex items-center gap-1.5">
-            <span className="text-sky-100 text-xs font-medium">Từ</span>
+            <span className="text-sky-100 text-base font-medium">Từ</span>
             <FormControl size="small" sx={{ minWidth: 88 }}>
               <Select
                 value={tuThang}
@@ -300,7 +300,7 @@ const LichSuLuongPage = () => {
 
           {/* Đến tháng/năm */}
           <div className="flex items-center gap-1.5">
-            <span className="text-sky-100 text-xs font-medium">Đến</span>
+            <span className="text-sky-100 text-base font-medium">Đến</span>
             <FormControl size="small" sx={{ minWidth: 88 }}>
               <Select
                 value={denThang}
@@ -341,7 +341,7 @@ const LichSuLuongPage = () => {
             <button
               onClick={loadData}
               disabled={rangeInvalid || lichSuLoading}
-              className="flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-lg text-sm font-semibold transition-all w-full sm:w-auto"
+              className="flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-lg text-base font-semibold transition-all w-full sm:w-auto"
               style={{
                 background: rangeInvalid ? "rgba(255,255,255,0.08)" : "#0284c7",
                 color: rangeInvalid ? "#94a3b8" : "#fff",
@@ -367,7 +367,7 @@ const LichSuLuongPage = () => {
             {rows.length > 0 && (
               <button
                 onClick={handleExport}
-                className="flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all w-full sm:w-auto"
+                className="flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-base font-medium transition-all w-full sm:w-auto"
                 style={{
                   background: "rgba(255,255,255,0.1)",
                   color: "#e0f2fe",
@@ -395,7 +395,7 @@ const LichSuLuongPage = () => {
       <div className="flex-1 min-h-0 overflow-hidden p-4 flex flex-col gap-2">
         {rangeInvalid && (
           <div
-            className="rounded-lg px-4 py-2 text-sm font-medium"
+            className="rounded-lg px-4 py-2 text-base font-medium"
             style={{
               background: "#fef2f2",
               color: "#b91c1c",
@@ -409,7 +409,7 @@ const LichSuLuongPage = () => {
 
         {lichSuError && (
           <div
-            className="rounded-lg px-4 py-2 text-sm font-medium"
+            className="rounded-lg px-4 py-2 text-base font-medium"
             style={{
               background: "#fef2f2",
               color: "#b91c1c",
@@ -426,11 +426,11 @@ const LichSuLuongPage = () => {
           style={{ background: "#fff" }}
         >
           {lichSuLoading ? (
-            <div className="p-10 text-center text-slate-400 text-sm">
+            <div className="p-10 text-center text-slate-400 text-base">
               Đang tải dữ liệu…
             </div>
           ) : columns.length === 0 ? (
-            <div className="p-10 text-center text-slate-400 text-sm">
+            <div className="p-10 text-center text-slate-400 text-base">
               Không có bảng lương nào trong khoảng thời gian đã chọn.
             </div>
           ) : (
@@ -438,7 +438,7 @@ const LichSuLuongPage = () => {
               {/* Desktop / tablet: bảng pivot đầy đủ */}
               <div className="flex-1 min-h-0 overflow-auto hidden md:block">
                 <table
-                  className="text-sm"
+                  className="text-base"
                   style={{
                     borderCollapse: "collapse",
                     width: "100%",
@@ -456,7 +456,7 @@ const LichSuLuongPage = () => {
                       }}
                     >
                       <th
-                        className="px-4 py-3 text-left whitespace-nowrap text-xs font-bold uppercase tracking-wider"
+                        className="px-4 py-3 text-left whitespace-nowrap text-base font-bold uppercase tracking-wider"
                         style={{
                           color: "#e0f2fe",
                           borderBottom: "2px solid #0369a1",
@@ -470,7 +470,7 @@ const LichSuLuongPage = () => {
                         STT
                       </th>
                       <th
-                        className="px-4 py-3 text-left whitespace-nowrap text-xs font-bold uppercase tracking-wider"
+                        className="px-4 py-3 text-left whitespace-nowrap text-base font-bold uppercase tracking-wider"
                         style={{
                           color: "#e0f2fe",
                           borderBottom: "2px solid #0369a1",
@@ -486,7 +486,7 @@ const LichSuLuongPage = () => {
                       {columns.map((c) => (
                         <th
                           key={c.key}
-                          className="px-4 py-3 text-right whitespace-nowrap text-xs font-bold uppercase tracking-wider"
+                          className="px-4 py-3 text-right whitespace-nowrap text-base font-bold uppercase tracking-wider"
                           style={{
                             color: "#e0f2fe",
                             borderBottom: "2px solid #0369a1",
@@ -509,8 +509,8 @@ const LichSuLuongPage = () => {
                           ? "#fde68a" // vàng đậm hơn khi hover
                           : "#cbd5e1" // xám đậm hơn khi hover
                         : isEven
-                        ? "#fefce8" // vàng nhạt
-                        : "#f1f5f9"; // xám nhạt
+                          ? "#fefce8" // vàng nhạt
+                          : "#f1f5f9"; // xám nhạt
                       return (
                         <tr
                           key={r._id}
@@ -524,7 +524,7 @@ const LichSuLuongPage = () => {
                           }}
                         >
                           <td
-                            className="px-4 py-2 text-sm text-slate-500"
+                            className="px-4 py-2 text-base text-slate-500"
                             style={{
                               borderBottom: "1px solid #e2e8f0",
                               position: "sticky",
@@ -536,7 +536,7 @@ const LichSuLuongPage = () => {
                             {r.stt}
                           </td>
                           <td
-                            className="px-4 py-2 text-sm font-semibold text-slate-700 whitespace-nowrap"
+                            className="px-4 py-2 text-base font-semibold text-slate-700 whitespace-nowrap"
                             style={{
                               borderBottom: "1px solid #e2e8f0",
                               position: "sticky",
@@ -552,7 +552,7 @@ const LichSuLuongPage = () => {
                             return (
                               <td
                                 key={c.key}
-                                className="px-4 py-2 text-right text-sm whitespace-nowrap"
+                                className="px-4 py-2 text-right text-base whitespace-nowrap"
                                 style={{
                                   borderBottom: "1px solid #e2e8f0",
                                   color:
@@ -580,8 +580,8 @@ const LichSuLuongPage = () => {
                       ? "#fde68a"
                       : "#cbd5e1"
                     : isEven
-                    ? "#fefce8"
-                    : "#f1f5f9";
+                      ? "#fefce8"
+                      : "#f1f5f9";
                   return (
                     <div
                       key={r._id}
@@ -597,7 +597,7 @@ const LichSuLuongPage = () => {
                       }}
                     >
                       <div className="mb-2">
-                        <span className="text-sm font-semibold text-slate-700">
+                        <span className="text-base font-semibold text-slate-700">
                           {r.stt}. {r.hoVaTen}
                         </span>
                       </div>
@@ -607,7 +607,7 @@ const LichSuLuongPage = () => {
                           return (
                             <div
                               key={c.key}
-                              className="flex items-center justify-between rounded-md px-2 py-1 text-xs"
+                              className="flex items-center justify-between rounded-md px-2 py-1 text-base"
                               style={{ background: "rgba(255,255,255,0.5)" }}
                             >
                               <span className="text-slate-400">{c.label}</span>
@@ -657,10 +657,10 @@ const LichSuLuongPage = () => {
               <div className="flex items-center gap-2 text-white">
                 <ShowChartIcon sx={{ fontSize: 20 }} />
                 <div>
-                  <div className="text-sm font-bold tracking-wide">
+                  <div className="text-base font-bold tracking-wide">
                     {selectedRow.hoVaTen}
                   </div>
-                  <div className="text-xs text-sky-100">
+                  <div className="text-base text-sky-100">
                     Biến động lương căn bản · {rangeLabel}
                   </div>
                 </div>
@@ -682,7 +682,7 @@ const LichSuLuongPage = () => {
 
             <DialogContent sx={{ background: "#fff", p: 3 }}>
               {!chartHasData ? (
-                <div className="p-10 text-center text-slate-400 text-sm">
+                <div className="p-10 text-center text-slate-400 text-base">
                   Không có dữ liệu lương để vẽ biểu đồ.
                 </div>
               ) : (
@@ -697,7 +697,7 @@ const LichSuLuongPage = () => {
                         <div className="text-[11px] text-slate-500">
                           Thấp nhất
                         </div>
-                        <div className="text-sm font-bold text-slate-700">
+                        <div className="text-base font-bold text-slate-700">
                           {fmt(chartStats.min)} đ
                         </div>
                       </div>
@@ -708,7 +708,7 @@ const LichSuLuongPage = () => {
                         <div className="text-[11px] text-slate-500">
                           Cao nhất
                         </div>
-                        <div className="text-sm font-bold text-slate-700">
+                        <div className="text-base font-bold text-slate-700">
                           {fmt(chartStats.max)} đ
                         </div>
                       </div>
@@ -719,22 +719,22 @@ const LichSuLuongPage = () => {
                             chartStats.diff > 0
                               ? "#f0fdf4"
                               : chartStats.diff < 0
-                              ? "#fef2f2"
-                              : "#f1f5f9",
+                                ? "#fef2f2"
+                                : "#f1f5f9",
                         }}
                       >
                         <div className="text-[11px] text-slate-500">
                           Thay đổi (đầu → cuối)
                         </div>
                         <div
-                          className="text-sm font-bold"
+                          className="text-base font-bold"
                           style={{
                             color:
                               chartStats.diff > 0
                                 ? "#16a34a"
                                 : chartStats.diff < 0
-                                ? "#dc2626"
-                                : "#334155",
+                                  ? "#dc2626"
+                                  : "#334155",
                           }}
                         >
                           {chartStats.diff > 0 ? "+" : ""}

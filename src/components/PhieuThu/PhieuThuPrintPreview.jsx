@@ -81,7 +81,7 @@ const PhieuThuPrintPreview = () => {
   return (
     <div className="min-h-screen bg-gray-200">
       <div className="h-10 bg-[#00a8ff] flex justify-between items-center px-4">
-        <span className="text-white font-medium text-sm">PHIẾU THU</span>
+        <span className="text-white font-medium text-base">PHIẾU THU</span>
         <button
           onClick={() => navigate(-1)}
           className="text-white text-2xl font-bold leading-none hover:text-gray-200 transition"

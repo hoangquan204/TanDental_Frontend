@@ -8,7 +8,7 @@ const CustomTooltip = ({ active, payload, label, formatValue }) => {
     if (active && payload && payload.length) {
         const rawData = payload[0].payload;
         return (
-            <div className="bg-white p-3 border border-gray-200 shadow-lg rounded-xl text-xs">
+            <div className="bg-white p-3 border border-gray-200 shadow-lg rounded-xl text-base">
                 {!rawData.prevDate && (
                     <p className="font-bold text-gray-700 mb-1 border-b pb-1">{label}</p>
                 )}

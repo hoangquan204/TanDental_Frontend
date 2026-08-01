@@ -462,24 +462,24 @@ export default function PhieuThuModal({ open, onClose, onSuccess, initialNhaKhoa
 
         <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-5 space-y-4">
           {submitError && (
-            <div className="bg-red-50 border border-red-200 text-red-700 rounded-lg px-4 py-2 text-sm">
+            <div className="bg-red-50 border border-red-200 text-red-700 rounded-lg px-4 py-2 text-base">
               {submitError}
             </div>
           )}
           {submitSuccess && (
-            <div className="bg-green-50 border border-green-200 text-green-700 rounded-lg px-4 py-2 text-sm">
+            <div className="bg-green-50 border border-green-200 text-green-700 rounded-lg px-4 py-2 text-base">
               Tạo phiếu thu thành công!
             </div>
           )}
 
           <div className="grid grid-cols-1 sm:grid-cols-[50%_1fr_30%] gap-6 sm:gap-x-0">
             <div>
-              <p className="text-xs text-gray-400 mb-1">Công ty</p>
+              <p className="text-base text-gray-400 mb-1">Công ty</p>
               <div className="relative" ref={searchRef}>
                 <div className="flex items-center border-b-2 border-gray-300 focus-within:border-[#29b6f6] pb-1 gap-2">
                   {tenKhach && (
                     <div className="w-8 h-8 rounded-full bg-[#29b6f6] flex items-center justify-center shrink-0">
-                      <span className="text-white font-bold text-xs">
+                      <span className="text-white font-bold text-base">
                         {getInitials(tenKhach)}
                       </span>
                     </div>
@@ -514,11 +514,11 @@ export default function PhieuThuModal({ open, onClose, onSuccess, initialNhaKhoa
                         onMouseDown={() => handleSelectNhaKhoa(nk)}
                         className="px-4 py-2.5 hover:bg-blue-50 cursor-pointer"
                       >
-                        <p className="text-sm font-medium text-gray-800">
+                        <p className="text-base font-medium text-gray-800">
                           {nk.hoVaTen || nk.tenGiaoDich}
                         </p>
                         {nk.moTa && (
-                          <p className="text-xs text-gray-400 truncate">
+                          <p className="text-base text-gray-400 truncate">
                             {nk.moTa}
                           </p>
                         )}
@@ -529,7 +529,7 @@ export default function PhieuThuModal({ open, onClose, onSuccess, initialNhaKhoa
               </div>
 
               {selectedNhaKhoaObj && (
-                <div className="mt-3 bg-[#e3f2fd] rounded-xl px-4 py-3 space-y-1 text-sm">
+                <div className="mt-3 bg-[#e3f2fd] rounded-xl px-4 py-3 space-y-1 text-base">
                   <div className="flex gap-2">
                     <span className="text-gray-500 w-20 shrink-0">Địa chỉ:</span>
                     <span className="text-gray-700">{address || "—"}</span>
@@ -552,7 +552,7 @@ export default function PhieuThuModal({ open, onClose, onSuccess, initialNhaKhoa
 
             <div className="space-y-4 sm:col-start-3">
               <div>
-                <p className="text-xs text-gray-400 mb-1">Tổng số tiền thu</p>
+                <p className="text-base text-gray-400 mb-1">Tổng số tiền thu</p>
                 <div className="border border-gray-200 rounded-xl px-4 py-3">
                   <input
                     type="text"
@@ -566,7 +566,7 @@ export default function PhieuThuModal({ open, onClose, onSuccess, initialNhaKhoa
               </div>
 
               <div>
-                <p className="text-xs text-gray-400 mb-0.5">Ngày thu</p>
+                <p className="text-base text-gray-400 mb-0.5">Ngày thu</p>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DateTimePicker
                     format="DD/MM/YYYY HH:mm"
@@ -649,14 +649,14 @@ export default function PhieuThuModal({ open, onClose, onSuccess, initialNhaKhoa
                     }`}
                 >
                   <span
-                    className={`absolute left-0 pointer-events-none transition-all duration-200 ${isFloating ? "top-0.5 text-[11px]" : "top-5 text-sm"
+                    className={`absolute left-0 pointer-events-none transition-all duration-200 ${isFloating ? "top-0.5 text-[11px]" : "top-5 text-base"
                       } ${!thangDoanhThu ? "text-[#f97316] font-semibold" : "text-gray-400"}`}
                   >
                     Tháng ghi nhận doanh thu
                   </span>
 
                   <div className="flex items-center justify-between min-h-[20px]">
-                    <span className={`text-sm leading-5 ${!thangDoanhThu ? "text-[#f97316] font-semibold" : "text-gray-800"}`}>
+                    <span className={`text-base leading-5 ${!thangDoanhThu ? "text-[#f97316] font-semibold" : "text-gray-800"}`}>
                       {selectedThangLabel ? `Tháng ${selectedThangLabel}` : "\u00A0"}
                     </span>
                     <CalendarMonthIcon
@@ -677,7 +677,7 @@ export default function PhieuThuModal({ open, onClose, onSuccess, initialNhaKhoa
                             setThangDoanhThu(opt.value);
                             setIsOpenThang(false);
                           }}
-                          className={`flex items-center justify-between px-4 py-2.5 text-sm cursor-pointer transition-colors hover:bg-sky-50 ${isSelected ? "bg-sky-50 text-[#29b6f6] font-semibold" : "text-gray-700"
+                          className={`flex items-center justify-between px-4 py-2.5 text-base cursor-pointer transition-colors hover:bg-sky-50 ${isSelected ? "bg-sky-50 text-[#29b6f6] font-semibold" : "text-gray-700"
                             }`}
                         >
                           Tháng {opt.label}
@@ -696,13 +696,13 @@ export default function PhieuThuModal({ open, onClose, onSuccess, initialNhaKhoa
               </div>
 
               <div>
-                <p className="text-xs text-gray-400 mb-0.5">
+                <p className="text-base text-gray-400 mb-0.5">
                   Phương thức thanh toán
                 </p>
                 <select
                   value={phuongThuc}
                   onChange={(e) => setPhuongThuc(e.target.value)}
-                  className="w-full border-b-2 border-gray-200 focus:border-[#29b6f6] bg-transparent text-sm text-gray-800 py-1 outline-none appearance-none cursor-pointer"
+                  className="w-full border-b-2 border-gray-200 focus:border-[#29b6f6] bg-transparent text-base text-gray-800 py-1 outline-none appearance-none cursor-pointer"
                 >
                   <option value="Tiền mặt">Tiền mặt</option>
                   <option value="Chuyển khoản">Chuyển khoản</option>
@@ -713,20 +713,20 @@ export default function PhieuThuModal({ open, onClose, onSuccess, initialNhaKhoa
 
           <div className="rounded-xl overflow-hidden border border-gray-200 bg-white">
             {loadingHoaDon ? (
-              <div className="text-center py-8 text-gray-400 text-sm">
+              <div className="text-center py-8 text-gray-400 text-base">
                 Đang tải...
               </div>
             ) : !selectedNhaKhoa ? (
-              <div className="text-center py-8 text-gray-300 text-sm">
+              <div className="text-center py-8 text-gray-300 text-base">
                 Chọn khách hàng để xem hóa đơn
               </div>
             ) : hoaDonChuaThanhToan.length === 0 ? (
-              <div className="text-center py-8 text-gray-400 text-sm">
+              <div className="text-center py-8 text-gray-400 text-base">
                 Không có hóa đơn chưa thanh toán
               </div>
             ) : (
               <div className="overflow-x-auto">
-                <table className="w-full min-w-[850px] text-sm">
+                <table className="w-full min-w-[850px] text-base">
                   <thead className="border-b border-gray-100">
                     <tr className="text-gray-500">
                       <th className="w-10 px-4 py-3 text-left whitespace-nowrap">
@@ -835,7 +835,7 @@ export default function PhieuThuModal({ open, onClose, onSuccess, initialNhaKhoa
                                     hd.conLai
                                   )
                                 }
-                                className="w-28 border-b-2 border-gray-200 focus:border-[#29b6f6] bg-transparent text-right text-sm text-gray-800 outline-none py-0.5"
+                                className="w-28 border-b-2 border-gray-200 focus:border-[#29b6f6] bg-transparent text-right text-base text-gray-800 outline-none py-0.5"
                               />
                             </td>
                           </tr>
@@ -850,7 +850,7 @@ export default function PhieuThuModal({ open, onClose, onSuccess, initialNhaKhoa
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 items-start">
             <div className="space-y-4">
               <div>
-                <p className="text-xs text-gray-400 mb-1">Nội dung thu</p>
+                <p className="text-base text-gray-400 mb-1">Nội dung thu</p>
                 <input
                   type="text"
                   value={noiDung}
@@ -863,7 +863,7 @@ export default function PhieuThuModal({ open, onClose, onSuccess, initialNhaKhoa
 
             <div className="flex items-start justify-end pt-1 pb-4 sm:pb-0">
               <div className="text-right">
-                <span className="text-sm text-gray-500 mr-4">Còn nợ</span>
+                <span className="text-base text-gray-500 mr-4">Còn nợ</span>
                 <span className="text-xl font-bold text-gray-900">
                   {fmt(Math.max(0, tongConNo))}
                 </span>
@@ -876,14 +876,14 @@ export default function PhieuThuModal({ open, onClose, onSuccess, initialNhaKhoa
           <button
             onClick={handleClose}
             disabled={loading}
-            className="px-5 py-2 border border-gray-300 rounded-lg text-sm text-gray-600 hover:bg-gray-50 transition disabled:opacity-50"
+            className="px-5 py-2 border border-gray-300 rounded-lg text-base text-gray-600 hover:bg-gray-50 transition disabled:opacity-50"
           >
             Hủy
           </button>
           <button
             onClick={handleSubmit}
             disabled={loading}
-            className="flex items-center gap-2 px-5 py-2 bg-[#29b6f6] hover:bg-[#0091ea] text-white rounded-lg text-sm font-semibold transition disabled:opacity-50 shadow-sm"
+            className="flex items-center gap-2 px-5 py-2 bg-[#29b6f6] hover:bg-[#0091ea] text-white rounded-lg text-base font-semibold transition disabled:opacity-50 shadow-sm"
           >
             {loading && (
               <svg

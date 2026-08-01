@@ -27,7 +27,7 @@ function formatNgay(dateStr) {
 
 function InfoRow({ label, value }) {
     return (
-        <div className="flex items-start gap-2 text-sm">
+        <div className="flex items-start gap-2 text-base">
             <span className="text-gray-500 w-28 shrink-0">{label}:</span>
             <span>{value || "—"}</span>
         </div>
@@ -197,7 +197,7 @@ export default function PhieuMuonDetailPanel({ phieu, onClose, onUpdated }) {
                             <div className="font-semibold text-base leading-tight">
                                 {fullPhieu?.soPhieu || "-"}
                             </div>
-                            <div className="text-xs text-gray-100">
+                            <div className="text-base text-gray-100">
                                 {isMuon ? "Phiếu mượn" : "Phiếu cho mượn"}
                             </div>
                         </div>
@@ -235,7 +235,7 @@ export default function PhieuMuonDetailPanel({ phieu, onClose, onUpdated }) {
                 {/* Body */}
                 <div className="flex-1 overflow-y-auto">
                     {loading ? (
-                        <div className="flex items-center justify-center h-32 text-sm text-gray-400">
+                        <div className="flex items-center justify-center h-32 text-base text-gray-400">
                             Đang tải...
                         </div>
                     ) : fullPhieu ? (
@@ -255,9 +255,9 @@ export default function PhieuMuonDetailPanel({ phieu, onClose, onUpdated }) {
                                 )}
                                 {/* Trạng thái — gộp làm 1, cùng logic với bảng danh sách */}
                                 {trangThai && (
-                                    <div className="flex items-center gap-2 text-sm">
+                                    <div className="flex items-center gap-2 text-base">
                                         <span className="text-gray-500 w-28 shrink-0">Trạng thái:</span>
-                                        <span className={`text-xs text-white font-medium px-2.5 py-0.5 ${trangThai.cls}`}>
+                                        <span className={`text-base text-white font-medium px-2.5 py-0.5 ${trangThai.cls}`}>
                                             {trangThai.text}
                                         </span>
                                     </div>
@@ -266,11 +266,11 @@ export default function PhieuMuonDetailPanel({ phieu, onClose, onUpdated }) {
 
                             {/* Danh sách vật liệu */}
                             <div>
-                                <h3 className="text-sm font-semibold text-gray-600 mb-2">
+                                <h3 className="text-base font-semibold text-gray-600 mb-2">
                                     Danh sách vật liệu ({fullPhieu.danhSachVatLieu?.length || 0})
                                 </h3>
                                 <div className="border border-gray-200 overflow-hidden">
-                                    <table className="w-full text-xs">
+                                    <table className="w-full text-base">
                                         <thead>
                                             <tr className={isMuon ? "bg-sky-100" : "bg-green-100"}>
                                                 <th className="text-left py-1 px-2 font-normal text-gray-700">STT</th>
@@ -312,7 +312,7 @@ export default function PhieuMuonDetailPanel({ phieu, onClose, onUpdated }) {
                                     <button
                                         onClick={handleConfirmNext}
                                         disabled={updatingStep}
-                                        className={`w-full py-2.5 rounded-lg text-sm font-medium text-white transition disabled:opacity-60 ${nextStep === "nhan"
+                                        className={`w-full py-2.5 rounded-lg text-base font-medium text-white transition disabled:opacity-60 ${nextStep === "nhan"
                                             ? (isMuon ? "bg-sky-500 hover:bg-sky-600" : "bg-green-500 hover:bg-green-600")
                                             : "bg-orange-500 hover:bg-orange-600"
                                             }`}
@@ -320,7 +320,7 @@ export default function PhieuMuonDetailPanel({ phieu, onClose, onUpdated }) {
                                         {updatingStep ? "Đang cập nhật..." : `Đánh dấu ${nextStepLabel}`}
                                     </button>
                                 ) : (
-                                    <div className="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-green-50 border border-green-200 text-sm text-green-700">
+                                    <div className="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-green-50 border border-green-200 text-base text-green-700">
                                         <LockIcon sx={{ fontSize: 16 }} />
                                         Đã hoàn tất ({traLabel})
                                     </div>
@@ -340,19 +340,19 @@ export default function PhieuMuonDetailPanel({ phieu, onClose, onUpdated }) {
                             </span>
                             ?
                         </p>
-                        <p className="text-sm text-gray-500 text-center">
+                        <p className="text-base text-gray-500 text-center">
                             Thao tác này không thể hoàn tác.
                         </p>
                         <div className="flex gap-3">
                             <button
                                 onClick={() => setShowDeleteConfirm(false)}
-                                className="px-5 py-2 rounded-lg border border-gray-300 text-sm text-gray-600 hover:bg-gray-100 transition"
+                                className="px-5 py-2 rounded-lg border border-gray-300 text-base text-gray-600 hover:bg-gray-100 transition"
                             >
                                 Hủy
                             </button>
                             <button
                                 onClick={handleConfirmDelete}
-                                className="px-5 py-2 rounded-lg bg-red-500 text-white text-sm font-medium hover:bg-red-600 transition"
+                                className="px-5 py-2 rounded-lg bg-red-500 text-white text-base font-medium hover:bg-red-600 transition"
                             >
                                 Xóa
                             </button>

@@ -148,7 +148,7 @@ const HoaDonPrintPreview = () => {
   return (
     <div className="h-screen flex flex-col bg-gray-200 overflow-hidden">
       <div className="h-10 bg-[#00a8df] flex justify-between items-center px-4 shrink-0 print:hidden z-[1000]">
-        <span className="text-white font-medium text-sm tracking-wide uppercase">Xem trước hóa đơn</span>
+        <span className="text-white font-medium text-base tracking-wide uppercase">Xem trước hóa đơn</span>
         <button onClick={() => navigate(-1)} className="text-white text-2xl hover:opacity-80 leading-none">&times;</button>
       </div>
 

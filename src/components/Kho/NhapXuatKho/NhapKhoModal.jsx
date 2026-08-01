@@ -316,7 +316,7 @@ export default function NhapKhoModal({ open, onClose, editData = null, preSelect
                                 {isEdit ? `Sửa phiếu – ${editData.soPhieu}` : "Tạo phiếu nhập kho"}
                             </h2>
                             {checkedItems.length > 0 && (
-                                <p className="text-xs sm:text-sm text-gray-400 mt-0.5">
+                                <p className="text-base sm:text-base text-gray-400 mt-0.5">
                                     Đã chọn {checkedItems.length} vật liệu
                                     {!isEdit && nccGroupCount > 0 && (
                                         <span className="ml-2 text-green-600 font-medium">
@@ -337,7 +337,7 @@ export default function NhapKhoModal({ open, onClose, editData = null, preSelect
                         {/* NCC cấp phiếu — chỉ hiện trong EDIT mode */}
                         {isEdit && (
                             <div className="px-4 sm:px-6 py-3 bg-sky-50 border-b shrink-0">
-                                <label className="block text-xs font-medium text-gray-600 mb-1.5">
+                                <label className="block text-base font-medium text-gray-600 mb-1.5">
                                     Nhà cung cấp
                                 </label>
                                 <NccCombobox
@@ -355,7 +355,7 @@ export default function NhapKhoModal({ open, onClose, editData = null, preSelect
                         )}
 
                         {/* Table header — desktop only */}
-                        <div className="hidden sm:grid px-6 py-3 bg-gray-50 border-b shrink-0 gap-3 items-center text-xs font-semibold text-gray-500 uppercase tracking-wide"
+                        <div className="hidden sm:grid px-6 py-3 bg-gray-50 border-b shrink-0 gap-3 items-center text-base font-semibold text-gray-500 uppercase tracking-wide"
                             style={{ gridTemplateColumns: isEdit ? "40px 1fr 90px 150px 130px 1fr" : "40px 1fr 220px 90px 150px 130px 1fr" }}>
                             <input type="checkbox" checked={allChecked} onChange={toggleCheckAll}
                                 className="w-4 h-4 accent-green-600 cursor-pointer" title="Chọn tất cả" />
@@ -365,7 +365,7 @@ export default function NhapKhoModal({ open, onClose, editData = null, preSelect
                                     value={search}
                                     onChange={(e) => setSearch(e.target.value)}
                                     placeholder="Nhập tên vật liệu"
-                                    className="w-full px-2 py-1 text-sm font-normal border text-black"
+                                    className="w-full px-2 py-1 text-base font-normal border text-black"
                                 />
                             </div>
                             {!isEdit && <div>Nhà cung cấp</div>}
@@ -379,21 +379,21 @@ export default function NhapKhoModal({ open, onClose, editData = null, preSelect
                         <div className="sm:hidden flex items-center gap-2 px-4 py-2 bg-gray-50 border-b shrink-0">
                             <input type="checkbox" checked={allChecked} onChange={toggleCheckAll}
                                 className="w-4 h-4 accent-green-600 cursor-pointer" />
-                            <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Chọn tất cả</span>
+                            <span className="text-base font-semibold text-gray-500 uppercase tracking-wide">Chọn tất cả</span>
                         </div>
 
                         {/* Body */}
                         <div className="flex-1 overflow-y-auto divide-y divide-gray-100">
                             {kho.loading ? (
-                                <div className="flex items-center justify-center h-40 text-gray-400 text-sm">Đang tải...</div>
+                                <div className="flex items-center justify-center h-40 text-gray-400 text-base">Đang tải...</div>
                             ) : vatLieuList.length === 0 ? (
-                                <div className="flex items-center justify-center h-40 text-gray-400 text-sm">Không có vật liệu.</div>
+                                <div className="flex items-center justify-center h-40 text-gray-400 text-base">Không có vật liệu.</div>
                             ) : (
                                 vatLieuList.map((vl) => {
                                     const item = items[vl._id];
                                     if (!item) return null;
                                     const on = item.checked;
-                                    const inputCls = `border rounded px-2 py-1.5 text-sm w-full focus:outline-none focus:ring-1 focus:ring-green-500 ${!on ? "bg-gray-100 text-gray-400 cursor-not-allowed" : "bg-white"}`;
+                                    const inputCls = `border rounded px-2 py-1.5 text-base w-full focus:outline-none focus:ring-1 focus:ring-green-500 ${!on ? "bg-gray-100 text-gray-400 cursor-not-allowed" : "bg-white"}`;
 
                                     return (
                                         <div key={vl._id} className={`transition-colors ${on ? "bg-green-50" : "hover:bg-gray-50/60"}`}>
@@ -404,8 +404,8 @@ export default function NhapKhoModal({ open, onClose, editData = null, preSelect
                                                 <input type="checkbox" checked={on} onChange={() => toggleCheck(vl._id)}
                                                     className="w-4 h-4 accent-green-600 cursor-pointer" />
                                                 <div>
-                                                    <div className={`text-sm font-medium ${on ? "text-gray-800" : "text-gray-400"}`}>{vl.tenVatLieu}</div>
-                                                    <div className="text-xs text-gray-400">{vl.maVatLieu}{vl.donViTinh ? ` · ${vl.donViTinh}` : ""}</div>
+                                                    <div className={`text-base font-medium ${on ? "text-gray-800" : "text-gray-400"}`}>{vl.tenVatLieu}</div>
+                                                    <div className="text-base text-gray-400">{vl.maVatLieu}{vl.donViTinh ? ` · ${vl.donViTinh}` : ""}</div>
                                                 </div>
                                                 {!isEdit && (
                                                     <NccCombobox value={item.nhaCungCap} onChange={(id) => updateField(vl._id, "nhaCungCap", id)}
@@ -415,7 +415,7 @@ export default function NhapKhoModal({ open, onClose, editData = null, preSelect
                                                     onChange={(e) => updateField(vl._id, "soLuong", e.target.value)} className={inputCls} />
                                                 <input type="number" min={0} disabled={!on} value={item.donGia}
                                                     onChange={(e) => updateField(vl._id, "donGia", e.target.value)} className={inputCls} />
-                                                <div className={`text-sm font-medium ${on && item.thanhTien > 0 ? "text-green-700" : "text-gray-400"}`}>
+                                                <div className={`text-base font-medium ${on && item.thanhTien > 0 ? "text-green-700" : "text-gray-400"}`}>
                                                     {on ? fmt(item.thanhTien) : "—"}
                                                 </div>
                                                 <input type="text" disabled={!on} value={item.moTa} placeholder="Ghi chú riêng..."
@@ -429,11 +429,11 @@ export default function NhapKhoModal({ open, onClose, editData = null, preSelect
                                                     <input type="checkbox" checked={on} onChange={() => toggleCheck(vl._id)}
                                                         className="w-4 h-4 mt-0.5 accent-green-600 cursor-pointer shrink-0" />
                                                     <div className="flex-1 min-w-0">
-                                                        <div className={`text-sm font-semibold leading-tight ${on ? "text-gray-800" : "text-gray-400"}`}>{vl.tenVatLieu}</div>
-                                                        <div className="text-xs text-gray-400 mt-0.5">{vl.maVatLieu}{vl.donViTinh ? ` · ${vl.donViTinh}` : ""}</div>
+                                                        <div className={`text-base font-semibold leading-tight ${on ? "text-gray-800" : "text-gray-400"}`}>{vl.tenVatLieu}</div>
+                                                        <div className="text-base text-gray-400 mt-0.5">{vl.maVatLieu}{vl.donViTinh ? ` · ${vl.donViTinh}` : ""}</div>
                                                     </div>
                                                     {on && item.thanhTien > 0 && (
-                                                        <div className="text-sm font-bold text-green-700 shrink-0">{fmt(item.thanhTien)}</div>
+                                                        <div className="text-base font-bold text-green-700 shrink-0">{fmt(item.thanhTien)}</div>
                                                     )}
                                                 </div>
 
@@ -441,29 +441,29 @@ export default function NhapKhoModal({ open, onClose, editData = null, preSelect
                                                 {on && (
                                                     <div className="pl-7 space-y-2">
                                                         <div>
-                                                            <label className="block text-xs text-gray-500 mb-1">Nhà cung cấp</label>
+                                                            <label className="block text-base text-gray-500 mb-1">Nhà cung cấp</label>
                                                             <NccCombobox value={item.nhaCungCap} onChange={(id) => updateField(vl._id, "nhaCungCap", id)}
                                                                 options={nhaCungCapList} disabled={false} onAddNew={(text) => handleOpenNccModal(vl._id, text)} />
                                                         </div>
                                                         <div className="grid grid-cols-2 gap-2">
                                                             <div>
-                                                                <label className="block text-xs text-gray-500 mb-1">Số lượng</label>
+                                                                <label className="block text-base text-gray-500 mb-1">Số lượng</label>
                                                                 <input type="number" min={0} value={item.soLuong}
                                                                     onChange={(e) => updateField(vl._id, "soLuong", e.target.value)}
-                                                                    className="border rounded px-2 py-1.5 text-sm w-full focus:outline-none focus:ring-1 focus:ring-green-500 bg-white" />
+                                                                    className="border rounded px-2 py-1.5 text-base w-full focus:outline-none focus:ring-1 focus:ring-green-500 bg-white" />
                                                             </div>
                                                             <div>
-                                                                <label className="block text-xs text-gray-500 mb-1">Đơn giá (₫)</label>
+                                                                <label className="block text-base text-gray-500 mb-1">Đơn giá (₫)</label>
                                                                 <input type="number" min={0} value={item.donGia}
                                                                     onChange={(e) => updateField(vl._id, "donGia", e.target.value)}
-                                                                    className="border rounded px-2 py-1.5 text-sm w-full focus:outline-none focus:ring-1 focus:ring-green-500 bg-white" />
+                                                                    className="border rounded px-2 py-1.5 text-base w-full focus:outline-none focus:ring-1 focus:ring-green-500 bg-white" />
                                                             </div>
                                                         </div>
                                                         <div>
-                                                            <label className="block text-xs text-gray-500 mb-1">Mô tả</label>
+                                                            <label className="block text-base text-gray-500 mb-1">Mô tả</label>
                                                             <input type="text" value={item.moTa} placeholder="Ghi chú riêng..."
                                                                 onChange={(e) => updateField(vl._id, "moTa", e.target.value)}
-                                                                className="border rounded px-2 py-1.5 text-sm w-full focus:outline-none focus:ring-1 focus:ring-green-500 bg-white" />
+                                                                className="border rounded px-2 py-1.5 text-base w-full focus:outline-none focus:ring-1 focus:ring-green-500 bg-white" />
                                                         </div>
                                                     </div>
                                                 )}
@@ -477,27 +477,27 @@ export default function NhapKhoModal({ open, onClose, editData = null, preSelect
                         {/* Footer */}
                         <div className="border-t bg-gray-50 px-4 sm:px-6 py-3 sm:py-4 shrink-0 space-y-3">
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">Ghi chú phiếu</label>
+                                <label className="block text-base font-medium text-gray-700 mb-1">Ghi chú phiếu</label>
                                 <textarea rows={2} placeholder="Ghi chú chung..."
-                                    className="border rounded w-full px-3 py-2 text-sm resize-none focus:outline-none focus:ring-1 focus:ring-green-500"
+                                    className="border rounded w-full px-3 py-2 text-base resize-none focus:outline-none focus:ring-1 focus:ring-green-500"
                                     value={ghiChu} onChange={(e) => setGhiChu(e.target.value)} />
                             </div>
                             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                                 <div>
-                                    <span className="text-sm text-gray-500">Tổng tiền: </span>
+                                    <span className="text-base text-gray-500">Tổng tiền: </span>
                                     <span className="text-xl font-bold text-green-700">{fmt(tongTien)}</span>
                                     {checkedItems.length > 0 && (
-                                        <span className="ml-2 text-xs text-gray-400">({checkedItems.length} vật liệu)</span>
+                                        <span className="ml-2 text-base text-gray-400">({checkedItems.length} vật liệu)</span>
                                     )}
                                 </div>
                                 <div className="flex gap-3 justify-end">
                                     <button type="button" onClick={onClose}
-                                        className="px-4 py-2 border rounded text-sm text-gray-600 hover:bg-gray-100 transition-colors">
+                                        className="px-4 py-2 border rounded text-base text-gray-600 hover:bg-gray-100 transition-colors">
                                         Hủy
                                     </button>
                                     <button type="submit"
                                         disabled={submitting || checkedItems.length === 0}
-                                        className="px-5 py-2 bg-green-600 text-white text-sm font-medium rounded hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
+                                        className="px-5 py-2 bg-green-600 text-white text-base font-medium rounded hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
                                         {submitting ? "Đang lưu..." : isEdit ? "Cập nhật" : "Lưu phiếu nhập"}
                                     </button>
                                 </div>

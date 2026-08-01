@@ -93,7 +93,7 @@ const Top10BarChart = ({ data, loading, error, title, subTitle, isCurrency = fal
     }, [data, loading, isMobile]);
 
     if (error) {
-        return <div className="p-4 bg-red-50 text-red-700 rounded-lg text-sm">Lỗi: {error}</div>;
+        return <div className="p-4 bg-red-50 text-red-700 rounded-lg text-base">Lỗi: {error}</div>;
     }
 
     return (
@@ -114,11 +114,11 @@ const Top10BarChart = ({ data, loading, error, title, subTitle, isCurrency = fal
                     ref={chartRef}
                 >
                     {loading ? (
-                        <div className="animate-pulse text-blue-400 font-bold italic text-sm">
+                        <div className="animate-pulse text-blue-400 font-bold italic text-base">
                             Đang tải biểu đồ...
                         </div>
                     ) : !data || data.length === 0 ? (
-                        <div className="text-gray-400 text-sm italic">
+                        <div className="text-gray-400 text-base italic">
                             Không có dữ liệu trong khoảng thời gian này
                         </div>
                     ) : chartWidth > 0 ? (

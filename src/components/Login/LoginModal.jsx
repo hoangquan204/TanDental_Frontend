@@ -69,7 +69,7 @@ export default function LoginModal() {
                 <div className="text-5xl font-bold text-blue-500">
                   Dental<span className="text-yellow-500">SO</span>
                 </div>
-                <p className="text-gray-500 text-sm mt-2">
+                <p className="text-gray-500 text-base mt-2">
                   Hệ thống quản lý nha khoa
                 </p>
               </div>
@@ -119,7 +119,7 @@ export default function LoginModal() {
 
                 {/* ACTION */}
                 <div className="flex justify-between items-center mt-4">
-                  <span className="text-blue-500 text-sm cursor-pointer hover:underline">
+                  <span className="text-blue-500 text-base cursor-pointer hover:underline">
                     Forgot password?
                   </span>
 
