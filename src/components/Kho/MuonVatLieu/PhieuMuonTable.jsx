@@ -48,7 +48,6 @@ export default function PhieuMuonTable({
                     <thead className="sticky top-10 z-10">
                         <tr className="shadow">
                             <th className={`${rowBase} ${themeBg}`}>Ngày tạo</th>
-                            <th className={`${rowBase} ${themeBg}`}>Số phiếu</th>
                             <th className={`${rowBase} ${themeBg}`}>Đối tác</th>
                             <th className={`${rowBase} ${themeBg}`}>Vật liệu</th>
                             <th className={`${rowBase} ${themeBg}`}>Trạng thái</th>
@@ -81,10 +80,9 @@ export default function PhieuMuonTable({
                                     onClick={() => onRowClick && onRowClick(row)}
                                     className={`cursor-pointer transition-colors ${isSelected ? selectedBg : "hover:bg-gray-50"}`}
                                 >
-                                    <td className={`${rowBase} ${borderBottom} max-w-28 truncate`}>{formatNgay(row.ngayTao)}</td>
-                                    <td className={`${rowBase} ${borderBottom} max-w-24 truncate`}>{row.soPhieu || "-"}</td>
-                                    <td className={`${rowBase} ${borderBottom} max-w-32 truncate`}>{row.doiTac?.ten || "—"}</td>
-                                    <td className={`${rowBase} ${borderBottom} max-w-56 truncate`} title={tenVatLieu}>
+                                    <td className={`${rowBase} ${borderBottom} w-20 truncate`}>{formatNgay(row.ngayTao)}</td>
+                                    <td className={`${rowBase} ${borderBottom} w-32 truncate`}>{row.doiTac?.ten || "—"}</td>
+                                    <td className={`${rowBase} ${borderBottom} max-w-32 truncate`} title={tenVatLieu}>
                                         {items.length > 0 ? tenVatLieu : "—"}
                                     </td>
                                     <td className={`${rowBase} ${borderBottom}`}>

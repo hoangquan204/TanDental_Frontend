@@ -137,17 +137,17 @@ export default function KhoPage() {
           <Tab
             icon={<ImportExportIcon sx={{ margin: { md: "0 0", xs: "0px 8px" }, fontSize: { md: 18, xs: 26 } }} />}
             iconPosition="start"
-            label={!isMobile && "Vật liệu nhập / xuất"}
+            label={!isMobile && "VL nhập / xuất"}
           />
           <Tab
             icon={<BookmarkIcon sx={{ margin: { md: "0 0", xs: "0px 8px" }, fontSize: { md: 18, xs: 26 } }} />}
             iconPosition="start"
-            label={!isMobile && "Mượn vật liệu"}
+            label={!isMobile && "Mượn VL"}
           />
           <Tab
             icon={<StorefrontIcon sx={{ margin: { md: "0 0", xs: "0px 8px" }, fontSize: { md: 18, xs: 26 } }} />}
             iconPosition="start"
-            label={!isMobile && "Nhà cung cấp"}
+            label={!isMobile && "NCC"}
           />
         </Tabs>
 

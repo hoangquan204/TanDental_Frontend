@@ -1,4 +1,4 @@
-export const rowBase = "py-2 ps-2 text-slate-700";
+export const rowBase = "py-2 ps-4 text-slate-700";
 export const borderBottom = "border-b border-gray-200";
 export const imBg = "bg-sky-100";
 export const exBg = "bg-green-100";

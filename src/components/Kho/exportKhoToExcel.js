@@ -20,7 +20,7 @@ export const exportDanhSachVatLieuToExcel = async (vatLieuList = []) => {
   const COLS = 13;
 
   // ===== TIÊU ĐỀ =====
-  sheet.mergeCells(`A1:M1`);
+  sheet.mergeCells(`A1:J1`);
   const titleCell = sheet.getCell("A1");
   titleCell.value = "DANH SÁCH VẬT LIỆU KHO";
   titleCell.font = { bold: true, size: 14, color: { argb: "FFFFFFFF" } };
@@ -29,7 +29,7 @@ export const exportDanhSachVatLieuToExcel = async (vatLieuList = []) => {
   sheet.getRow(1).height = 32;
 
   // Ngày xuất
-  sheet.mergeCells("A2:M2");
+  sheet.mergeCells("A2:J2");
   const dateCell = sheet.getCell("A2");
   dateCell.value = `Ngày xuất: ${dayjs().format("DD/MM/YYYY HH:mm")}`;
   dateCell.font = { italic: true, size: 10, color: { argb: "FF555555" } };
@@ -38,16 +38,12 @@ export const exportDanhSachVatLieuToExcel = async (vatLieuList = []) => {
   // ===== HEADER =====
   const headerRow = sheet.addRow([
     "STT",
-    "Mã vật liệu",
     "Tên vật liệu",
     "Nhóm vật liệu",
     "Loại vật liệu",
-    "Form răng",
-    "Màu răng",
     "Nhà cung cấp",
     "Số lượng tồn",
     "Tồn kho tối thiểu",
-    "Tồn kho tối đa",
     "Giá mua (VNĐ)",
     "Đơn vị tính",
     "Ghi chú",
@@ -73,16 +69,12 @@ export const exportDanhSachVatLieuToExcel = async (vatLieuList = []) => {
 
     const row = sheet.addRow([
       idx + 1,
-      vl.maVatLieu,
       vl.tenVatLieu,
       vl.nhomVatLieu || "",
       vl.loaiVatLieu || "",
-      vl.formRang || "",
-      vl.mauRang || "",
       vl.nhaCungCap?.ten || "",
       vl.soLuong ?? 0,
       vl.tonKhoToiThieu ?? 0,
-      vl.tonKhoToiDa ?? 0,
       vl.giaMua ?? 0,
       vl.donViTinh || "",
       vl.ghiChu || "",
@@ -144,20 +136,16 @@ export const exportDanhSachVatLieuToExcel = async (vatLieuList = []) => {
 
   // ===== ĐỘ RỘNG CỘT =====
   sheet.columns = [
-    { key: "stt",   width: 6 },
-    { key: "ma",    width: 16 },
-    { key: "ten",   width: 30 },
-    { key: "nhom",  width: 20 },
-    { key: "loai",  width: 18 },
-    { key: "form",  width: 16 },
-    { key: "mau",   width: 12 },
-    { key: "ncc",   width: 24 },
-    { key: "sl",    width: 14 },
-    { key: "min",   width: 18 },
-    { key: "max",   width: 16 },
-    { key: "gia",   width: 16 },
-    { key: "dvt",   width: 12 },
-    { key: "ghichu",width: 28 },
+    { key: "stt", width: 6 },
+    { key: "ten", width: 30 },
+    { key: "nhom", width: 20 },
+    { key: "loai", width: 18 },
+    { key: "ncc", width: 24 },
+    { key: "sl", width: 14 },
+    { key: "min", width: 18 },
+    { key: "gia", width: 16 },
+    { key: "dvt", width: 12 },
+    { key: "ghichu", width: 28 },
   ];
 
   // ===== XUẤT FILE =====
