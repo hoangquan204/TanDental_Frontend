@@ -289,7 +289,10 @@ export default function PhieuMuonDetailPanel({ phieu, onClose, onUpdated }) {
                                                     <td className="py-1 px-2 w-10">
                                                         {i + 1}
                                                     </td>
-                                                    <td className="py-1 px-2 max-w-[110px] truncate">
+                                                    <td 
+                                                        className="py-1 px-2 max-w-[110px] truncate"
+                                                        title={item.vatLieu?.tenVatLieu || "—"}
+                                                    >
                                                         {item.vatLieu?.tenVatLieu || "—"}
                                                     </td>
                                                     <td className="py-1 px-2 max-w-[70px] truncate">
