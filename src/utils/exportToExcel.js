@@ -1,6 +1,7 @@
 import ExcelJS from 'exceljs';
 import { saveAs } from 'file-saver';
 import { api, API_URL } from '../config/api';
+import { tinhLuong } from './tinhLuong';
 
 const getAvatarUrl = (avatar) => {
   if (!avatar) return "";
@@ -694,7 +695,7 @@ export const exportBangLuongToExcel = async (salaryData, thang, nam) => {
     { width: 6 },   // A: STT
     { width: 20 },  // B: TÊN NHÂN VIÊN
     { width: 15 },  // C: LƯƠNG CẦN BẢN
-    { width: 14 },  // D: LƯƠNG / 28 CÔNG
+    { width: 16 },  // D: LƯƠNG / NGÀY CÔNG
     { width: 13 },  // E: SỐ NGÀY CÔNG
     { width: 16 },  // F: THÀNH TIỀN CÔNG
     { width: 12 },  // G: CƠM
@@ -722,10 +723,30 @@ export const exportBangLuongToExcel = async (salaryData, thang, nam) => {
   let totalThucNhan = 0;
 
   salaryData.forEach((item) => {
-    totalLuongCanBan += Number(item.luongCanBan || 0);
-    totalCom += Number(item.com || 0);
-    totalUngTruoc += Number(item.ungTruoc || 0);
-    totalThucNhan += Number(item.thucNhan || 0);
+    const luongCanBan = Number(item.luongCanBan || 0);
+    const ngayCongThang = Number(item.ngayCongThang || item.nhanVien?.ngayCongThang || 28);
+    const soNgayCong = Number(item.soNgayCong || 0);
+    const com = Number(item.com || 0);
+    const dienThoai = Number(item.dienThoai || 0);
+    const thuong = Number(item.thuong || 0);
+    const phat = Number(item.phat || 0);
+    const ungTruoc = Number(item.ungTruoc || 0);
+
+    const { thucNhan } = tinhLuong({
+      luongCoBan: luongCanBan,
+      ngayCongThang,
+      soNgayCong,
+      com,
+      dienThoai,
+      thuong,
+      phat,
+      ungTruoc,
+    });
+
+    totalLuongCanBan += luongCanBan;
+    totalCom += com;
+    totalUngTruoc += ungTruoc;
+    totalThucNhan += (item.thucNhan !== undefined ? Number(item.thucNhan) : thucNhan);
   });
 
   // Set row 2 values
@@ -764,7 +785,7 @@ export const exportBangLuongToExcel = async (salaryData, thang, nam) => {
     'STT',
     'TÊN NHÂN VIÊN',
     'LƯƠNG CẦN BẢN',
-    'LƯƠNG / 28 CÔNG',
+    'LƯƠNG / NGÀY CÔNG',
     'SỐ NGÀY CÔNG',
     'THÀNH TIỀN CÔNG',
     'PHỤ CẤP',           // G3: Merged with H3, I3
@@ -789,7 +810,7 @@ export const exportBangLuongToExcel = async (salaryData, thang, nam) => {
     'STT',
     'TÊN NHÂN VIÊN',
     'LƯƠNG CẦN BẢN',
-    'LƯƠNG / 28 CÔNG',
+    'LƯƠNG / NGÀY CÔNG',
     'SỐ NGÀY CÔNG',
     'THÀNH TIỀN CÔNG',
     'CƠM',
@@ -818,19 +839,31 @@ export const exportBangLuongToExcel = async (salaryData, thang, nam) => {
 
     const luongCanBan = Number(item.luongCanBan || 0);
     const soNgayCong = Number(item.soNgayCong || 0);
-    const luongMoiNgay = luongCanBan / 28;
-    const thanhTienCong = luongMoiNgay * soNgayCong;
+    const ngayCongThang = Number(item.ngayCongThang || item.nhanVien?.ngayCongThang || 28);
     const com = Number(item.com || 0);
     const dienThoai = Number(item.dienThoai || 0);
     const thuong = Number(item.thuong || 0);
+    const phat = Number(item.phat || 0);
     const ungTruoc = Number(item.ungTruoc || 0);
-    const thucNhan = Number(item.thucNhan || 0);
+
+    const { luongNgay, thanhTienCong, thucNhan: calculatedThucNhan } = tinhLuong({
+      luongCoBan: luongCanBan,
+      ngayCongThang,
+      soNgayCong,
+      com,
+      dienThoai,
+      thuong,
+      phat,
+      ungTruoc,
+    });
+
+    const thucNhan = item.thucNhan !== undefined ? Number(item.thucNhan) : calculatedThucNhan;
 
     row.values = [
       idx + 1,                           // STT
       item.hoVaTen || '',                // TÊN NHÂN VIÊN
       luongCanBan,                       // LƯƠNG CẦN BẢN
-      luongMoiNgay,                      // LƯƠNG / 28 CÔNG
+      luongNgay,                         // LƯƠNG / NGÀY CÔNG
       soNgayCong,                        // SỐ NGÀY CÔNG
       thanhTienCong,                     // THÀNH TIỀN CÔNG
       com,                               // CƠM

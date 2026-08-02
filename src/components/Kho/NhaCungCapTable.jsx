@@ -210,7 +210,7 @@ export default function NhaCungCapTable() {
                   "Ghi chú",
                   "",
                 ].map((h) => (
-                  <TableCell key={h} sx={{ fontWeight: 700, fontSize: 13 }}>
+                  <TableCell key={h} sx={{ fontWeight: 700, fontSize: 15 }}>
                     {h}
                   </TableCell>
                 ))}
@@ -244,14 +244,18 @@ export default function NhaCungCapTable() {
                       "&:hover": { backgroundColor: "#e8f5e920" },
                     }}
                   >
-                    <TableCell sx={{ color: "#9ca3af", fontSize: 12 }}>
+                    <TableCell sx={{ color: "#9ca3af", fontSize: 14 }}>
                       {idx + 1}
                     </TableCell>
-                    <TableCell sx={{ fontWeight: 600 }}>{ncc.ten}</TableCell>
-                    <TableCell sx={{ color: "#555", fontSize: 13 }}>
+                    <TableCell sx={{ fontWeight: 600, fontSize: 15 }}>
+                      {ncc.ten}
+                    </TableCell>
+                    <TableCell sx={{ color: "#555", fontSize: 15 }}>
                       {ncc.diaChi || "—"}
                     </TableCell>
-                    <TableCell>{ncc.soDienThoai || "—"}</TableCell>
+                    <TableCell sx={{ fontSize: 15 }}>
+                      {ncc.soDienThoai || "—"}
+                    </TableCell>
                     {/* <TableCell sx={{ color: "#1976d2", fontSize: 13 }}>
                       {ncc.email ? (
                         <a href={`mailto:${ncc.email}`}>{ncc.email}</a>
@@ -260,7 +264,7 @@ export default function NhaCungCapTable() {
                       )}
                     </TableCell> */}
                     <TableCell
-                      sx={{ color: "#9ca3af", fontSize: 12, maxWidth: 160 }}
+                      sx={{ color: "#9ca3af", fontSize: 15, maxWidth: 160 }}
                     >
                       <span className="line-clamp-1">{ncc.ghiChu || ""}</span>
                     </TableCell>

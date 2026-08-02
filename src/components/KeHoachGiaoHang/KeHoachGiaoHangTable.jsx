@@ -118,7 +118,7 @@ const getDateRange = (preset) => {
   }
 };
 
-const DEFAULT_COL_WIDTHS = [140, 110, 140, 180, 110, 130, 200, 110, 150];
+const DEFAULT_COL_WIDTHS = [140, 170, 140, 180, 110, 130, 200, 110, 150];
 
 const KeHoachGiaoHangTable = () => {
   const dispatch = useDispatch();
@@ -571,7 +571,7 @@ const KeHoachGiaoHangTable = () => {
     <div className="p-4 bg-gray-100 min-h-screen relative">
       <div className="max-w-full mx-auto">
         <div className="print:hidden">
-          <div className="flex w-full mb-4 rounded-lg overflow-hidden shadow-md">
+          <div className="flex w-full mb-3 rounded-lg overflow-hidden shadow-md">
             <div
               className={`flex-1 cursor-pointer bg-blue-700 hover:bg-blue-600 active:bg-blue-800 text-white px-5 py-3 flex items-center gap-3 transition-all duration-200 hover:shadow-inner hover:scale-[1.02] hover:z-10 relative ${appliedHenGiao?.preset === "today"
                 ? "ring-2 ring-inset ring-white/50"
@@ -594,7 +594,7 @@ const KeHoachGiaoHangTable = () => {
               }}
             >
               <div>
-                <div className="text-3xl font-extrabold leading-none">
+                <div className="text-xl font-extrabold leading-none">
                   {loadingThongKe ? "..." : giaoHomNay}
                 </div>
                 <div className="text-base font-semibold mt-0.5 opacity-90">
@@ -640,7 +640,7 @@ const KeHoachGiaoHangTable = () => {
               }}
             >
               <div>
-                <div className="text-3xl font-extrabold leading-none">
+                <div className="text-xl font-extrabold leading-none">
                   {loadingThongKe ? "..." : treHenGiao}
                 </div>
                 <div className="text-base font-semibold mt-0.5 opacity-90">
@@ -669,7 +669,7 @@ const KeHoachGiaoHangTable = () => {
               }}
             >
               <div>
-                <div className="text-3xl font-extrabold leading-none">
+                <div className="text-xl font-extrabold leading-none">
                   {loadingThongKe ? "..." : guiThu}
                 </div>
                 <div className="text-base font-semibold mt-0.5 opacity-90">
@@ -1163,7 +1163,7 @@ const KeHoachGiaoHangTable = () => {
                   ].map((label, i) => (
                     <th
                       key={i}
-                      className="px-3 py-3 select-none relative group overflow-hidden"
+                      className="px-3 py-3.5 select-none relative group overflow-hidden text-base"
                     >
                       {label}
                       <div

@@ -1326,7 +1326,7 @@ export default function VatLieuTable() {
                 ].map((h) => (
                   <TableCell
                     key={h}
-                    sx={{ fontWeight: 700, fontSize: 12, whiteSpace: "nowrap" }}
+                    sx={{ fontWeight: 700, fontSize: 15, whiteSpace: "nowrap" }}
                   >
                     {h}
                   </TableCell>
@@ -1378,6 +1378,7 @@ export default function VatLieuTable() {
                       <TableCell
                         sx={{
                           fontWeight: 600,
+                          fontSize: 15,
                           minWidth: 180,
                           cursor: "pointer",
                         }}
@@ -1386,7 +1387,7 @@ export default function VatLieuTable() {
                         {vl.tenVatLieu}
                       </TableCell>
                       <TableCell
-                        sx={{ fontSize: 12, minWidth: 120 }}
+                        sx={{ fontSize: 14, minWidth: 120 }}
                         onClick={() => openEdit(vl)}
                       >
                         {vl.nhomVatLieu && (
@@ -1405,7 +1406,7 @@ export default function VatLieuTable() {
                       </TableCell>
 
                       <TableCell
-                        sx={{ color: "#555", fontSize: 13 }}
+                        sx={{ color: "#555", fontSize: 15 }}
                         onClick={() => openEdit(vl)}
                       >
                         {vl.nhaCungCap?.ten || (
@@ -1431,6 +1432,7 @@ export default function VatLieuTable() {
                           <span
                             style={{
                               fontWeight: 700,
+                              fontSize: 15,
                               color: thieuHang ? "#ef4444" : "#1976d2",
                             }}
                           >
@@ -1440,14 +1442,14 @@ export default function VatLieuTable() {
                       </TableCell>
                       <TableCell
                         align="center"
-                        sx={{ color: "#555", fontSize: 13 }}
+                        sx={{ color: "#555", fontSize: 15 }}
                         onClick={() => openEdit(vl)}
                       >
                         {vl.tonKhoToiThieu ?? 0}
                       </TableCell>
                       <TableCell
                         align="right"
-                        sx={{ fontSize: 13, whiteSpace: "nowrap" }}
+                        sx={{ fontSize: 15, whiteSpace: "nowrap" }}
                         onClick={() => openEdit(vl)}
                       >
                         {vl.giaMua > 0 ? (
@@ -1459,13 +1461,13 @@ export default function VatLieuTable() {
                         )}
                       </TableCell>
                       <TableCell
-                        sx={{ color: "#6b7280", fontSize: 13 }}
+                        sx={{ color: "#6b7280", fontSize: 15 }}
                         onClick={() => openEdit(vl)}
                       >
                         {vl.donViTinh || "—"}
                       </TableCell>
                       <TableCell
-                        sx={{ color: "#9ca3af", fontSize: 12, maxWidth: 120 }}
+                        sx={{ color: "#9ca3af", fontSize: 14, maxWidth: 120 }}
                         onClick={() => openEdit(vl)}
                       >
                         <span className="line-clamp-1">{vl.ghiChu || ""}</span>
