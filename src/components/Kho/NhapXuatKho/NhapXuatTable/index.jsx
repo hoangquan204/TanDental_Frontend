@@ -306,8 +306,8 @@ export default function NhapXuatTable() {
         setAddMenuOpen={setAddMenuOpen}
       />
 
-      <div className="flex flex-col md:flex-row w-full">
-        <div className="w-[60%]">
+      <div className="flex flex-col gap-3 md:gap-0 md:flex-row w-full">
+        <div className="md:w-[60%]">
           <p className="py-2 font-medium text-center bg-white border border-gray-200 border-b-0">
             Phiếu nhập
           </p>
@@ -324,7 +324,7 @@ export default function NhapXuatTable() {
           </div>
         </div>
 
-        <div className="w-[40%]">
+        <div className="md:w-[40%]">
           <p className="py-2 font-medium text-center bg-white border border-gray-200 border-b-0">
             Phiếu xuất
           </p>

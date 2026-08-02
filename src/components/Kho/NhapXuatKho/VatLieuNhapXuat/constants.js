@@ -47,17 +47,38 @@ export function monthToDateRange(month) {
     return { tuNgay, denNgay };
 }
 
-// Tổng hợp vật liệu từ danh sách phiếu
-export function aggregateVatLieu(phieuList) {
+// Tổng hợp vật liệu từ danh sách phiếu (dùng chung cho cả phiếu nhập và phiếu xuất)
+export function aggregateVatLieu(phieuList, tenVatLieuFilter) {
     const map = {};
+    const keyword = tenVatLieuFilter?.trim().toLowerCase();
+
     phieuList.forEach((phieu) => {
         (phieu.danhSachVatLieu || []).forEach((item) => {
-            const id = item.vatLieu?._id || item.vatLieu?.tenVatLieu || "unknown";
             const tenVatLieu = item.vatLieu?.tenVatLieu || "Không xác định";
-            if (!map[id]) map[id] = { id, tenVatLieu, soLuong: 0 };
+            if (keyword && !tenVatLieu.toLowerCase().includes(keyword)) return;
+
+            const id = item.vatLieu?._id || tenVatLieu || "unknown";
+            if (!map[id]) map[id] = { id, tenVatLieu, soLuong: 0, chiTiet: [] };
             map[id].soLuong += item.soLuong || 0;
             map[id].donViTinh = item.vatLieu?.donViTinh;
+            map[id].chiTiet.push({
+                key: `${phieu._id}-${id}`,
+                ngayTao: phieu.ngayTao,
+                soPhieu: phieu.soPhieu,
+                soLuong: item.soLuong || 0,
+                donGia: item.donGia || 0,
+                thanhTien: item.thanhTien || 0,
+                moTa: item.moTa || "",
+                // Phiếu nhập
+                nhaCungCap: phieu.nhaCungCap?.ten,
+                // Phiếu xuất
+                boPhan: phieu.boPhan,
+                nhanVien: phieu.nhanVien,
+            });
         });
+    });
+    Object.values(map).forEach((row) => {
+        row.chiTiet.sort((a, b) => new Date(b.ngayTao) - new Date(a.ngayTao));
     });
     return Object.values(map);
 }

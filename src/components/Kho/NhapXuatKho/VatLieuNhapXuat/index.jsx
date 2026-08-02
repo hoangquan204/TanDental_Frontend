@@ -120,8 +120,9 @@ export default function VatLieuNhapXuat() {
       ["Có VAT", "Không VAT"].includes(t)
     );
     return {
-      limit: 20,
+      limit: 50,
       page,
+      chiLayVatLieuKhop: true,
       ...dateRange,
       ...(selectedNCC ? { nhaCungCap: selectedNCC } : {}),
       ...(selectedTenVatLieu ? { tenVatLieu: selectedTenVatLieu } : {}),
@@ -137,8 +138,9 @@ export default function VatLieuNhapXuat() {
       ["Chưa xuất", "Đã xuất"].includes(t)
     );
     return {
-      limit: 20,
+      limit: 50,
       page,
+      chiLayVatLieuKhop: true,
       ...dateRange,
       ...(selectedBoPhan ? { boPhan: selectedBoPhan } : {}),
       ...(selectedNhanVien ? { nhanVien: selectedNhanVien } : {}),

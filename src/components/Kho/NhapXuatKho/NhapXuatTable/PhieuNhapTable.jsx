@@ -27,12 +27,12 @@ export default function PhieuNhapTable({ data, selectedId, onRowClick, hasMore, 
                 <table className="hidden sm:table w-full border-collapse text-base text-left bg-white">
                     <thead className="sticky top-0 z-10">
                         <tr className="shadow">
-                            <th className={`${rowBase} ${imBg} w-36 truncate`}>Ngày nhập</th>
+                            <th className={`${rowBase} ${imBg} w-40 truncate`}>Ngày nhập</th>
                             <th className={`${rowBase} ${imBg} w-36 truncate`}>Số phiếu</th>
                             <th className={`${rowBase} ${imBg}`}>Nhà cung cấp</th>
-                            <th className={`${rowBase} ${imBg} w-30 truncate`}>Thành tiền</th>
-                            <th className={`${rowBase} ${imBg} text-center`}>VAT</th>
-                            <th className={`${rowBase} ${imBg}`}>Trạng thái</th>
+                            <th className={`${rowBase} ${imBg} w-36 truncate`}>Thành tiền</th>
+                            <th className={`${rowBase} ${imBg} w-14`}>VAT</th>
+                            <th className={`${rowBase} ${imBg} w-36 truncate`}>Trạng thái</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,10 +49,10 @@ export default function PhieuNhapTable({ data, selectedId, onRowClick, hasMore, 
                                     onClick={() => onRowClick(row)}
                                     className={`cursor-pointer transition-colors ${isSelected ? "bg-sky-50" : "hover:bg-gray-50"}`}
                                 >
-                                    <td className={`${rowBase} ${borderBottom} whitespace-nowrap`}>{formatNgay(row.ngayTao)}</td>
-                                    <td className={`${rowBase} ${borderBottom} whitespace-nowrap`}>{row.soPhieu}</td>
-                                    <td className={`${rowBase} ${borderBottom} max-w-32 truncate`}>{nccTen}</td>
-                                    <td className={`${rowBase} ${borderBottom} whitespace-nowrap`}>
+                                    <td className={`${rowBase} ${borderBottom}`}>{formatNgay(row.ngayTao)}</td>
+                                    <td className={`${rowBase} ${borderBottom}`}>{row.soPhieu}</td>
+                                    <td className={`${rowBase} ${borderBottom}`}>{nccTen}</td>
+                                    <td className={`${rowBase} ${borderBottom}`}>
                                         {(row.tongTien || 0).toLocaleString("vi-VN")}
                                     </td>
                                     <td
@@ -70,11 +70,11 @@ export default function PhieuNhapTable({ data, selectedId, onRowClick, hasMore, 
                                     </td>
                                     <td className={`${rowBase} ${borderBottom}`}>
                                         <div className="flex flex-col gap-1">
-                                            <span className={`text-base text-white font-medium px-2 py-0.5 rounded w-fit ${row.trangThaiNhap === "Đã nhận" ? "bg-green-500" : "bg-yellow-500"
+                                            <span className={`text-sm text-white font-medium px-1 py-0.5 w-fit ${row.trangThaiNhap === "Đã nhận" ? "bg-green-500" : "bg-yellow-500"
                                                 }`}>
                                                 {row.trangThaiNhap}
                                             </span>
-                                            <span className={`text-base text-white font-medium px-2 py-0.5 rounded w-fit ${row.trangThaiThanhToan === "Đã thanh toán" ? "bg-green-500" : "bg-orange-400"
+                                            <span className={`text-sm text-white font-medium px-1 py-0.5 w-fit ${row.trangThaiThanhToan === "Đã thanh toán" ? "bg-green-500" : "bg-orange-400"
                                                 }`}>
                                                 {row.trangThaiThanhToan}
                                             </span>
@@ -162,9 +162,6 @@ export default function PhieuNhapTable({ data, selectedId, onRowClick, hasMore, 
 
             {/* Sentinel */}
             <div ref={sentinelRef} className="h-1" />
-            {loadingMore && (
-                <div className="text-center py-2 text-base text-gray-400">Đang tải thêm...</div>
-            )}
         </div>
     );
 }

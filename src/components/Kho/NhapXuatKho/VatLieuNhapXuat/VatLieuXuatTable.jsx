@@ -1,16 +1,20 @@
-import { rowBase, borderBottom, exBg } from "../NhapXuatTable/constants";
+import { rowBase, borderBottom, exBg } from "./constants";
+import { formatNgay } from "./constants";
+import ChiTietDotModal from "./ChiTietModal";
 
 export default function VatLieuXuatTable({ data, selectedId, onRowClick }) {
     const tongSoLuong = data.reduce((s, r) => s + r.soLuong, 0);
+    const selectedRow = data.find((r) => r.id === selectedId) || null;
+
     return (
         <div className="flex flex-col flex-1 min-w-0">
-            <div className="max-h-[500px] overflow-y-auto table-scroll">
+            <div className="max-h-[400px] md:max-h-[600px] overflow-y-auto table-scroll">
                 <table className="w-full border-collapse text-base text-left bg-white">
                     <thead className="sticky top-0 z-10">
                         <tr className="shadow">
                             <th className={`${rowBase} ${exBg}`}>Tên vật liệu</th>
                             <th className={`${rowBase} ${exBg}`}>ĐVT</th>
-                            <th className={`${rowBase} ${exBg}`}>Số lượng</th>
+                            <th className={`${rowBase} ${exBg}`}>SL</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,6 +47,18 @@ export default function VatLieuXuatTable({ data, selectedId, onRowClick }) {
                     )}
                 </table>
             </div>
+
+            <ChiTietDotModal
+                open={!!selectedRow}
+                onClose={() => onRowClick?.(selectedRow)}
+                title={`${selectedRow?.tenVatLieu || ""}`}
+                accentClass={exBg}
+                columns={["Thời gian", "Bộ phận", "Nhân viên", "Số lượng"]}
+                rows={(selectedRow?.chiTiet || []).map((ct) => ({
+                    key: ct.key,
+                    cells: [formatNgay(ct.ngayTao), ct.boPhan || "—", ct.nhanVien || "—", ct.soLuong],
+                }))}
+            />
         </div>
     );
 }

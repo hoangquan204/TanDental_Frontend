@@ -260,7 +260,10 @@ export default function XuatKhoDetailPanel({ phieu, onClose, onUpdated }) {
                                                     key={i}
                                                     className={`border-t border-gray-100 ${i % 2 === 1 ? "bg-gray-50" : "bg-white"}`}
                                                 >
-                                                    <td className="py-1 px-2 max-w-[120px] truncate">
+                                                    <td
+                                                        className="py-1 px-2 max-w-[120px] truncate"
+                                                        title={item.vatLieu?.tenVatLieu || "—"}
+                                                    >
                                                         {item.vatLieu?.tenVatLieu || "—"}
                                                     </td>
                                                     <td className="py-1 px-2 max-w-[120px] truncate">

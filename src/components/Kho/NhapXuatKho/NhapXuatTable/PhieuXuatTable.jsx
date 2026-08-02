@@ -26,8 +26,8 @@ export default function PhieuXuatTable({ data, selectedId, onRowClick, hasMore, 
                     <thead className="sticky top-0 z-10">
                         <tr className="shadow">
                             <th className={`${rowBase} ${exBg} w-40 truncate`}>Ngày xuất</th>
-                            <th className={`${rowBase} ${exBg} w-20 truncate`}>Bộ phận</th>
-                            <th className={`${rowBase} ${exBg} w-20 truncate`}>Nhân viên</th>
+                            <th className={`${rowBase} ${exBg}`}>Bộ phận</th>
+                            <th className={`${rowBase} ${exBg} w-28 truncate`}>Nhân viên</th>
                             <th className={`${rowBase} ${exBg}`}>Trạng thái</th>
                         </tr>
                     </thead>
@@ -48,7 +48,7 @@ export default function PhieuXuatTable({ data, selectedId, onRowClick, hasMore, 
                                     <td className={`${rowBase} ${borderBottom}`}>{row.boPhan}</td>
                                     <td className={`${rowBase} ${borderBottom}`}>{row.nhanVien}</td>
                                     <td className={`${rowBase} ${borderBottom}`}>
-                                        <span className={`text-base text-white font-medium px-2.5 py-0.5 ${row.trangThai === "Đã xuất" ? "bg-green-500" : "bg-yellow-500"}`}>
+                                        <span className={`text-sm text-white font-medium px-1 py-0.5 ${row.trangThai === "Đã xuất" ? "bg-green-500" : "bg-yellow-500"}`}>
                                             {row.trangThai}
                                         </span>
                                     </td>
@@ -95,9 +95,6 @@ export default function PhieuXuatTable({ data, selectedId, onRowClick, hasMore, 
 
                 {/* Sentinel */}
                 <div ref={sentinelRef} className="h-1" />
-                {loadingMore && (
-                    <div className="text-center py-2 text-base text-gray-400">Đang tải thêm...</div>
-                )}
             </div>
         </div>
     );
