@@ -165,7 +165,6 @@ export default function NhapKhoDetailPanel({ phieu, onClose, onUpdated }) {
             setFullPhieu(res.data || res);
             toast.success("Cập nhật phí phát sinh thành công");
             setEditingPhiPhatSinh(false);
-            onUpdated?.();
         } catch (err) {
             toast.error(err?.message || "Cập nhật thất bại");
         } finally {

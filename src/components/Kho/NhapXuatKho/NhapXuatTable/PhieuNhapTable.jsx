@@ -17,7 +17,7 @@ export default function PhieuNhapTable({ data, selectedId, onRowClick, hasMore, 
         return () => observer.disconnect();
     }, [hasMore, loadingMore, onLoadMore]);
 
-    const tongTien = data.reduce((s, r) => s + (r.tongTien || 0), 0);
+    const tongTien = data.reduce((s, r) => s + (r.tongTien || 0) + (r.phiPhatSinh || 0), 0);
 
     return (
         <div className="flex flex-col flex-1 min-w-0">
@@ -53,7 +53,10 @@ export default function PhieuNhapTable({ data, selectedId, onRowClick, hasMore, 
                                     <td className={`${rowBase} ${borderBottom}`}>{row.soPhieu}</td>
                                     <td className={`${rowBase} ${borderBottom}`}>{nccTen}</td>
                                     <td className={`${rowBase} ${borderBottom}`}>
-                                        {(row.tongTien || 0).toLocaleString("vi-VN")}
+                                        {row.phiPhatSinh
+                                            ? (row.tongTien + row.phiPhatSinh).toLocaleString("vi-VN")
+                                            : (row.tongTien || 0).toLocaleString("vi-VN")
+                                        }
                                     </td>
                                     <td
                                         className={`${borderBottom} pl-3`}
