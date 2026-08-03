@@ -56,16 +56,16 @@ const NhanVienFormModal = ({ open, onClose, initialData = null }) => {
     setFormData(
       initialData
         ? {
-            hoVaTen: initialData.hoVaTen || "",
-            cccd: initialData.cccd || "",
-            diaChi: initialData.diaChi || "",
-            soDienThoai: initialData.soDienThoai || "",
-            email: initialData.email || "",
-            chucVu: initialData.chucVu || "",
-            luongCanBan: initialData.luongCanBan || 0,
-            ngayCongThang: initialData.ngayCongThang || 28, // 🔥 Nhận dữ liệu cũ hoặc fallback về 28
-            trangThai: initialData.trangThai || "Đang làm",
-          }
+          hoVaTen: initialData.hoVaTen || "",
+          cccd: initialData.cccd || "",
+          diaChi: initialData.diaChi || "",
+          soDienThoai: initialData.soDienThoai || "",
+          email: initialData.email || "",
+          chucVu: initialData.chucVu || "",
+          luongCanBan: initialData.luongCanBan || 0,
+          ngayCongThang: initialData.ngayCongThang || 28, // 🔥 Nhận dữ liệu cũ hoặc fallback về 28
+          trangThai: initialData.trangThai || "Đang làm",
+        }
         : initialState
     );
   }, [initialData, open]);
@@ -82,7 +82,6 @@ const NhanVienFormModal = ({ open, onClose, initialData = null }) => {
       toast.error("Vui lòng nhập CCCD");
       return false;
     }
-    // Thêm kiểm tra hợp lệ ngày công nếu cần
     if (formData.ngayCongThang < 0 || formData.ngayCongThang > 31) {
       toast.error("Ngày công tháng không hợp lệ (Từ 0 đến 31 ngày)");
       return false;
@@ -95,7 +94,6 @@ const NhanVienFormModal = ({ open, onClose, initialData = null }) => {
     try {
       setLoading(true);
 
-      // Đồng bộ kiểu dữ liệu Number trước khi đẩy lên API/Redux
       const submitData = {
         ...formData,
         luongCanBan: Number(formData.luongCanBan),
@@ -125,11 +123,11 @@ const NhanVienFormModal = ({ open, onClose, initialData = null }) => {
     <Dialog
       open={open}
       onClose={onClose}
-      maxWidth="lg"
+      maxWidth="xl"
       fullWidth
       PaperProps={{
         sx: {
-          borderRadius: 4,
+          borderRadius: 3,
           overflow: "hidden",
           boxShadow: "0 25px 60px rgba(0,0,0,0.18)",
         },
@@ -137,41 +135,41 @@ const NhanVienFormModal = ({ open, onClose, initialData = null }) => {
     >
       {/* Header */}
       <div
-        className="px-6 py-5 flex items-center justify-between"
+        className="px-6 py-4 flex items-center justify-between"
         style={{
           background: "linear-gradient(135deg,#2563eb,#3b82f6)",
         }}
       >
         <div>
-          <h2 className="text-lg font-extrabold text-white tracking-tight">
+          <h2 className="text-lg font-bold text-white tracking-tight">
             {isEdit ? "Cập nhật nhân viên" : "Thêm nhân viên mới"}
           </h2>
-          <p className="text-xs text-slate-400 mt-0.5">
+          <p className="text-xs text-blue-100 opacity-90 mt-0.5">
             Quản lý thông tin nhân viên
           </p>
         </div>
         <div className="flex items-center gap-3">
           <span
-            className="text-xs font-bold px-2.5 py-1 rounded-full"
+            className="text-xs font-bold px-3 py-1 rounded-full uppercase"
             style={
               isEdit
                 ? {
-                    background: "#1e3a5f",
-                    color: "#93c5fd",
-                    border: "1px solid #2563eb",
-                  }
+                  background: "rgba(15, 23, 42, 0.4)",
+                  color: "#93c5fd",
+                  border: "1px solid rgba(147, 197, 253, 0.3)",
+                }
                 : {
-                    background: "#166534",
-                    color: "#86efac",
-                    border: "1px solid #166534",
-                  }
+                  background: "rgba(22, 101, 52, 0.4)",
+                  color: "#86efac",
+                  border: "1px solid rgba(134, 239, 172, 0.3)",
+                }
             }
           >
-            {isEdit ? "EDIT MODE" : "NEW"}
+            {isEdit ? "EDIT MODE" : "NEW MODE"}
           </span>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-white transition-colors"
+            className="text-blue-100 hover:text-white transition-colors"
           >
             <CloseIcon sx={{ fontSize: 20 }} />
           </button>
@@ -180,103 +178,51 @@ const NhanVienFormModal = ({ open, onClose, initialData = null }) => {
 
       {/* Body */}
       <DialogContent sx={{ background: "#f8fafc", py: 4, px: 4 }}>
-        {/* ── Section: Thông tin cá nhân ── */}
-        <div className="flex items-center gap-2 mb-3">
-          <span className="w-1 h-4 rounded-full bg-blue-500 inline-block" />
-          <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-            Thông tin cá nhân
-          </span>
-        </div>
-        <div className="flex items-center justify-between gap-x-2 gap-y-2 flex-wrap">
-          <TextField
-            label="Họ và tên *"
-            size="small"
-            value={formData.hoVaTen}
-            onChange={(e) => handleChange("hoVaTen", e.target.value)}
-            sx={fieldSx}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <PersonIcon sx={{ fontSize: 18, color: "#3b82f6" }} />
-                </InputAdornment>
-              ),
-            }}
-          />
-          <TextField
-            label="CCCD *"
-            size="small"
-            value={formData.cccd}
-            onChange={(e) => handleChange("cccd", e.target.value)}
-            sx={fieldSx}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <BadgeIcon sx={{ fontSize: 18, color: "#3b82f6" }} />
-                </InputAdornment>
-              ),
-            }}
-          />
-          <TextField
-            label="Số điện thoại"
-            size="small"
-            value={formData.soDienThoai}
-            onChange={(e) => handleChange("soDienThoai", e.target.value)}
-            sx={fieldSx}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <PhoneIcon sx={{ fontSize: 18, color: "#3b82f6" }} />
-                </InputAdornment>
-              ),
-            }}
-          />
-          <TextField
-            label="Chức vụ"
-            size="small"
-            value={formData.chucVu}
-            onChange={(e) => handleChange("chucVu", e.target.value)}
-            sx={fieldSx}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <WorkIcon sx={{ fontSize: 18, color: "#3b82f6" }} />
-                </InputAdornment>
-              ),
-            }}
-          />
-          <TextField
-            label="Địa chỉ"
-            size="small"
-            value={formData.diaChi}
-            onChange={(e) => handleChange("diaChi", e.target.value)}
-            sx={fieldSx}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start" sx={{ mt: "9px" }}>
-                  <HomeIcon sx={{ fontSize: 18, color: "#3b82f6" }} />
-                </InputAdornment>
-              ),
-            }}
-          />
-        </div>
-
-        {/* Địa chỉ: tách riêng khỏi Grid, luôn xuống dòng và chiếm 100% chiều rộng */}
-        <div className="w-full" style={{ marginTop: 20 }}></div>
-
-        {/* ── Divider ── */}
-        <div
-          style={{ borderTop: "1px dashed #e2e8f0", margin: "24px 0 20px" }}
-        />
-
-        {/* ── Section: Công việc & lương ── */}
-        <div className="flex items-center gap-2 mb-3">
-          <span className="w-1 h-4 rounded-full bg-emerald-500 inline-block" />
-          <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-            Công việc &amp; lương
-          </span>
-        </div>
         <Grid container spacing={2.5}>
-          <Grid item xs={12} md={4}>
+          {/* Hàng 1: Họ tên, CCCD, SĐT, Chức vụ */}
+          <Grid item xs={12} sm={6} md={3}>
+            <TextField
+              fullWidth
+              label="Họ và tên *"
+              size="small"
+              value={formData.hoVaTen}
+              onChange={(e) => handleChange("hoVaTen", e.target.value)}
+              sx={fieldSx}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6} md={3}>
+            <TextField
+              fullWidth
+              label="CCCD *"
+              size="small"
+              value={formData.cccd}
+              onChange={(e) => handleChange("cccd", e.target.value)}
+              sx={fieldSx}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6} md={3}>
+            <TextField
+              fullWidth
+              label="Số điện thoại"
+              size="small"
+              value={formData.soDienThoai}
+              onChange={(e) => handleChange("soDienThoai", e.target.value)}
+              sx={fieldSx}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6} md={3}>
+            <TextField
+              fullWidth
+              label="Chức vụ"
+              size="small"
+              value={formData.chucVu}
+              onChange={(e) => handleChange("chucVu", e.target.value)}
+              sx={fieldSx}
+            />
+          </Grid>
+
+          {/* Hàng 2: Trạng thái, Lương cơ bản, Ngày công tháng, Địa chỉ */}
+          <Grid item xs={12} sm={6} md={3}>
             <TextField
               select
               fullWidth
@@ -290,7 +236,7 @@ const NhanVienFormModal = ({ open, onClose, initialData = null }) => {
               <MenuItem value="Nghỉ việc">Nghỉ việc</MenuItem>
             </TextField>
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} sm={6} md={3}>
             <TextField
               fullWidth
               type="text"
@@ -303,26 +249,13 @@ const NhanVienFormModal = ({ open, onClose, initialData = null }) => {
                   : Number(formData.luongCanBan).toLocaleString("vi-VN")
               }
               onChange={(e) => {
-                // Chỉ giữ lại chữ số, bỏ dấu chấm phân cách để lưu đúng giá trị số
                 const raw = e.target.value.replace(/\D/g, "");
                 handleChange("luongCanBan", raw === "" ? "" : Number(raw));
               }}
               sx={fieldSx}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <PaymentsIcon sx={{ fontSize: 18, color: "#10b981" }} />
-                  </InputAdornment>
-                ),
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <span className="text-slate-400 text-xs">VNĐ</span>
-                  </InputAdornment>
-                ),
-              }}
             />
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} sm={6} md={3}>
             <TextField
               fullWidth
               type="number"
@@ -332,83 +265,58 @@ const NhanVienFormModal = ({ open, onClose, initialData = null }) => {
               onChange={(e) =>
                 handleChange("ngayCongThang", Number(e.target.value))
               }
-              inputProps={{ min: 0, max: 31 }} // Giới hạn số ngày trong tháng tại UI
+              inputProps={{ min: 0, max: 31 }}
               sx={fieldSx}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <CalendarMonthIcon
-                      sx={{ fontSize: 18, color: "#eab308" }}
-                    />
-                  </InputAdornment>
-                ),
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <span className="text-slate-400 text-xs">Ngày</span>
-                  </InputAdornment>
-                ),
+            />
+          </Grid>
+          <Grid item xs={12} sm={6} md={3}>
+            <TextField
+              fullWidth
+              label="Địa chỉ"
+              size="small"
+              value={formData.diaChi}
+              onChange={(e) => handleChange("diaChi", e.target.value)}
+              sx={fieldSx}
+            />
+          </Grid>
+
+          {/* Hàng 3: Ghi chú */}
+          <Grid item xs={12}>
+            <TextField
+              fullWidth
+              multiline
+              minRows={3}
+              maxRows={6}
+              label="Ghi chú"
+              size="small"
+              value={formData.email}
+              onChange={(e) => handleChange("email", e.target.value)}
+              sx={{
+                ...fieldSx,
+                "& .MuiOutlinedInput-root": {
+                  ...fieldSx["& .MuiOutlinedInput-root"],
+                  alignItems: "flex-start",
+                },
               }}
             />
           </Grid>
         </Grid>
-
-        {/* ── Divider ── */}
-        <div
-          style={{ borderTop: "1px dashed #e2e8f0", margin: "24px 0 20px" }}
-        />
-
-        {/* ── Section: Ghi chú ── */}
-        <div className="flex items-center gap-2 mb-3">
-          <span className="w-1 h-4 rounded-full bg-slate-400 inline-block" />
-          <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-            Ghi chú
-          </span>
-        </div>
-        {/* Ghi chú: tách riêng khỏi Grid, luôn chiếm 100% chiều rộng */}
-        <div className="w-full">
-          <TextField
-            fullWidth
-            multiline
-            minRows={4}
-            maxRows={8}
-            label="Ghi chú"
-            size="small"
-            value={formData.email}
-            onChange={(e) => handleChange("email", e.target.value)}
-            sx={{
-              ...fieldSx,
-              width: "100%",
-              "& .MuiOutlinedInput-root": {
-                ...fieldSx["& .MuiOutlinedInput-root"],
-                alignItems: "flex-start",
-              },
-              "& textarea": {
-                overflowY: "auto !important",
-              },
-            }}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start" sx={{ mt: "9px" }}>
-                  <EventNoteIcon sx={{ fontSize: 18, color: "#3b82f6" }} />
-                </InputAdornment>
-              ),
-            }}
-          />
-        </div>
       </DialogContent>
 
       {/* Footer */}
-      <div className="flex items-center justify-end gap-2 px-5 py-4 bg-white border-t border-slate-100">
+      <div className="flex items-center justify-end gap-2.5 px-6 py-3.5 bg-white border-t border-slate-100">
         <button
+          type="button"
           onClick={onClose}
-          className="px-4 py-2 text-sm font-medium text-slate-500 rounded-lg hover:bg-slate-100 transition-colors"
+          className="px-5 py-2 text-sm font-medium text-slate-600 hover:text-slate-800 rounded-lg hover:bg-slate-100 transition-colors"
         >
           Hủy
         </button>
         <button
+          type="button"
           onClick={handleSubmit}
           disabled={loading}
-          className="flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-bold text-white transition-all disabled:opacity-60"
+          className="flex items-center gap-2 px-6 py-2 rounded-xl text-sm font-bold text-white shadow-md shadow-blue-500/20 hover:shadow-blue-500/30 transition-all disabled:opacity-60"
           style={{
             background: loading
               ? "#94a3b8"
@@ -416,7 +324,7 @@ const NhanVienFormModal = ({ open, onClose, initialData = null }) => {
           }}
         >
           {loading && <CircularProgress size={14} sx={{ color: "#fff" }} />}
-          {loading ? "Đang xử lý..." : isEdit ? "Cập nhật" : "Lưu nhân viên"}
+          {loading ? "Đang xử lý..." : isEdit ? "Cập nhật" : "Thêm mới"}
         </button>
       </div>
     </Dialog>
