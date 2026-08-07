@@ -1134,64 +1134,24 @@ export default function VatLieuTable() {
         }}
       // className="flex flex-wrap items-center justify-between gap-3"
       >
-        <div className="flex flex-col gap-2 py-2">
-          {/* Hàng 1: search + action buttons */}
-          <div className="flex gap-2 items-center">
-            <div className="relative flex-1">
-              <SearchIcon
-                sx={{ fontSize: 18 }}
-                className="absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
-              />
-              <input
-                type="text"
-                placeholder="Tìm vật liệu..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="w-full h-9 pl-8 pr-3 md:text-base text-base border border-gray-300 rounded outline-none focus:border-sky-400 hover:border-gray-400 transition bg-white"
-              />
-            </div>
-            <div className="flex items-center gap-1.5 shrink-0">
-              <Tooltip title="Làm mới">
-                <IconButton
-                  size="small"
-                  onClick={() =>
-                    dispatch(
-                      fetchVatLieu({
-                        ...currentFilters,
-                        limit: vatLieuLimit || 20,
-                      })
-                    )
-                  }
-                  disabled={loading}
-                >
-                  <RefreshIcon sx={{ fontSize: 20 }} />
-                </IconButton>
-              </Tooltip>
-              <button
-                onClick={handleExportExcel}
-                disabled={exporting}
-                className="h-9 px-3 text-base font-medium text-white bg-[#29b6f6] hover:bg-[#0091ea] rounded flex items-center gap-1 transition disabled:opacity-60 disabled:cursor-not-allowed"
-              >
-                {exporting ? (
-                  <CircularProgress size={14} sx={{ color: "#fff" }} />
-                ) : (
-                  <DownloadIcon sx={{ fontSize: 17 }} />
-                )}
-                <span className="hidden sm:inline">
-                  {exporting ? "Đang xuất..." : "Xuất Excel"}
-                </span>
-              </button>
-              <button
-                onClick={openAdd}
-                className="h-9 px-3 text-base font-medium text-white bg-[#1976d2] hover:bg-[#1565c0] rounded flex items-center gap-1 transition"
-              >
-                <AddIcon sx={{ fontSize: 17 }} />
-                <span className="hidden sm:inline">Thêm vật liệu</span>
-              </button>
-            </div>
+        <div className="flex flex-col md:flex-row md:flex-wrap md:items-center gap-2 py-2">
+          {/* Ô tìm kiếm — thu nhỏ chiều rộng trên desktop để các bộ lọc và
+              nút hành động có thể nằm chung một hàng */}
+          <div className="relative w-full md:w-56 shrink-0">
+            <SearchIcon
+              sx={{ fontSize: 18 }}
+              className="absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
+            />
+            <input
+              type="text"
+              placeholder="Tìm vật liệu..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full h-9 pl-8 pr-3 md:text-sm text-base border border-gray-300 rounded outline-none focus:border-sky-400 hover:border-gray-400 transition bg-white"
+            />
           </div>
 
-          {/* Hàng 2: filter dropdowns */}
+          {/* Bộ lọc — cùng hàng với ô tìm kiếm trên desktop */}
           <div className="flex flex-wrap gap-2 items-center">
             <SearchableDropdown
               options={(nhaCungCap || []).map((n) => n.ten)}
@@ -1234,6 +1194,47 @@ export default function VatLieuTable() {
                 Xóa lọc
               </button>
             )}
+          </div>
+
+          {/* Nút hành động — đẩy sang phải cùng hàng trên desktop */}
+          <div className="flex items-center gap-1.5 shrink-0 md:ml-auto">
+            <Tooltip title="Làm mới">
+              <IconButton
+                size="small"
+                onClick={() =>
+                  dispatch(
+                    fetchVatLieu({
+                      ...currentFilters,
+                      limit: vatLieuLimit || 20,
+                    })
+                  )
+                }
+                disabled={loading}
+              >
+                <RefreshIcon sx={{ fontSize: 20 }} />
+              </IconButton>
+            </Tooltip>
+            <button
+              onClick={handleExportExcel}
+              disabled={exporting}
+              className="h-9 px-3 text-sm font-medium text-white bg-[#29b6f6] hover:bg-[#0091ea] rounded flex items-center gap-1 transition disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              {exporting ? (
+                <CircularProgress size={14} sx={{ color: "#fff" }} />
+              ) : (
+                <DownloadIcon sx={{ fontSize: 17 }} />
+              )}
+              <span className="hidden sm:inline">
+                {exporting ? "Đang xuất..." : "Xuất Excel"}
+              </span>
+            </button>
+            <button
+              onClick={openAdd}
+              className="h-9 px-3 text-sm font-medium text-white bg-[#1976d2] hover:bg-[#1565c0] rounded flex items-center gap-1 transition"
+            >
+              <AddIcon sx={{ fontSize: 17 }} />
+              <span className="hidden sm:inline">Thêm vật liệu</span>
+            </button>
           </div>
         </div>
         {selectedIds.length > 0 && (
