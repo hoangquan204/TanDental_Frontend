@@ -30,7 +30,7 @@ export default function PhieuNhapTable({ data, selectedId, onRowClick, hasMore, 
                             <th className={`${rowBase} ${imBg} w-40 truncate`}>Ngày nhập</th>
                             <th className={`${rowBase} ${imBg} w-36 truncate`}>Số phiếu</th>
                             <th className={`${rowBase} ${imBg}`}>Nhà cung cấp</th>
-                            <th className={`${rowBase} ${imBg} w-36 truncate`}>Thành tiền</th>
+                            <th className={`${rowBase} ${imBg} w-36 truncate relative`}>Thành tiền</th>
                             <th className={`${rowBase} ${imBg} w-14`}>VAT</th>
                             <th className={`${rowBase} ${imBg} w-36 truncate`}>Trạng thái</th>
                         </tr>
@@ -87,16 +87,6 @@ export default function PhieuNhapTable({ data, selectedId, onRowClick, hasMore, 
                             );
                         })}
                     </tbody>
-                    {data.length > 0 && (
-                        <tfoot className="sticky bottom-0 z-10">
-                            <tr>
-                                <td className={`${rowBase} ${imBg} font-medium`} colSpan={3}>Tổng</td>
-                                <td className={`${rowBase} ${imBg} font-medium`} colSpan={3}>
-                                    {tongTien.toLocaleString("vi-VN")} ₫
-                                </td>
-                            </tr>
-                        </tfoot>
-                    )}
                 </table>
 
                 {/* ── CARD LIST — mobile (< sm) ── */}

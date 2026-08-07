@@ -269,6 +269,8 @@ export default function NhapXuatTable() {
     dispatch(updatePhieuNhapKho({ id: row._id, VAT: checked }));
   };
 
+  const tongTien = phieuNhapKhos.reduce((s, r) => s + (r.tongTien || 0) + (r.phiPhatSinh || 0), 0);
+
   return (
     <div className="mt-6">
       <style>{scrollbarStyle}</style>
@@ -310,6 +312,7 @@ export default function NhapXuatTable() {
         <div className="md:w-[60%]">
           <p className="py-2 font-medium text-center bg-white border border-gray-200 border-b-0">
             Phiếu nhập
+            <span className="font-normal text-gray-600 ml-1">(Tổng: {tongTien.toLocaleString("vi-VN")})</span>
           </p>
           <div className="flex-1 min-w-0">
             <PhieuNhapTable

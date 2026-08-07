@@ -1,6 +1,6 @@
 import { rowBase, borderBottom, exBg } from "./constants";
 import { formatNgay } from "./constants";
-import ChiTietDotModal from "./ChiTietModal";
+import ChiTietModal from "./ChiTietModal";
 
 export default function VatLieuXuatTable({ data, selectedId, onRowClick }) {
     const tongSoLuong = data.reduce((s, r) => s + r.soLuong, 0);
@@ -48,7 +48,7 @@ export default function VatLieuXuatTable({ data, selectedId, onRowClick }) {
                 </table>
             </div>
 
-            <ChiTietDotModal
+            <ChiTietModal
                 open={!!selectedRow}
                 onClose={() => onRowClick?.(selectedRow)}
                 title={`${selectedRow?.tenVatLieu || ""}`}
