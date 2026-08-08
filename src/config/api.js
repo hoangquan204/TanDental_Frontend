@@ -22,13 +22,15 @@ api.interceptors.request.use(
     }
 );
 
-// Thêm response interceptor để tự động logout khi token hết hạn hoặc mật khẩu thay đổi (lỗi 401/403)
+// Thêm response interceptor để tự động logout khi token hết hạn (chỉ nhận lỗi 401)
 api.interceptors.response.use(
     (response) => response,
     (error) => {
         if (error.response) {
             const status = error.response.status;
-            if (status === 401 || status === 403) {
+            // CHỈ logout khi 401 (Chưa xác thực / Token hết hạn)
+            // TUYỆT ĐỐI KHÔNG logout khi 403 (Chỉ là không có quyền truy cập 1 API cụ thể)
+            if (status === 401) {
                 // Xóa token và user info khỏi localStorage
                 localStorage.removeItem('token');
                 localStorage.removeItem('currentUser');

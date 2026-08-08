@@ -5,11 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../redux/slices/authSlice";
 import { api, API_URL } from "../../config/api";
+import { getDefaultPathForUser } from "../../config/permissions";
 
 export default function LoginPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { loading, error, isAuthenticated } = useSelector(
+  const { loading, error, isAuthenticated, user } = useSelector(
     (state) => state.auth
   );
 
@@ -47,8 +48,11 @@ export default function LoginPage() {
 
   useEffect(() => {
     setMounted(true);
-    if (isAuthenticated) navigate("/");
-  }, [isAuthenticated, navigate]);
+    if (isAuthenticated) {
+      const targetPath = getDefaultPathForUser(user);
+      navigate(targetPath);
+    }
+  }, [isAuthenticated, user, navigate]);
 
   const handleChange = (key, value) => {
     setForm({ ...form, [key]: value });
