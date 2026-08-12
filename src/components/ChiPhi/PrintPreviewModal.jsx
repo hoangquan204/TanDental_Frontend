@@ -25,7 +25,11 @@ const PrintPreviewModal = ({ isOpen, onClose, data }) => {
 
     const { items = [], subtitle = "", type = "day", tonQuyData } = data || {};
 
-    const tongTien = items.reduce((sum, item) => sum + (item.gia || 0), 0);
+    // SỬA LỖI Ở ĐÂY: Lọc bỏ các chi phí phát sinh (isPhatSinh === true) hoặc nhóm "Phát sinh"
+    const validItems = items.filter(item => !item.isPhatSinh && item.loaiChiPhi !== "Phát sinh");
+
+    // Dùng validItems thay vì items để tính tổng
+    const tongTien = validItems.reduce((sum, item) => sum + (item.gia || 0), 0);
 
     let displaySubtitle = subtitle;
     if (type === 'month' && displaySubtitle) {
@@ -95,7 +99,7 @@ const PrintPreviewModal = ({ isOpen, onClose, data }) => {
                         </tr>
                     </thead>
                     <tbody>
-                        ${items.map((item, index) => {
+                        ${validItems.map((item, index) => { // Render từ validItems
         let sttDisplay = index + 1;
         if (type === 'month') {
             if (item.ngay) {
